@@ -11,6 +11,7 @@ All functions and procedures (collectively referred to as functions) belong to t
 
 
 > ag_has_permission RETURNS BOOLEAN
+
 This returns a true or false for determining whether a user has been assigned a role that is linked to a particular permission set within the application. You can pass ... TBA
 
 Parameter | Type | Default | Notes
