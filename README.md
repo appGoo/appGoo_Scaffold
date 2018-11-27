@@ -9,12 +9,7 @@ TBA
 ## appGoo Builder Functions
 All functions and procedures (collectively referred to as functions) belong to the 'ag_sys' schema. The procedures and functions that you author will be in your application's private schema and it's "search path" can be set to be before ag_sys so that you may use your version of the appGoo helper functions. If you alter the definition of the appGoo helper function then it is likely that it will get replaced and re-built due to a package update, therefore you are better implementing your own version of the function by copying (or creating your own) the appGoo version and altering what is required.
 
-### Heading 4
----------------
-
-##### Heading 5
-
-###### ag_has_permission RETURNS BOOLEAN
+#### ag_has_permission RETURNS BOOLEAN
 
 This returns a true or false for determining whether a user has been assigned a role that is linked to a particular permission set within the application. You can pass ... TBA
 
@@ -25,10 +20,10 @@ p_user | text | | This is either the username of the user or the user_id integer
 ```
 ag_has_permission('150100', current_user) = false
 ```
+------------------------
 
 
-###### ag_has_role RETURNS BOOLEAN
-----------------------------------
+#### ag_has_role RETURNS BOOLEAN
 This returns true or false depending upon whether the user passed is a member of the database role stated. The database username or the user_id can be passed and the role name is case insensitive. The 'name' data type is a special text datatype, if an integer is passed for a role name, ensure it is specifically cast like '1234'::name. 
 
 Parameter | Type | Default | Notes
@@ -38,7 +33,7 @@ p_user | text | | This is either the username or the user_id of the user to be u
 ```
 ag_has_role('Project Admin', '1421') = true
 ```
-
+--------------------------
 
 TO BE FIXED--
 Function | Returns | Example | Notes
