@@ -23,14 +23,14 @@ ag_has_permission('150100', current_user) = false
 
 ###### ag_has_role RETURNS BOOLEAN
 ----------------------------------
-This returns true or false depending upon whether the user passed is a member of the database role stated. The database username or the user_id can be passed (and the database username will be determined) and the role name is case insensitive. The 'name' data type is reserved for usernames and roles within the database, whilst text strings will natively cast to a name datatype, integers like those of user_id will need to be specifically cast like '1234'::name. 
+This returns true or false depending upon whether the user passed is a member of the database role stated. The database username or the user_id can be passed and the role name is case insensitive. The 'name' data type is a special text datatype, if an integer is passed for a role name, ensure it is specifically cast like '1234'::name. 
 
 Parameter | Type | Default | Notes
 --------- | ---- | ------- | -----
 p_role | name | | This is the case insensitive name of the application role that you want to check to see if the supplied user is a member of
 p_user | text | | This is either the username or the user_id of the user to be used for validation purposes. If the user_id is passed ensure that it is quoted to be treated as text. Special database variables like current_user can also be passed
 ```
-ag_has_role(current_user, 'Project Admin') = true
+ag_has_role('Project Admin', '1421') = true
 ```
 
 
