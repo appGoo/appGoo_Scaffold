@@ -9,13 +9,21 @@ TBA
 ## appGoo Builder Functions
 All functions and procedures (collectively referred to as functions) belong to the 'ag_sys' schema. The procedures and functions that you author will be in your application's private schema and it's "search path" can be set to be before ag_sys so that you may use your version of the appGoo helper functions. If you alter the definition of the appGoo helper function then it is likely that it will get replaced and re-built due to a package update, therefore you are better implementing your own version of the function by copying (or creating your own) the appGoo version and altering what is required.
 
-###### ag_has_permission
+###### ag_has_permission RETURNS BOOLEAN
 ----------------------------------
-==================================
+This returns a true or false for determining whether a user has been assigned a role that is linked to a particular permission set within the application. You can pass ... TBA
+Parameter | Type | Default | Notes
+--------- | ---- | ------- | -----
+p_permission | text | | This is the "permission code" that is either an integer expressed as text or a text string with no spaces. Examples are '100500' and 'view_projects'. Case insensitive
+p_user | text | | This is either the username of the user or the user_id integer of the user passed as a text string. you can also pass current_user. There is deliberately no default of current_user to ensure that the application understands whom specifically it is checking permission for
+Example:
+```
+ag_has_permission ('150100', current_user) = false
+```
 
+TO BE FIXED--
 Function | Returns | Example | Notes
 -------- | ------- | ------- | -----
-ag_has_permission (text, text) | boolean | ag_has_permission ('150100', current_user) = false | This returns a true or false for determining whether a user has been assigned a role that is linked to a particular permission set within the application. You can pass ... TBA
 ag_has_role (name, text) | boolean | ag_has_role (current_user, 'Project Admin') = true | This returns true or false depending upon whether the user passed is a member of the database role stated. The database username or the user_id can be passed (and the database username will be determined) and the role name is case insensitive. The 'name' data type is reserved for usernames and roles within the database, whilst text strings will natively cast to a name datatype, integers like those of user_id will need to be specifically cast like '1234'::name. 
 ag_is_bigint (text) | integer | ag_is_bigint ('3') = -1 | This is a safe function for determining that a variable is a big integer. Returns 1 if it is a big integer that is out of the range of an integer, 0 if it is not a big integer, and -1 if it is in the bounds of an integer. Decimals are ignored. Once evaluated you can afely cast it.
 ag_is_date (text) | integer | ag_is_date ('31/12/80') = 1 | This is a safe function for determining that a variable translates to a date. It returns 1 if it is a date, 0 if it is not a date, and -1 if it is a date with a time. When testing for dates it does not matter if 3/4/20 is 3rd April or 4th March because both responses are valid dates, but if it is 7/13/20 it will always try to resolve this to 13th July. Note that '3/4' or '4-Mar' or '4 Mar' or '4 March' or '4th March' will resolve to a valid date using the current year as it is expected that other helper functions can be used to build a complete date with this information. However, only the year may be omitted, if the month or day is omitted then it is not considered a valid date
