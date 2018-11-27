@@ -11,4 +11,5 @@ All functions and procedures (collectively referred to as functions) belong to t
 
 Function | Returns | Example | Notes
 -------- | ------- | ------- | -----
-hello    | yes     | no  dssdfv sdfgsdfgsdfgsdffg sdfg sdfg     | eat me
+ag_is_int (text) | integer | ag_is_int('3') = 1 | This is a safe function for determining that the variable is an integer. Returns 1 if it is an Integer, 0 if it is not an integer, and -1 if it is out of range of an integer and therefore is a BigInt. Note that decimals will be ignored. Once evaluated you can safely cast it.
+ag_is_bigint (text) | integer | ag_is_bigint('3') = -1 | This is a safe function for determining that a variable is a big integer. Returns 1 if it is a big integer that is out of the range of an integer, 0 if it is not a big integer, and -1 if it is in the bounds of an integer. Decimals are ignored. Once evaluated you can afely cast it.
