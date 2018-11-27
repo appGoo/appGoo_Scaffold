@@ -12,11 +12,11 @@ All functions and procedures (collectively referred to as functions) belong to t
 ###### ag_has_permission RETURNS BOOLEAN
 ----------------------------------
 This returns a true or false for determining whether a user has been assigned a role that is linked to a particular permission set within the application. You can pass ... TBA
+
 Parameter | Type | Default | Notes
 --------- | ---- | ------- | -----
 p_permission | text | | This is the "permission code" that is either an integer expressed as text or a text string with no spaces. Examples are '100500' and 'view_projects'. Case insensitive
 p_user | text | | This is either the username of the user or the user_id integer of the user passed as a text string. you can also pass current_user. There is deliberately no default of current_user to ensure that the application understands whom specifically it is checking permission for
-Example:
 ```
 ag_has_permission ('150100', current_user) = false
 ```
