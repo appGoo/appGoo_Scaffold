@@ -9,6 +9,11 @@ TBA
 ## appGoo Builder Functions
 All functions and procedures (collectively referred to as functions) belong to the 'ag_sys' schema. The procedures and functions that you author will be in your application's private schema and it's "search path" can be set to be before ag_sys so that you may use your version of the appGoo helper functions. If you alter the definition of the appGoo helper function then it is likely that it will get replaced and re-built due to a package update, therefore you are better implementing your own version of the function by copying (or creating your own) the appGoo version and altering what is required.
 
+#### heading 4
+##### heading 5
+###### heading 6
+----------------------------------
+
 Function | Returns | Example | Notes
 -------- | ------- | ------- | -----
 ag_has_permission (text, text) | boolean | ag_has_permission ('150100', current_user) = false | This returns a true or false for determining whether a user has been assigned a role that is linked to a particular permission set within the application. You can pass ... TBA
