@@ -4,7 +4,7 @@ This is a series of functions that return 3 choices (0 = false, 1 = true it is t
 
 * Integers, -1 is returned if it is a bigint
 * Bigint, -1 is returned if it could also be an integer
-* Date, -1 is returned if it also has a timezone
+* Date, -1 is returned if it also has a time
 * Timestamp, -1 is returned if it also has a timezone
 * Interval 
 */
