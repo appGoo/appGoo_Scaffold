@@ -42,12 +42,13 @@ Function | Results | Notes
 -------- | ------- | -----
 ag_is_date | 0 = not, 1 = Date only, 2 = Date with time, 3 = Timestamp, 4 = Timestamp with timezone | When testing for dates it does not matter if 3/4/20 is 3rd April or 4th March because both responses are valid dates, but if it is 7/13/20 it will always try to resolve this to 13th July. Note that '3/4' or '4-Mar' or '4 Mar' or '4 March' or '4th March' will resolve to a valid date using the current year as it is expected that other helper functions can be used to build a complete date with this information. However, only the year may be omitted, if the month or day is omitted then it is not considered a valid date. Special monikers for the date like 'Today' and 'Yesterday' are not considered valid dates here even though there might be other appGoo functions that convert them to a date
 ag_is_interval | ? | TBA
-ag_is_numeric | 0 = not, 1=smallInt, 2=Int, 3=BigInt, 4=Numeric | This tests if the text can be converted to a number value. It allows currency symbols, +/-, commas, leading decimal (e.g .3) and scientific notation. It will accept any number within the numeric range. All numbers with decimals (apart from X.0) will be returned as a numeric. The smallest data type that it can conform with will be the returned result, therefore testing '100' would return a smallInt rather than an Integer or bigInt even though this number could be cast to all 3 datatypes. Note that appGoo may recognise the value as a particular datatype, but it does not mean that the native cast functionality will work. For example, ag_is_numeric('$.7') = 4, but if you then did '$.7'::numeric you would encounter an error. Therefore you are best to use the ag_cast function to return the required value. 
+ag_is_numeric | 0 = not, 1=smallInt, 2=Int, 3=BigInt, 4=Numeric | This tests if the text can be converted to a number value. It allows currency symbols, +/-, commas, leading decimal (e.g .3) and scientific notation. It will accept any number within the numeric range. It can also accept brackets and basic mathematical formulas but any complexity could result in the result being 0. All numbers with decimals (apart from X.0) will be returned as a numeric. The smallest data type that it can conform with will be the returned result, therefore testing '100' would return a smallInt rather than an Integer or bigInt even though this number could be cast to all 3 datatypes. Note that appGoo may recognise the value as a particular datatype, but it does not mean that the native cast functionality will work. For example, ag_is_numeric('$.7') = 4, but if you then did '$.7'::numeric you would encounter an error. Therefore you are best to use the ag_cast function to return the required value. 
 
-```sql
+```
 ag_is_date('31/12/80') = 1; ag_is_date('11-DEC-17 15:36') = 2; ag_is_date('Today') = 0; ag_is_date('3/4') = 1;
 ag_is_numeric('-214748364799') = 3; ag_is_numeric('-$214,748,364,799.0000') = 3; 
-ag_is_numeric('1.0') = 1; ag_is_numeric('20e2') = 1;
+ag_is_numeric('7.0') = 1; ag_is_numeric('20e2') = 1; ag_is_numeric('-$.7')= 4; ag_is_numeric('3/4') = 0; 
+ag_is_numeric('76%') = 0; ag_is_numeric('(21*700)-30000') = 3
 ```
 ----------------------------
 
