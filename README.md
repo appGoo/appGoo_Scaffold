@@ -35,13 +35,16 @@ ag_has_role('Project Admin', '1421') = true
 ```
 --------------------------
 
-TO BE FIXED--
-Function | Returns | Example | Notes
--------- | ------- | ------- | -----
-ag_is_bigint (text) | integer | ag_is_bigint ('3') = -1 | This is a safe function for determining that a variable is a big integer. Returns 1 if it is a big integer that is out of the range of an integer, 0 if it is not a big integer, and -1 if it is in the bounds of an integer. Decimals are ignored. Once evaluated you can afely cast it.
-ag_is_date (text) | integer | ag_is_date ('31/12/80') = 1 | This is a safe function for determining that a variable translates to a date. It returns 1 if it is a date, 0 if it is not a date, and -1 if it is a date with a time. When testing for dates it does not matter if 3/4/20 is 3rd April or 4th March because both responses are valid dates, but if it is 7/13/20 it will always try to resolve this to 13th July. Note that '3/4' or '4-Mar' or '4 Mar' or '4 March' or '4th March' will resolve to a valid date using the current year as it is expected that other helper functions can be used to build a complete date with this information. However, only the year may be omitted, if the month or day is omitted then it is not considered a valid date
-ag_is_int (text) | integer | ag_is_int ('3') = 1 | This is a safe function for determining that the variable is an integer. Returns 1 if it is an Integer, 0 if it is not an integer, and -1 if it is out of range of an integer and therefore is a BigInt. Note that decimals will be ignored. Once evaluated you can safely cast it.
-ag_is_interval (text) | integer | TBA | TBA 
-ag_is_timestamp (text) | integer | ag_is_timestamp ('2/3/18 17:56 GMT+10') = -1 | This is a safe function for determining if a variable is a timestamp. for this to be successful there must be both a full date and time provided. The exception being that '12pm' or '7am' can provided. It returns 1 if it is a timestamp, 0 if it is not a timestamp (this includes it being a date only with no time), and -1 if it is a timestamp but has a timezone. Note that the precision of the time is not important, it does not mater whether it only provides the hour or has to the thousandth of a second, it is still a timestamp. Once evaluated you can safely cast it using other appGoo helper functions that have extensive flexibility with timestamps
+#### ag_is_*dataType* functions RETURNS INTEGER
+There are multiple of these safe functions that allow you to test whether a text value is of a particular datatype. Returning an integer, a return of 1 indicates that the passed value is that of the datatype, 0 is a fail and it is not of the datatype. There is also a return of -1 that indicates another property of the value that is relevant for casting purposes, see the table below for further explanation.
+
+Function | Results | Examples
+-------- | ----------- | --------
+ag_is_date | 0 = not, 1 = Date only, 2 = Date with time, 3 = Timestamp, 4 = Timestamp with timezone | ag_is_date('31/12/80') = 1; ag_is_date('11-DEC-17 15:36') = -1; ag_is_date('Today') = 0; ag_is_date('3/4') = 1; When testing for dates it does not matter if 3/4/20 is 3rd April or 4th March because both responses are valid dates, but if it is 7/13/20 it will always try to resolve this to 13th July. Note that '3/4' or '4-Mar' or '4 Mar' or '4 March' or '4th March' will resolve to a valid date using the current year as it is expected that other helper functions can be used to build a complete date with this information. However, only the year may be omitted, if the month or day is omitted then it is not considered a valid date. Special monikers for the date like 'Today' and 'Yesterday' are not considered valid dates here even though there might be other appGoo functions that convert them to a date
+ag_is_interval | ? | TBA
+ag_is_numeric | 0 = not, 1=smallInt, 2=Int, 3=BigInt, 4=Numeric | This tests if the text can be converted to a number value. It allows currency symbols, +/-, commas, leading decimal (e.g .3) and scientific notation. It will accept any number within the numeric range. All numbers with decimals (apart from X.0) will be returned as a numeric. The smallest data type that it can conform with will be the returned result, therefore testing '100' would return a smallInt rather than an Integer or bigInt even though this number could be cast to all 3 datatypes. Note that appGoo may recognise the value as a particular datatype, but it does not mean that the native cast functionality will work. For example, ag_is_numeric('$.7') = 4, but if you then did '$.7'::numeric you would encounter an error. Therefore you are best to use the ag_cast function to return the required value. Examples ag_is_numeric('1.0') = 1; ag_is_numeric('-214748364799') = 3; ag_is_numeric('-$214,748,364,799.0000') = 3; ag_is_numeric('20e2') = 1;
+
+
+#### ag_?
 
 
