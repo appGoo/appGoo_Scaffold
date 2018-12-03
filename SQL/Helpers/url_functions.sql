@@ -6,7 +6,7 @@ All functions that relate to working with URL Strings
  We can parse an individual parameter or we can have the entire parameter string parsed into a JSONB object that allows fast retrieval of any/all parameters
 */
 
-CREATE OR REPLACE FUNCTION ag_urlDecode(
+CREATE OR REPLACE FUNCTION ag_sys.ag_urlDecode(
     p_encoded text DEFAULT '')
   RETURNS text AS
 $BODY$
@@ -67,7 +67,7 @@ END
 $body$
 LANGUAGE plpgsql;
 
-create or replace function ag_parseParams(
+create or replace function ag_sys.ag_parseParams(
     p_parameter_string text,
     p_parameter text,
     p_decode boolean default true,
@@ -131,7 +131,7 @@ $BODY$
 
 
 
-create or replace function ag_parseParams(
+create or replace function ag_sys.ag_parseParams(
     p_parameter_string text,
     p_decode boolean default true
     )
