@@ -7,7 +7,7 @@ DECLARE
  v_user_id INT;
  v_user    NAME;
 BEGIN
- IF ag_is_int(p_user) > 0 THEN
+ IF ag_is_numeric(p_user) IN (1,2) THEN
     v_user_id := p_user::int;
     SELECT db_username INTO v_user
     FROM ag_sys.ag_users
@@ -31,7 +31,7 @@ DECLARE
  v_user_id INT;
  v_user    NAME;
 BEGIN
- IF ag_is_int(p_user) > 0 THEN
+ IF ag_is_numeric(p_user) IN(1,2) THEN
     v_user_id := p_user::int;
  ELSE -- p_user is text
     SELECT user_id INTO v_user_id
