@@ -1,5 +1,5 @@
 /*
-ag_create_sequence.sql
+create_sequence.sql
 
 This is needed to enable consistent creation of like sequences from 9.6 and beyond. As of pg11, sequences can optionally decalre a data type (integer, bigint) that determine its boundaries. Instead, we manually specify the boundary.
 
