@@ -36,8 +36,19 @@ BEGIN
   if coalesce(substring(v_numeric, '[a-z`~!@#&*_={}<>?/\\\|]'),'0') != '0' THEN
        return 0;
   else
-    -- if it can be cast as numeric, then detect if it has a decimal, if no decimal then do other tests
-    c_numeric:= to_number(v_numeric, '99999999999999999999D9999999999S');
+    --If it is a percent, then divide the number by 100 before proceeding
+    --It is possible that this results in a decimal or a whole number, so we cannot automatically return a 4
+    if position('%' in v_numeric) = length(v_numeric) then
+      c_numeric:= to_number(v_numeric, '99999999999999999999D9999999999S')/100;
+    else
+      --We only treat a single % as the last character of the string as being legal (checked above), otherwise we error
+      if coalesce(substring(v_numeric, '[%]'),'0') != '0' THEN
+        return 0;
+      else
+        -- if it can be cast as numeric, then detect if it has a decimal, if no decimal then do other tests
+        c_numeric:= to_number(v_numeric, '99999999999999999999D9999999999S');
+      end if;
+    end if;
     v_type := 4;
     v_pos := position('.' in c_numeric::text);
     if v_pos > 0 AND substring(c_numeric::text from v_pos+1)::numeric > 0 THEN return 4; end if;
