@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ag_sys.ag_cast_date(
-    p_cast text, p_format text DEFAULT 'mdy'::text, p_default text DEFAULT null::text)
-  RETURNS text AS
+    p_cast text, p_format text DEFAULT 'env'::text, p_default text DEFAULT null::text)
+  RETURNS text AS  /* The return is timstamptz in your local format as text, e.g. '2018-01-25 17:54:03.123456+11' */
 $BODY$
 DECLARE
 
@@ -24,7 +24,7 @@ begin
 BEGIN
  case v_format
    when 'dmy', 'mdy', 'ymd' then null;
-   else v_format := (select right(current_setting('datestyle'), 3));
+   else v_format := (select lower(right(current_setting('datestyle'), 3)));
  end case;
 EXCEPTION
   when OTHERS then v_format := 'mdy';
