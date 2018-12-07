@@ -1,7 +1,7 @@
 /*
 This file lists all files to be included for build into the database
 */
-/Helpers/cast_functions
+/Helpers/cast_functions.sql
 /Helpers/create_sequence.sql
 /Helpers/is_numeric.sql
 /Helpers/permission_functions.sql
