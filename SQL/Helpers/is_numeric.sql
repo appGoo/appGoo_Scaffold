@@ -1,10 +1,6 @@
 /*
-is_data_type.sql
-This is a series of SAFE functions that returns an integer (0 = false, > 0 a legal data type). You can pass a value to this (text) and not invoke an error if the datatype is not correct
-
-* Numeric: SmallInt, Integer, BigInt, Numeric
-* Date: Date, DateTime, Timestamp, Timestamp with Timezone
-* Interval 
+is_numeric.sql
+This is a SAFE function that returns an integer (0 = false, > 0 a legal data type). You can pass a value to this (text) and not invoke an error if the datatype is not correct
 */
 
 CREATE OR REPLACE FUNCTION ag_sys.ag_is_numeric(p_numeric text) RETURNS INTEGER AS $$
