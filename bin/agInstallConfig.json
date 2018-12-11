@@ -1,0 +1,10 @@
+{
+    "agInstall": {
+            "OurStructureName": "ConfigurableStructureName",
+            "OurStructureName": "ConfigurableStructureName"
+        },
+    "agAbout": {
+        "CreatedBy": "Install",
+        "Purpose": "This is the default config file, change this text to your reason why this file exists"
+    }
+}
