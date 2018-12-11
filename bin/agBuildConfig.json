@@ -1,0 +1,46 @@
+{
+    "agBuild": {
+            "includeFileQualifier": ".include",
+            "sqlFileQualifier": ".sql",
+            "completeBuild": "yes",
+            "doDataUpdate": "yes",
+            "build-01": "/",
+            "build-02": "SQL"
+        },
+    "agInstallation": {
+            "includeFileQualifier": ".include",
+            "sqlFileQualifier": ".sql",
+            "installation-01": "/",
+            "installation-02": "SQL"
+        },
+    "agUpgrade": {
+            "includeFileQualifier": ".include",
+            "sqlFileQualifier": ".sql",
+            "upgrade-01": "/",
+            "upgrade-02": "SQL"
+        },
+    "preprocess": {
+            "do-preprocess": "no",
+            "command-01": "I am a shell script command",
+            "command-02": "I am another shell script command",
+        },
+    "postprocess": {
+            "do-postprocess": "no",
+            "command-01": "I am a shell script command",
+            "command-02": "I am another shell script command",
+        },    
+    "agDatabase": {
+            "targetType": "pg11",
+            "dbName": "appGoo",
+            "user": "postgres",
+            "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password"
+        },    
+    "agOptions": {
+        "fileLog": "yes",
+        "dbLog": "yes"
+    },
+    "agAbout": {
+        "CreatedBy": "Install",
+        "Purpose": "This is the default config file, change this text to your reason why this file exists"
+    }
+}
