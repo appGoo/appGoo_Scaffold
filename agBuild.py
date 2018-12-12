@@ -18,8 +18,16 @@ from pprint import pprint
 
 
 
-# get config file into a json variable
-# to-do: allow a different file to be specified
+################################################################################
+#
+# getConfigFile
+# Returns a nominated JSON file, if no file specified returns the build config
+# To-do:
+#       - Allow a different file to specified from a runtime parameter
+#       - Proper Error Reporting for JSON errors or file non-existant
+#
+################################################################################
+
 def getConfigFile(configFile = 'agBuildConfig.json'):
     try:
         with open(configFile) as cfg:
@@ -30,13 +38,20 @@ def getConfigFile(configFile = 'agBuildConfig.json'):
         print(err.strerror + ' - ', err.filename)
 
 
+################################################################################
+#
+# writeOutputFile
+# Appends a supplied text string to the nominated file. If nothing is provided
+# it will just append a hash '#'
+# To-do:
+#       - Proper Error Reporting for file non-existant or unavailable to write
+#
+################################################################################
 
 def writeOutputFile(fileName, appendText = '#'):
 
-    #f = open(fileName, 'a') -- this is an older alternative
     with open(fileName, 'a') as f:
         f.write(appendText + '\n')
-    #f.close() -- use only if using the older way of doing this
 
 
 
