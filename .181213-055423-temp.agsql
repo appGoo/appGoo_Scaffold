@@ -1,0 +1,42 @@
+/* appGoo SQL to be executed 2018-12-13 05:54:23.947690 */
+-- # DEBUG: bldStruct=source/sql
+-- Appending SQL File: /home/choppy/projects/appGoo_Scaffold/source/sql/sql-sql.sql
+select 3;
+/* this is another sql file
+
+but has not been referenced by an include but by direct
+
+*/
+select 4;
+
+
+-- Processing Include File: /home/choppy/projects/appGoo_Scaffold/source/sql/test.include
+-- Appending SQL File: /home/choppy/projects/appGoo_Scaffold/source/sql/play/play.sql
+/* I am a SQL file
+
+*/
+select 1;
+select version();
+
+
+-- Appending SQL File: /home/choppy/projects/appGoo_Scaffold/source/sql/play/abc-def.sql
+--abc-def.sql
+select 'abc-def';
+select 2;
+
+
+-- # DEBUG: bldStruct=source/sql/play
+-- Appending SQL File: /home/choppy/projects/appGoo_Scaffold/source/sql/play/abc-def.sql
+--abc-def.sql
+select 'abc-def';
+select 2;
+
+
+-- Appending SQL File: /home/choppy/projects/appGoo_Scaffold/source/sql/play/play.sql
+/* I am a SQL file
+
+*/
+select 1;
+select version();
+
+

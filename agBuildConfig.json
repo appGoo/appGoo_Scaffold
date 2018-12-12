@@ -4,20 +4,18 @@
             "sqlFileQualifier": ".sql",
             "completeBuild": "yes",
             "doDataUpdate": "yes",
-            "build-01": "/",
-            "build-02": "SQL"
+            "build-01": "source/sql",
+            "build-02": "source/sql/play"
         },
     "agInstallation": {
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
-            "installation-01": "/",
-            "installation-02": "SQL"
+            "installation-01": "source/install"
         },
     "agUpgrade": {
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
-            "upgrade-01": "/",
-            "upgrade-02": "SQL"
+            "upgrade-01": "source/install/upgrade"
         },
     "preprocess": {
             "do-preprocess": "no",

@@ -1,7 +1,30 @@
 {
-    "agInstall": {
-            "OurStructureName": "ConfigurableStructureName",
-            "OurStructureName": "ConfigurableStructureName"
+    "example": {
+            "dont-change-me": "change-me-to-your-custom-value",
+            "*dont-delete-me": "but you can customise name here"
+        },
+    "appGooInstallation": {
+            "appGoo": "appGoo",
+            "appGoo/doco": "appGoo/doco",
+            "appGoo/sql": "appGoo/sql",
+            "appGoo/sql/pg-A": "appGoo/sql/pg-A",
+            "appGoo/sql/pg-A/procs": "appGoo/sql/pg-A/procs",
+            "appGoo/webserver": "appGoo/webserver",
+            "assets": "assets",
+            "assets/css": "assets/css",
+            "assets/files": "assets/files",
+            "assets/js": "assets/js",
+            "assets/misc": "assets/misc",
+            "source": "source",
+            "source/api": "source/api",
+            "source/build": "source/build",
+            "source/css": "source/css",
+            "source/doco": "source/doco",
+            "source/html": "source/html",
+            "source/install": "source/install",
+            "source/install/upgrade": "source/install/upgrade",
+            "source/js": "source/js",
+            "source/sql": "source/sql"
         },
     "agAbout": {
         "CreatedBy": "Install",
