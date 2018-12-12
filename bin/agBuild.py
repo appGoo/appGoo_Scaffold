@@ -1,9 +1,14 @@
-'''
-Scaffold Builder
+################################################################################
+#
+# Scaffold Builder
+#
+# Builds SQL from external files and executes them in the database.
+# Part of the appGoo system to serve content direct from the database.
+# https://github.com/appGoo
+#
+################################################################################
 
-'''
 # imports
-#import time
 import datetime
 import json
 import subprocess
@@ -11,9 +16,11 @@ import os
 #remove this later
 from pprint import pprint
 
+
+
 # get config file into a json variable
 # to-do: allow a different file to be specified
-def getConfigFile(configFile = 'ag_buildConfig.json'):
+def getConfigFile(configFile = 'agBuildConfig.json'):
     try:
         with open(configFile) as cfg:
           return json.load(cfg)

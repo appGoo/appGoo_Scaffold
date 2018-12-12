@@ -22,12 +22,12 @@
     "preprocess": {
             "do-preprocess": "no",
             "command-01": "I am a shell script command",
-            "command-02": "I am another shell script command",
+            "command-02": "I am another shell script command"
         },
     "postprocess": {
             "do-postprocess": "no",
             "command-01": "I am a shell script command",
-            "command-02": "I am another shell script command",
+            "command-02": "I am another shell script command"
         },    
     "agDatabase": {
             "targetType": "pg11",
