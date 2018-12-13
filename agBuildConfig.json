@@ -18,12 +18,12 @@
             "upgrade-01": "source/install/upgrade"
         },
     "preprocess": {
-            "do-preprocess": "no",
+            "do-preprocess": "never/always/only-when-installed",
             "command-01": "I am a shell script command",
             "command-02": "I am another shell script command"
         },
     "postprocess": {
-            "do-postprocess": "no",
+            "do-postprocess": "never/always",
             "command-01": "I am a shell script command",
             "command-02": "I am another shell script command"
         },    
@@ -32,7 +32,7 @@
             "dbName": "appGoo",
             "user": "postgres",
             "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",
-            "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like 'ag_%' limit 1"
+            "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like $$ag_%$$ limit 1"
         },    
     "agOptions": {
         "fileLog": "yes",

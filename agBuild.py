@@ -226,9 +226,9 @@ def main():
 
     
     #do a connection to the DB to make sure it is OK
-    checkSQL = r"-c '\x' -c 'select $$_appGoo_is_installed_$$ AS isInstalled from pg_catalog.pg_roles where rolname = $$__ag_null__$$;'"
+    checkSQL = buildConfigData["agDatabase"]["installCheckSQL"]
+    checkSQL = r"-c '\x' -c '" + checkSQL + r";'"
     testSQL = buildConfigData["agDatabase"]["sqlCmd"]
-    #testSQL = testSQL.replace("&CMDS", r"-c '\x' -c 'select '__appGoo-installed=true' AS isInstalled from pg_catalog.pg_roles where rolname = 'postgres' or rolname = '__ag_null__';'")
     testSQL = testSQL.replace("&CMDS", checkSQL)
     testSQL = testSQL.replace("&DB", buildConfigData["agDatabase"]["dbName"])
     testSQL = testSQL.replace("&UNAME", buildConfigData["agDatabase"]["user"])
@@ -253,6 +253,13 @@ def main():
     writeOutputFile(sqlFile, '/* appGoo SQL to be executed ' + str(_buildts) + ' */')
     if writeLog:
         writeOutputFile(logFile, 'Created SQL File ' + sqlFile)  
+
+    #perform pre-processing
+    doPreProcess = (buildConfigData["preprocess"]["do-preprocess"][:1] in("a", "y"))
+    print("doPreProcess=" + str(doPreProcess))
+
+    #do appGoo installation
+    
 
     #start appending to the output file
     #first, we 
