@@ -213,8 +213,7 @@ def main():
 
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
-    installConfigData = "x"
-    upgradeConfigData = "x"
+    #upgradeConfigData = "x"
 
     # start a log file if requested (we need the name regardless for cleanup
     logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-build.log'
@@ -233,20 +232,49 @@ def main():
     testSQL = testSQL.replace("&DB", buildConfigData["agDatabase"]["dbName"])
     testSQL = testSQL.replace("&UNAME", buildConfigData["agDatabase"]["user"])
 
-    testConnect = str(runShellCmd(testSQL))
-
-    #not only does this result inform us that the db is available and the
+    #####################################################################
+    #
+    # Test if appGoo installation has been performed in the database
+    # --------------------------------------------------------------
+    # Not only does this result inform us that the db is available and the
     # credentials are correct, but it also informs us whether appGoo has
-    # been installed by the existence of a string "__appGoo-installed=true"
-    # in the result
-    doInstall = False if testConnect.find("(0 rows)") == -1 else True
-    #doInstall = True if testConnect.find("returncode=0") != -1 else False
-    print('doInstall=' + str(doInstall))
-    #print(testConnect)
-                         
-    #start a dbLog if requested (only do if install in db done)
+    # not been installed by checking for the existence of an appGoo object
+    # in the result. If there is no result the string contains '(0 rows)'
+    # which means that it is not installed. Any rows returned mean that
+    # appGoo is installed. Note that the SQL Statement is configurable by
+    # the user in case they customise appGoo objects.
+    #
+    #####################################################################
 
-    #a dbLog should be the fully qualified filenames executed 
+    testConnect = str(runShellCmd(testSQL))
+    doInstall = False if testConnect.find("(0 rows)") == -1 else True
+    if writeLog:
+        writeOutputFile(logFile, 'Test Connection Output\n----------------------\n' + str(testConnect) +'\n----------------------\ndoInstall=' + str(doInstall))  
+
+
+    #####################################################################
+    #
+    # Database logging
+    # --------------------------------------------------------------
+    # 1) User can set whether this is done in the config file
+    # 2) We only insert records, we do not purge old records, dev must maintain
+    # 3) We can only do DB logging once installation is complete
+    # 4) Until installation is complete we will append the SQL to a
+    #    temporary SQL file that we execute after installation
+    # 5) Anything written to the log file should have an equivalent record
+    #    in the database log
+    # 6) Errors in the database log will be added to the log file but not
+    #    cause a stop in processing
+    #
+    #####################################################################
+
+    doDbLog = True if buildConfigData["agOptions"]["dbLog"][:1].lower() == "y" else False
+    if writeLog:
+        writeOutputFile(logFile, 'doDbLog = ' + str(doDbLog))
+
+    if doDbLog:
+        pass
+    
 
     #start an output file (it is a hidden file)
     sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-temp.agsql'
@@ -255,11 +283,27 @@ def main():
         writeOutputFile(logFile, 'Created SQL File ' + sqlFile)  
 
     #perform pre-processing
-    doPreProcess = (buildConfigData["preprocess"]["do-preprocess"][:1] in("a", "y"))
-    print("doPreProcess=" + str(doPreProcess))
+    # we only check for the first letter
+    # n = no,never; a,y =always, yes; o,i = only if installed, instal
+    doPreProcess = (buildConfigData["preprocess"]["do-preprocess"][:1].lower() in("a", "y"))
+    if not doPreProcess and doInstall and (buildConfigData["preprocess"]["do-preprocess"][:1] in("o", "i")):
+        doPreProcess = True
+    #to-do: add pre-process logic
 
+        
     #do appGoo installation
-    
+    if doInstall:
+        pass
+    #to-do: add install logic
+
+    #do appGoo upgrade
+    #to do an appGoo upgrade we check for all SQL files (raw & includes)
+    #that have a modified time > than last build run
+    #the .build-history.log file maintains the latest run time (and by which
+    #config file it was done by) in Line 1
+    #the remaining records are the last time for their config file and they
+    #replace the line in the file - but only if they completed with no errors
+    pass
 
     #start appending to the output file
     #first, we 
