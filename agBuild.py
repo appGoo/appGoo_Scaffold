@@ -220,7 +220,7 @@ def main():
     logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-build.log'
     if buildConfigData["agOptions"]["fileLog"][:1].lower() == "y":
         writeLog = True
-        writeOutputFile(logFile, '# appGoo Build ' + str(_buildts))
+        writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")))
     else:
         writeLog = False
 
