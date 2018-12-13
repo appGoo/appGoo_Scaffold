@@ -6,6 +6,20 @@
 # Part of the appGoo system to serve content direct from the database.
 # https://github.com/appGoo
 #
+# MAJOR TO-DO:
+#  - Install SQL. Make sql statement configurable
+#  - Upgrade SQL. Design method for performing an upgrade of appGoo and
+#    a developer's application
+#  - Error trapping
+#  - Logging - suggest an idea to print out the logfile at the end
+#  - Command Line
+#  - Pre/Post processing. Rather than have commands in the JSON file,
+#    instead have a shell file that can be called to execute
+#  - Implement incremental updates only. Keep a .build-log file that stores
+#    the date that a build was last done and only build files if install is
+#    not required and the SQL file (including upgrade) is created or modified
+#    after the date. Note that we track a date per config file.
+#
 ################################################################################
 
 # imports
@@ -71,14 +85,19 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier):
 
 # consider using a decorator to have the listdir overlay the processing aspect    
     currDir = os.getcwd() + '/'
-    filesToRead = os.listdir(searchPath)
-    filesToRead.sort()
-    for file in filesToRead:
-        if file.endswith(includeQualifier):
-            processIncludeFile(fileName, currDir, searchPath + '/' + file)
-        elif file.endswith(sqlQualifier):
-            processSQLFile(fileName, currDir, searchPath + '/' + file)
-
+    if os.path.exists(currDir):
+        filesToRead = os.listdir(searchPath)
+        filesToRead.sort()
+        for file in filesToRead:
+            if file.endswith(includeQualifier):
+                processIncludeFile(fileName, currDir, searchPath + '/' + file)
+            elif file.endswith(sqlQualifier):
+#to-do: check if it has been modified since last run date
+#if os.path.getctime(file) > minTimeStamp:
+                processSQLFile(fileName, currDir, searchPath + '/' + file)
+    else:
+        # trap an error
+        pass
 
 
 ################################################################################
@@ -101,6 +120,8 @@ def processIncludeFile(fileName, currDir, filePath):
     with open(fullFilePath, 'r') as f:
         for LineInFile in f:
             if LineInFile.strip()[:2] != '--':
+#to-do: check if it has been modified since last run date
+#if os.path.getctime(file) > minTimeStamp:
                 processSQLFile(fileName, currDir, LineInFile.rstrip('\n')) 
 
 
@@ -138,22 +159,27 @@ def processSQLFile(fileName, currDir, filePath):
 #
 ################################################################################
 
-
-def deleteFiles(searchPath, fileQualifier, keepFiles):
+def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
 
     currDir = os.getcwd() + '/'
-    filesToRead = os.listdir(currDir + searchPath)
-    filesToRead.sort()
-    for file in filesToRead:
-        if file.endswith(fileQualifier):
-            if file not in(keepFiles):
-                os.remove(file)
-            
+    if os.path.exists(currDir):
+        filesToRead = os.listdir(currDir + searchPath)
+        filesToRead.sort()
+        for file in filesToRead:
+            if file.endswith(fileQualifier):
+                if file not in(keepFiles):
+                    os.remove(file)
+                    if writeLog:
+                        writeOutputFile(logFile, 'Deleted file: ' + currDir + file)  
+    else:
+        if writeLog:
+                        writeOutputFile(logFile, '*** WARNING: currDir is invalid: ' + currDir + '/n*** FILES NOT DELETED')  
+
 
 
 ################################################################################
 #
-# runSQL
+# runShellCmd
 # performs a shell command and returns the output - whether it is successful
 # or fails
 #
@@ -162,7 +188,7 @@ def deleteFiles(searchPath, fileQualifier, keepFiles):
 #
 ################################################################################
 
-def runSQL(sqlText):
+def runShellCmd(sqlText):
     return subprocess.run([sqlText], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=True)
     
 
@@ -182,6 +208,8 @@ def main():
 
     # get timestamp into a variable
     _buildts = datetime.datetime.now()
+#change this -- get a timestamp from .agBuildHistory.log
+    _buildflt = _buildts.timestamp()
 
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
@@ -205,7 +233,7 @@ def main():
     testSQL = testSQL.replace("&DB", buildConfigData["agDatabase"]["dbName"])
     testSQL = testSQL.replace("&UNAME", buildConfigData["agDatabase"]["user"])
 
-    testConnect = str(runSQL(testSQL))
+    testConnect = str(runShellCmd(testSQL))
 
     #not only does this result inform us that the db is available and the
     # credentials are correct, but it also informs us whether appGoo has
@@ -261,19 +289,11 @@ def main():
 
     #cleanup older files
     keepSQLFiles = (sqlFile)
-    print('dont delete: ' + sqlFile)
-    deleteFiles("", "-temp.agsql", keepSQLFiles)
+    deleteFiles("", "-temp.agsql", keepSQLFiles, writeLog, logFile)
     keepLogFiles = (logFile)
-    print('dont delete: ' + logFile)
-    deleteFiles("", "-build.log", keepLogFiles)
+    deleteFiles("", "-build.log", keepLogFiles, writeLog, logFile)
     
-        #get a directory list
-        #if filename != current log file:
-            #if ends with '-build.log' then delete
-        #if filename != current agsql file:
-            #if ends with '-temp.agsql' then delete
-        #note that all file deletes should be posted in the log file
-
+    
     #finalise log file and finish dbLog
 
     print('At ' + str(_buildts))
