@@ -55,18 +55,45 @@ def writeOutputFile(fileName, appendText = '#'):
 
 
 
-def getFiles(fileName, searchPath, sqlQualifier, includeQualifier):
+################################################################################
+#
+# getSQLFiles
+# Processes all files in a nominated directory and checks to see if they qualify
+# as a SQL file and then requests them to be processed. In addition, if it is
+# an 'include' file it then requests that the include file is processed
+#
+# To-do:
+#       - Proper Error Reporting for typical problems (not known at this stage)
+#
+################################################################################
+
+def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier):
     
     currDir = os.getcwd() + '/'
     filesToRead = os.listdir(searchPath)
     filesToRead.sort()
     for file in filesToRead:
         if file.endswith(includeQualifier):
-            processIncludedFile(fileName, currDir, searchPath + '/' + file)
+            processIncludeFile(fileName, currDir, searchPath + '/' + file)
         elif file.endswith(sqlQualifier):
             processSQLFile(fileName, currDir, searchPath + '/' + file)
 
-def processIncludedFile(fileName, currDir, filePath):
+
+
+################################################################################
+#
+# processIncludeFile
+# It reads each line of a supplied file and passes it to be processed as a
+# SQL file
+#
+# To-do:
+#       - Enhance to only process SQL files that meet the SQL qualifier
+#       - Trap errors for file not existing
+#       - Cater for empty lines
+#
+################################################################################
+
+def processIncludeFile(fileName, currDir, filePath):
     fullFilePath = currDir + filePath
     print('Found include file: ' + fullFilePath)
     writeOutputFile(fileName, '-- Processing Include File: ' + fullFilePath)
@@ -75,6 +102,18 @@ def processIncludedFile(fileName, currDir, filePath):
             if LineInFile.strip()[:2] != '--':
                 processSQLFile(fileName, currDir, LineInFile.rstrip('\n')) 
 
+
+
+################################################################################
+#
+# processSQLFile
+# Appends the contents of the supplied file to the output file. It does not
+# validate the contents of the file.
+#
+# To-do:
+#       - Error reporting for the file not existing or being unavailable
+#
+################################################################################
 
 def processSQLFile(fileName, currDir, filePath):
     print('Appending from ' + currDir + filePath)
@@ -88,14 +127,36 @@ def processSQLFile(fileName, currDir, filePath):
     
 
 
+
+################################################################################
+#
+# runSQL
+# performs a shell command and returns the output - whether it is successful
+# or fails
+#
+# To-do:
+#       - Error Reporting
+#
+################################################################################
+
 def runSQL(sqlText):
     return subprocess.run([sqlText], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=True)
     
+
+
+
+################################################################################
+#
+# main
+# This is where the program begins.
+#
+# To-do:
+#       - Intelligent error reporting to understand where problems are occurring
+#
+################################################################################
         
 def main():
-    """
-    Put some explanation here
-    """
+
     # get timestamp into a variable
     _buildts = datetime.datetime.now()
 
@@ -163,7 +224,7 @@ def main():
     for bldStruct in buildStructures:
         #print(bldStruct)
         writeOutputFile(sqlFile, '-- # DEBUG: bldStruct=' + bldStruct)
-        getFiles(sqlFile, bldStruct, buildConfigData["agBuild"]["sqlFileQualifier"], buildConfigData["agBuild"]["includeFileQualifier"])
+        getSQLFiles(sqlFile, bldStruct, buildConfigData["agBuild"]["sqlFileQualifier"], buildConfigData["agBuild"]["includeFileQualifier"])
 
     #finalise output file
 
@@ -190,6 +251,12 @@ def main():
     print(buildConfigData["agDatabase"]["targetType"])
 
 
+
+################################################################################
+#
+# This is required for when the program is executed from the command line
+#
+################################################################################
 
 if __name__ == "__main__":
     main()
