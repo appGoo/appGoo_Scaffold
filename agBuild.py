@@ -93,7 +93,7 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier):
                 processIncludeFile(fileName, currDir, searchPath + '/' + file)
             elif file.endswith(sqlQualifier):
 #to-do: check if it has been modified since last run date
-#if os.path.getctime(file) > minTimeStamp:
+#if os.path.getmtime(file) > minTimeStamp:
                 processSQLFile(fileName, currDir, searchPath + '/' + file)
     else:
         # trap an error
@@ -121,7 +121,7 @@ def processIncludeFile(fileName, currDir, filePath):
         for LineInFile in f:
             if LineInFile.strip()[:2] != '--':
 #to-do: check if it has been modified since last run date
-#if os.path.getctime(file) > minTimeStamp:
+#if os.path.getmtime(file) > minTimeStamp:
                 processSQLFile(fileName, currDir, LineInFile.rstrip('\n')) 
 
 
