@@ -146,8 +146,8 @@ def deleteFiles(searchPath, fileQualifier, keepFiles):
     filesToRead.sort()
     for file in filesToRead:
         if file.endswith(fileQualifier):
-            if file != any(keepFiles):
-                print('found file to delete: ' + file)
+            if file not in(keepFiles):
+                os.remove(file)
             
 
 
