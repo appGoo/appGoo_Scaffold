@@ -68,7 +68,8 @@ def writeOutputFile(fileName, appendText = '#'):
 ################################################################################
 
 def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier):
-    
+
+# consider using a decorator to have the listdir overlay the processing aspect    
     currDir = os.getcwd() + '/'
     filesToRead = os.listdir(searchPath)
     filesToRead.sort()
@@ -127,6 +128,28 @@ def processSQLFile(fileName, currDir, filePath):
     
 
 
+################################################################################
+#
+# deleteFiles
+# delete files that meet a criteria
+#
+# To-do:
+#       - Error reporting for the file not existing or being unavailable
+#
+################################################################################
+
+
+def deleteFiles(searchPath, fileQualifier, keepFiles):
+
+    currDir = os.getcwd() + '/'
+    filesToRead = os.listdir(currDir + searchPath)
+    filesToRead.sort()
+    for file in filesToRead:
+        if file.endswith(fileQualifier):
+            if file != any(keepFiles):
+                print('found file to delete: ' + file)
+            
+
 
 ################################################################################
 #
@@ -165,10 +188,10 @@ def main():
     installConfigData = "x"
     upgradeConfigData = "x"
 
-    # start a log file if requested
+    # start a log file if requested (we need the name regardless for cleanup
+    logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-build.log'
     if buildConfigData["agOptions"]["fileLog"][:1].lower() == "y":
         writeLog = True
-        logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-build.log'
         writeOutputFile(logFile, '# appGoo Build ' + str(_buildts))
     else:
         writeLog = False
@@ -237,6 +260,13 @@ def main():
     #execute sql
 
     #cleanup older files
+    keepSQLFiles = (sqlFile)
+    print('dont delete: ' + sqlFile)
+    deleteFiles("", "-temp.agsql", keepSQLFiles)
+    keepLogFiles = (logFile)
+    print('dont delete: ' + logFile)
+    deleteFiles("", "-build.log", keepLogFiles)
+    
         #get a directory list
         #if filename != current log file:
             #if ends with '-build.log' then delete
