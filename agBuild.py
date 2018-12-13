@@ -81,7 +81,7 @@ def writeOutputFile(fileName, appendText = '#'):
 #
 ################################################################################
 
-def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier):
+def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, logFile):
 
 # consider using a decorator to have the listdir overlay the processing aspect    
     currDir = os.getcwd() + '/'
@@ -90,11 +90,15 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier):
         filesToRead.sort()
         for file in filesToRead:
             if file.endswith(includeQualifier):
-                processIncludeFile(fileName, currDir, searchPath + '/' + file)
+                if writeLog:
+                    writeOutputFile(logFile, 'Found include file: ' + currDir + searchPath + '/' + file)
+                processIncludeFile(fileName, currDir, searchPath + '/' + file, writeLog, logFile)
             elif file.endswith(sqlQualifier):
 #to-do: check if it has been modified since last run date
 #if os.path.getmtime(file) > minTimeStamp:
-                processSQLFile(fileName, currDir, searchPath + '/' + file)
+                if writeLog:
+                    writeOutputFile(logFile, 'Found SQL file: ' + currDir + searchPath + '/' + file)
+                processSQLFile(fileName, currDir, searchPath + '/' + file, writeLog, logFile)
     else:
         # trap an error
         pass
@@ -113,16 +117,18 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier):
 #
 ################################################################################
 
-def processIncludeFile(fileName, currDir, filePath):
+def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
     fullFilePath = currDir + filePath
-    print('Found include file: ' + fullFilePath)
-    writeOutputFile(fileName, '-- Processing Include File: ' + fullFilePath)
+    #print('Found include file: ' + fullFilePath)
+    #writeOutputFile(fileName, '-- Processing Include File: ' + fullFilePath)
     with open(fullFilePath, 'r') as f:
         for LineInFile in f:
             if LineInFile.strip()[:2] != '--':
 #to-do: check if it has been modified since last run date
 #if os.path.getmtime(file) > minTimeStamp:
-                processSQLFile(fileName, currDir, LineInFile.rstrip('\n')) 
+                if writeLog:
+                    writeOutputFile(logFile, 'Passing SQL file: ' + currDir + LineInFile.rstrip('\n'))
+                processSQLFile(fileName, currDir, LineInFile.rstrip('\n'), writeLog, logFile) 
 
 
 
@@ -137,8 +143,9 @@ def processIncludeFile(fileName, currDir, filePath):
 #
 ################################################################################
 
-def processSQLFile(fileName, currDir, filePath):
-    print('Appending from ' + currDir + filePath)
+def processSQLFile(fileName, currDir, filePath, writeLog, logFile):
+
+    #print('Appending from ' + currDir + filePath)
     fullFilePath = currDir + filePath
     fullFilePath = fullFilePath.replace('//','/')
     writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
@@ -146,6 +153,8 @@ def processSQLFile(fileName, currDir, filePath):
     sqlText = sqlFile.read()
     writeOutputFile(fileName, sqlText)
     sqlFile.close()
+    if writeLog:
+        writeOutputFile(logFile, 'Appending SQL file: ' + fullFilePath)
     
 
 
@@ -194,9 +203,9 @@ def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
 
 def processScripts(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile=""):
 
-    if jsonQualifier == "preprocessing":
+    if jsonQualifier == "preprocess":
         refs = ["Pre-Processing","script-", "./", "", ""]
-    elif jsonQualifier == "postprocessing":
+    elif jsonQualifier == "postprocess":
         refs = ["Post-Processing","script-", "./", "", ""]
     elif jsonQualifier == "agBuild":
         refs = ["Application Build","build-", "", "sqlFileQualifier", "includeFileQualifier"]
@@ -227,13 +236,13 @@ def processScripts(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile=""
 
     for item in Instructions:
         try:
-            if jsonQualifier in ("preprocessing", "postprocessing"):
+            if jsonQualifier in ("preprocess", "postprocess"):
                 processResult = str(runShellCmd(item))
                 if writeLog:
                     writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
             else:
                 writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
-                getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]])
+                getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]], writeLog, logFile)
 
         except PermissionError as err:
             if writeLog:
@@ -357,7 +366,7 @@ def main():
         writeOutputFile(logFile, 'doPreProcess: ' + str(doPreProcess))
 
     if doPreProcess:
-        processScripts('preprocessing', buildConfigData, writeLog, logFile)
+        processScripts('preprocess', buildConfigData, writeLog, logFile)
 
         
     #do appGoo installation
@@ -389,6 +398,9 @@ def main():
 
     #finalise output file
 
+    #run SQL
+    
+
     #do data installation if necessary
     #include the creation of a dbLog
 
@@ -396,6 +408,17 @@ def main():
     #do dbLog if requested
 
     #execute sql
+
+    #perform post-processing
+    # we only check for the first letter
+    # n = no,never; a,y =always, yes; o,i = only if installed, instal
+    doPostProcess = (buildConfigData["postprocess"]["do-postprocess"][:1].lower() in("a", "y"))
+    
+    if writeLog:
+        writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
+
+    if doPostProcess:
+        processScripts('postprocess', buildConfigData, writeLog, logFile)
 
     #cleanup older files
     keepSQLFiles = (sqlFile)

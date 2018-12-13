@@ -18,7 +18,7 @@
             "upgrade-01": "source/install/upgrade"
         },
     "preprocess": {
-            "do-preprocess": "ynever/always/only-when-installed",
+            "do-preprocess": "never/always/only-when-installed",
             "script-01": "preprocess.sh"
         },
     "postprocess": {
