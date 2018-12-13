@@ -18,14 +18,12 @@
             "upgrade-01": "source/install/upgrade"
         },
     "preprocess": {
-            "do-preprocess": "never/always/only-when-installed",
-            "command-01": "I am a shell script command",
-            "command-02": "I am another shell script command"
+            "do-preprocess": "ynever/always/only-when-installed",
+            "script-01": "preprocess.sh"
         },
     "postprocess": {
             "do-postprocess": "never/always",
-            "command-01": "I am a shell script command",
-            "command-02": "I am another shell script command"
+            "script-01": "postprocess.sh"
         },    
     "agDatabase": {
             "targetType": "pg11",

@@ -179,6 +179,77 @@ def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
 
 ################################################################################
 #
+# buildAndProcess
+# builds a list of items to process. Used for pre- and post-processing as
+# well as all SQL parsing
+#
+# Pre- and Post-Processing:
+# run shell scripts in the operating system. The scripts must exist in the
+# same directory as this build executable
+#
+# To-do:
+#       - Ensure failure causes this program to stop
+#
+################################################################################
+
+def processScripts(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile=""):
+
+    if jsonQualifier == "preprocessing":
+        refs = ["Pre-Processing","script-", "./", "", ""]
+    elif jsonQualifier == "postprocessing":
+        refs = ["Post-Processing","script-", "./", "", ""]
+    elif jsonQualifier == "agBuild":
+        refs = ["Application Build","build-", "", "sqlFileQualifier", "includeFileQualifier"]
+    elif jsonQualifier == "agInstallation":
+        refs = ["Application Installation","installation-", "", "sqlFileQualifier", "includeFileQualifier"]
+    elif jsonQualifier == "agUpgrade":
+        refs = ["Application Upgrade","upgrade-", "", "sqlFileQualifier", "includeFileQualifier"]
+    else:
+        #we have a problem
+        pass
+    
+    i = 0
+    foundJSON = True
+    processRef = ''
+    Instructions = []
+    while foundJSON:
+        i += 1
+        processRef = refs[1] + '0' + str(i) if i < 10 else refs[1] + str(i)
+        try:
+            Instructions.append(refs[2] + buildConfigData[jsonQualifier][processRef])
+        except KeyError as err:
+            foundJSON = False
+        except:
+            raise
+
+    if writeLog:
+        writeOutputFile(logFile, refs[0] + ' Script Output--->')
+
+    for item in Instructions:
+        try:
+            if jsonQualifier in ("preprocessing", "postprocessing"):
+                processResult = str(runShellCmd(item))
+                if writeLog:
+                    writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
+            else:
+                writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
+                getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]])
+
+        except PermissionError as err:
+            if writeLog:
+                writeOutputFile(logFile, '*** FATAL ***/nShell script ' + script + ' has permission denied/nMost likely this means that the script is not executable. Use chmod a+x')
+        except:
+            raise
+
+    if writeLog:
+        writeOutputFile(logFile, '\n')
+
+
+
+
+
+################################################################################
+#
 # runShellCmd
 # performs a shell command and returns the output - whether it is successful
 # or fails
@@ -188,8 +259,8 @@ def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
 #
 ################################################################################
 
-def runShellCmd(sqlText):
-    return subprocess.run([sqlText], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=True)
+def runShellCmd(cmd):
+    return subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=True)
     
 
 
@@ -273,14 +344,7 @@ def main():
         writeOutputFile(logFile, 'doDbLog = ' + str(doDbLog))
 
     if doDbLog:
-        pass
-    
-
-    #start an output file (it is a hidden file)
-    sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-temp.agsql'
-    writeOutputFile(sqlFile, '/* appGoo SQL to be executed ' + str(_buildts) + ' */')
-    if writeLog:
-        writeOutputFile(logFile, 'Created SQL File ' + sqlFile)  
+        pass 
 
     #perform pre-processing
     # we only check for the first letter
@@ -288,7 +352,12 @@ def main():
     doPreProcess = (buildConfigData["preprocess"]["do-preprocess"][:1].lower() in("a", "y"))
     if not doPreProcess and doInstall and (buildConfigData["preprocess"]["do-preprocess"][:1] in("o", "i")):
         doPreProcess = True
-    #to-do: add pre-process logic
+
+    if writeLog:
+        writeOutputFile(logFile, 'doPreProcess: ' + str(doPreProcess))
+
+    if doPreProcess:
+        processScripts('preprocessing', buildConfigData, writeLog, logFile)
 
         
     #do appGoo installation
@@ -305,28 +374,18 @@ def main():
     #replace the line in the file - but only if they completed with no errors
     pass
 
-    #start appending to the output file
-    #first, we 
-    #we loop through all structures
-    i = 0
-    foundJSON = True
-    buildRef = ''
-    buildStructures = []
-    while foundJSON:
-        i += 1
-        buildRef = 'build-0' + str(i) if i < 10 else 'build-' + str(i)
-        try:
-            buildStructures.append(buildConfigData["agBuild"][buildRef])
-            #print('bs['+ str(i) + '] ' + buildStructures[i])
-        except KeyError as err:
-            foundJSON = False
-        except:
-            raise
 
-    for bldStruct in buildStructures:
-        #print(bldStruct)
-        writeOutputFile(sqlFile, '-- # DEBUG: bldStruct=' + bldStruct)
-        getSQLFiles(sqlFile, bldStruct, buildConfigData["agBuild"]["sqlFileQualifier"], buildConfigData["agBuild"]["includeFileQualifier"])
+
+    #start an output file (it is a hidden file)
+    sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-temp.agsql'
+    writeOutputFile(sqlFile, '/* appGoo SQL to be executed ' + str(_buildts) + ' */')
+    if writeLog:
+        writeOutputFile(logFile, 'Created SQL File ' + sqlFile) 
+
+    #build SQL
+    processScripts("agBuild", buildConfigData, writeLog, logFile, sqlFile)
+
+
 
     #finalise output file
 
