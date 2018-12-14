@@ -1,32 +1,31 @@
 {
-    "agBuild": {
+    "appBuild": {
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
-            "completeBuild": "yes",
-            "doDataUpdate": "yes",
+            "modifiedOnly": "no",
             "build-01": "source/sql",
             "build-02": "source/sql/play"
         },
-    "agInstallation": {
+    "appInstallation": {
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
             "installation-01": "source/install"
         },
-    "agUpgrade": {
+    "appUpgrade": {
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
             "upgrade-01": "source/install/upgrade"
         },
     "preprocess": {
-            "do-preprocess": "never/always/only-when-installed",
+            "do-preprocess": "no/yes/if-installed",
             "script-01": "preprocess.sh"
         },
     "postprocess": {
-            "do-postprocess": "never/always",
+            "do-postprocess": "no/yes",
             "script-01": "postprocess.sh"
         },    
     "agDatabase": {
-            "targetType": "pg11",
+            "targetType": "pg-A",
             "dbName": "appGoo",
             "user": "postgres",
             "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",

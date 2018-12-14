@@ -34,6 +34,107 @@ from pprint import pprint
 
 ################################################################################
 #
+# buildAndProcess
+# builds a list of items to process. Used for pre- and post-processing as
+# well as all SQL parsing
+#
+# Pre- and Post-Processing:
+# run shell scripts in the operating system. The scripts must exist in the
+# same directory as this build executable
+#
+# To-do:
+#       - Ensure failure causes this program to stop
+#
+################################################################################
+
+def buildAndProcess(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile=""):
+
+    if jsonQualifier == "preprocess":
+        refs = ["Pre-Processing","script-", "./", "", ""]
+    elif jsonQualifier == "postprocess":
+        refs = ["Post-Processing","script-", "./", "", ""]
+    elif jsonQualifier == "appBuild":
+        refs = ["Application Build","build-", "", "sqlFileQualifier", "includeFileQualifier"]
+    elif jsonQualifier == "appInstallation":
+        refs = ["Application Installation","installation-", "", "sqlFileQualifier", "includeFileQualifier"]
+    elif jsonQualifier == "appUpgrade":
+        refs = ["Application Upgrade","upgrade-", "", "sqlFileQualifier", "includeFileQualifier"]
+    else:
+        #we have a problem
+        pass
+    
+    i = 0
+    foundJSON = True
+    processRef = ''
+    Instructions = []
+    while foundJSON:
+        i += 1
+        processRef = refs[1] + '0' + str(i) if i < 10 else refs[1] + str(i)
+        try:
+            Instructions.append(refs[2] + buildConfigData[jsonQualifier][processRef])
+        except KeyError as err:
+            foundJSON = False
+        except:
+            raise
+
+    if writeLog:
+        writeOutputFile(logFile, refs[0] + ' Script Output--->')
+
+    for item in Instructions:
+        try:
+            if jsonQualifier in ("preprocess", "postprocess"):
+                processResult = str(runShellCmd(item))
+                if writeLog:
+                    writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
+            else:
+                writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
+                getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]], writeLog, logFile)
+
+        except PermissionError as err:
+            if writeLog:
+                writeOutputFile(logFile, '*** FATAL ***/nShell script ' + script + ' has permission denied/nMost likely this means that the script is not executable. Use chmod a+x')
+        except:
+            raise
+
+    if writeLog:
+        writeOutputFile(logFile, '\n')
+
+
+
+
+
+################################################################################
+#
+# deleteFiles
+# delete files that meet a criteria
+#
+# To-do:
+#       - Error reporting for the file not existing or being unavailable
+#
+################################################################################
+
+def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
+
+    currDir = os.getcwd() + '/'
+    if os.path.exists(currDir):
+        filesToRead = os.listdir(currDir + searchPath)
+        filesToRead.sort()
+        for file in filesToRead:
+            if file.endswith(fileQualifier):
+                if file not in(keepFiles):
+                    os.remove(file)
+                    if writeLog:
+                        writeOutputFile(logFile, 'Deleted file: ' + currDir + file)  
+    else:
+        if writeLog:
+                        writeOutputFile(logFile, '*** WARNING: currDir is invalid: ' + currDir + '/n*** FILES NOT DELETED')  
+
+
+
+
+
+################################################################################
+#
 # getConfigFile
 # Returns a nominated JSON file, if no file specified returns the build config
 # To-do:
@@ -52,20 +153,6 @@ def getConfigFile(configFile = 'agBuildConfig.json'):
         print(err.strerror + ' - ', err.filename)
 
 
-################################################################################
-#
-# writeOutputFile
-# Appends a supplied text string to the nominated file. If nothing is provided
-# it will just append a hash '#'
-# To-do:
-#       - Proper Error Reporting for file non-existant or unavailable to write
-#
-################################################################################
-
-def writeOutputFile(fileName, appendText = '#'):
-
-    with open(fileName, 'a') as f:
-        f.write(appendText + '\n')
 
 
 
@@ -102,6 +189,8 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
     else:
         # trap an error
         pass
+
+
 
 
 ################################################################################
@@ -158,104 +247,6 @@ def processSQLFile(fileName, currDir, filePath, writeLog, logFile):
     
 
 
-################################################################################
-#
-# deleteFiles
-# delete files that meet a criteria
-#
-# To-do:
-#       - Error reporting for the file not existing or being unavailable
-#
-################################################################################
-
-def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
-
-    currDir = os.getcwd() + '/'
-    if os.path.exists(currDir):
-        filesToRead = os.listdir(currDir + searchPath)
-        filesToRead.sort()
-        for file in filesToRead:
-            if file.endswith(fileQualifier):
-                if file not in(keepFiles):
-                    os.remove(file)
-                    if writeLog:
-                        writeOutputFile(logFile, 'Deleted file: ' + currDir + file)  
-    else:
-        if writeLog:
-                        writeOutputFile(logFile, '*** WARNING: currDir is invalid: ' + currDir + '/n*** FILES NOT DELETED')  
-
-
-
-################################################################################
-#
-# buildAndProcess
-# builds a list of items to process. Used for pre- and post-processing as
-# well as all SQL parsing
-#
-# Pre- and Post-Processing:
-# run shell scripts in the operating system. The scripts must exist in the
-# same directory as this build executable
-#
-# To-do:
-#       - Ensure failure causes this program to stop
-#
-################################################################################
-
-def processScripts(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile=""):
-
-    if jsonQualifier == "preprocess":
-        refs = ["Pre-Processing","script-", "./", "", ""]
-    elif jsonQualifier == "postprocess":
-        refs = ["Post-Processing","script-", "./", "", ""]
-    elif jsonQualifier == "agBuild":
-        refs = ["Application Build","build-", "", "sqlFileQualifier", "includeFileQualifier"]
-    elif jsonQualifier == "agInstallation":
-        refs = ["Application Installation","installation-", "", "sqlFileQualifier", "includeFileQualifier"]
-    elif jsonQualifier == "agUpgrade":
-        refs = ["Application Upgrade","upgrade-", "", "sqlFileQualifier", "includeFileQualifier"]
-    else:
-        #we have a problem
-        pass
-    
-    i = 0
-    foundJSON = True
-    processRef = ''
-    Instructions = []
-    while foundJSON:
-        i += 1
-        processRef = refs[1] + '0' + str(i) if i < 10 else refs[1] + str(i)
-        try:
-            Instructions.append(refs[2] + buildConfigData[jsonQualifier][processRef])
-        except KeyError as err:
-            foundJSON = False
-        except:
-            raise
-
-    if writeLog:
-        writeOutputFile(logFile, refs[0] + ' Script Output--->')
-
-    for item in Instructions:
-        try:
-            if jsonQualifier in ("preprocess", "postprocess"):
-                processResult = str(runShellCmd(item))
-                if writeLog:
-                    writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
-            else:
-                writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
-                getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]], writeLog, logFile)
-
-        except PermissionError as err:
-            if writeLog:
-                writeOutputFile(logFile, '*** FATAL ***/nShell script ' + script + ' has permission denied/nMost likely this means that the script is not executable. Use chmod a+x')
-        except:
-            raise
-
-    if writeLog:
-        writeOutputFile(logFile, '\n')
-
-
-
-
 
 ################################################################################
 #
@@ -270,10 +261,30 @@ def processScripts(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile=""
 
 def runShellCmd(cmd):
     return subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=True)
+
     
 
 
+################################################################################
+#
+# writeOutputFile
+# Appends a supplied text string to the nominated file. If nothing is provided
+# it will just append a hash '#'
+# To-do:
+#       - Proper Error Reporting for file non-existant or unavailable to write
+#
+################################################################################
 
+def writeOutputFile(fileName, appendText = '#'):
+
+    with open(fileName, 'a') as f:
+        f.write(appendText + '\n')
+
+
+
+
+################################################################################
+################################################################################
 ################################################################################
 #
 # main
@@ -288,7 +299,7 @@ def main():
 
     # get timestamp into a variable
     _buildts = datetime.datetime.now()
-#change this -- get a timestamp from .agBuildHistory.log
+#change this -- get a timestamp from .appBuildHistory.log
     _buildflt = _buildts.timestamp()
 
     # Enhance this with 'click' to make this the runtime parameter
@@ -366,7 +377,7 @@ def main():
         writeOutputFile(logFile, 'doPreProcess: ' + str(doPreProcess))
 
     if doPreProcess:
-        processScripts('preprocess', buildConfigData, writeLog, logFile)
+        buildAndProcess('preprocess', buildConfigData, writeLog, logFile)
 
         
     #do appGoo installation
@@ -389,10 +400,10 @@ def main():
     sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-temp.agsql'
     writeOutputFile(sqlFile, '/* appGoo SQL to be executed ' + str(_buildts) + ' */')
     if writeLog:
-        writeOutputFile(logFile, 'Created SQL File ' + sqlFile) 
+        writeOutputFile(logFile, 'Started SQL Output File ' + sqlFile) 
 
     #build SQL
-    processScripts("agBuild", buildConfigData, writeLog, logFile, sqlFile)
+    buildAndProcess("appBuild", buildConfigData, writeLog, logFile, sqlFile)
 
 
 
@@ -418,7 +429,7 @@ def main():
         writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
 
     if doPostProcess:
-        processScripts('postprocess', buildConfigData, writeLog, logFile)
+        buildAndProcess('postprocess', buildConfigData, writeLog, logFile)
 
     #cleanup older files
     keepSQLFiles = (sqlFile)
@@ -428,6 +439,8 @@ def main():
     
     
     #finalise log file and finish dbLog
+    if writeLog:
+        writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
 
     print('At ' + str(_buildts))
     pprint(buildConfigData)
