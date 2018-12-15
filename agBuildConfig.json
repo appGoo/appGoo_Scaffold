@@ -32,7 +32,7 @@
             "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like $$ag_%$$ limit 1"
         },    
     "agOptions": {
-        "fileLog": "yes",
+        "fileLog": "no",
         "dbLog": "no"
     },
     "agAbout": {

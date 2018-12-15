@@ -440,12 +440,13 @@ def main():
     #finalise log file and finish dbLog
     if writeLog:
         writeOutputFile(logFile, 'Build complete at : ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    printFile = open(logFile, "r")
-    printText = printFile.read()
-    print(printText)
-    printFile.close()
-
-
+        printFile = open(logFile, "r")
+        printText = printFile.read()
+        print(printText)
+        printFile.close()
+    else:
+        print('appGoo Build complete.\nParameters:\n\tInstall App:        ' + str(doInstall) + '\n\tDo Pre-Processing:  ' + str(doPreProcess) + '\n\tDo Post-Processing: ' + str(doPostProcess))
+        print('Start Time:      ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCompletion Time: ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 
 ################################################################################
