@@ -59,6 +59,10 @@ def buildAndProcess(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile="
         refs = ["Application Installation","installation-", "", "sqlFileQualifier", "includeFileQualifier"]
     elif jsonQualifier == "appUpgrade":
         refs = ["Application Upgrade","upgrade-", "", "sqlFileQualifier", "includeFileQualifier"]
+    elif jsonQualifier == "agInstallation":
+        refs = ["appGoo Installation","installation-", "", "sqlFileQualifier", "includeFileQualifier"]
+    elif jsonQualifier == "agUpgrade":
+        refs = ["appGoo Upgrade","upgrade-", "", "sqlFileQualifier", "includeFileQualifier"]
     else:
         #we have a problem
         pass
@@ -71,7 +75,11 @@ def buildAndProcess(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile="
         i += 1
         processRef = refs[1] + '0' + str(i) if i < 10 else refs[1] + str(i)
         try:
-            Instructions.append(refs[2] + buildConfigData[jsonQualifier][processRef])
+            if refs[0][:6] == "appGoo":
+                Instructions.append(refs[2] + installConfigData[jsonQualifier][processRef])
+            else:
+                Instructions.append(refs[2] + buildConfigData[jsonQualifier][processRef])
+
         except KeyError as err:
             foundJSON = False
         except:
@@ -88,7 +96,10 @@ def buildAndProcess(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile="
                     writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
             else:
                 writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
-                getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]], writeLog, logFile)
+                if refs[0][:6] == "appGoo":
+                    getSQLFiles(sqlFile, item, installConfigData[jsonQualifier][refs[3]], installConfigData[jsonQualifier][refs[4]], writeLog, logFile)
+                else:
+                    getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]], writeLog, logFile)
 
         except PermissionError as err:
             if writeLog:
@@ -182,6 +193,7 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
                 processIncludeFile(fileName, currDir, searchPath + '/' + file, writeLog, logFile)
             elif file.endswith(sqlQualifier):
 #to-do: check if it has been modified since last run date
+#       note- appGoo Installation ignores last modified date
 #if os.path.getmtime(file) > minTimeStamp:
                 if writeLog:
                     writeOutputFile(logFile, 'Found SQL file:     ' + searchPath + '/' + file)
@@ -213,6 +225,7 @@ def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
         for LineInFile in f:
             if LineInFile.strip()[:2] != '--':
 #to-do: check if it has been modified since last run date
+#       note- appGoo installation ignores modified date
 #if os.path.getmtime(file) > minTimeStamp:
                 if writeLog:
                     writeOutputFile(logFile, 'Parsing SQL file:   ' + LineInFile.rstrip('\n'))
@@ -302,12 +315,13 @@ def main():
 
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
+    installConfigData = getConfigFile('agInstallConfig.json')
 
     currDir = os.getcwd() + '/'
 
     # start a log file if requested (we need the name regardless for cleanup
     logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-build.log'
-    if buildConfigData["agOptions"]["fileLog"][:1].lower() == "y":
+    if buildConfigData["buildOptions"]["fileLog"][:1].lower() == "y":
         writeLog = True
         writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCurrent Working directory: ' + currDir)
     else:
@@ -315,12 +329,12 @@ def main():
 
     
     #do a connection to the DB to make sure it is OK
-    checkSQL = buildConfigData["agDatabase"]["installCheckSQL"]
+    checkSQL = installConfigData["agInstallation"]["installCheckSQL"]
     checkSQL = r"-c '\x' -c '" + checkSQL + r";'"
-    testSQL = buildConfigData["agDatabase"]["sqlCmd"]
+    testSQL = installConfigData["agInstallation"]["sqlCmd"]
     testSQL = testSQL.replace("&CMDS", checkSQL)
-    testSQL = testSQL.replace("&DB", buildConfigData["agDatabase"]["dbName"])
-    testSQL = testSQL.replace("&UNAME", buildConfigData["agDatabase"]["user"])
+    testSQL = testSQL.replace("&DB", installConfigData["agInstallation"]["dbName"])
+    testSQL = testSQL.replace("&UNAME", installConfigData["agInstallation"]["dbUser"])
 
     #####################################################################
     #
@@ -358,7 +372,7 @@ def main():
     #
     #####################################################################
 
-    doDbLog = True if buildConfigData["agOptions"]["dbLog"][:1].lower() == "y" else False
+    doDbLog = True if buildConfigData["buildOptions"]["dbLog"][:1].lower() == "y" else False
     if writeLog:
         writeOutputFile(logFile, 'doDbLog:       ' + str(doDbLog))
 
@@ -379,7 +393,15 @@ def main():
         buildAndProcess('preprocess', buildConfigData, writeLog, logFile)
 
         
-    #do appGoo installation
+    #do appGoo installation -- this is not the installation of the user's app
+    #####################################################################
+    #
+    # appGoo Installation
+    # --------------------------------------------------------------
+    #
+    # This is the installation of appGoo into a fresh database
+
+
     if doInstall:
         pass
     #to-do: add install logic
@@ -440,6 +462,7 @@ def main():
     #finalise log file and finish dbLog
     if writeLog:
         writeOutputFile(logFile, 'Build complete at : ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        writeOutputFile(logFile, 'This log file ' + logFile + ' will be deleted next time any build process is run\n' + r"Any file ending in '*-build.log' will be deleted, so rename to keep it before next build")
         printFile = open(logFile, "r")
         printText = printFile.read()
         print(printText)

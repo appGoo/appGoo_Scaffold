@@ -24,15 +24,10 @@
             "do-postprocess": "no/yes",
             "script-01": "postprocess.sh"
         },    
-    "agDatabase": {
-            "targetType": "pg-A",
-            "dbName": "appGoo",
-            "user": "postgres",
-            "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",
-            "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like $$ag_%$$ limit 1"
-        },    
-    "agOptions": {
-        "fileLog": "no",
+    "buildOptions": {
+        "dbUser": "postgres",
+        "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",
+        "fileLog": "yes",
         "dbLog": "no"
     },
     "agAbout": {
