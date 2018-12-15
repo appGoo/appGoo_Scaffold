@@ -33,7 +33,7 @@
         },    
     "agOptions": {
         "fileLog": "yes",
-        "dbLog": "yes"
+        "dbLog": "no"
     },
     "agAbout": {
         "CreatedBy": "Install",

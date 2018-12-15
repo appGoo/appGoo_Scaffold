@@ -28,7 +28,7 @@ import json
 import subprocess
 import os
 #remove this later
-from pprint import pprint
+#from pprint import pprint
 
 
 
@@ -178,13 +178,13 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
         for file in filesToRead:
             if file.endswith(includeQualifier):
                 if writeLog:
-                    writeOutputFile(logFile, 'Found include file: ' + currDir + searchPath + '/' + file)
+                    writeOutputFile(logFile, 'Found include file: ' + searchPath + '/' + file)
                 processIncludeFile(fileName, currDir, searchPath + '/' + file, writeLog, logFile)
             elif file.endswith(sqlQualifier):
 #to-do: check if it has been modified since last run date
 #if os.path.getmtime(file) > minTimeStamp:
                 if writeLog:
-                    writeOutputFile(logFile, 'Found SQL file: ' + currDir + searchPath + '/' + file)
+                    writeOutputFile(logFile, 'Found SQL file:     ' + searchPath + '/' + file)
                 processSQLFile(fileName, currDir, searchPath + '/' + file, writeLog, logFile)
     else:
         # trap an error
@@ -207,16 +207,15 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
 ################################################################################
 
 def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
+
     fullFilePath = currDir + filePath
-    #print('Found include file: ' + fullFilePath)
-    #writeOutputFile(fileName, '-- Processing Include File: ' + fullFilePath)
     with open(fullFilePath, 'r') as f:
         for LineInFile in f:
             if LineInFile.strip()[:2] != '--':
 #to-do: check if it has been modified since last run date
 #if os.path.getmtime(file) > minTimeStamp:
                 if writeLog:
-                    writeOutputFile(logFile, 'Passing SQL file: ' + currDir + LineInFile.rstrip('\n'))
+                    writeOutputFile(logFile, 'Parsing SQL file:   ' + LineInFile.rstrip('\n'))
                 processSQLFile(fileName, currDir, LineInFile.rstrip('\n'), writeLog, logFile) 
 
 
@@ -234,7 +233,6 @@ def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
 
 def processSQLFile(fileName, currDir, filePath, writeLog, logFile):
 
-    #print('Appending from ' + currDir + filePath)
     fullFilePath = currDir + filePath
     fullFilePath = fullFilePath.replace('//','/')
     writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
@@ -243,7 +241,7 @@ def processSQLFile(fileName, currDir, filePath, writeLog, logFile):
     writeOutputFile(fileName, sqlText)
     sqlFile.close()
     if writeLog:
-        writeOutputFile(logFile, 'Appending SQL file: ' + fullFilePath)
+        writeOutputFile(logFile, 'Appending SQL file: ' + filePath)
     
 
 
@@ -304,13 +302,14 @@ def main():
 
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
-    #upgradeConfigData = "x"
+
+    currDir = os.getcwd() + '/'
 
     # start a log file if requested (we need the name regardless for cleanup
     logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-build.log'
     if buildConfigData["agOptions"]["fileLog"][:1].lower() == "y":
         writeLog = True
-        writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")))
+        writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCurrent Working directory: ' + currDir)
     else:
         writeLog = False
 
@@ -340,7 +339,7 @@ def main():
     testConnect = str(runShellCmd(testSQL))
     doInstall = False if testConnect.find("(0 rows)") == -1 else True
     if writeLog:
-        writeOutputFile(logFile, 'Test Connection Output\n----------------------\n' + str(testConnect) +'\n----------------------\ndoInstall=' + str(doInstall))  
+        writeOutputFile(logFile, 'Test Connection Output\n----------------------\n' + testConnect +'\n----------------------\ndoInstall:     ' + str(doInstall))  
 
 
     #####################################################################
@@ -361,7 +360,7 @@ def main():
 
     doDbLog = True if buildConfigData["agOptions"]["dbLog"][:1].lower() == "y" else False
     if writeLog:
-        writeOutputFile(logFile, 'doDbLog = ' + str(doDbLog))
+        writeOutputFile(logFile, 'doDbLog:       ' + str(doDbLog))
 
     if doDbLog:
         pass 
@@ -374,7 +373,7 @@ def main():
         doPreProcess = True
 
     if writeLog:
-        writeOutputFile(logFile, 'doPreProcess: ' + str(doPreProcess))
+        writeOutputFile(logFile, 'doPreProcess:  ' + str(doPreProcess))
 
     if doPreProcess:
         buildAndProcess('preprocess', buildConfigData, writeLog, logFile)
@@ -440,11 +439,12 @@ def main():
     
     #finalise log file and finish dbLog
     if writeLog:
-        writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
+        writeOutputFile(logFile, 'Build complete at : ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    printFile = open(logFile, "r")
+    printText = printFile.read()
+    print(printText)
+    printFile.close()
 
-    print('At ' + str(_buildts))
-    pprint(buildConfigData)
-    print(buildConfigData["agDatabase"]["targetType"])
 
 
 
