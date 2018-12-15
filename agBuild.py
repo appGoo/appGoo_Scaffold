@@ -127,7 +127,7 @@ def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
                         writeOutputFile(logFile, 'Deleted file: ' + currDir + file)  
     else:
         if writeLog:
-                        writeOutputFile(logFile, '*** WARNING: currDir is invalid: ' + currDir + '/n*** FILES NOT DELETED')  
+            writeOutputFile(logFile, '*** WARNING: currDir is invalid: ' + currDir + '/n*** FILES NOT DELETED')  
 
 
 
@@ -367,9 +367,9 @@ def main():
 
     #perform pre-processing
     # we only check for the first letter
-    # n = no,never; a,y =always, yes; o,i = only if installed, instal
-    doPreProcess = (buildConfigData["preprocess"]["do-preprocess"][:1].lower() in("a", "y"))
-    if not doPreProcess and doInstall and (buildConfigData["preprocess"]["do-preprocess"][:1] in("o", "i")):
+    # n = no y = yes  i = only If Installed
+    doPreProcess = (buildConfigData["preprocess"]["do-preprocess"][:1].lower() == "y")
+    if not doPreProcess and doInstall and (buildConfigData["preprocess"]["do-preprocess"][:1] == "i"):
         doPreProcess = True
 
     if writeLog:
@@ -421,8 +421,8 @@ def main():
 
     #perform post-processing
     # we only check for the first letter
-    # n = no,never; a,y =always, yes; o,i = only if installed, instal
-    doPostProcess = (buildConfigData["postprocess"]["do-postprocess"][:1].lower() in("a", "y"))
+    # n = no; y = yes
+    doPostProcess = (buildConfigData["postprocess"]["do-postprocess"][:1].lower() == "y")
     
     if writeLog:
         writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
