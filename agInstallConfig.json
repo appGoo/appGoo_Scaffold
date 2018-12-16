@@ -8,6 +8,7 @@
         "*appGoo/doco": "appGoo/doco",
         "*appGoo/sql": "appGoo/sql",
         "*appGoo/sql/pg-A": "appGoo/sql/pg-A",
+        "*appGoo/sql/pg-A": "appGoo/sql/pg-A/procs",
         "*appGoo/sql/pg-A/install": "appGoo/sql/pg-A/install",
         "*appGoo/sql/pg-A/install/upgrade": "appGoo/sql/pg-A/install/upgrade",
         "*appGoo/sql/pg-A/procs": "appGoo/sql/pg-A/procs",
@@ -36,12 +37,12 @@
         "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like $$ag_%$$ limit 1",
         "includeFileQualifier": ".include",
         "sqlFileQualifier": ".sql",
-        "installation-01": "*appGoo/install"
+        "installation-01": "appGoo/sql/pg-A/install"
         },
     "agUpgrade": {
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
-            "upgrade-01": "source/install/upgrade"
+            "upgrade-01": "appGoo/SQL/pg-A/install/upgrade"
         },
     "agAbout": {
         "CreatedBy": "Install",

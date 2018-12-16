@@ -47,7 +47,7 @@ import os
 #
 ################################################################################
 
-def buildAndProcess(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile=""):
+def buildAndProcess(jsonQualifier, configData, writeLog, logFile, sqlFile=""):
 
     if jsonQualifier == "preprocess":
         refs = ["Pre-Processing","script-", "./", "", ""]
@@ -71,14 +71,12 @@ def buildAndProcess(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile="
     foundJSON = True
     processRef = ''
     Instructions = []
+    
     while foundJSON:
         i += 1
         processRef = refs[1] + '0' + str(i) if i < 10 else refs[1] + str(i)
         try:
-            if refs[0][:6] == "appGoo":
-                Instructions.append(refs[2] + installConfigData[jsonQualifier][processRef])
-            else:
-                Instructions.append(refs[2] + buildConfigData[jsonQualifier][processRef])
+            Instructions.append(refs[2] + configData[jsonQualifier][processRef])
 
         except KeyError as err:
             foundJSON = False
@@ -96,10 +94,7 @@ def buildAndProcess(jsonQualifier, buildConfigData, writeLog, logFile, sqlFile="
                     writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
             else:
                 writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
-                if refs[0][:6] == "appGoo":
-                    getSQLFiles(sqlFile, item, installConfigData[jsonQualifier][refs[3]], installConfigData[jsonQualifier][refs[4]], writeLog, logFile)
-                else:
-                    getSQLFiles(sqlFile, item, buildConfigData[jsonQualifier][refs[3]], buildConfigData[jsonQualifier][refs[4]], writeLog, logFile)
+                getSQLFiles(sqlFile, item, configData[jsonQualifier][refs[3]], configData[jsonQualifier][refs[4]], writeLog, logFile)
 
         except PermissionError as err:
             if writeLog:
@@ -254,7 +249,7 @@ def processSQLFile(fileName, currDir, filePath, writeLog, logFile):
     writeOutputFile(fileName, sqlText)
     sqlFile.close()
     if writeLog:
-        writeOutputFile(logFile, 'Appending SQL file: ' + filePath)
+        writeOutputFile(logFile, 'Appended SQL file: ' + filePath)
     
 
 
@@ -393,18 +388,30 @@ def main():
         buildAndProcess('preprocess', buildConfigData, writeLog, logFile)
 
         
-    #do appGoo installation -- this is not the installation of the user's app
+
     #####################################################################
     #
     # appGoo Installation
     # --------------------------------------------------------------
     #
     # This is the installation of appGoo into a fresh database
-
+    # It will be treated in the same vein as the build except that
+    # it uses the appGoo installation json config file as its source
+    # of content. The SQL file is built seperately to other SQL files
+    # and is not subject to purging so that it is kept and can be
+    # reviewed in the future if need be.
+    #
+    #####################################################################
 
     if doInstall:
-        pass
-    #to-do: add install logic
+        sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-install.agsql'
+        writeOutputFile(sqlFile, "-- appGoo Installation SQL Execution File created on " + _buildts.strftime("%y-%m-%d %H:%M:%S"))
+        if writeLog:
+            writeOutputFile(logFile, 'Starting appGoo installation into file ' + sqlFile)
+
+        buildAndProcess("agInstallation", installConfigData, writeLog, logFile, sqlFile)
+
+
 
     #do appGoo upgrade
     #to do an appGoo upgrade we check for all SQL files (raw & includes)
