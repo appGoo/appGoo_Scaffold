@@ -433,11 +433,37 @@ def main():
     #build SQL
     buildAndProcess("appBuild", buildConfigData, writeLog, logFile, sqlFile)
 
-
-
-    #finalise output file
-
     #run SQL
+    #do a connection to the DB to make sure it is OK
+    sqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-sql-output-build.log'
+    buildSQL = buildConfigData["buildOptions"]["sqlCmd"]
+    buildSQL = buildSQL + " &> " + sqlLogFile
+    buildSQL = buildSQL.replace("&CMDS", '--set ON_ERROR_STOP=on --set AUTOCOMMIT=off -f ' + '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-temp.agsql')
+    buildSQL = buildSQL.replace("&DB", installConfigData["agInstallation"]["dbName"])
+    buildSQL = buildSQL.replace("&UNAME", buildConfigData["buildOptions"]["dbUser"])
+
+    buildResult = str(runShellCmd(buildSQL))
+    foundError = str(buildResult).find('psql:' + sqlFile)
+    
+    if foundError > 0:
+        buildSuccess = False
+        buildErrorOut = str(buildResult)[foundError + len(sqlLogFile):]
+    else:
+        buildSuccess = True
+        buildErrorOut = ""
+
+    if writeLog:
+        writeOutputFile(logFile, 'Application Build SQL\n---------------------->')
+        if buildSuccess == False:
+            writeOutputFile(logFile, '**** BUILD ERROR REPORTED ***\n' + buildErrorOut + '\n<----------------------')
+        else:
+            writeOutputFile(logFile, 'Build was successful')
+        
+        writeOutputFile(logFile, 'Refer to file ' + sqlLogFile + ' for output on SQL run')
+        
+  
+        
+        
     
 
     #do data installation if necessary
@@ -462,7 +488,7 @@ def main():
     #cleanup older files
     keepSQLFiles = (sqlFile)
     deleteFiles("", "-temp.agsql", keepSQLFiles, writeLog, logFile)
-    keepLogFiles = (logFile)
+    keepLogFiles = (logFile, sqlLogFile)
     deleteFiles("", "-build.log", keepLogFiles, writeLog, logFile)
     
     
@@ -476,8 +502,12 @@ def main():
         printFile.close()
     else:
         print('appGoo Build complete.\nParameters:\n\tInstall App:        ' + str(doInstall) + '\n\tDo Pre-Processing:  ' + str(doPreProcess) + '\n\tDo Post-Processing: ' + str(doPostProcess))
+        print('You can review SQL output results in ' + sqlLogFile)
+        print('Note that the SQL output and any log files you request are deleted by the next successful build run unless you rename them')
         print('Start Time:      ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCompletion Time: ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-
+        if buildSuccess == False:
+            print('*** BUILD ERROR ***')
+            print(buildErrorOut)
 
 ################################################################################
 #
