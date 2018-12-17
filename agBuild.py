@@ -155,28 +155,42 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
         buildSQL = buildSQL.replace("&UNAME", jsonInstallFile["runOptions"]["dbUser"])
     else:
         buildSQL = jsonBuildFile["runOptions"]["sqlCmd"]
-        buildSQL.replace("&UNAME", jsonBuildFile["runOptions"]["dbUser"])
+        buildSQL = buildSQL.replace("&UNAME", jsonBuildFile["runOptions"]["dbUser"])
         
-    buildSQL = buildSQL + " &> " + sqlLogFile
     buildSQL = buildSQL.replace("&DB", jsonInstallFile["runOptions"]["dbName"])
     buildSQL = buildSQL.replace("&CMDS", '--set ON_ERROR_STOP=on --set AUTOCOMMIT=off -f ' + sqlFile)
-
-    buildResult = str(runShellCmd(buildSQL))
-    foundError = str(buildResult).find('psql:' + sqlFile)
+    buildSQL = buildSQL + " &> " + sqlLogFile
     
+    buildResult = str(runShellCmd(buildSQL))
+
+    #check for sql error
+    foundError = str(buildResult).find('psql:' + sqlFile)
+    #check for psql error 
+    if foundError < 1:
+        foundError = str(buildResult).find('psql: FATAL:') if foundError < 1 else foundError
+        #check for shell error
+        foundError = str(buildResult).find("stdout=b'/") if foundError < 1 else foundError
+
+        #Note that the sqlLogFile wont exist so we need to manually create it
+        if foundError > 0:
+            startFrom = str(buildResult).find("returncode=")
+            writeOutputFile(sqlLogFile, str(buildResult)[startFrom:])
+
+    #process according to result found
     if foundError > 0:
-        buildSuccessOut = ("False", str(buildResult)[foundError + len(sqlLogFile)+5:].lstrip(" "))
+        buildSuccessOut = ("False", str(buildResult)[foundError + len(sqlLogFile)+5:500].lstrip(" "))
     else:
-        buildSuccessOut = ("True", str(buildResult)[:500])
+        startFrom = str(buildResult).find("returncode=")
+        buildSuccessOut = ("True", str(buildResult)[startFrom:500])
 
     if writeLog:
         writeOutputFile(logFile, 'SQL Execution for: ' + jsonQualifier + '\n---------------------->')
         if buildSuccessOut[0] == 'False':
             writeOutputFile(logFile, '**** BUILD ERROR REPORTED ***\n' + buildSuccessOut[1] + '\n<----------------------')
         else:
-            writeOutputFile(logFile, 'SQL was successfully run')
+            writeOutputFile(logFile, 'All SQL was successfully executed')
         
-        writeOutputFile(logFile, 'Refer to file ' + sqlLogFile + ' for output on SQL run')
+        writeOutputFile(logFile, 'Refer to file ' + sqlLogFile + ' for output captured')
     
     return buildSuccessOut
 
@@ -234,9 +248,9 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
 #to-do: check if it has been modified since last run date
 #       note- appGoo Installation ignores last modified date
 #if os.path.getmtime(file) > minTimeStamp:
-                if writeLog:
-                    writeOutputFile(logFile, 'Found SQL file:     ' + searchPath + '/' + file)
-                processSQLFile(fileName, currDir, searchPath + '/' + file, writeLog, logFile)
+                #if writeLog:
+                #    writeOutputFile(logFile, 'Found SQL file:     ' + searchPath + '/' + file)
+                processSQLFile(False, fileName, currDir, searchPath + '/' + file, writeLog, logFile)
     else:
         # trap an error
         pass
@@ -266,9 +280,9 @@ def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
 #to-do: check if it has been modified since last run date
 #       note- appGoo installation ignores modified date
 #if os.path.getmtime(file) > minTimeStamp:
-                if writeLog:
-                    writeOutputFile(logFile, 'Parsing SQL file:   ' + LineInFile.rstrip('\n'))
-                processSQLFile(fileName, currDir, LineInFile.rstrip('\n'), writeLog, logFile) 
+                #if writeLog:
+                #    writeOutputFile(logFile, 'Parsing SQL file:   ' + LineInFile.rstrip('\n'))
+                processSQLFile(True, fileName, currDir, LineInFile.rstrip('\n'), writeLog, logFile) 
 
 
 
@@ -283,7 +297,7 @@ def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
 #
 ################################################################################
 
-def processSQLFile(fileName, currDir, filePath, writeLog, logFile):
+def processSQLFile(isFromInclude, fileName, currDir, filePath, writeLog, logFile):
 
     fullFilePath = currDir + filePath
     fullFilePath = fullFilePath.replace('//','/')
@@ -293,7 +307,8 @@ def processSQLFile(fileName, currDir, filePath, writeLog, logFile):
     writeOutputFile(fileName, sqlText)
     sqlFile.close()
     if writeLog:
-        writeOutputFile(logFile, 'Appended SQL file: ' + filePath)
+        filePath = '   - Appended file: ' + filePath if isFromInclude else 'Appended file:      ' + filePath
+        writeOutputFile(logFile, filePath)
     
 
 
@@ -379,6 +394,9 @@ def main():
     # appGoo is installed. Note that the SQL Statement is configurable by
     # the user in case they customise appGoo objects.
     #
+    # to-do:
+    #        - stop processing if you cannot connect to the database
+    #
     #####################################################################
     
     testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-test-exec.agsql'
@@ -393,15 +411,7 @@ def main():
     #build & run SQL
     buildResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, writeLog, logFile) 
 
-        
-##    checkSQL = installConfigData["runOptions"]["installCheckSQL"]
-##    checkSQL = r"-c '\x' -c '" + checkSQL + r";'"
-##    testSQL = installConfigData["runOptions"]["sqlCmd"]
-##    testSQL = testSQL.replace("&CMDS", checkSQL)
-##    testSQL = testSQL.replace("&DB", installConfigData["runOptions"]["dbName"])
-##    testSQL = testSQL.replace("&UNAME", installConfigData["runOptions"]["dbUser"])
-##    testConnect = str(runShellCmd(testSQL))
-
+#to-do: stop processing if could not connect to the database
     doInstall = False if buildResult[1].find("(0 rows)") == -1 else True
     if writeLog:
         writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall))
@@ -434,9 +444,12 @@ def main():
     #perform pre-processing
     # we only check for the first letter
     # n = no y = yes  i = only If Installed
-    doPreProcess = (buildConfigData["preprocess"]["do-preprocess"][:1].lower() == "y")
-    if not doPreProcess and doInstall and (buildConfigData["preprocess"]["do-preprocess"][:1] == "i"):
+    if buildConfigData["preprocess"]["do-preprocess"][:1].lower() == "y":
         doPreProcess = True
+    elif buildConfigData["preprocess"]["do-preprocess"][:1].lower() == "i" and doInstall == False:
+        doPreProcess = True
+    else:
+        doPreProcess = False
 
     if writeLog:
         writeOutputFile(logFile, 'doPreProcess:  ' + str(doPreProcess))
@@ -461,7 +474,7 @@ def main():
     #####################################################################
 
     if doInstall:
-        sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-install-agbuild.agsql'
+        sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-agInstall-exec.agsql'
         writeOutputFile(sqlFile, "-- appGoo Installation SQL Execution File created on " + _buildts.strftime("%y-%m-%d %H:%M:%S"))
         if writeLog:
             writeOutputFile(logFile, 'Starting appGoo installation into file ' + sqlFile)
@@ -487,11 +500,18 @@ def main():
 
     writeOutputFile(sqlFile, '/* appGoo SQL to be executed ' + str(_buildts) + ' */')
     if writeLog:
-        writeOutputFile(logFile, 'Started SQL Output File ' + sqlFile + '\nStarted SQL Output File ' + sqlLogFile) 
+        writeOutputFile(logFile, 'Started SQL file ' + sqlFile + '\nCapturing SQL output in file ' + sqlLogFile) 
 
     #build & run SQL
     buildAndProcess("appBuild", buildConfigData, writeLog, logFile, sqlFile)
     buildResult = execSQL("appBuild", buildConfigData, installConfigData, sqlFile, sqlLogFile, writeLog, logFile) 
+
+##    if writeLog:
+##        if buildResult[0] == "False":
+##            writeOutputFile(logFile, '**** BUILD ERROR REPORTED ***\n')
+##
+##        writeOutputFile(logFile, buildResult[1] + '\n<----------------------')
+##        writeOutputFile(logFile, 'Refer to file ' + sqlLogFile + ' for output captured')
 
 ##    buildSQL = buildConfigData["runOptions"]["sqlCmd"]
 ##    buildSQL = buildSQL + " &> " + sqlLogFile
