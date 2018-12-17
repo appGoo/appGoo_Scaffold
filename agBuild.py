@@ -150,10 +150,15 @@ def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
 def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, writeLog, logFile): 
 
     #sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + jsonQualifier + '-exec.agsql'
-    buildSQL = jsonBuildFile["runOptions"]["sqlCmd"]
+    if jsonQualifier[:6].lower() == 'appgoo':
+        buildSQL = jsonInstallFile["runOptions"]["sqlCmd"]
+        buildSQL = buildSQL.replace("&UNAME", jsonInstallFile["runOptions"]["dbUser"])
+    else:
+        buildSQL = jsonBuildFile["runOptions"]["sqlCmd"]
+        buildSQL.replace("&UNAME", jsonBuildFile["runOptions"]["dbUser"])
+        
     buildSQL = buildSQL + " &> " + sqlLogFile
     buildSQL = buildSQL.replace("&DB", jsonInstallFile["runOptions"]["dbName"])
-    buildSQL = buildSQL.replace("&UNAME", jsonInstallFile["runOptions"]["dbUser"]) if jsonQualifier[:6].lower() == 'appgoo' else buildSQL.replace("&UNAME", jsonBuildFile["runOptions"]["dbUser"])
     buildSQL = buildSQL.replace("&CMDS", '--set ON_ERROR_STOP=on --set AUTOCOMMIT=off -f ' + sqlFile)
 
     buildResult = str(runShellCmd(buildSQL))
@@ -162,14 +167,14 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
     if foundError > 0:
         buildSuccessOut = ("False", str(buildResult)[foundError + len(sqlLogFile)+5:].lstrip(" "))
     else:
-        buildSuccessOut = ("True", "")
+        buildSuccessOut = ("True", str(buildResult)[:500])
 
     if writeLog:
-        writeOutputFile(logFile, 'Application Build SQL\n---------------------->')
+        writeOutputFile(logFile, 'SQL Execution for: ' + jsonQualifier + '\n---------------------->')
         if buildSuccessOut[0] == 'False':
             writeOutputFile(logFile, '**** BUILD ERROR REPORTED ***\n' + buildSuccessOut[1] + '\n<----------------------')
         else:
-            writeOutputFile(logFile, 'Build was successful')
+            writeOutputFile(logFile, 'SQL was successfully run')
         
         writeOutputFile(logFile, 'Refer to file ' + sqlLogFile + ' for output on SQL run')
     
@@ -354,7 +359,7 @@ def main():
     currDir = os.getcwd() + '/'
 
     # start a log file if requested (we need the name regardless for cleanup
-    logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-build.log'
+    logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild.log'
     if buildConfigData["runOptions"]["fileLog"][:1].lower() == "y":
         writeLog = True
         writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCurrent Working directory: ' + currDir)
@@ -362,14 +367,6 @@ def main():
         writeLog = False
 
     
-    #do a connection to the DB to make sure it is OK
-    checkSQL = installConfigData["runOptions"]["installCheckSQL"]
-    checkSQL = r"-c '\x' -c '" + checkSQL + r";'"
-    testSQL = installConfigData["runOptions"]["sqlCmd"]
-    testSQL = testSQL.replace("&CMDS", checkSQL)
-    testSQL = testSQL.replace("&DB", installConfigData["runOptions"]["dbName"])
-    testSQL = testSQL.replace("&UNAME", installConfigData["runOptions"]["dbUser"])
-
     #####################################################################
     #
     # Test if appGoo installation has been performed in the database
@@ -383,11 +380,32 @@ def main():
     # the user in case they customise appGoo objects.
     #
     #####################################################################
+    
+    testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-test-exec.agsql'
+    testSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-sql-output-test-agbuild.log'
+    checkSQL = '/* Testing connection to database ' + str(_buildts) + ' */\n' + installConfigData["runOptions"]["installCheckSQL"] + ';'
+    checkSQL = checkSQL.replace(';;',';')
 
-    testConnect = str(runShellCmd(testSQL))
-    doInstall = False if testConnect.find("(0 rows)") == -1 else True
+    writeOutputFile(testSqlFile, checkSQL)
     if writeLog:
-        writeOutputFile(logFile, 'Test Connection Output\n----------------------\n' + testConnect +'\n----------------------\ndoInstall:     ' + str(doInstall))  
+        writeOutputFile(logFile, 'Started Test SQL File ' + testSqlFile + '\nStarted Test SQL Output File ' + testSqlLogFile) 
+
+    #build & run SQL
+    buildResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, writeLog, logFile) 
+
+        
+##    checkSQL = installConfigData["runOptions"]["installCheckSQL"]
+##    checkSQL = r"-c '\x' -c '" + checkSQL + r";'"
+##    testSQL = installConfigData["runOptions"]["sqlCmd"]
+##    testSQL = testSQL.replace("&CMDS", checkSQL)
+##    testSQL = testSQL.replace("&DB", installConfigData["runOptions"]["dbName"])
+##    testSQL = testSQL.replace("&UNAME", installConfigData["runOptions"]["dbUser"])
+##    testConnect = str(runShellCmd(testSQL))
+
+    doInstall = False if buildResult[1].find("(0 rows)") == -1 else True
+    if writeLog:
+        writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall))
+
 
 
     #####################################################################
@@ -443,7 +461,7 @@ def main():
     #####################################################################
 
     if doInstall:
-        sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-install.agsql'
+        sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-install-agbuild.agsql'
         writeOutputFile(sqlFile, "-- appGoo Installation SQL Execution File created on " + _buildts.strftime("%y-%m-%d %H:%M:%S"))
         if writeLog:
             writeOutputFile(logFile, 'Starting appGoo installation into file ' + sqlFile)
@@ -465,7 +483,7 @@ def main():
 
     #start an output file (it is a hidden file)
     sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appBuild-exec.agsql'
-    sqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-sql-output-appBuild.log'
+    sqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-sql-output-appBuild-agbuild.log'
 
     writeOutputFile(sqlFile, '/* appGoo SQL to be executed ' + str(_buildts) + ' */')
     if writeLog:
@@ -525,17 +543,17 @@ def main():
         buildAndProcess('postprocess', buildConfigData, writeLog, logFile)
 
     #cleanup older files
-    keepSQLFiles = (sqlFile)
+    keepSQLFiles = (testSqlLogFile)
     #to-do: Keep all SQL files executed in this session, delete all others...
     deleteFiles("", "-exec.agsql", keepSQLFiles, writeLog, logFile)
-    keepLogFiles = (logFile, sqlLogFile)
-    deleteFiles("", "-build.log", keepLogFiles, writeLog, logFile)
+    keepLogFiles = (logFile, testSqlLogFile)
+    deleteFiles("", "-agbuild.log", keepLogFiles, writeLog, logFile)
     
     
     #finalise log file and finish dbLog
     if writeLog:
         writeOutputFile(logFile, 'Build complete at : ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        writeOutputFile(logFile, 'This log file ' + logFile + ' will be deleted next time any build process is run\n' + r"Any file ending in '*-build.log' will be deleted, so rename to keep it before next build")
+        writeOutputFile(logFile, 'This log file ' + logFile + ' will be deleted next time any build process is run\n' + r"Any file ending in '*-agbuild.log' will be deleted, so rename to keep it before next build")
         printFile = open(logFile, "r")
         printText = printFile.read()
         print(printText)
