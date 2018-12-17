@@ -3,10 +3,12 @@
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
             "modifiedOnly": "no",
+            "runMode": "batch/file",
             "build-01": "source/sql",
             "build-02": "source/sql/play"
         },
     "appInstallation": {
+            "runMode": "batch/file",
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
             "installation-01": "source/install"

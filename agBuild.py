@@ -164,7 +164,7 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
     runSQL = runSQL + " --echo-errors --output=.sql-output-" + jsonQualifier + "-agbuild.log" if minimiseStdOut else runSQL
     #dont know why - but the psql always fail when I don't pipe the output
     runSQL = runSQL + " &> .tmp-agbuild.log"
-    
+
     completedCmd = runShellCmd(runSQL)
     cmdResult = str(completedCmd.stdout)
     writeOutputFile(sqlLogFile, cmdResult)
@@ -191,12 +191,7 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
             writeOutputFile(logFile, 'All SQL was successfully executed')
         
         writeOutputFile(logFile, 'Refer to file ' + sqlLogFile + ' for output captured')
-
-    #it appears that the out file that the cmd passes the output to is sometimes not populated
-    #maybe because of the python cmd already piping it?
-    # Therefore we manually create it if it is an empty file
-    #if os.path.getsize(currDir + '/' + sqlLogFile) == 0 and 1 > 2:
-    #    writeOutputFile(sqlLogFile, str(buildResult))
+    
     
     return cmdSuccessOut
 
@@ -256,7 +251,7 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
 #if os.path.getmtime(file) > minTimeStamp:
                 #if writeLog:
                 #    writeOutputFile(logFile, 'Found SQL file:     ' + searchPath + '/' + file)
-                processSQLFile(False, fileName, currDir, searchPath + '/' + file, writeLog, logFile)
+                processSQLFile(False, fileName, currDir, searchPath + '/' + file, "Batch", writeLog, logFile)
     else:
         # trap an error
         pass
@@ -288,7 +283,13 @@ def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
 #if os.path.getmtime(file) > minTimeStamp:
                 #if writeLog:
                 #    writeOutputFile(logFile, 'Parsing SQL file:   ' + LineInFile.rstrip('\n'))
-                processSQLFile(True, fileName, currDir, LineInFile.rstrip('\n'), writeLog, logFile) 
+                if LineInFile.strip().lower() in("@commit", "@commit;", "commit;", "commit"):
+                    writeOutputFile(fileName, "\ncommit;\n")
+                    if writeLog:
+                        writeOutputFile(logFile, "issued a commit;")
+                        
+                else:
+                    processSQLFile(True, fileName, currDir, LineInFile.rstrip('\n'), "Batch", writeLog, logFile) 
 
 
 
@@ -303,19 +304,21 @@ def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
 #
 ################################################################################
 
-def processSQLFile(isFromInclude, fileName, currDir, filePath, writeLog, logFile):
+def processSQLFile(isFromInclude, fileName, currDir, filePath, runMode, writeLog, logFile):
 
     fullFilePath = currDir + filePath
     fullFilePath = fullFilePath.replace('//','/')
+
     writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
     sqlFile = open(fullFilePath, "r")
     sqlText = sqlFile.read()
+    sqlText = sqlText + '\ncommit;\n' if runMode.lower() == "file" else sqlText
     writeOutputFile(fileName, sqlText)
     sqlFile.close()
+
     if writeLog:
-        filePath = '   - Appended file: ' + filePath if isFromInclude else 'Appended file:      ' + filePath
-        writeOutputFile(logFile, filePath)
-    
+            filePath = '   - Appended file: ' + filePath if isFromInclude else 'Appended file:      ' + filePath
+            writeOutputFile(logFile, filePath)
 
 
 
