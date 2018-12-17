@@ -29,12 +29,14 @@
         "source/js": "source/js",
         "*source/sql": "source/sql"
     },
-    "agInstallation": {
+    "runOptions": {
         "useDir": "key/value",
         "dbName": "appGoo",
         "dbUser": "postgres",
         "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",
-        "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like $$ag_%$$ limit 1",
+        "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like $$ag_%$$ limit 1"  
+    },
+    "agInstallation": {
         "includeFileQualifier": ".include",
         "sqlFileQualifier": ".sql",
         "installation-01": "appGoo/sql/pg-A/install"

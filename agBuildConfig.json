@@ -24,7 +24,7 @@
             "do-postprocess": "no/yes",
             "script-01": "postprocess.sh"
         },    
-    "buildOptions": {
+    "runOptions": {
         "dbUser": "postgres",
         "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",
         "fileLog": "yes",
