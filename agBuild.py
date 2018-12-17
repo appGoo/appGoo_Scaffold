@@ -148,9 +148,8 @@ def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
 #
 ################################################################################
 
-def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, writeLog, logFile, currDir): 
+def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, writeLog, logFile, currDir, minimiseStdOut=True): 
 
-    #sqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + jsonQualifier + '-exec.agsql'
     if jsonQualifier[:6].lower() == 'appgoo':
         runSQL = jsonInstallFile["runOptions"]["sqlCmd"]
         runSQL = runSQL.replace("&UNAME", jsonInstallFile["runOptions"]["dbUser"])
@@ -160,35 +159,32 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
         
     runSQL = runSQL.replace("&DB", jsonInstallFile["runOptions"]["dbName"])
     runSQL = runSQL.replace("&CMDS", r"--set ON_ERROR_STOP=on --set AUTOCOMMIT=off -f " + sqlFile)
-    runSQL = runSQL + " &> " + sqlLogFile
+    runSQL = runSQL + " --echo-errors --output=.sql-output-" + jsonQualifier + "-agbuild.log" if minimiseStdOut else runSQL
+    #dont know why - but the psql always fail when I don't pipe the output
+    runSQL = runSQL + " &> .delete-me-agbuild.log"
     
-    buildResult = str(runShellCmd(runSQL))
-    #writeOutputFile(sqlLogFile, str(buildResult))
+    completedCmd = runShellCmd(runSQL)
+    cmdResult = str(completedCmd.stdout)
+    writeOutputFile(sqlLogFile, cmdResult)
 
     #check for sql error
-    foundError = str(buildResult).find('psql:' + sqlFile)
+    foundError = cmdResult.find('psql:' + sqlFile)
     #check for psql error 
     if foundError < 1:
-        foundError = str(buildResult).find('psql: FATAL:') if foundError < 1 else foundError
+        foundError = cmdResult.find('psql: FATAL:') if foundError < 1 else foundError
         #check for shell error
-        foundError = str(buildResult).find("stdout=b'/") if foundError < 1 else foundError
-
-        #Note that the sqlLogFile wont exist so we need to manually create it
-        if foundError > 0:
-            startFrom = str(buildResult).find("stdout=")
-            writeOutputFile(sqlLogFile, str(buildResult)[startFrom:])
+        foundError = 1 if cmdResult[:3] == "b'/" else foundError
 
     #process according to result found
     if foundError > 0:
-        buildSuccessOut = ("False", str(buildResult)[foundError + len(sqlLogFile)+5:500].lstrip(" "))
+        cmdSuccessOut = ("False", cmdResult.lstrip(" "))
     else:
-        startFrom = str(buildResult).find("stdout=")
-        buildSuccessOut = ("True", str(buildResult)[startFrom:500])
-
+        cmdSuccessOut = ("True", cmdResult[1:500])
+        
     if writeLog:
         writeOutputFile(logFile, 'SQL Execution for: ' + jsonQualifier + '\n---------------------->')
-        if buildSuccessOut[0] == 'False':
-            writeOutputFile(logFile, '**** BUILD ERROR REPORTED ***\n' + buildSuccessOut[1] + '\n<----------------------')
+        if cmdSuccessOut[0] == 'False':
+            writeOutputFile(logFile, '**** BUILD ERROR REPORTED ***\n' + cmdSuccessOut[1] + '\n<----------------------')
         else:
             writeOutputFile(logFile, 'All SQL was successfully executed')
         
@@ -197,10 +193,10 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
     #it appears that the out file that the cmd passes the output to is sometimes not populated
     #maybe because of the python cmd already piping it?
     # Therefore we manually create it if it is an empty file
-    if os.path.getsize(currDir + '/' + sqlLogFile) == 0:
-        writeOutputFile(sqlLogFile, str(buildResult))
+    #if os.path.getsize(currDir + '/' + sqlLogFile) == 0 and 1 > 2:
+    #    writeOutputFile(sqlLogFile, str(buildResult))
     
-    return buildSuccessOut
+    return cmdSuccessOut
 
 
 
@@ -333,7 +329,7 @@ def processSQLFile(isFromInclude, fileName, currDir, filePath, writeLog, logFile
 ################################################################################
 
 def runShellCmd(cmd):
-    return subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=True)
+    return subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=False)
 
     
 
@@ -418,7 +414,7 @@ def main():
         writeOutputFile(logFile, 'Started Test SQL File ' + testSqlFile + '\nStarted Test SQL Output File ' + testSqlLogFile) 
 
     #build & run SQL
-    buildResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, writeLog, logFile, currDir) 
+    buildResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, writeLog, logFile, currDir, False) 
 
 #to-do: stop processing if could not connect to the database
     doInstall = False if buildResult[1].find("(0 rows)") == -1 else True
@@ -490,7 +486,7 @@ def main():
             writeOutputFile(logFile, 'Starting appGoo installation into file ' + instalSqlFile)
 
         buildAndProcess("agInstallation", installConfigData, writeLog, logFile, instalSqlFile)
-        buildResult = execSQL("agInstallation", buildConfigData, installConfigData, instalSqlFile, instalSqlLogFile, writeLog, logFile, currDir)
+        buildResult = execSQL("agInstallation", buildConfigData, installConfigData, instalSqlFile, instalSqlLogFile, writeLog, logFile, currDir, True)
 # to-do: handle result
 
 
@@ -515,8 +511,9 @@ def main():
 
     #build & run SQL
     buildAndProcess("appBuild", buildConfigData, writeLog, logFile, buildSqlFile)
-    buildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, writeLog, logFile, currDir) 
+    buildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, writeLog, logFile, currDir, True) 
 
+    #handle the result
 
   
         
