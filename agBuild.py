@@ -23,10 +23,12 @@
 ################################################################################
 
 # imports
+import os
+import sys
+import subprocess
 import datetime
 import json
-import subprocess
-import os
+
 #remove this later
 #from pprint import pprint
 
@@ -161,7 +163,7 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
     runSQL = runSQL.replace("&CMDS", r"--set ON_ERROR_STOP=on --set AUTOCOMMIT=off -f " + sqlFile)
     runSQL = runSQL + " --echo-errors --output=.sql-output-" + jsonQualifier + "-agbuild.log" if minimiseStdOut else runSQL
     #dont know why - but the psql always fail when I don't pipe the output
-    runSQL = runSQL + " &> .delete-me-agbuild.log"
+    runSQL = runSQL + " &> .tmp-agbuild.log"
     
     completedCmd = runShellCmd(runSQL)
     cmdResult = str(completedCmd.stdout)
@@ -372,6 +374,10 @@ def main():
 #change this -- get a timestamp from .appBuildHistory.log
     _buildflt = _buildts.timestamp()
 
+    #global tracker of whether to continue processing
+    isGood = True
+    stopReason = ""
+
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
     installConfigData = getConfigFile('agInstallConfig.json')
@@ -400,7 +406,6 @@ def main():
     # the user in case they customise appGoo objects.
     #
     # to-do:
-    #        - stop processing if you cannot connect to the database
     #
     #####################################################################
     
@@ -414,10 +419,14 @@ def main():
         writeOutputFile(logFile, 'Started Test SQL File ' + testSqlFile + '\nStarted Test SQL Output File ' + testSqlLogFile) 
 
     #build & run SQL
-    buildResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, writeLog, logFile, currDir, False) 
+    testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, writeLog, logFile, currDir, False) 
+    if testResult[0] == "False":
+        isGood = False
+        stopReason = "The build process has stopped because of errors encountered testing the connection to the database"
+        doInstall = False
+    else:
+        doInstall = False if testResult[1].find("(0 rows)") == -1 else True
 
-#to-do: stop processing if could not connect to the database
-    doInstall = False if buildResult[1].find("(0 rows)") == -1 else True
     if writeLog:
         writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall))
 
@@ -459,7 +468,7 @@ def main():
     if writeLog:
         writeOutputFile(logFile, 'doPreProcess:  ' + str(doPreProcess))
 
-    if doPreProcess:
+    if doPreProcess and isGood:
         buildAndProcess('preprocess', buildConfigData, writeLog, logFile)
 
         
@@ -480,14 +489,18 @@ def main():
 
     instalSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-agInstall-exec.agsql'
     instalSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-agInstall-agbuild.log'    
-    if doInstall:
+    if doInstall and isGood:
         writeOutputFile(instalSqlFile, "-- appGoo Installation SQL Execution File created on " + _buildts.strftime("%y-%m-%d %H:%M:%S"))
         if writeLog:
             writeOutputFile(logFile, 'Starting appGoo installation into file ' + instalSqlFile)
 
         buildAndProcess("agInstallation", installConfigData, writeLog, logFile, instalSqlFile)
-        buildResult = execSQL("agInstallation", buildConfigData, installConfigData, instalSqlFile, instalSqlLogFile, writeLog, logFile, currDir, True)
-# to-do: handle result
+        agInstalResult = execSQL("agInstallation", buildConfigData, installConfigData, instalSqlFile, instalSqlLogFile, writeLog, logFile, currDir, True)
+
+        if agInstalResult[0] == "False":
+            isGood = False
+            stopReason = "The build process has stopped because of errors encountered during installation of appGoo"
+            
 
 
     #do appGoo upgrade
@@ -510,11 +523,13 @@ def main():
         writeOutputFile(logFile, 'Started SQL file ' + buildSqlFile + '\nCapturing SQL output in file ' + buildSqlLogFile) 
 
     #build & run SQL
-    buildAndProcess("appBuild", buildConfigData, writeLog, logFile, buildSqlFile)
-    buildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, writeLog, logFile, currDir, True) 
-
-    #handle the result
-
+    if isGood:
+        buildAndProcess("appBuild", buildConfigData, writeLog, logFile, buildSqlFile)
+        appBuildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, writeLog, logFile, currDir, True) 
+        if appBuildResult[0] == "False":
+            isGood = False
+            stopReason = "The build process has stopped because of errors encountered building the application in the database"
+        
   
         
         
@@ -536,11 +551,11 @@ def main():
     if writeLog:
         writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
 
-    if doPostProcess:
+    if doPostProcess and isGood:
         buildAndProcess('postprocess', buildConfigData, writeLog, logFile)
 
     #cleanup older files
-    keepSQLFiles = (testSqlFile, instalSqlFile, buildSqlFile)
+    keepSQLFiles = (buildSqlFile)
     #to-do: Keep all SQL files executed in this session, delete all others...
     deleteFiles("", "-exec.agsql", keepSQLFiles, writeLog, logFile)
     keepLogFiles = (logFile, testSqlLogFile, instalSqlLogFile, buildSqlLogFile)
@@ -549,6 +564,9 @@ def main():
     
     #finalise log file and finish dbLog
     if writeLog:
+        if isGood == False:
+            writeOutputFile(logFile, '\n' + stopReason + '\n')
+            
         writeOutputFile(logFile, 'Build complete at : ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         writeOutputFile(logFile, 'This log file ' + logFile + ' will be deleted next time any build process is run\n' + r"Any file ending in '*-agbuild.log' will be deleted, so rename to keep it before next build")
         printFile = open(logFile, "r")
@@ -556,13 +574,21 @@ def main():
         print(printText)
         printFile.close()
     else:
+        if isGood == False:
+            print('***************** Process did not end properly due to an error encountered *****************\n')
+            print(stopReason + '\n')
+            print('********************************************************************************************\n')
+        else:
+            print('Build process completed properly without major errors\n')
+
         print('appGoo Build complete.\nParameters:\n\tInstall App:        ' + str(doInstall) + '\n\tDo Pre-Processing:  ' + str(doPreProcess) + '\n\tDo Post-Processing: ' + str(doPostProcess))
-        print('You can review SQL output results in ' + sqlLogFile)
+        print('You can review the following files that will be deleted by the next build:')
+        print('\t' + buildSqlFile)
+        for file in keepLogFiles:
+              print('\t' + file)
         print('Note that the SQL output and any log files you request are deleted by the next successful build run unless you rename them')
         print('Start Time:      ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCompletion Time: ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        if buildSuccess == False:
-            print('*** BUILD ERROR ***')
-            print(buildErrorOut)
+
 
 
 
