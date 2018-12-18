@@ -26,6 +26,7 @@ import sys
 import subprocess
 import datetime
 import json
+import re
 
 #remove this later
 #from pprint import pprint
@@ -315,6 +316,8 @@ def processSQLFile(isFromInclude, fileName, filePath, runMode):
 #if os.path.getmtime(file) > minTimeStamp:
     #1. Get the last run date
     #2. Check to see if the file has been modified since that time
+    #3. If it has been modified or all files are to be processed, then check runmode,
+    #   file causes an execSQL, batch causes an append.
 
     appendFile = True
 
@@ -326,7 +329,14 @@ def processSQLFile(isFromInclude, fileName, filePath, runMode):
         writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
         sqlFile = open(fullFilePath, "r")
         sqlText = sqlFile.read()
-        sqlText = sqlText + '\ncommit;\n' if runMode[:1].lower() == "f" else sqlText
+        if runMode[:1].lower() == "f":
+            #this is not working
+            if str(re.search('commit;', sqlText)) == "None":
+                if writeLog:
+                    writeOutputFile(logFile, "found a commit in " + filePath)
+            else:
+                sqlText = sqlText + '\n--Commit added by build process\ncommit;\n'
+                
         writeOutputFile(fileName, sqlText)
         sqlFile.close()
 

@@ -434,7 +434,7 @@ select 4;
 select 4;
 select 4;
 select 4;
-select hello from invisible;
+--select hello from invisible;
 select 14;
 select 14;
 select 14;
@@ -442,5 +442,7 @@ select 14;
 select 14;
 select 14;
 select 14;
-select 14;
+select 1465223;
+commit;
+
 
