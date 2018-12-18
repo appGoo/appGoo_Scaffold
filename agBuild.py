@@ -13,7 +13,7 @@
 #  - Error trapping
 #  - Logging - improve the appearance of the captured log 
 #  - Command Line
-#  - Implement incremental updates only. Keep a .build-log file that stores
+#  - Implement incremental updates only. Keep a .agbuild.history file that stores
 #    the date that a build was last done and only build files if install is
 #    not required and the SQL file (including upgrade) is created or modified
 #    after the date. Note that we track a date per config file.
@@ -315,18 +315,28 @@ def processSQLFile(isFromInclude, fileName, filePath, runMode):
 #if os.path.getmtime(file) > minTimeStamp:
     #1. Get the last run date
     #2. Check to see if the file has been modified since that time
-    
 
-    writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
-    sqlFile = open(fullFilePath, "r")
-    sqlText = sqlFile.read()
-    sqlText = sqlText + '\ncommit;\n' if runMode[:1].lower() == "f" else sqlText
-    writeOutputFile(fileName, sqlText)
-    sqlFile.close()
+    appendFile = True
 
-    if writeLog:
-            filePath = '   - Appended file: ' + filePath if isFromInclude else 'Appended file:      ' + filePath
-            writeOutputFile(logFile, filePath)
+    if currentBuildPhase == "appBuild" and doAllFiles:
+        fileModTime = os.path.getmtime(fullFilePath)
+        appendFile = True if fileModTime >= lastRun else False
+
+    if appendFile:
+        writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
+        sqlFile = open(fullFilePath, "r")
+        sqlText = sqlFile.read()
+        sqlText = sqlText + '\ncommit;\n' if runMode[:1].lower() == "f" else sqlText
+        writeOutputFile(fileName, sqlText)
+        sqlFile.close()
+
+        if writeLog:
+                filePath = '   - Appended file: ' + filePath if isFromInclude else 'Appended file:      ' + filePath
+                writeOutputFile(logFile, filePath)
+    else:
+        if writeLog:
+            writeOutputFile(logFile, 'File ignored because of last modified date: ' + filePath)
+
 
 
 
@@ -381,7 +391,8 @@ def writeOutputFile(fileName, appendText = '#'):
 def main():
 
     #global variables
-    global _buildts, isgood, stopReason, buildConfigData, installConfigData, currDir, logFile, writeLog
+    global _buildts, isgood, stopReason, buildConfigData, installConfigData, currDir, logFile, writeLog, historyFile
+    global lastRun, currentBuildPhase, doAllFiles
 
     # get timestamp into a variable
     _buildts = datetime.datetime.now()
@@ -395,14 +406,29 @@ def main():
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
     installConfigData = getConfigFile('agInstallConfig.json')
+    historyFile = getConfigFile('.agBuild.history')
 
+
+  ###################################################################
+  # Populate Variables
+  ###################################################################
+
+    logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild.log'
+    writeLog = True if buildConfigData["runOptions"]["fileLog"][:1].lower() == "y" else False
+    lastRun = datetime.datetime.strptime(historyFile["lastRun"]["timeStamp"], "%Y-%m-%d %H:%M:%S").timestamp()
+    doAllFiles = True if buildConfigData["appBuild"]["modifiedOnly"][:1].lower() == "y" else False
     currDir = os.getcwd() + '/'
 
+
+#datetime.datetime.utcfromtimestamp
+    #Get the last run timestamp
+    #lastRun = datetime.datetime.fromtimestamp(int(historyFile["lastRun"]["timeStamp"]), tz=None)
+    #datetime.datetime.strptime(s, "%d/%m/%Y").timestamp()
+    #print(str(lastRun) + " this run=" + str(_buildflt))
+
     # start a log file if requested (we need the name regardless for cleanup
-    logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild.log'
-    writeLog = False
-    if buildConfigData["runOptions"]["fileLog"][:1].lower() == "y":
-        writeLog = True
+    
+    if writeLog:
         writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCurrent Working directory: ' + currDir)
 
     
@@ -421,7 +447,8 @@ def main():
     # to-do:
     #
     #####################################################################
-    
+
+    currentBuildPhase = "appGooTest"
     testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-exec.agsql'
     testSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-agbuild.log'
     checkSQL = '/* Testing connection to database ' + str(_buildts) + ' */\n' + installConfigData["runOptions"]["installCheckSQL"] + ';'
@@ -471,6 +498,7 @@ def main():
     #perform pre-processing
     # we only check for the first letter
     # n = no y = yes  i = only If Installed
+    currentBuildPhase = "preprocess"
     if buildConfigData["preprocess"]["do-preprocess"][:1].lower() == "y":
         doPreProcess = True
     elif buildConfigData["preprocess"]["do-preprocess"][:1].lower() == "i" and doInstall == False:
@@ -500,6 +528,7 @@ def main():
     #
     #####################################################################
 
+    currentBuildPhase = "agInstallation"
     instalSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-agInstall-exec.agsql'
     instalSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-agInstall-agbuild.log'    
     if doInstall and isGood:
@@ -523,10 +552,12 @@ def main():
     #config file it was done by) in Line 1
     #the remaining records are the last time for their config file and they
     #replace the line in the file - but only if they completed with no errors
+    currentBuildPhase = "agUpgrade"
     pass
 
 
 
+    currentBuildPhase = "appBuild"
     #start an output file (it is a hidden file)
     buildSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appBuild-exec.agsql'
     buildSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-sql-output-appBuild-agbuild.log'
@@ -559,6 +590,7 @@ def main():
     #perform post-processing
     # we only check for the first letter
     # n = no; y = yes
+    currentBuildPhase = "postprocess"
     doPostProcess = (buildConfigData["postprocess"]["do-postprocess"][:1].lower() == "y")
     
     if writeLog:
@@ -567,6 +599,7 @@ def main():
     if doPostProcess and isGood:
         buildAndProcess('postprocess', buildConfigData)
 
+    currentBuildPhase = "done"
     #cleanup older files
     keepSQLFiles = (buildSqlFile)
     #to-do: Keep all SQL files executed in this session, delete all others...
@@ -574,6 +607,18 @@ def main():
     keepLogFiles = (logFile, testSqlLogFile, instalSqlLogFile, buildSqlLogFile)
     deleteFiles("", "-agbuild.log", keepLogFiles)
     
+
+    #update history
+    if isGood:
+        #Write to history File
+        historyFile["lastRun"]["timeStamp"] = str(_buildts.strftime("%Y-%m-%d %H:%M:%S"))
+        #change this when it is parameterised
+        historyFile["lastRun"]["configFile"] = "agBuildConfig.json"
+        historyFile["history"]["agBuildConfig"] = str(_buildts.strftime("%Y-%m-%d %H:%M:%S"))
+        
+        with open(".agBuild.history", "w") as agHistory:
+            json.dump(historyFile, agHistory, indent=4)
+
     
     #finalise log file and finish dbLog
     if writeLog:

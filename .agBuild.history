@@ -1,0 +1,10 @@
+{
+    "lastRun": {
+        "configFile": "agBuildConfig.json",
+        "timeStamp": "2018-12-18 15:13:34"
+    },
+    "history": {
+        "configFileName": "%y-%m-%d %h:%m:%s",
+        "agBuildConfig": "2018-12-18 15:13:34"
+    }
+}

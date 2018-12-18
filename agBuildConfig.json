@@ -2,7 +2,7 @@
     "appBuild": {
             "includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
-            "modifiedOnly": "no",
+            "modifiedOnly": "yes",
             "runMode": "file",
             "build-01": "source/sql",
             "build-02": "source/sql/play"
