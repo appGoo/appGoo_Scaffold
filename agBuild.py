@@ -69,6 +69,14 @@ def buildAndProcess(jsonQualifier, configData, writeLog, logFile, sqlFile=""):
     else:
         #we have a problem
         pass
+
+    try:
+        runMode = "File" if configData[jsonQualifier]["runMode"][:1].lower() == "f" else "Batch"
+    except:
+        runMode = "Batch"
+
+    if writeLog:
+        writeOutputFile(logFile, "runMode for " + jsonQualifier + " = " + runMode)
     
     i = 0
     foundJSON = True
@@ -97,7 +105,7 @@ def buildAndProcess(jsonQualifier, configData, writeLog, logFile, sqlFile=""):
                     writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
             else:
                 writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
-                getSQLFiles(sqlFile, item, configData[jsonQualifier][refs[3]], configData[jsonQualifier][refs[4]], writeLog, logFile)
+                getSQLFiles(sqlFile, item, configData[jsonQualifier][refs[3]], configData[jsonQualifier][refs[4]], runMode, writeLog, logFile)
 
         except PermissionError as err:
             if writeLog:
@@ -233,7 +241,7 @@ def getConfigFile(configFile = 'agBuildConfig.json'):
 #
 ################################################################################
 
-def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, logFile):
+def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode, writeLog, logFile):
 
 # consider using a decorator to have the listdir overlay the processing aspect    
     currDir = os.getcwd() + '/'
@@ -244,14 +252,14 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
             if file.endswith(includeQualifier):
                 if writeLog:
                     writeOutputFile(logFile, 'Found include file: ' + searchPath + '/' + file)
-                processIncludeFile(fileName, currDir, searchPath + '/' + file, writeLog, logFile)
+                processIncludeFile(fileName, currDir, searchPath + '/' + file, runMode, writeLog, logFile)
             elif file.endswith(sqlQualifier):
 #to-do: check if it has been modified since last run date
 #       note- appGoo Installation ignores last modified date
 #if os.path.getmtime(file) > minTimeStamp:
                 #if writeLog:
                 #    writeOutputFile(logFile, 'Found SQL file:     ' + searchPath + '/' + file)
-                processSQLFile(False, fileName, currDir, searchPath + '/' + file, "Batch", writeLog, logFile)
+                processSQLFile(False, fileName, currDir, searchPath + '/' + file, runMode, writeLog, logFile)
     else:
         # trap an error
         pass
@@ -272,7 +280,7 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, writeLog, 
 #
 ################################################################################
 
-def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
+def processIncludeFile(fileName, currDir, filePath, runMode, writeLog, logFile):
 
     fullFilePath = currDir + filePath
     with open(fullFilePath, 'r') as f:
@@ -289,7 +297,7 @@ def processIncludeFile(fileName, currDir, filePath, writeLog, logFile):
                         writeOutputFile(logFile, "issued a commit;")
                         
                 else:
-                    processSQLFile(True, fileName, currDir, LineInFile.rstrip('\n'), "Batch", writeLog, logFile) 
+                    processSQLFile(True, fileName, currDir, LineInFile.rstrip('\n'), runMode, writeLog, logFile) 
 
 
 
@@ -312,7 +320,7 @@ def processSQLFile(isFromInclude, fileName, currDir, filePath, runMode, writeLog
     writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
     sqlFile = open(fullFilePath, "r")
     sqlText = sqlFile.read()
-    sqlText = sqlText + '\ncommit;\n' if runMode.lower() == "file" else sqlText
+    sqlText = sqlText + '\ncommit;\n' if runMode[:1].lower() == "f" else sqlText
     writeOutputFile(fileName, sqlText)
     sqlFile.close()
 
