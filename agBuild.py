@@ -11,10 +11,8 @@
 #  - Upgrade SQL. Design method for performing an upgrade of appGoo and
 #    a developer's application
 #  - Error trapping
-#  - Logging - suggest an idea to print out the logfile at the end
+#  - Logging - improve the appearance of the captured log 
 #  - Command Line
-#  - Pre/Post processing. Rather than have commands in the JSON file,
-#    instead have a shell file that can be called to execute
 #  - Implement incremental updates only. Keep a .build-log file that stores
 #    the date that a build was last done and only build files if install is
 #    not required and the SQL file (including upgrade) is created or modified
@@ -50,7 +48,7 @@ import json
 #
 ################################################################################
 
-def buildAndProcess(jsonQualifier, configData, writeLog, logFile, sqlFile=""):
+def buildAndProcess(jsonQualifier, configData, sqlFile=""):
 
     if jsonQualifier == "preprocess":
         refs = ["Pre-Processing","script-", "./", "", ""]
@@ -105,7 +103,7 @@ def buildAndProcess(jsonQualifier, configData, writeLog, logFile, sqlFile=""):
                     writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
             else:
                 writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
-                getSQLFiles(sqlFile, item, configData[jsonQualifier][refs[3]], configData[jsonQualifier][refs[4]], runMode, writeLog, logFile)
+                getSQLFiles(sqlFile, item, configData[jsonQualifier][refs[3]], configData[jsonQualifier][refs[4]], runMode)
 
         except PermissionError as err:
             if writeLog:
@@ -130,9 +128,9 @@ def buildAndProcess(jsonQualifier, configData, writeLog, logFile, sqlFile=""):
 #
 ################################################################################
 
-def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
+def deleteFiles(searchPath, fileQualifier, keepFiles):
 
-    currDir = os.getcwd() + '/'
+    #currDir = os.getcwd() + '/'
     if os.path.exists(currDir):
         filesToRead = os.listdir(currDir + searchPath)
         filesToRead.sort()
@@ -158,7 +156,7 @@ def deleteFiles(searchPath, fileQualifier, keepFiles, writeLog, logFile):
 #
 ################################################################################
 
-def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, writeLog, logFile, currDir, minimiseStdOut=True): 
+def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, minimiseStdOut=True): 
 
     if jsonQualifier[:6].lower() == 'appgoo':
         runSQL = jsonInstallFile["runOptions"]["sqlCmd"]
@@ -241,10 +239,10 @@ def getConfigFile(configFile = 'agBuildConfig.json'):
 #
 ################################################################################
 
-def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode, writeLog, logFile):
+def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode):
 
 # consider using a decorator to have the listdir overlay the processing aspect    
-    currDir = os.getcwd() + '/'
+    #currDir = os.getcwd() + '/'
     if os.path.exists(currDir):
         filesToRead = os.listdir(searchPath)
         filesToRead.sort()
@@ -252,14 +250,9 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode, w
             if file.endswith(includeQualifier):
                 if writeLog:
                     writeOutputFile(logFile, 'Found include file: ' + searchPath + '/' + file)
-                processIncludeFile(fileName, currDir, searchPath + '/' + file, runMode, writeLog, logFile)
+                processIncludeFile(fileName, searchPath + '/' + file, runMode)
             elif file.endswith(sqlQualifier):
-#to-do: check if it has been modified since last run date
-#       note- appGoo Installation ignores last modified date
-#if os.path.getmtime(file) > minTimeStamp:
-                #if writeLog:
-                #    writeOutputFile(logFile, 'Found SQL file:     ' + searchPath + '/' + file)
-                processSQLFile(False, fileName, currDir, searchPath + '/' + file, runMode, writeLog, logFile)
+                processSQLFile(False, fileName, searchPath + '/' + file, runMode)
     else:
         # trap an error
         pass
@@ -280,7 +273,7 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode, w
 #
 ################################################################################
 
-def processIncludeFile(fileName, currDir, filePath, runMode, writeLog, logFile):
+def processIncludeFile(fileName, filePath, runMode):
 
     fullFilePath = currDir + filePath
     with open(fullFilePath, 'r') as f:
@@ -297,7 +290,7 @@ def processIncludeFile(fileName, currDir, filePath, runMode, writeLog, logFile):
                         writeOutputFile(logFile, "issued a commit;")
                         
                 else:
-                    processSQLFile(True, fileName, currDir, LineInFile.rstrip('\n'), runMode, writeLog, logFile) 
+                    processSQLFile(True, fileName, LineInFile.rstrip('\n'), runMode) 
 
 
 
@@ -312,10 +305,17 @@ def processIncludeFile(fileName, currDir, filePath, runMode, writeLog, logFile):
 #
 ################################################################################
 
-def processSQLFile(isFromInclude, fileName, currDir, filePath, runMode, writeLog, logFile):
+def processSQLFile(isFromInclude, fileName, filePath, runMode):
 
     fullFilePath = currDir + filePath
     fullFilePath = fullFilePath.replace('//','/')
+
+#to-do: check if it has been modified since last run date
+#       note- appGoo Installation ignores last modified date
+#if os.path.getmtime(file) > minTimeStamp:
+    #1. Get the last run date
+    #2. Check to see if the file has been modified since that time
+    
 
     writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
     sqlFile = open(fullFilePath, "r")
@@ -380,6 +380,9 @@ def writeOutputFile(fileName, appendText = '#'):
         
 def main():
 
+    #global variables
+    global _buildts, isgood, stopReason, buildConfigData, installConfigData, currDir, logFile, writeLog
+
     # get timestamp into a variable
     _buildts = datetime.datetime.now()
 #change this -- get a timestamp from .appBuildHistory.log
@@ -397,11 +400,10 @@ def main():
 
     # start a log file if requested (we need the name regardless for cleanup
     logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild.log'
+    writeLog = False
     if buildConfigData["runOptions"]["fileLog"][:1].lower() == "y":
         writeLog = True
         writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) + '\nCurrent Working directory: ' + currDir)
-    else:
-        writeLog = False
 
     
     #####################################################################
@@ -430,7 +432,7 @@ def main():
         writeOutputFile(logFile, 'Started Test SQL File ' + testSqlFile + '\nStarted Test SQL Output File ' + testSqlLogFile) 
 
     #build & run SQL
-    testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, writeLog, logFile, currDir, False) 
+    testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, False) 
     if testResult[0] == "False":
         isGood = False
         stopReason = "The build process has stopped because of errors encountered testing the connection to the database"
@@ -480,7 +482,7 @@ def main():
         writeOutputFile(logFile, 'doPreProcess:  ' + str(doPreProcess))
 
     if doPreProcess and isGood:
-        buildAndProcess('preprocess', buildConfigData, writeLog, logFile)
+        buildAndProcess('preprocess', buildConfigData)
 
         
 
@@ -505,8 +507,8 @@ def main():
         if writeLog:
             writeOutputFile(logFile, 'Starting appGoo installation into file ' + instalSqlFile)
 
-        buildAndProcess("agInstallation", installConfigData, writeLog, logFile, instalSqlFile)
-        agInstalResult = execSQL("agInstallation", buildConfigData, installConfigData, instalSqlFile, instalSqlLogFile, writeLog, logFile, currDir, True)
+        buildAndProcess("agInstallation", installConfigData, instalSqlFile)
+        agInstalResult = execSQL("agInstallation", buildConfigData, installConfigData, instalSqlFile, instalSqlLogFile, True)
 
         if agInstalResult[0] == "False":
             isGood = False
@@ -535,8 +537,8 @@ def main():
 
     #build & run SQL
     if isGood:
-        buildAndProcess("appBuild", buildConfigData, writeLog, logFile, buildSqlFile)
-        appBuildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, writeLog, logFile, currDir, True) 
+        buildAndProcess("appBuild", buildConfigData, buildSqlFile)
+        appBuildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, True) 
         if appBuildResult[0] == "False":
             isGood = False
             stopReason = "The build process has stopped because of errors encountered building the application in the database"
@@ -563,14 +565,14 @@ def main():
         writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
 
     if doPostProcess and isGood:
-        buildAndProcess('postprocess', buildConfigData, writeLog, logFile)
+        buildAndProcess('postprocess', buildConfigData)
 
     #cleanup older files
     keepSQLFiles = (buildSqlFile)
     #to-do: Keep all SQL files executed in this session, delete all others...
-    deleteFiles("", "-exec.agsql", keepSQLFiles, writeLog, logFile)
+    deleteFiles("", "-exec.agsql", keepSQLFiles)
     keepLogFiles = (logFile, testSqlLogFile, instalSqlLogFile, buildSqlLogFile)
-    deleteFiles("", "-agbuild.log", keepLogFiles, writeLog, logFile)
+    deleteFiles("", "-agbuild.log", keepLogFiles)
     
     
     #finalise log file and finish dbLog
