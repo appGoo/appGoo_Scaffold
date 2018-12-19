@@ -1,4 +1,4 @@
 -- Include SQL files for build
-source/sql/sql-sql.sql
 source/sql/play/play.sql
+source/sql/sql-sql.sql
 source/sql/play/abc-def.sql

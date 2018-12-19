@@ -343,7 +343,8 @@ def processSQLFile(isFromInclude, fileName, filePath, sqlLogFile):
             if sqlFileResult[0] == "False":
                 continueWork = False
                 stopReason = "The build process has stopped because of errors encountered building the application in the database"
-
+                if writeLog:
+                    writeOutputFile(logFile, "***Build process stopped due to an error with a SQL file")
         else:            
             writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
             sqlFile = open(fullFilePath, "r")
@@ -353,13 +354,21 @@ def processSQLFile(isFromInclude, fileName, filePath, sqlLogFile):
             sqlFile.close()
 
 
-        if writeLog:
+        if writeLog and continueWork:
+            if processSQL == "f":
+                filePath = 'File ' + fullFilePath + ' executed'
+            else:
                 filePath = '   - Appended file: ' + filePath if isFromInclude else 'Appended file:      ' + filePath
-                writeOutputFile(logFile, filePath)
+
+            writeOutputFile(logFile, filePath)
     else:
         if writeLog:
             #to-do: improve this log entry with formatted times and could also because of continueWork=false
-            writeOutputFile(logFile, 'File ignored because of last modified date: ' + filePath)
+            if appendFile == False:
+                writeOutputFile(logFile, 'File ignored because of last modified date: ' + filePath)
+            elif continueWork:
+                #remove this
+                writeOutputFile(logFile, '--> File skipped because continueWork = False')
 
 
 
@@ -597,10 +606,11 @@ def main():
     #build & run SQL
     if continueWork:
         buildAndProcess("appBuild", buildConfigData, buildSqlFile, buildSqlLogFile)
-        appBuildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, True) 
-        if appBuildResult[0] == "False":
-            continueWork = False
-            stopReason = "The build process has stopped because of errors encountered building the application in the database"
+        if processSQL == "b":
+            appBuildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, True) 
+            if appBuildResult[0] == "False":
+                continueWork = False
+                stopReason = "The build process has stopped because of errors encountered building the application in the database"
 
     processModifiedOnly = False
   
