@@ -17,6 +17,8 @@
 #    the date that a build was last done and only build files if install is
 #    not required and the SQL file (including upgrade) is created or modified
 #    after the date. Note that we track a date per config file.
+#  - All the specification of how to show a timestamp with a RunOption in the
+#    build file with a default of "%Y-%m-%d %H:%M:%S" (iso format)
 #
 ################################################################################
 
@@ -49,7 +51,7 @@ import re
 #
 ################################################################################
 
-def buildAndProcess(jsonQualifier, configData, sqlFile=""):
+def buildAndProcess(jsonQualifier, configData, sqlFile="", sqlLogFile=""):
 
     if jsonQualifier == "preprocess":
         refs = ["Pre-Processing","script-", "./", "", ""]
@@ -69,13 +71,13 @@ def buildAndProcess(jsonQualifier, configData, sqlFile=""):
         #we have a problem
         pass
 
-    try:
-        runMode = "File" if configData[jsonQualifier]["runMode"][:1].lower() == "f" else "Batch"
-    except:
-        runMode = "Batch"
-
-    if writeLog:
-        writeOutputFile(logFile, "runMode for " + jsonQualifier + " = " + runMode)
+##    try:
+##        runMode = "File" if configData[jsonQualifier]["runMode"][:1].lower() == "f" else "Batch"
+##    except:
+##        runMode = "Batch"
+##
+##    if writeLog:
+##        writeOutputFile(logFile, "runMode for " + jsonQualifier + " = " + runMode)
     
     i = 0
     foundJSON = True
@@ -104,7 +106,7 @@ def buildAndProcess(jsonQualifier, configData, sqlFile=""):
                     writeOutputFile(logFile, 'Script: ' + item + '\n' + str(processResult))
             else:
                 writeOutputFile(sqlFile, '-- # DEBUG: item=' + item)
-                getSQLFiles(sqlFile, item, configData[jsonQualifier][refs[3]], configData[jsonQualifier][refs[4]], runMode)
+                getSQLFiles(sqlFile, item, configData[jsonQualifier][refs[3]], configData[jsonQualifier][refs[4]], sqlLogFile)
 
         except PermissionError as err:
             if writeLog:
@@ -167,7 +169,11 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
         runSQL = runSQL.replace("&UNAME", jsonBuildFile["runOptions"]["dbUser"])
         
     runSQL = runSQL.replace("&DB", jsonInstallFile["runOptions"]["dbName"])
-    runSQL = runSQL.replace("&CMDS", r"--set ON_ERROR_STOP=on --set AUTOCOMMIT=off -f " + sqlFile)
+    if processSQL == "f":
+        runSQL = runSQL.replace("&CMDS", r"--set ON_ERROR_STOP=on --set AUTOCOMMIT=on -f " + sqlFile)
+    else:
+        runSQL = runSQL.replace("&CMDS", r"--set ON_ERROR_STOP=on --set AUTOCOMMIT=off -f " + sqlFile)
+
     runSQL = runSQL + " --echo-errors --output=.sql-output-" + jsonQualifier + "-agbuild.log" if minimiseStdOut else runSQL
     #dont know why - but the psql always fail when I don't pipe the output
     runSQL = runSQL + " &> .tmp-agbuild.log"
@@ -189,7 +195,8 @@ def execSQL(jsonQualifier, jsonBuildFile, jsonInstallFile, sqlFile, sqlLogFile, 
         cmdSuccessOut = ("False", cmdResult.lstrip(" "))
     else:
         cmdSuccessOut = ("True", cmdResult[1:500])
-        
+
+    #to-do: alter this for "per-file" processing    
     if writeLog:
         writeOutputFile(logFile, 'SQL Execution for: ' + jsonQualifier + '\n---------------------->')
         if cmdSuccessOut[0] == 'False':
@@ -240,7 +247,7 @@ def getConfigFile(configFile = 'agBuildConfig.json'):
 #
 ################################################################################
 
-def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode):
+def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, sqlLogFile=""):
 
 # consider using a decorator to have the listdir overlay the processing aspect    
     #currDir = os.getcwd() + '/'
@@ -251,9 +258,9 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode):
             if file.endswith(includeQualifier):
                 if writeLog:
                     writeOutputFile(logFile, 'Found include file: ' + searchPath + '/' + file)
-                processIncludeFile(fileName, searchPath + '/' + file, runMode)
+                processIncludeFile(fileName, searchPath + '/' + file, sqlLogFile)
             elif file.endswith(sqlQualifier):
-                processSQLFile(False, fileName, searchPath + '/' + file, runMode)
+                processSQLFile(False, fileName, searchPath + '/' + file, sqlLogFile)
     else:
         # trap an error
         pass
@@ -274,7 +281,7 @@ def getSQLFiles(fileName, searchPath, sqlQualifier, includeQualifier, runMode):
 #
 ################################################################################
 
-def processIncludeFile(fileName, filePath, runMode):
+def processIncludeFile(fileName, filePath, sqlLogFile=""):
 
     fullFilePath = currDir + filePath
     with open(fullFilePath, 'r') as f:
@@ -286,12 +293,15 @@ def processIncludeFile(fileName, filePath, runMode):
                 #if writeLog:
                 #    writeOutputFile(logFile, 'Parsing SQL file:   ' + LineInFile.rstrip('\n'))
                 if LineInFile.strip().lower() in("@commit", "@commit;", "commit;", "commit"):
-                    writeOutputFile(fileName, "\ncommit;\n")
-                    if writeLog:
-                        writeOutputFile(logFile, "issued a commit;")
+                    if processSQL == "b" and appendedCommit == False:
+                            writeOutputFile(fileName, "\ncommit;\n")
+                            appendedCommit == True
+                            if writeLog:
+                                writeOutputFile(logFile, "issued a commit;")
                         
                 else:
-                    processSQLFile(True, fileName, LineInFile.rstrip('\n'), runMode) 
+                    appendedCommit = False
+                    processSQLFile(True, fileName, LineInFile.rstrip('\n'), sqlLogFile) 
 
 
 
@@ -306,8 +316,10 @@ def processIncludeFile(fileName, filePath, runMode):
 #
 ################################################################################
 
-def processSQLFile(isFromInclude, fileName, filePath, runMode):
+def processSQLFile(isFromInclude, fileName, filePath, sqlLogFile):
 
+    global continueWork
+    
     fullFilePath = currDir + filePath
     fullFilePath = fullFilePath.replace('//','/')
 
@@ -321,30 +333,32 @@ def processSQLFile(isFromInclude, fileName, filePath, runMode):
 
     appendFile = True
 
-    if currentBuildPhase == "appBuild" and doAllFiles:
+    if processModifiedOnly:
         fileModTime = os.path.getmtime(fullFilePath)
         appendFile = True if fileModTime >= lastRun else False
 
-    if appendFile:
-        writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
-        sqlFile = open(fullFilePath, "r")
-        sqlText = sqlFile.read()
-        if runMode[:1].lower() == "f":
-            #this is not working
-            if str(re.search('commit;', sqlText)) == "None":
-                if writeLog:
-                    writeOutputFile(logFile, "found a commit in " + filePath)
-            else:
-                sqlText = sqlText + '\n--Commit added by build process\ncommit;\n'
-                
-        writeOutputFile(fileName, sqlText)
-        sqlFile.close()
+    if appendFile and continueWork:
+        if processSQL == "f":
+            sqlFileResult = execSQL("appBuild", buildConfigData, installConfigData, fullFilePath, sqlLogFile, True) 
+            if sqlFileResult[0] == "False":
+                continueWork = False
+                stopReason = "The build process has stopped because of errors encountered building the application in the database"
+
+        else:            
+            writeOutputFile(fileName, '-- Appending SQL File: ' + fullFilePath)
+            sqlFile = open(fullFilePath, "r")
+            sqlText = sqlFile.read()
+                    
+            writeOutputFile(fileName, sqlText)
+            sqlFile.close()
+
 
         if writeLog:
                 filePath = '   - Appended file: ' + filePath if isFromInclude else 'Appended file:      ' + filePath
                 writeOutputFile(logFile, filePath)
     else:
         if writeLog:
+            #to-do: improve this log entry with formatted times and could also because of continueWork=false
             writeOutputFile(logFile, 'File ignored because of last modified date: ' + filePath)
 
 
@@ -401,8 +415,8 @@ def writeOutputFile(fileName, appendText = '#'):
 def main():
 
     #global variables
-    global _buildts, isgood, stopReason, buildConfigData, installConfigData, currDir, logFile, writeLog, historyFile
-    global lastRun, currentBuildPhase, doAllFiles
+    global _buildts, continueWork, stopReason, buildConfigData, installConfigData, currDir, logFile, writeLog, historyFile
+    global lastRun, currentBuildPhase, processModifiedOnly, processSQL, appendedCommit
 
     # get timestamp into a variable
     _buildts = datetime.datetime.now()
@@ -410,7 +424,7 @@ def main():
     _buildflt = _buildts.timestamp()
 
     #global tracker of whether to continue processing
-    isGood = True
+    continueWork = True
     stopReason = ""
 
     # Enhance this with 'click' to make this the runtime parameter
@@ -426,8 +440,10 @@ def main():
     logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild.log'
     writeLog = True if buildConfigData["runOptions"]["fileLog"][:1].lower() == "y" else False
     lastRun = datetime.datetime.strptime(historyFile["lastRun"]["timeStamp"], "%Y-%m-%d %H:%M:%S").timestamp()
-    doAllFiles = True if buildConfigData["appBuild"]["modifiedOnly"][:1].lower() == "y" else False
+    processModifiedOnly = False
+    processSQL = "b"
     currDir = os.getcwd() + '/'
+    appendedCommit = False
 
 
 #datetime.datetime.utcfromtimestamp
@@ -471,7 +487,7 @@ def main():
     #build & run SQL
     testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, False) 
     if testResult[0] == "False":
-        isGood = False
+        continueWork = False
         stopReason = "The build process has stopped because of errors encountered testing the connection to the database"
         doInstall = False
     else:
@@ -519,7 +535,7 @@ def main():
     if writeLog:
         writeOutputFile(logFile, 'doPreProcess:  ' + str(doPreProcess))
 
-    if doPreProcess and isGood:
+    if doPreProcess and continueWork:
         buildAndProcess('preprocess', buildConfigData)
 
         
@@ -541,7 +557,7 @@ def main():
     currentBuildPhase = "agInstallation"
     instalSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-agInstall-exec.agsql'
     instalSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-appGoo-agInstall-agbuild.log'    
-    if doInstall and isGood:
+    if doInstall and continueWork:
         writeOutputFile(instalSqlFile, "-- appGoo Installation SQL Execution File created on " + _buildts.strftime("%y-%m-%d %H:%M:%S"))
         if writeLog:
             writeOutputFile(logFile, 'Starting appGoo installation into file ' + instalSqlFile)
@@ -550,7 +566,7 @@ def main():
         agInstalResult = execSQL("agInstallation", buildConfigData, installConfigData, instalSqlFile, instalSqlLogFile, True)
 
         if agInstalResult[0] == "False":
-            isGood = False
+            continueWork = False
             stopReason = "The build process has stopped because of errors encountered during installation of appGoo"
             
 
@@ -568,6 +584,8 @@ def main():
 
 
     currentBuildPhase = "appBuild"
+    processModifiedOnly = True if buildConfigData["appBuild"]["modifiedOnly"][:1].lower() == "y" else False
+    processSQL = "f" if buildConfigData["appBuild"]["processSQL"][:1].lower() in("f", "p") else "b"
     #start an output file (it is a hidden file)
     buildSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appBuild-exec.agsql'
     buildSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-sql-output-appBuild-agbuild.log'
@@ -577,19 +595,20 @@ def main():
         writeOutputFile(logFile, 'Started SQL file ' + buildSqlFile + '\nCapturing SQL output in file ' + buildSqlLogFile) 
 
     #build & run SQL
-    if isGood:
-        buildAndProcess("appBuild", buildConfigData, buildSqlFile)
+    if continueWork:
+        buildAndProcess("appBuild", buildConfigData, buildSqlFile, buildSqlLogFile)
         appBuildResult = execSQL("appBuild", buildConfigData, installConfigData, buildSqlFile, buildSqlLogFile, True) 
         if appBuildResult[0] == "False":
-            isGood = False
+            continueWork = False
             stopReason = "The build process has stopped because of errors encountered building the application in the database"
-        
+
+    processModifiedOnly = False
   
         
         
     
 
-    #do data installation if necessary
+    #do dataUpgrade installation if necessary
     #include the creation of a dbLog
 
     #do data update if necessary
@@ -606,7 +625,7 @@ def main():
     if writeLog:
         writeOutputFile(logFile, 'doPostProcess: ' + str(doPostProcess))
 
-    if doPostProcess and isGood:
+    if doPostProcess and continueWork:
         buildAndProcess('postprocess', buildConfigData)
 
     currentBuildPhase = "done"
@@ -619,7 +638,7 @@ def main():
     
 
     #update history
-    if isGood:
+    if continueWork:
         #Write to history File
         historyFile["lastRun"]["timeStamp"] = str(_buildts.strftime("%Y-%m-%d %H:%M:%S"))
         #change this when it is parameterised
@@ -632,7 +651,7 @@ def main():
     
     #finalise log file and finish dbLog
     if writeLog:
-        if isGood == False:
+        if continueWork == False:
             writeOutputFile(logFile, '\n' + stopReason + '\n')
             
         writeOutputFile(logFile, 'Build complete at : ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -642,7 +661,7 @@ def main():
         print(printText)
         printFile.close()
     else:
-        if isGood == False:
+        if continueWork == False:
             print('***************** Process did not end properly due to an error encountered *****************\n')
             print(stopReason + '\n')
             print('********************************************************************************************\n')
