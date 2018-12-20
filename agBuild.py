@@ -601,7 +601,7 @@ def main():
             writeOutputFile(logFile, 'appGoo Installation completed.' + stopReason \
                 + '\n#######################################################################################\n')
 
-
+####### SALLEYN: Stopped Log Cleanup here.
 
     #do appGoo upgrade
     #to do an appGoo upgrade we check for all SQL files (raw & includes)
