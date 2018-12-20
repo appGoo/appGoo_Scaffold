@@ -1,1 +1,1 @@
-= appGoo Scaffold Builder
+# appGoo Scaffold Builder

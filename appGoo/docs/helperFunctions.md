@@ -1,3 +1,10 @@
+# appGoo Scaffold Helper functions
+
+* Installed in the ag_sys schema
+* Do not modify, instead copy and maintain a version of function in your schema as the appGoo version will potentially be replaced by a future upgrade
+* The below documentation explains how to call the function, what its parameters are and what is returned
+* Any contributors who wish to improve the functions should also ensure that functional impacts is reflected in this documentation
+* All functions are shown in alphabetical order
 
 #### ag_has_permission RETURNS BOOLEAN
 
