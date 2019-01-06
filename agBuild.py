@@ -7,6 +7,9 @@
 # https://github.com/appGoo
 #
 # MAJOR TO-DO:
+#  - Re-do include functionality to allow up to 100 nested includes
+#  - Allow includes to replace text in a line rather than start and end
+#    with a line break
 #  - Install SQL. Make sql statement configurable
 #  - Upgrade SQL. Design method for performing an upgrade of appGoo and
 #    a developer's application
@@ -417,7 +420,7 @@ def writeOutputFile(fileName, appendText = '#'):
 # This is where the program begins.
 #
 # To-do:
-#       - Intelligent error reporting to understand where problems are occurring
+#       - Refer to to-do at top of file
 #
 ################################################################################
         
@@ -511,7 +514,9 @@ def main():
         writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall) \
             + '\nTest connecting to the database was successful' \
             + '\n================================================================================')
-
+    else:
+        #insert output for failure
+        pass
 
 
     #####################################################################

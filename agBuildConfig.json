@@ -21,6 +21,9 @@
         "script-01": "postprocess.sh"
         },    
     "runOptions": {
+        "buildFileExt": ".build",
+        "appGooFileExt": ".agsql",
+        "sqlFileExt": ".sql",
         "dbUser": "postgres",
         "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",
         "fileLog": "yes",
