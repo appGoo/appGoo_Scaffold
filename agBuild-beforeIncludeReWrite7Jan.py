@@ -619,7 +619,7 @@ def main():
     pass
 
 
-    # old appBuild
+
     currentBuildPhase = "appBuild"
     processModifiedOnly = True if processModVal[:1].lower() == "y" else False
     # f = file, b = batch
@@ -644,63 +644,8 @@ def main():
     processModifiedOnly = False
   
         
-############################################
-##
-## NEW appBuild functionality
-##
-############################################
-#
-# Psuedo-Code
-#
-# Get all parameters from config file
-# Get all appBuild directories into a dictionary
-# Loop through the directories for BUILD files calling a build function passing in processing mode
-#   Get files from directory
-#   In alphabetical order of BUILD files (ignore all others)
-#      Create TEMP file if does not exist
-#      Process all <%%include filename %> references and append to temp file
-#   If TEMP file exists
-#      If process_mode = FILE, then pass TEMP file for execution else append to BATCH file
-# If process_mode = BATCH, then pass batch file for execution
-# Repeat for SQL files
-# For agSQL files pass each file for recursive includes then process all <% tags after all <%% includes complete
-#   If process_mode = FILE then pass temp file for execution else append to BATCH file
-# If process_mode = BATCH, then pass batch file for execution
-# 
-
-    currentBuildPhase = "appBuild"
-    processModifiedOnly = True if processModVal[:1].lower() == "y" else False
-    # f = file, b = batch
-    processSQL = "f" if processSqlVal[:1].lower() in("f", "p") else "b"
-    #start an output file (it is a hidden file)
-    buildSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-appBuild-exec.agsql'
-    buildSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-sql-output-appBuild-agbuild.log'
-    # build file ext, sql file ext, agsql file ext
-    # get dirs for build into a dictionary
-    # get dirs for sql into a dict
-    # get dirs for agsql into a dict
-    # LOOP through build dirs
-    #   process build dir
-    # if process_mode=b then
-    #    pass batch file for include resolution
-    #    execute file
-    # LOOP through SQL dirs
-    #   process sql dir
-    # if process_mode=b then
-    #    pass batch file for include resolution
-    #    execute file
-    # LOOP through agSQL dirs
-    #   process agsql dir
-    # if process_mode=b then
-    #    pass batch file for include resolution
-    #    execute file
-
-
-
-
-
-
-
+        
+    
 
     #do dataUpgrade installation if necessary
     #include the creation of a dbLog
