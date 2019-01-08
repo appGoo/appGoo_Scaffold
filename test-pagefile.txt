@@ -1,14 +1,22 @@
 # this is my dummy page
-<%%page ag_sys.dummy_page 
+ag_sys.dummy_page 
 p_text
 p_number integer default 0,
 p_bool boolean
-%>
+
 # declare
-<%%declare
+declare
+
+appGoo
 <html>
 <%%include inc1.txt %>
-<%%include inc3.txt %> <%%include inc4.txt %>
+<%%include inc3.txt %> <%%include inc4.txt 
+%>
+
+   
+<p>empty lines above and below</>
+
+
 <%
   if i = 0 then
 %>

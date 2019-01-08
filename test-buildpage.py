@@ -17,16 +17,13 @@ def main():
     # 4. Build Procedure Body
     # 5. Replace '<%/' to '<%' and '/%>' to '%>'
 
-    #i = 1
-    #while i > 0:
-    #  i = processIncludes(sourceFile, destFile)
-    # the function returns how many includes it processed
-
-    # hex for '<%%include ' (space follows)
+    # do includes
+    # hex for '<%%include ' (space follows) & ' %>
     includeRegex = r"(\x3C\x25\x25include\x20)"
-    closeRegex = r"(\x20\x25\x3E)"
+    closeRegex = r"(\x20\x25\x3E)|(\n\x25\x3E)"
 
     loopAgain = True
+    hasChanged = False
     loopCount = 0
     while loopAgain:
         startPos = re.search(includeRegex, txt)
@@ -34,15 +31,15 @@ def main():
             tmpTxt = txt[startPos.end():]
             endPos = re.search(closeRegex, tmpTxt)
             if endPos:
-                #incFile = tmpTxt[:endPos.start()].strip()
-                rStr = tmpTxt[:endPos.start()]
-                incFile = rStr.strip()
-                rStr = '<%%include ' + rStr + ' %>'
+                hasChanged = True
+                rawStr = tmpTxt[:endPos.end()]
+                incFile = tmpTxt[:endPos.start()].strip()
+                rStr = '<%%include ' + rawStr
                 incf = open(incFile, "r")
                 incTxt = incf.read()
                 incf.close()
                 incTxt = incTxt.rstrip('\n')
-                print('will replace ' + rStr + ' with ' + incTxt)
+                #print('will replace ' + rStr + ' with ' + incTxt)
                 txt = txt.replace(rStr, incTxt)
             else:
                 #we must report an error
@@ -56,9 +53,61 @@ def main():
             
         
     print('loopcount = ' + str(loopCount))
-    print(txt)
     
     # all includes resolved, now do other processing
+    # remove comments that start with '#'
+    lineArray = txt.split('\n')
+    txt = ''
+    for txtLine in lineArray:
+        if txtLine[:1] == '#':
+            #ignore
+            pass
+        elif len(txtLine.strip()) == 0:
+            #ignore
+            pass
+        else:
+            txt = txt + txtLine + '\n'
+
+    #print(txt)
+
+
+    # do procedure heading
+    agTxt = ''
+    lineArray = txt.split('\n')
+    lineContext = 'start'
+    for txtLine in lineArray:
+        if lineContext == 'start':
+            txtLine = txtLine.replace('  ', ' ')
+            funcDef = txtLine.split(' ')
+            agTxt = 'CREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
+            lineContext = 'declare'
+        elif lineContext == 'declare':
+            if txtLine.strip().lower() == 'declare':
+                agTxt = agTxt + 'DECLARE \n'
+                lineContext = 'params'
+            else:
+                lineContext = 'appgoo'
+        elif lineContext == 'params':
+            if txtLine.strip().lower() == 'appgoo':
+                lineContext = 'appgoo'
+            else:
+                # insert parameter
+                pass
+        elif lineContext == 'appgoo':
+                if txtLine.strip().lower() == 'appgoo':
+                    # we now must do the RETURNS
+                    lineContext = 'code'
+                else:
+                    #raise an error
+                    pass
+        elif lineContext == 'code':
+            agTxt = agTxt + txtLine + '\n' 
+        else:
+            #raise an error
+            pass
+
+
+    print(agTxt)
 
     test_str = "This <% is <% laughing //%> l <% laugh %>thank you."
 
