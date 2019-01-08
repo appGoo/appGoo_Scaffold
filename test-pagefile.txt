@@ -1,0 +1,24 @@
+# this is my dummy page
+<%%page ag_sys.dummy_page 
+p_text
+p_number integer default 0,
+p_bool boolean
+%>
+# declare
+<%%declare
+<html>
+<%%include inc1.txt %>
+<%%include inc3.txt %> <%%include inc4.txt %>
+<%
+  if i = 0 then
+%>
+  <div id=<%= i %>>
+    <p>testing escapes <%/ hello //%></p>
+<% else %>
+  <div name_id=<%= i %>>
+    <h2>head2</h2>
+<% end if; %>
+<%%include inc5.txt %>
+<%%options 
+STRICT
+%>
