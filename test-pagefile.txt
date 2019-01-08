@@ -6,7 +6,12 @@ p_bool boolean
 
 # declare
 declare
-
+          v8,
+i int
+t
+isTrue bool := false;
+v_a, v_b bigint
+x text;
 appGoo
 <html>
 <%%include inc1.txt %>

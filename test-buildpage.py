@@ -55,7 +55,7 @@ def main():
     print('loopcount = ' + str(loopCount))
     
     # all includes resolved, now do other processing
-    # remove comments that start with '#'
+    # remove comments that start with '#' and blank lines
     lineArray = txt.split('\n')
     txt = ''
     for txtLine in lineArray:
@@ -75,24 +75,54 @@ def main():
     agTxt = ''
     lineArray = txt.split('\n')
     lineContext = 'start'
+    paramCount = 0
+    varCount = 0
     for txtLine in lineArray:
         if lineContext == 'start':
+            txtLine = txtLine.strip()
             txtLine = txtLine.replace('  ', ' ')
             funcDef = txtLine.split(' ')
             agTxt = 'CREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
-            lineContext = 'declare'
-        elif lineContext == 'declare':
-            if txtLine.strip().lower() == 'declare':
-                agTxt = agTxt + 'DECLARE \n'
-                lineContext = 'params'
-            else:
-                lineContext = 'appgoo'
+            lineContext = 'params'
         elif lineContext == 'params':
-            if txtLine.strip().lower() == 'appgoo':
+            if txtLine.strip().lower() == 'declare':
+                if len(funcDef) == 1:
+                    agTxt = agTxt + ') RETURNS TEXT \nAS $___appgoo___$ \nDECLARE \n'
+                else:
+                    funcDef[0] = ''
+                    agTxt = agTxt + ') ' + ''.join(funcDef) + ' \nAS $___appgoo___$ \nDECLARE \n'
+                lineContext = 'vars'
+            elif txtLine.strip().lower() in ('appgoo', 'code', 'begin'):
+                agTxt = agTxt + ') FIX ME I AM WRONG \n'
                 lineContext = 'appgoo'
             else:
-                # insert parameter
-                pass
+                paramCount = paramCount + 1
+                if paramCount > 1:
+                    agTxt = agTxt + ', '
+                else:
+                    agTxt = agTxt + '  '
+                txtLine = txtLine.strip()
+                txtLine = txtLine.replace('  ', ' ')
+                txtLine = txtLine.rstrip(',')
+                paramDef = txtLine.split(' ')
+                if len(paramDef) == 1:
+                    agTxt = agTxt + txtLine.strip() + ' text \n'
+                else:
+                    agTxt = agTxt + txtLine.strip() + ' \n'
+        elif lineContext == 'vars':
+            if txtLine.strip().lower() in ('appgoo', 'code', 'begin'):
+                agTxt = agTxt + '\nBEGIN \n'
+                lineContext = 'code'
+            else:
+                txtLine = txtLine.strip()
+                txtLine = txtLine.replace('  ', ' ')
+                txtLine = txtLine.rstrip(',')
+                txtLine = txtLine.rstrip(';')
+                varDef = txtLine.split(' ')
+                if len(varDef) == 1:
+                    agTxt = agTxt + '  ' + txtLine.strip() + ' text; \n'
+                else:
+                    agTxt = agTxt + '  ' + txtLine.strip() + '; \n' 
         elif lineContext == 'appgoo':
                 if txtLine.strip().lower() == 'appgoo':
                     # we now must do the RETURNS
