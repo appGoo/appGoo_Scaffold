@@ -1,6 +1,40 @@
 import os
 import re
 
+def getCodePositions(txt):
+
+    escapeRegex = r"(\x3C\x25\x20)|(\x3C\x25\n)"
+    echoRegex = r"(\x3C\x25\x3D\x20)"
+    closeRegex = r"(\x20\x25\x3E)|(\n\x25\x3E)"
+    optionsRegex = r"(\x3C\x25\x25options\x20)|(\x3C\x25\x25options\n)"
+    
+    _escPos = re.search(escapeRegex, txt)
+    if _escPos:
+        escPos = _escPos.start()
+    else:
+        escPos = 0
+    _echoPos = re.search(echoRegex, txt)
+    if _echoPos:
+        echoPos = _echoPos.start()
+    else:
+        echoPos = 0
+    _closePos = re.search(closeRegex, txt)
+    if _closePos:
+        closePos = _closePos.start()
+    else:
+        closePos = 0
+    _optionsPos = re.search(optionsRegex, txt)
+    if _optionsPos:
+        optionsPos = _optionsPos.start()
+    else:
+        optionsPos = 0
+
+    return {
+        "escPos": escPos,
+        "echoPos": echoPos,
+        "closePos": closePos,
+        "optionsPos": optionsPos}
+        
 
 def main():
 
@@ -81,6 +115,8 @@ def main():
     begTxtBlk = 'BEGIN \n'
     arrBegBlk = '__agStrArray_[__i_] = $___agArray___$'
     arrEndBlk = '$___agArray___$; __i_ = __i_ + 1;\n'
+    echoBegBlk = '$___agArray___$ || ( '
+    echoEndBlk = ' ) || $___agArray___$'
     lineArray = txt.split('\n')
     lineContext = 'start'
     paramCount = 0
@@ -151,10 +187,30 @@ def main():
             #strOpen = False
             #arrBegBlk = '__agStrArray_[__i_] = $___agArray___$'
             #arrEndBlk = '$___agArray___$; __i_ = __i_ + 1;\n'
-            escPos = re.search(escapeRegex, txtLine)
-            echoPos = re.search(echoRegex, txtLine)
-            closePos = re.search(closeRegex, txtLine)
-            optionsPos = re.search(optionsRegex, txtLine)
+            #echoBegBlk = '$___agArray___$ || ( '
+            #echoEndBlk = ' ) || $___agArray___$'
+
+##            _escPos = re.search(escapeRegex, txtLine)
+##            if _escPos:
+##                escPos = _escPos.start()
+##            else:
+##                escPos = 0
+##            _echoPos = re.search(echoRegex, txtLine)
+##            if _echoPos:
+##                echoPos = _echoPos.start()
+##            else:
+##                echoPos = 0
+##            _closePos = re.search(closeRegex, txtLine)
+##            if _closePos:
+##                closePos = _closePos.start()
+##            else:
+##                closePos = 0
+##            _optionsPos = re.search(optionsRegex, txtLine)
+##            if _optionsPos:
+##                optionsPos = _optionsPos.start()
+##            else:
+##                optionsPos = 0
+            #codePos = getCodePositions(txtLine)
 ##            if startPos:
 ##                tmpTxt = txt[startPos.end():]
 ##                endPos = re.search(closeRegex, tmpTxt)
@@ -171,28 +227,109 @@ def main():
 ##                    txt = txt.replace(rStr, incTxt)
            
             if codeLines == 0:
-                # always start assuming with a string capture
+                # always start assuming with a string capture - do not append a line break
                 agTxt = agTxt + arrBegBlk
                 strOpen = True
                 codeLines = 1
 
-            if strOpen:
-                if escPos or echoPos or closePos:
-                    #do something
-                    pass
+            while len(txtLine.strip()) > 0:
+                codePos = getCodePositions(txtLine)
+                #posList = [codePos["closePos"], codePos["escPos"], codePos["echoPos"]]
+                if strOpen:
+                    if codePos["closePos"] + codePos["escPos"] + codePos["echoPos"] == 0:
+                        # just grab everything left on the line and append
+                        agTxt = agTxt + txtLine
+                        txtLine = ''
+                        print('A:' + str(codeLines) + ' newText=' + txtLine)
+                    elif codePos["closePos"] > 0 and (codePos["closePos"] < codePos["escPos"] or codePos["closePos"] < codePos["echoPos"]):
+                        # bad format --> fail
+                        # example: '<string is open>%>'
+                        print('#=> Codelines ' + str(codeLines) + ' illegal esc-close')
+                        txtLine = ''
+                    elif codePos["escPos"] > 0 and (codePos["escPos"] < codePos["echoPos"] or codePos["echoPos"] == 0):
+                        # end string at code
+                        agTxt = agTxt + txtLine[:codePos["escPos"]].rstrip() + arrEndBlk
+                        txtLine = txtLine[codePos["escPos"]+3:]
+                        escapeOpen = True
+                        echoOpen = False
+                        strOpen = False
+                        codePos = getCodePositions(txtLine)
+                        print('B:' + str(codeLines) + ' newText=' + txtLine)
+                    elif codePos["echoPos"] > 0 and (codePos["echoPos"] < codePos["escPos"] or codePos["escPos"] == 0):
+                        # concatenate variable output
+                        agTxt = agTxt + txtLine[:codePos["echoPos"]].rstrip() + echoBegBlk
+                        txtLine = txtLine[codePos["echoPos"]+4:]
+                        echoOpen = True
+                        escapeOpen = False
+                        strOpen = False
+                        codePos = getCodePositions(txtLine)
+                        print('C:' + str(codeLines) + ' newText=' + txtLine)
+                    else:
+                        # unknown when this would be used
+                        print('\n================================> UNKNOWN LOGIC. Line= ' + str(codeLines)) 
+                elif escapeOpen:
+                    if codePos["closePos"] + codePos["escPos"] + codePos["echoPos"] == 0:
+                        # just grab everything left on the line and append
+                        agTxt = agTxt + txtLine
+                        txtLine = ''
+                        print('D:' + str(codeLines) + ' newText=' + txtLine)
+                    elif (codePos["escPos"] < codePos["closePos"] and codePos["escPos"] > 0) or (codePos["echoPos"] < codePos["closePos"] and codePos["echoPos"] > 0):
+                        # bad format --> fail
+                        # example: '<% escape is open <%='
+                        print('#=> Codelines ' + str(codeLines) + ' illegal esc/echo-open')
+                        txtLine = ''
+                    elif codePos["closePos"] > 0:
+                        # end escape at close
+                        agTxt = agTxt + txtLine[:codePos["closePos"]]
+                        txtLine = txtLine[codePos["closePos"]+3:]
+                        escapeOpen = False
+                        echoOpen = False
+                        strOpen = False
+                        codePos = getCodePositions(txtLine)
+                        if codePos["escPos"] == 1:
+                            # start new code
+                            agTxt = agTxt + '\n'
+                            txtLine = txtLine[4:]
+                            escapeOpen = True
+                        elif codePos["echoPos"] == 1:
+                            # start new string
+                            # this is a new line where the result needs to look like:
+                            #  array[i] = recordset.columname || $_$string_and_text...
+                            # I dont know how to do this yet
+                            #agTxt = agTxt + '\n' + arrBegBlk
+                            #txtLine = txtLine[5:]
+                            echoOpen = True
+                            # remove this
+                            agTxt = agTxt + txtLine
+                            txtLine = ''
+                        elif codePos["escPos"] > 1 or codePos["echoPos"] > 1:
+                            # start new string
+                            # remove this
+                            agTxt = agTxt + txtLine
+                            txtLine = ''
+                        else:
+                            # everything is a string
+                            if len(txtLine.strip()) > 0:
+                                # start a string
+                                # remove this
+                                agTxt = agTxt + txtLine
+                                txtLine = ''
+                            else:
+                                txtLine = ''
+                                # but we still do not have a mode for the next line ....
+                                # need a determineMode function that takes the text and
+                                # returns str, esc, echo, options as the new-mode to enter
+                            
+                        print('E:' + str(codeLines) + ' newText=' + txtLine)
+                elif echoOpen:
+                    # remove this
+                    agTxt = agTxt + txtLine
+                    txtLine = ''
                 else:
-                    #capture the whole string
-                    agTxt = agTxt + txtLine + '\n'
-            else:
-                #escapeOpen or echoOpen must be true
-                if not escapeOpen and not echoOpen:
-                    # bad logic by me --> fix
                     print('\n================================> LOGIC ERROR AAA. Line= ' + str(codeLines)) 
-                else:
-                    #process for being in escape or echo mode
-                    pass
                     
-            #agTxt = agTxt + txtLine + '\n' 
+                    
+            agTxt = agTxt + '\n' 
         else:
             #raise an error
             pass
