@@ -20,7 +20,10 @@ def main():
 
     # do includes
     # hex for '<%%include ' (space follows) & ' %>
+    escapeRegex = r"(\x3C\x25\x20)|(\x3C\x25\n)"
     includeRegex = r"(\x3C\x25\x25include\x20)"
+    optionsRegex = r"(\x3C\x25\x25options\x20)|(\x3C\x25\x25options\n)"
+    echoRegex = r"(\x3C\x25\x3D\x20)"
     closeRegex = r"(\x20\x25\x3E)|(\n\x25\x3E)"
 
     loopAgain = True
@@ -74,10 +77,19 @@ def main():
 
     # do procedure heading
     agTxt = ''
+    decTxtBlk = '  AS $___agBody___$ \n\nDECLARE\n  __agStrArray_ text[];\n  __i_ integer := 0;\n'
+    begTxtBlk = 'BEGIN \n'
+    arrBegBlk = '__agStrArray_[__i_] = $___agArray___$'
+    arrEndBlk = '$___agArray___$; __i_ = __i_ + 1;\n'
     lineArray = txt.split('\n')
     lineContext = 'start'
     paramCount = 0
-    varCount = 0
+
+    escapeOpen = False
+    echoOpen = False
+    strOpen = False
+    codeLines = 0
+    
     for txtLine in lineArray:
         if lineContext == 'start':
             txtLine = txtLine.strip()
@@ -88,15 +100,14 @@ def main():
         elif lineContext == 'params':
             if txtLine.strip().lower() in ('declare', 'appgoo', 'code', 'begin'):
                 if len(funcDef) == 1:
-                    agTxt = agTxt + ') RETURNS TEXT \n  AS $___appgoo___$ \n'
+                    agTxt = agTxt + ') RETURNS TEXT \n' + decTxtBlk
                 else:
-                    funcDef[0] = ''
-                    agTxt = agTxt + ') ' + ''.join(funcDef) + ' \n  AS $___appgoo___$ \n'
+                    del funcDef[0]
+                    agTxt = agTxt + ') ' + ' '.join(funcDef) + '\n' + decTxtBlk
                 if txtLine.strip().lower() == 'declare':
-                    agTxt = agTxt + '\nDECLARE\n'
                     lineContext = 'vars'
                 else:
-                    agTxt = agTxt + '\nBEGIN \n'
+                    agTxt = agTxt + '\n' + begTxtBlk
                     lineContext = 'code'
             else:
                 paramCount = paramCount + 1
@@ -118,7 +129,7 @@ def main():
                         agTxt = agTxt + txtLine.strip() + ' \n'
         elif lineContext == 'vars':
             if txtLine.strip().lower() in ('appgoo', 'code', 'begin'):
-                agTxt = agTxt + '\nBEGIN \n'
+                agTxt = agTxt + '\n' + begTxtBlk
                 lineContext = 'code'
             else:
                 txtLine = txtLine.strip()
@@ -135,13 +146,62 @@ def main():
                     else:
                         agTxt = agTxt + '  ' + txtLine.strip() + '; \n' 
         elif lineContext == 'code':
-            agTxt = agTxt + txtLine + '\n' 
+            #escapeOpen = False
+            #echoOpen = False
+            #strOpen = False
+            #arrBegBlk = '__agStrArray_[__i_] = $___agArray___$'
+            #arrEndBlk = '$___agArray___$; __i_ = __i_ + 1;\n'
+            escPos = re.search(escapeRegex, txtLine)
+            echoPos = re.search(echoRegex, txtLine)
+            closePos = re.search(closeRegex, txtLine)
+            optionsPos = re.search(optionsRegex, txtLine)
+##            if startPos:
+##                tmpTxt = txt[startPos.end():]
+##                endPos = re.search(closeRegex, tmpTxt)
+##                if endPos:
+##                    hasChanged = True
+##                    rawStr = tmpTxt[:endPos.end()]
+##                    incFile = tmpTxt[:endPos.start()].strip()
+##                    rStr = '<%%include ' + rawStr
+##                    incf = open(incFile, "r")
+##                    incTxt = incf.read()
+##                    incf.close()
+##                    incTxt = incTxt.rstrip('\n')
+##                    #print('will replace ' + rStr + ' with ' + incTxt)
+##                    txt = txt.replace(rStr, incTxt)
+           
+            if codeLines == 0:
+                # always start assuming with a string capture
+                agTxt = agTxt + arrBegBlk
+                strOpen = True
+                codeLines = 1
+
+            if strOpen:
+                if escPos or echoPos or closePos:
+                    #do something
+                    pass
+                else:
+                    #capture the whole string
+                    agTxt = agTxt + txtLine + '\n'
+            else:
+                #escapeOpen or echoOpen must be true
+                if not escapeOpen and not echoOpen:
+                    # bad logic by me --> fix
+                    print('\n================================> LOGIC ERROR AAA. Line= ' + str(codeLines)) 
+                else:
+                    #process for being in escape or echo mode
+                    pass
+                    
+            #agTxt = agTxt + txtLine + '\n' 
         else:
             #raise an error
             pass
 
-
     print(agTxt)
+
+    
+
+def junk():
 
     test_str = "This <% is <% laughing //%> l <% laugh %>thank you."
 

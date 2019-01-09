@@ -1,5 +1,5 @@
 # this is my dummy page
-ag_sys.dummy_page 
+ag_sys.dummy_page returns text
 p_text
 p_number integer default 0,
 p_bool boolean
@@ -8,13 +8,7 @@ _p
 __fail
 
 # declare
-declare
-          v8,
-i int
-t
-isTrue bool := false;
-v_a, v_b bigint
-x text;
+
 appGoo
 <html>
 <%%include inc1.txt %>
