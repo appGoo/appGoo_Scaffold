@@ -1,6 +1,7 @@
 import os
 import re
 
+
 def main():
 
     currDir = os.getcwd() + '/'
@@ -85,51 +86,54 @@ def main():
             agTxt = 'CREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
             lineContext = 'params'
         elif lineContext == 'params':
-            if txtLine.strip().lower() == 'declare':
+            if txtLine.strip().lower() in ('declare', 'appgoo', 'code', 'begin'):
                 if len(funcDef) == 1:
-                    agTxt = agTxt + ') RETURNS TEXT \nAS $___appgoo___$ \nDECLARE \n'
+                    agTxt = agTxt + ') RETURNS TEXT \n  AS $___appgoo___$ \n'
                 else:
                     funcDef[0] = ''
-                    agTxt = agTxt + ') ' + ''.join(funcDef) + ' \nAS $___appgoo___$ \nDECLARE \n'
-                lineContext = 'vars'
-            elif txtLine.strip().lower() in ('appgoo', 'code', 'begin'):
-                agTxt = agTxt + ') FIX ME I AM WRONG \n'
-                lineContext = 'appgoo'
+                    agTxt = agTxt + ') ' + ''.join(funcDef) + ' \n  AS $___appgoo___$ \n'
+                if txtLine.strip().lower() == 'declare':
+                    agTxt = agTxt + '\nDECLARE\n'
+                    lineContext = 'vars'
+                else:
+                    agTxt = agTxt + '\nBEGIN \n'
+                    lineContext = 'code'
             else:
                 paramCount = paramCount + 1
-                if paramCount > 1:
-                    agTxt = agTxt + ', '
-                else:
-                    agTxt = agTxt + '  '
                 txtLine = txtLine.strip()
-                txtLine = txtLine.replace('  ', ' ')
-                txtLine = txtLine.rstrip(',')
-                paramDef = txtLine.split(' ')
-                if len(paramDef) == 1:
-                    agTxt = agTxt + txtLine.strip() + ' text \n'
+                if txtLine[:2] == '__':
+                    # illegal parameter name, so don't allow it
+                    pass
                 else:
-                    agTxt = agTxt + txtLine.strip() + ' \n'
+                    if paramCount > 1:
+                        agTxt = agTxt + ', '
+                    else:
+                        agTxt = agTxt + '  '
+                    txtLine = txtLine.replace('  ', ' ')
+                    txtLine = txtLine.rstrip(',')
+                    paramDef = txtLine.split(' ')                
+                    if len(paramDef) == 1:
+                        agTxt = agTxt + txtLine.strip() + ' text \n'
+                    else:
+                        agTxt = agTxt + txtLine.strip() + ' \n'
         elif lineContext == 'vars':
             if txtLine.strip().lower() in ('appgoo', 'code', 'begin'):
                 agTxt = agTxt + '\nBEGIN \n'
                 lineContext = 'code'
             else:
                 txtLine = txtLine.strip()
-                txtLine = txtLine.replace('  ', ' ')
-                txtLine = txtLine.rstrip(',')
-                txtLine = txtLine.rstrip(';')
-                varDef = txtLine.split(' ')
-                if len(varDef) == 1:
-                    agTxt = agTxt + '  ' + txtLine.strip() + ' text; \n'
-                else:
-                    agTxt = agTxt + '  ' + txtLine.strip() + '; \n' 
-        elif lineContext == 'appgoo':
-                if txtLine.strip().lower() == 'appgoo':
-                    # we now must do the RETURNS
-                    lineContext = 'code'
-                else:
-                    #raise an error
+                if txtLine[:2] == '__':
+                    # illegal variable name, so don't allow it
                     pass
+                else:
+                    txtLine = txtLine.replace('  ', ' ')
+                    txtLine = txtLine.rstrip(',')
+                    txtLine = txtLine.rstrip(';')
+                    varDef = txtLine.split(' ')
+                    if len(varDef) == 1:
+                        agTxt = agTxt + '  ' + txtLine.strip() + ' text; \n'
+                    else:
+                        agTxt = agTxt + '  ' + txtLine.strip() + '; \n' 
         elif lineContext == 'code':
             agTxt = agTxt + txtLine + '\n' 
         else:

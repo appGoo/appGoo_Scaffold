@@ -3,6 +3,9 @@ ag_sys.dummy_page
 p_text
 p_number integer default 0,
 p_bool boolean
+p__x
+_p
+__fail
 
 # declare
 declare
