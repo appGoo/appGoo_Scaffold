@@ -1,4 +1,7 @@
 # this is my dummy page
+<%drop %all %>
+<%drop text, text, integer %>
+<%dropname "a", b s.d, d.d e %>
 public.dummy_page returns text
 p_text
 p_number integer,

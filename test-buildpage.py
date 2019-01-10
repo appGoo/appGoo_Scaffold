@@ -129,6 +129,7 @@ def main():
     strOpen = False
     codeLines = 0
     codeTxt = ''
+    dropAction = 'none'
     returnTxt = "\n\n  __agRtn_ := array_to_string(__agStrArray_, '', '');\n  RETURN __agRtn_;\n"
     optionsTxt = "\nEND;\n$___agBody___$\nLANGUAGE 'plpgsql'\n&VOLATILITY \n&SECURITY \n&PARALLEL \n&COST"
     rawOptTxt = ''
@@ -141,21 +142,27 @@ def main():
                 #don't do any extra drop functionality
                 pass
             elif txtLine[:14] == '<%drop %all %>':
-                agTxt = dropAllFunc + '\n' + agTxt
+                #dropAction = 'all'
+                agTxt = dropAllFunc.replace('&function', '\'' + '<%%function%%>' + '\'') + agTxt
             elif txtLine[:7] == '<%drop ' and txtLine[:8] != '<%drop %':
                 # this is drop by parameter definition
                 # put all text until %> into a string
-                codeTxt = '$$' + txtLine[8:].replace('%>', '').strip() + '$$'
-                agTxt = dropAllFunc.replace('&function', '&function' + ', ' + codeTxt) + agTxt
+                codeTxt = '$$' + txtLine[7:].replace(' %>', '').strip() + '$$'
+                agTxt = dropAllFunc.replace('&function', '\'' + '<%%schema.function%%>' + '\'' + ', ' + codeTxt) + agTxt
                 codeTxt = ''
             elif txtLine[:11] == '<%dropname ':
                 # get a list of names and pass in the function using dropAllFunc
-                codeTxt = txtLine[12:].replace('%>', '').strip()
-                #split by comma and call dropFuncAll once per name
-                pass
+                # this version assumes they are quoted like 'name1' 'name2' 'name3'
+                codeTxt = txtLine[11:].replace(' %>', '', 1).replace('\'', '').replace('"', "").replace(',', ' ').replace('  ', ' ').strip()
+                # split by space and call dropFuncAll once per name
+                funcArr = codeTxt.split(' ')
+                for func in funcArr:
+                    agTxt = dropAllFunc.replace('&function', '\'' + func + '\'') + agTxt
+                codeTxt = ''
             else:
                 funcDef = txtLine.split(' ')
-                agTxt = 'CREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
+                agTxt = agTxt + '\nCREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
+                funcSplit = funcDef[0].split('.')
                 lineContext = 'params'
         elif lineContext == 'params':
             if txtLine.strip().lower() in ('declare', '<%appgoo %>', '<%code %>', '<%begin %>'):
@@ -373,7 +380,7 @@ def main():
         codePos = getCodePositions(codeTxt)
         echoPos = codePos["echoPos"]
         if echoPos > 0:
-            print('found echoPos for position ' + str(echoPos))
+            #print('found echoPos for position ' + str(echoPos))
             codePos = getCodePositions(codeTxt[echoPos:])
             if codePos["closePos"] > 0:
                 codeTxt = codeTxt[:echoPos] + codeTxt[echoPos:].replace(' %>', echoEndBlk, 1)
@@ -426,8 +433,19 @@ def main():
     optionsTxt = optionsTxt.replace('&PARALLEL', 'PARALLEL SAFE')
     #if rawOptTxt.find('cost') > 0:
     #    optionsTxt = optionsTxt.replace('&PARALLEL', 'PARALLEL UNSAFE')
+
+    # do final assembly and then final substitutions
+    agTxt = agTxt + codeTxt + returnTxt + optionsTxt
+    if len(funcSplit) > 1:
+        agTxt = agTxt.replace('<%%schema.function%%>', '.'.join(funcSplit))
+        agTxt = agTxt.replace('<%%function%%>', funcSplit[1])
+        agTxt = agTxt.replace('<%%schema%%>', funcSplit[0])
+    elif len(funcSplit) == 1:
+        agTxt = agTxt.replace('<%%schema.function%%>', funcSplit[0])
+        agTxt = agTxt.replace('<%%function%%>', funcSplit[0])
+        agTxt = agTxt.replace('<%%schema%%>', '<%*unknown-value*%>')
     
-    print(agTxt + codeTxt + returnTxt + optionsTxt)
+    print(agTxt)
     #print('\n' + rawOptTxt)
 
     
