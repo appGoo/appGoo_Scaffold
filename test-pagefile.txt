@@ -1,15 +1,16 @@
 # this is my dummy page
-ag_sys.dummy_page returns text
+public.dummy_page returns text
 p_text
-p_number integer default 0,
+p_number integer,
 p_bool boolean
 p__x
-_p
-__fail
+_p default 'xxx'
+__fail boolean default true::boolean
 
 # declare
 
 appGoo
+<% _p := 'test'; %>
 <html>
 <%%include inc1.txt %>
 <%%include inc3.txt %> <%%include inc4.txt 
@@ -20,15 +21,16 @@ appGoo
 
 
 <%
-  if i = 0 then
+  if __i_ = 0 then
 %>
-  <div id=<%= i %>>
+  <div id=<%= __i_ %>>
     <p>testing escapes <%/ hello //%></p>
 <% else %>
-  <div name_id=<%= i %>>
+  <div name_id=<%= __i_ %>>
     <h2>head2</h2>
 <% end if; %>
 <%%include inc5.txt %>
 <%%options 
-STRICT
+STABLE
+cost 25
 %>

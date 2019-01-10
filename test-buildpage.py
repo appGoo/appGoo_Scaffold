@@ -111,7 +111,7 @@ def main():
 
     # do procedure heading
     agTxt = ''
-    decTxtBlk = '  AS $___agBody___$ \n\nDECLARE\n  __agStrArray_ text[];\n  __i_ integer := 0;\n'
+    decTxtBlk = '  AS $___agBody___$ \n\nDECLARE\n  __agStrArray_ text[];\n  __i_ integer := 0;\n  __agRtn_ text;\n'
     begTxtBlk = 'BEGIN \n'
     arrBegBlk = '__agStrArray_[__i_] = $___agArray___$'
     arrEndBlk = '$___agArray___$; __i_ = __i_ + 1;\n'
@@ -125,6 +125,10 @@ def main():
     echoOpen = False
     strOpen = False
     codeLines = 0
+    codeTxt = ''
+    returnTxt = "\n\n  __agRtn_ := array_to_string(__agStrArray_, '', '');\n  RETURN __agRtn_;\n"
+    optionsTxt = "\nEND;\n$___agBody___$\nLANGUAGE 'plpgsql'\n&VOLATILITY \n&SECURITY \n&PARALLEL \n&COST"
+    rawOptTxt = ''
     
     for txtLine in lineArray:
         if lineContext == 'start':
@@ -226,13 +230,13 @@ def main():
 ##                    #print('will replace ' + rStr + ' with ' + incTxt)
 ##                    txt = txt.replace(rStr, incTxt)
            
-            if codeLines == 0:
+            if codeLines == 0 and 1 == 2:
                 # always start assuming with a string capture - do not append a line break
                 agTxt = agTxt + arrBegBlk
                 strOpen = True
                 codeLines = 1
 
-            while len(txtLine.strip()) > 0:
+            while len(txtLine.strip()) > 0 and 1 == 2:
                 codePos = getCodePositions(txtLine)
                 #posList = [codePos["closePos"], codePos["escPos"], codePos["echoPos"]]
                 if strOpen:
@@ -329,12 +333,88 @@ def main():
                     print('\n================================> LOGIC ERROR AAA. Line= ' + str(codeLines)) 
                     
                     
-            agTxt = agTxt + '\n' 
+            #agTxt = agTxt + txtLine + '\n'
+            if txtLine.lower().strip() == '<%%options':
+                lineContext = 'options'
+            else:
+                codeTxt = codeTxt + txtLine + '\n'
+        elif lineContext == 'options':
+            rawOptTxt = rawOptTxt + txtLine.strip() + '\n'
         else:
             #raise an error
             pass
 
-    print(agTxt)
+    # process code
+    codeTxt = '\n' + arrBegBlk + codeTxt
+    codeTxt = codeTxt.replace('<% ', arrEndBlk)
+    codeTxt = codeTxt.replace('<%\n', arrEndBlk)
+    echoPos = 1
+    while echoPos > 0:
+        codePos = getCodePositions(codeTxt)
+        echoPos = codePos["echoPos"]
+        if echoPos > 0:
+            print('found echoPos for position ' + str(echoPos))
+            codePos = getCodePositions(codeTxt[echoPos:])
+            if codePos["closePos"] > 0:
+                codeTxt = codeTxt[:echoPos] + codeTxt[echoPos:].replace(' %>', echoEndBlk, 1)
+            else:
+                # fail. cannot have an echo with no end
+                print('bad file')
+                
+            codeTxt = codeTxt.replace('<%= ', echoBegBlk, 1)
+            codePos = getCodePositions(codeTxt)
+            echoPos = codePos["echoPos"]
+    codeTxt = codeTxt.replace(' %>', '\n' + arrBegBlk)
+    codeTxt = codeTxt.replace('\n%>', '\n' + arrBegBlk)
+    codeTxt = codeTxt.replace('<%/','<%')
+    codeTxt = codeTxt.replace('/%>','%>')
+    codeTxt = codeTxt.rstrip()
+    codeTxt = codeTxt.replace(arrBegBlk + arrEndBlk, '')
+    lastArrEnd = codeTxt.rfind(arrEndBlk)
+    lastArrBeg = codeTxt.rfind(arrBegBlk)
+    if lastArrBeg > lastArrEnd:
+        codeTxt = codeTxt + arrEndBlk
+
+    # now we have to determine if the page is properly finished.
+    # Note that the developer can properly finish if it is an escape
+    # but they cannot properly finish if it is a string capture
+    # the logic is to look whether a string start or string end is most
+    # recent. If string-end is most recent, then the current will be
+    # code, so do nothing. If it is string-start, then close off string.
+    
+    #process options
+    rawOptTxt = rawOptTxt.lower()
+    if rawOptTxt.find('immutable') > -1:
+        optionsTxt = optionsTxt.replace('&VOLATILITY', 'IMMUTABLE')
+    if rawOptTxt.find('stable') > -1:
+        optionsTxt = optionsTxt.replace('&VOLATILITY', 'STABLE')
+    if rawOptTxt.find('volatile') > -1:
+        optionsTxt = optionsTxt.replace('&VOLATILITY', 'VOLATILE')
+    if rawOptTxt.find('invoker') > -1:
+        optionsTxt = optionsTxt.replace('&SECURITY', 'SECURITY INVOKER')
+    if rawOptTxt.find('definer') > -1:
+        optionsTxt = optionsTxt.replace('&SECURITY', 'SECURITY DEFINER')
+    if rawOptTxt.find('unsafe') > -1:
+        optionsTxt = optionsTxt.replace('&PARALLEL', 'PARALLEL UNSAFE')
+    if rawOptTxt.find(' safe') > -1:
+        optionsTxt = optionsTxt.replace('&PARALLEL', 'PARALLEL SAFE')
+
+    costNum = ''.join((n if n in '0123456789' else '') for n in rawOptTxt).strip()
+    if costNum == '':
+        optionsTxt = optionsTxt.replace('&COST', 'COST 100')
+    else:
+        costNum = 'COST ' + str(costNum)
+        optionsTxt = optionsTxt.replace('&COST', costNum)
+
+    # insert option defaults
+    optionsTxt = optionsTxt.replace('&VOLATILITY', 'VOLATILE')
+    optionsTxt = optionsTxt.replace('&SECURITY', 'SECURITY INVOKER')
+    optionsTxt = optionsTxt.replace('&PARALLEL', 'PARALLEL SAFE')
+    #if rawOptTxt.find('cost') > 0:
+    #    optionsTxt = optionsTxt.replace('&PARALLEL', 'PARALLEL UNSAFE')
+    
+    print(agTxt + codeTxt + returnTxt + optionsTxt)
+    #print('\n' + rawOptTxt)
 
     
 
