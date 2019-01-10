@@ -1,1 +1,1 @@
-<head id="inc_1" <%%include inc2.txt %>>
+<head id="inc_1" <%include inc2.txt %>>

@@ -4,16 +4,21 @@ p_text
 p_number integer,
 p_bool boolean
 p__x
-_p default 'xxx'
+_p text default 'xxx'
 __fail boolean default true::boolean
 
 # declare
+declare
+v_x
+i int
+zero int := 0
+no boolean := false::boolean
 
-appGoo
+<%appGoo %>
 <% _p := 'test'; %>
 <html>
-<%%include inc1.txt %>
-<%%include inc3.txt %> <%%include inc4.txt 
+<%include inc1.txt %>
+<%include inc3.txt %> <%include inc4.txt 
 %>
 
    
@@ -29,8 +34,12 @@ appGoo
   <div name_id=<%= __i_ %>>
     <h2>head2</h2>
 <% end if; %>
-<%%include inc5.txt %>
-<%%options 
+<%include inc5.txt %>
+  </div>
+<% i := 20; %>
+ </html> 
+
+<%options 
 STABLE
-cost 25
+cost default
 %>

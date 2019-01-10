@@ -6,7 +6,7 @@ def getCodePositions(txt):
     escapeRegex = r"(\x3C\x25\x20)|(\x3C\x25\n)"
     echoRegex = r"(\x3C\x25\x3D\x20)"
     closeRegex = r"(\x20\x25\x3E)|(\n\x25\x3E)"
-    optionsRegex = r"(\x3C\x25\x25options\x20)|(\x3C\x25\x25options\n)"
+    optionsRegex = r"(\x3C\x25options\x20)|(\x3C\x25options\n)"
     
     _escPos = re.search(escapeRegex, txt)
     if _escPos:
@@ -53,10 +53,10 @@ def main():
     # 5. Replace '<%/' to '<%' and '/%>' to '%>'
 
     # do includes
-    # hex for '<%%include ' (space follows) & ' %>
+    # hex for '<%include ' (space follows) & ' %>
     escapeRegex = r"(\x3C\x25\x20)|(\x3C\x25\n)"
-    includeRegex = r"(\x3C\x25\x25include\x20)"
-    optionsRegex = r"(\x3C\x25\x25options\x20)|(\x3C\x25\x25options\n)"
+    includeRegex = r"(\x3C\x25include\x20)"
+    optionsRegex = r"(\x3C\x25options\x20)|(\x3C\x25options\n)"
     echoRegex = r"(\x3C\x25\x3D\x20)"
     closeRegex = r"(\x20\x25\x3E)|(\n\x25\x3E)"
 
@@ -72,7 +72,7 @@ def main():
                 hasChanged = True
                 rawStr = tmpTxt[:endPos.end()]
                 incFile = tmpTxt[:endPos.start()].strip()
-                rStr = '<%%include ' + rawStr
+                rStr = '<%include ' + rawStr
                 incf = open(incFile, "r")
                 incTxt = incf.read()
                 incf.close()
@@ -114,7 +114,7 @@ def main():
     decTxtBlk = '  AS $___agBody___$ \n\nDECLARE\n  __agStrArray_ text[];\n  __i_ integer := 0;\n  __agRtn_ text;\n'
     begTxtBlk = 'BEGIN \n'
     arrBegBlk = '__agStrArray_[__i_] = $___agArray___$'
-    arrEndBlk = '$___agArray___$; __i_ = __i_ + 1;\n'
+    arrEndBlk = '$___agArray___$; __i_ := __i_ + 1;\n'
     echoBegBlk = '$___agArray___$ || ( '
     echoEndBlk = ' ) || $___agArray___$'
     lineArray = txt.split('\n')
@@ -138,7 +138,7 @@ def main():
             agTxt = 'CREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
             lineContext = 'params'
         elif lineContext == 'params':
-            if txtLine.strip().lower() in ('declare', 'appgoo', 'code', 'begin'):
+            if txtLine.strip().lower() in ('declare', '<%appgoo %>', '<%code %>', '<%begin %>'):
                 if len(funcDef) == 1:
                     agTxt = agTxt + ') RETURNS TEXT \n' + decTxtBlk
                 else:
@@ -168,7 +168,7 @@ def main():
                     else:
                         agTxt = agTxt + txtLine.strip() + ' \n'
         elif lineContext == 'vars':
-            if txtLine.strip().lower() in ('appgoo', 'code', 'begin'):
+            if txtLine.strip().lower() in ('<%appgoo %>', '<%code %>', '<%begin %>'):
                 agTxt = agTxt + '\n' + begTxtBlk
                 lineContext = 'code'
             else:
@@ -222,7 +222,7 @@ def main():
 ##                    hasChanged = True
 ##                    rawStr = tmpTxt[:endPos.end()]
 ##                    incFile = tmpTxt[:endPos.start()].strip()
-##                    rStr = '<%%include ' + rawStr
+##                    rStr = '<%include ' + rawStr
 ##                    incf = open(incFile, "r")
 ##                    incTxt = incf.read()
 ##                    incf.close()
@@ -334,7 +334,7 @@ def main():
                     
                     
             #agTxt = agTxt + txtLine + '\n'
-            if txtLine.lower().strip() == '<%%options':
+            if txtLine.lower().strip() == '<%options':
                 lineContext = 'options'
             else:
                 codeTxt = codeTxt + txtLine + '\n'
@@ -369,18 +369,12 @@ def main():
     codeTxt = codeTxt.replace('<%/','<%')
     codeTxt = codeTxt.replace('/%>','%>')
     codeTxt = codeTxt.rstrip()
-    codeTxt = codeTxt.replace(arrBegBlk + arrEndBlk, '')
     lastArrEnd = codeTxt.rfind(arrEndBlk)
     lastArrBeg = codeTxt.rfind(arrBegBlk)
     if lastArrBeg > lastArrEnd:
         codeTxt = codeTxt + arrEndBlk
-
-    # now we have to determine if the page is properly finished.
-    # Note that the developer can properly finish if it is an escape
-    # but they cannot properly finish if it is a string capture
-    # the logic is to look whether a string start or string end is most
-    # recent. If string-end is most recent, then the current will be
-    # code, so do nothing. If it is string-start, then close off string.
+    codeTxt = codeTxt.replace(arrBegBlk + arrEndBlk, '')
+    
     
     #process options
     rawOptTxt = rawOptTxt.lower()
