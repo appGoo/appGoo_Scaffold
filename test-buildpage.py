@@ -117,8 +117,11 @@ def main():
     arrEndBlk = '$___agArray___$; __i_ := __i_ + 1;\n'
     echoBegBlk = '$___agArray___$ || ( '
     echoEndBlk = ' ) || $___agArray___$'
+    # get this value from the config file
+    # the param can accept 'schema.function_name' and split it out in the function
+    dropAllFunc = 'ag_sys.agDropFunction(&function);\n'
     lineArray = txt.split('\n')
-    lineContext = 'start'
+    lineContext = 'create'
     paramCount = 0
 
     escapeOpen = False
@@ -131,12 +134,29 @@ def main():
     rawOptTxt = ''
     
     for txtLine in lineArray:
-        if lineContext == 'start':
+        if lineContext == 'create':
             txtLine = txtLine.strip()
             txtLine = txtLine.replace('  ', ' ')
-            funcDef = txtLine.split(' ')
-            agTxt = 'CREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
-            lineContext = 'params'
+            if txtLine[:15] == '<%drop %none %>':
+                #don't do any extra drop functionality
+                pass
+            elif txtLine[:14] == '<%drop %all %>':
+                agTxt = dropAllFunc + '\n' + agTxt
+            elif txtLine[:7] == '<%drop ' and txtLine[:8] != '<%drop %':
+                # this is drop by parameter definition
+                # put all text until %> into a string
+                codeTxt = '$$' + txtLine[8:].replace('%>', '').strip() + '$$'
+                agTxt = dropAllFunc.replace('&function', '&function' + ', ' + codeTxt) + agTxt
+                codeTxt = ''
+            elif txtLine[:11] == '<%dropname ':
+                # get a list of names and pass in the function using dropAllFunc
+                codeTxt = txtLine[12:].replace('%>', '').strip()
+                #split by comma and call dropFuncAll once per name
+                pass
+            else:
+                funcDef = txtLine.split(' ')
+                agTxt = 'CREATE OR REPLACE FUNCTION ' + funcDef[0] + ' (\n'
+                lineContext = 'params'
         elif lineContext == 'params':
             if txtLine.strip().lower() in ('declare', '<%appgoo %>', '<%code %>', '<%begin %>'):
                 if len(funcDef) == 1:
