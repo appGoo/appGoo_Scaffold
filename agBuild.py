@@ -427,51 +427,94 @@ def writeOutputFile(fileName, appendText = '#'):
 def main():
 
     #global variables
-    global _buildts, continueWork, stopReason, buildConfigData, installConfigData, currDir, logFile, writeLog, historyFile
-    global lastRun, currentBuildPhase, processModifiedOnly, processSQL, appendedCommit
+    #global _buildts, continueWork, stopReason, buildConfigData, installConfigData, currDir, logFile, writeLog, historyFile
+    #global lastRun, currentBuildPhase, processModifiedOnly, processSQL, appendedCommit
 
     #global tracker of whether to continue processing
     continueWork = True
     stopReason = ""
-    processModifiedOnly = False
-    processSQL = "b"
+    #processModifiedOnly = False
+    #processSQL = "b"
     currDir = os.getcwd() + '/'
-    appendedCommit = False
-
+    isInstalled = False
+    #appendedCommit = False
 
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
     installConfigData = getConfigFile('agInstallConfig.json')
-    historyFile = getConfigFile('.agBuild.history')
-    lastRun = datetime.datetime.strptime(historyFile["lastRun"]["timeStamp"], "%Y-%m-%d %H:%M:%S").timestamp()
+    #historyFile = getConfigFile('.agBuild.history')
+    #lastRun = datetime.datetime.strptime(historyFile["lastRun"]["timeStamp"], "%Y-%m-%d %H:%M:%S").timestamp()
     
 
     #logfile
     _buildts = datetime.datetime.now()
-    _buildflt = _buildts.timestamp()
-    logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild.log'
-    writeLog = True if buildConfigData["runOptions"]["fileLog"][:1].lower() == "y" else False
-    doDbLog = True if buildConfigData["runOptions"]["dbLog"][:1].lower() == "y" else False
+    #_buildflt = _buildts.timestamp()
+    printOut = []
+    #newPrintOut = ''
+    fileOut = []
+    _i = 0
+    #newFileOut = ''
+    #logFile = _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild.log'
+    #writeLog = True if buildConfigData["runOptions"]["fileLog"][:1].lower() == "y" else False
+    #doDbLog = True if buildConfigData["runOptions"]["dbLog"][:1].lower() == "y" else False
     doPreProcessVal = buildConfigData["preprocess"]["do-preprocess"]
     doPostProcessVal = buildConfigData["postprocess"]["do-postprocess"]
-    processModVal = buildConfigData["appBuild"]["modifiedOnly"]
-    processSqlVal = buildConfigData["appBuild"]["processSQL"]
+    #processModVal = buildConfigData["appBuild"]["modifiedOnly"]
+    #processSqlVal = buildConfigData["appBuild"]["processSQL"]
 
-    if writeLog:
-        writeOutputFile(logFile, '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) \
-            + '\nCurrent Working directory: ' + currDir)
-        writeOutputFile(logFile, 'Parameters and Variables:' \
+    fileOut[i] = '# appGoo Build ' + str(_buildts.strftime("%Y-%m-%d %H:%M:%S")) \
+            + '\nCurrent Working directory: ' + currDir \
+            + 'Parameters and Variables:' \
             + '\n  - Config File:        ' + 'agBuildConfig.json' \
-            + '\n  - Log in database:    ' + str(doDbLog) \
             + '\n  - Do Pre-Processing:  ' + doPreProcessVal \
             + '\n  - Do Post-Processing: ' + doPostProcessVal \
-            + '\n  - Build modified SQL files only: ' + processModVal \
-            + '\n  - Build SQL files individually or in batch: ' + processSqlVal \
-            + '\n################################################################################' \
+            + '\n#####################################################################' \
             + '\n#\n# Commencing Build\n#' \
-            + '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+            + '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    printOut[i] = '# TBD'
+    i = i + 1
 
+    if continueWork:
+        continueWork, printOut[i], fileOut[i], isInstalled = doConnectionTest(buildConfigData, installConfigData, currDir)
+        i = i + 1
 
+    if continueWork and doPreprocessVal[:1].lower().strip() in('i', 'y'):
+        if not isInstalled and doPreProcessVal[:1].lower().strip() == 'i':
+            doPreProcessVal = 'n'
+            fileOut[i] = 'Pre-Processing will not be performed because appGoo is not installed at the time of build'
+            printOut[i] = 'Pre-Processing not performed.. awaiting appGoo installation..'
+        else:
+            continueWork, printOut[i], fileOut[i] = doProcesses('pre', buildConfigData, installConfigData, currDir)
+
+        i = i + 1
+
+    if continueWork and not isInstalled:
+        continueWork, printOut[i], fileOut[i] = doAppGooInstall(buildConfigData, installConfigData, currDir)
+        i = i + 1
+
+    if continueWork:
+        continueWork, printOut[i], fileOut[i] = doUpgrade(buildConfigData, installConfigData, currDir)
+        i = i + 1
+
+    if continueWork:
+        continueWork, printOut[i], fileOut[i] = doUpgrade('pre', buildConfigData, installConfigData, currDir)
+        i = i + 1
+
+    if continueWork:
+        continueWork, printOut[i], fileOut[i] = doBuild(buildConfigData, installConfigData, currDir, _buildts)
+        i = i + 1
+
+    if continueWork:
+        continueWork, printOut[i], fileOut[i] = doUpgrade('post', buildConfigData, installConfigData, currDir)
+        i = i + 1
+
+    if continueWork:
+        continueWork, printOut[i], fileOut[i] = doProcesses('post', buildConfigData, installConfigData, currDir)
+        i = i + 1
+
+    # NOW CLEANUP
+
+        
     #####################################################################
     #
     # Test if appGoo installation has been performed in the database
@@ -493,7 +536,8 @@ def main():
             + '\n# Starting database connectivity test. \nThis also determines whether appGoo is installed' \
             + '\n--------------------------------------------------------------------------------')
 
-    currentBuildPhase = "appGooTest"
+    #currentBuildPhase = "appGooTest"
+            
     testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-exec.agsql'
     testSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-agbuild.log'
     checkSQL = '/* Testing connection to database ' + str(_buildts) + ' */\n' + installConfigData["runOptions"]["installCheckSQL"] + ';'
