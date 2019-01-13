@@ -36,6 +36,67 @@ import re
 #remove this later
 #from pprint import pprint
 
+#####################################################################
+#
+# Test if appGoo installation has been performed in the database
+# --------------------------------------------------------------
+# Not only does this result inform us that the db is available and the
+# credentials are correct, but it also informs us whether appGoo has
+# not been installed by checking for the existence of an appGoo object
+# in the result. If there is no result the string contains '(0 rows)'
+# which means that it is not installed. Any rows returned mean that
+# appGoo is installed. Note that the SQL Statement is configurable by
+# the user in case they customise appGoo objects.
+#
+# to-do:
+#
+#####################################################################
+    
+doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
+
+  newLogOut = '\n################################################################################' \
+            + '\n# Starting database connectivity test. \nThis also determines whether appGoo is installed' \
+            + '\n--------------------------------------------------------------------------------')
+  newPrintOut = ''
+  continueWork = True
+       
+  testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-exec.agsql'
+  #  testSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-agbuild.log'
+  checkSQL = '/* Testing connection to database ' + str(_buildts) + ' */\n' + installConfigData["runOptions"]["installCheckSQL"] + ';'
+  checkSQL = checkSQL.replace(';;',';')
+
+  #build & run SQL
+  testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, False) 
+    if testResult[0] == "False":
+        continueWork = False
+        stopReason = "The build process has stopped because of errors encountered testing the connection to the database"
+        doInstall = False
+    else:
+        doInstall = False if testResult[1].find("(0 rows)") == -1 else True
+
+    if writeLog and continueWork:
+        writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall) \
+            + '\nTest connecting to the database was successful' \
+            + '\n================================================================================')
+    else:
+        #insert output for failure
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -158,7 +219,10 @@ def deleteFiles(searchPath, fileQualifier, keepFiles):
 # execSQL
 # Submits SQL into the database and returns a result of the command ouput property
 # To-do:
-#       - Error Management
+#       - this is a mess.
+#       - it should be passed a variable of whether it is a sql statement
+#         or it is a file. Then build the sql statement accordingly, then
+#         execute it and return the result.
 #
 ################################################################################
 
@@ -475,7 +539,7 @@ def main():
     i = i + 1
 
     if continueWork:
-        continueWork, printOut[i], fileOut[i], isInstalled = doConnectionTest(buildConfigData, installConfigData, currDir)
+        continueWork, printOut[i], fileOut[i], isInstalled = doConnectionTest(buildConfigData, installConfigData, currDir, _buildts)
         i = i + 1
 
     if continueWork and doPreprocessVal[:1].lower().strip() in('i', 'y'):
@@ -514,54 +578,7 @@ def main():
 
     # NOW CLEANUP
 
-        
-    #####################################################################
-    #
-    # Test if appGoo installation has been performed in the database
-    # --------------------------------------------------------------
-    # Not only does this result inform us that the db is available and the
-    # credentials are correct, but it also informs us whether appGoo has
-    # not been installed by checking for the existence of an appGoo object
-    # in the result. If there is no result the string contains '(0 rows)'
-    # which means that it is not installed. Any rows returned mean that
-    # appGoo is installed. Note that the SQL Statement is configurable by
-    # the user in case they customise appGoo objects.
-    #
-    # to-do:
-    #
-    #####################################################################
-
-    if writeLog:
-        writeOutputFile(logFile, '\n################################################################################' \
-            + '\n# Starting database connectivity test. \nThis also determines whether appGoo is installed' \
-            + '\n--------------------------------------------------------------------------------')
-
-    #currentBuildPhase = "appGooTest"
-            
-    testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-exec.agsql'
-    testSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-agbuild.log'
-    checkSQL = '/* Testing connection to database ' + str(_buildts) + ' */\n' + installConfigData["runOptions"]["installCheckSQL"] + ';'
-    checkSQL = checkSQL.replace(';;',';')
-
-    writeOutputFile(testSqlFile, checkSQL)
-
-    #build & run SQL
-    testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, False) 
-    if testResult[0] == "False":
-        continueWork = False
-        stopReason = "The build process has stopped because of errors encountered testing the connection to the database"
-        doInstall = False
-    else:
-        doInstall = False if testResult[1].find("(0 rows)") == -1 else True
-
-    if writeLog and continueWork:
-        writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall) \
-            + '\nTest connecting to the database was successful' \
-            + '\n================================================================================')
-    else:
-        #insert output for failure
-        pass
-
+ 
 
     #####################################################################
     #
