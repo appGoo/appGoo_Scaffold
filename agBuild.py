@@ -143,7 +143,7 @@ def executeSQL(cmdType, cmdText, buildConfigData, installConfigData, currDir, _b
         runSQL = runSQL.replace("&CMDS", r"--set ON_ERROR_STOP=on --set AUTOCOMMIT=on -f " + sqlFile \
                                 " --echo-errors --output=.sql-output-agbuild-temp.log &> .tmp-agbuild.log"
 
-        completedCmd = runShellCmd(runSQL)
+        continueWork, newLogOut[i], completedCmd = runShellCmd(runSQL)
         cmdResult = str(completedCmd.stdout)
 
         #check for sql error
@@ -169,7 +169,7 @@ def executeSQL(cmdType, cmdText, buildConfigData, installConfigData, currDir, _b
             #cmdSuccessOut = ("False", cmdResult.lstrip(" "))
             return False, '\n'.join(newLogOut), cmdResult
         else:
-            return True, '\n'.join(newLogOut), cmdResult[1:500]
+            return continueWork, '\n'.join(newLogOut), cmdResult[1:500]
 
     except:
         newLogOut[i] = 'An exception has occurred in executing SQL. Error details:'
@@ -191,7 +191,9 @@ def executeSQL(cmdType, cmdText, buildConfigData, installConfigData, currDir, _b
 ##    return cmdSuccessOut
 
 
-
+# TBD
+def runShellCmd(runCmd)
+#continueWork, newLogOut[i], completedCmd = runShellCmd(runSQL)
 
 
 
