@@ -59,7 +59,7 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
         newLogOut[i] = '\n################################################################################' \
                 + '\n# Starting database connectivity test. \nThis also determines whether appGoo is installed' \
                 + '\n--------------------------------------------------------------------------------')
-        i = i + 1
+        i += 1
         newPrintOut = ''
         continueWork = True
         isInstalled = False
@@ -72,7 +72,7 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
 
         # run SQL
         continueWork, newLogOut[i], returnResult = executeSQL('sql', checkSQL, buildConfigData, installConfigData, currDir, _buildts)
-        i = i + 1
+        i += 1
 
         if continueWork:
           isInstalled = False if returnResult.find("(0 rows)") == -1 else True
@@ -80,14 +80,14 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
         else
           newPrintOut = newPrintOut + 'Error: An error has been encountered whilst testing the connection to the database ... refer to the logfile for details\n'
           newLogOut[i] = 'Connection to the database was un-sucessful. The result returned follows:\n' + returnResult + '\n'
-          i = i + 1
+          i += 1
 
         return continueWork, newPrintOut, '\n'.join(newLogOut), isInstalled  
 
     except:
         newPrintOut = newPrintOut + '###==> AN EXCEPTION TO THE TEST CONNECTION TO THE DATABASE HAS OCCURRED. REFER TO LOGFILE FOR DETAILS\n'
         newLogOut[i] = 'An exception has occurred in testing the database connection. Error details:'
-        i = i + 1
+        i += 1
         newLogOut[i] = '\n'.join(sys.exc_info)
         return False, newPrintOut, '\n'.join(newLogOut), False
 
@@ -132,7 +132,7 @@ def executeSQL(cmdType, cmdText, buildConfigData, installConfigData, currDir, _b
         if cmdType == 'sql':
             jsonConfig = installConfigData
             sqlFile = currDir + _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild-temp.sql'
-            writeFile(sqlFile, cmdText)
+            writeToFile(sqlFile, cmdText)
         else:
             jsonConfig = buildConfigData
             sqlFile = currDir + cmdText
@@ -173,7 +173,7 @@ def executeSQL(cmdType, cmdText, buildConfigData, installConfigData, currDir, _b
 
     except:
         newLogOut[i] = 'An exception has occurred in executing SQL. Error details:'
-        i = i + 1
+        i += 1
         newLogOut[i] = '\n'.join(sys.exc_info)
         return False, '\n'.join(newLogOut), cmdResult
                                 
@@ -191,21 +191,104 @@ def executeSQL(cmdType, cmdText, buildConfigData, installConfigData, currDir, _b
 ##    return cmdSuccessOut
 
 
-# TBD
-def runShellCmd(runCmd)
-#continueWork, newLogOut[i], completedCmd = runShellCmd(runSQL)
+
+################################################################################
+#
+# runShellCmd
+# performs a shell command and returns the output - whether it is successful
+# or fails
+#
+# To-do:
+#       - only return completedCmd if it exists as a command object
+#
+################################################################################
+
+def runShellCmd(cmd):
+
+    try:
+        completedCmd = subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=False)
+        return True, '', completedCmd
+
+    except:
+        newLogOut = 'Error encountered in running Shell Command: ' + cmd
+        return False, newLogOut, completedCmd
 
 
 
 
+################################################################################
+#
+# writeToFile
+# Appends a supplied text string to the nominated file. If nothing is provided
+# it will just append a hash '#'
+# To-do:
+#       - Proper Error Reporting for file non-existant or unavailable to write
+#
+################################################################################
+
+
+def writeFile(fileName, writeMe = '#'):
+# returns nothing
+
+    try:
+        with open(fileName, 'a') as f:
+            f.write(writeMe + '\n')
+
+    except:
+        raise
 
 
 
+def doProcesses(processType, buildConfigData)
 
+    try:
+        i = 0
+        j = 0
+        continueWork = True
+        newLogOut = []
+        printOut = ''
+        foundJSON = True
+        processRef = ''
+        Instructions = []
+    
+        while foundJSON:
+            j += 1
+            processRef = 'script-0' + str(j) if j < 10 else 'script-' + str(j)
+            try:
+                Instructions.append(buildConfigData[processType][processRef].strip())
 
+            except KeyError as ok:
+                foundJSON = False
+            except:
+                newLogOut[i] = 'An exception has occurred in preparing for pre/post-processing. Error details:'
+                i += 1
+                newLogOut[i] = '\n'.join(sys.exc_info)
+                printOut = printOut + 'An exception has occurred in preparing processing (' + processType \
+                                '). Refer to the logfile for details'
+                continueWork = False
+                foundJSON = False
 
+        if continueWork:
+            for item in Instructions:
+                try:
+                    continueWork, newLogOut[i], processResult = runShellCmd(item)
+                    i += 1
+                    # determine if successful or not
+                except:
+                    # log errors
 
+        return continueWork, printOut, '\n'.join(newLogOut)
+                                
+    except:
+        printOut = printOut + 'An exception has occurred during pre/post-processing. Refer to logfile for details'
+        newLogOut[i] = 'An exception has occurred in preparing for pre/post-procesing. Error details:'
+        i += 1
+        newLogOut[i] = '\n'.join(sys.exc_info)
+        return False, printOut, '\n'.join(newLogOut)
+                                
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555%%%%%%%
+                                OLD BELOW
 
 ################################################################################
 #
@@ -547,19 +630,6 @@ def processSQLFile(isFromInclude, fileName, filePath, sqlLogFile):
 
 
 
-################################################################################
-#
-# runShellCmd
-# performs a shell command and returns the output - whether it is successful
-# or fails
-#
-# To-do:
-#       - Error Reporting
-#
-################################################################################
-
-def runShellCmd(cmd):
-    return subprocess.run([cmd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, check=False)
 
     
 
@@ -643,11 +713,11 @@ def main():
             + '\n#\n# Commencing Build\n#' \
             + '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
     printOut[i] = '# TBD'
-    i = i + 1
+    i += 1
 
     if continueWork:
         continueWork, printOut[i], fileOut[i], isInstalled = doConnectionTest(buildConfigData, installConfigData, currDir, _buildts)
-        i = i + 1
+        i += 1
 
     if continueWork and doPreprocessVal[:1].lower().strip() in('i', 'y'):
         if not isInstalled and doPreProcessVal[:1].lower().strip() == 'i':
@@ -655,33 +725,33 @@ def main():
             fileOut[i] = 'Pre-Processing will not be performed because appGoo is not installed at the time of build'
             printOut[i] = 'Pre-Processing not performed.. awaiting appGoo installation..'
         else:
-            continueWork, printOut[i], fileOut[i] = doProcesses('pre', buildConfigData, installConfigData, currDir)
+            continueWork, printOut[i], fileOut[i] = doProcesses('preprocess', buildConfigData)
 
-        i = i + 1
+        i += 1
 
     if continueWork and not isInstalled:
         continueWork, printOut[i], fileOut[i] = doAppGooInstall(buildConfigData, installConfigData, currDir)
-        i = i + 1
+        i += 1
 
     if continueWork:
         continueWork, printOut[i], fileOut[i] = doUpgrade(buildConfigData, installConfigData, currDir)
-        i = i + 1
+        i += 1
 
     if continueWork:
         continueWork, printOut[i], fileOut[i] = doUpgrade('pre', buildConfigData, installConfigData, currDir)
-        i = i + 1
+        i += 1
 
     if continueWork:
         continueWork, printOut[i], fileOut[i] = doBuild(buildConfigData, installConfigData, currDir, _buildts)
-        i = i + 1
+        i += 1
 
     if continueWork:
         continueWork, printOut[i], fileOut[i] = doUpgrade('post', buildConfigData, installConfigData, currDir)
-        i = i + 1
+        i += 1
 
     if continueWork:
         continueWork, printOut[i], fileOut[i] = doProcesses('post', buildConfigData, installConfigData, currDir)
-        i = i + 1
+        i += 1
 
     # NOW CLEANUP
 
