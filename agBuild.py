@@ -71,7 +71,7 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
         checkSQL = checkSQL.replace(';;',';')
 
         # run SQL
-        continueWork, newLogOut[i], returnResult = executeSQL('sql', checkSQL)
+        continueWork, newLogOut[i], returnResult = executeSQL('sql', checkSQL, buildConfigData, installConfigData, currDir, _buildts)
         i = i + 1
 
         if continueWork:
@@ -84,7 +84,7 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
 
         return continueWork, newPrintOut, '\n'.join(newLogOut), isInstalled  
 
-    except
+    except:
         newPrintOut = newPrintOut + '###==> AN EXCEPTION TO THE TEST CONNECTION TO THE DATABASE HAS OCCURRED. REFER TO LOGFILE FOR DETAILS\n'
         newLogOut[i] = 'An exception has occurred in testing the database connection. Error details:'
         i = i + 1
@@ -110,10 +110,85 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
 ##        pass
 
 
-def executeSQL(cmdType, cmdText)
+
+################################################################################
+#
+# execSQL
+# Submits SQL into the database and returns a result of the command ouput property
+# To-do:
+#       - Error Management
+#
+################################################################################
+
+def executeSQL(cmdType, cmdText, buildConfigData, installConfigData, currDir, _buildts)
 
 # returns continueWork, newLogOut[i], returnResult
 
+    try:
+        newLogOut = []
+        i = 0
+        cmdResult = ''
+        
+        if cmdType == 'sql':
+            jsonConfig = installConfigData
+            sqlFile = currDir + _buildts.strftime("%y%m%d-%H%M%S") + '-agbuild-temp.sql'
+            writeFile(sqlFile, cmdText)
+        else:
+            jsonConfig = buildConfigData
+            sqlFile = currDir + cmdText
+            
+        runSQL = jsonConfig["runOptions"]["sqlCmd"]
+        runSQL = runSQL.replace("&UNAME", jsonConfig["runOptions"]["dbUser"])
+        runSQL = runSQL.replace("&DB", installConfigData["runOptions"]["dbName"])
+        runSQL = runSQL.replace("&CMDS", r"--set ON_ERROR_STOP=on --set AUTOCOMMIT=on -f " + sqlFile \
+                                " --echo-errors --output=.sql-output-agbuild-temp.log &> .tmp-agbuild.log"
+
+        completedCmd = runShellCmd(runSQL)
+        cmdResult = str(completedCmd.stdout)
+
+        #check for sql error
+        foundError = cmdResult.find('psql:' + sqlFile)
+        #check for psql error 
+        if foundError < 1:
+            foundError = cmdResult.find('psql: FATAL:') if foundError < 1 else foundError
+            if foundError > 0:
+                newLogOut[i] = 'psql error reported in executeSQL command... Result:\n' + cmdResult
+                i = i  + 1
+            else:
+            #check for shell error
+                foundError = 1 if cmdResult[:3] == "b'/" else foundError
+                if foundError > 0:
+                    newLogOut[i] = 'shell error reported in executeSQL command... Result:\n' + cmdResult
+                    i = i  + 1
+        else:
+            newLogOut[i] = 'psql error reported in executeSQL command... Result:\n' + cmdResult
+            i = i  + 1
+
+        #process according to result found
+        if foundError > 0:
+            #cmdSuccessOut = ("False", cmdResult.lstrip(" "))
+            return False, '\n'.join(newLogOut), cmdResult
+        else:
+            return True, '\n'.join(newLogOut), cmdResult[1:500]
+
+    except:
+        newLogOut[i] = 'An exception has occurred in executing SQL. Error details:'
+        i = i + 1
+        newLogOut[i] = '\n'.join(sys.exc_info)
+        return False, '\n'.join(newLogOut), cmdResult
+                                
+    #to-do: alter this for "per-file" processing    
+##    if writeLog:
+##        writeOutputFile(logFile, 'SQL Execution for: ' + jsonQualifier + '\n---------------------->')
+##        if cmdSuccessOut[0] == 'False':
+##            writeOutputFile(logFile, '**** BUILD ERROR REPORTED ***\n' + cmdSuccessOut[1] + '\n<----------------------')
+##        else:
+##            writeOutputFile(logFile, 'All SQL was successfully executed')
+##        
+##        writeOutputFile(logFile, 'Refer to file ' + sqlLogFile + ' for output captured')
+##    
+##    
+##    return cmdSuccessOut
 
 
 
