@@ -52,37 +52,67 @@ import re
 #
 #####################################################################
     
-doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
+def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
 
-  newLogOut = '\n################################################################################' \
-            + '\n# Starting database connectivity test. \nThis also determines whether appGoo is installed' \
-            + '\n--------------------------------------------------------------------------------')
-  newPrintOut = ''
-  continueWork = True
-       
-  testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-exec.agsql'
-  #  testSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-agbuild.log'
-  checkSQL = '/* Testing connection to database ' + str(_buildts) + ' */\n' + installConfigData["runOptions"]["installCheckSQL"] + ';'
-  checkSQL = checkSQL.replace(';;',';')
+    try:
+        i = 0
+        newLogOut[i] = '\n################################################################################' \
+                + '\n# Starting database connectivity test. \nThis also determines whether appGoo is installed' \
+                + '\n--------------------------------------------------------------------------------')
+        i = i + 1
+        newPrintOut = ''
+        continueWork = True
+        isInstalled = False
+        returnResult = ''
+           
+        testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-exec.agsql'
+        #  testSqlLogFile = _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-agbuild.log'
+        checkSQL = '/* Testing connection to database ' + str(_buildts) + ' */\n' + installConfigData["runOptions"]["installCheckSQL"] + ';'
+        checkSQL = checkSQL.replace(';;',';')
 
-  #build & run SQL
-  testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, False) 
-    if testResult[0] == "False":
-        continueWork = False
-        stopReason = "The build process has stopped because of errors encountered testing the connection to the database"
-        doInstall = False
-    else:
-        doInstall = False if testResult[1].find("(0 rows)") == -1 else True
+        # run SQL
+        continueWork, newLogOut[i], returnResult = executeSQL('sql', checkSQL)
+        i = i + 1
 
-    if writeLog and continueWork:
-        writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall) \
-            + '\nTest connecting to the database was successful' \
-            + '\n================================================================================')
-    else:
-        #insert output for failure
-        pass
+        if continueWork:
+          isInstalled = False if returnResult.find("(0 rows)") == -1 else True
+          newPrintOut = newPrintOut + 'Connection to the database was successful\nappGoo is installed = ' + str(isInstalled)
+        else
+          newPrintOut = newPrintOut + 'Error: An error has been encountered whilst testing the connection to the database ... refer to the logfile for details\n'
+          newLogOut[i] = 'Connection to the database was un-sucessful. The result returned follows:\n' + returnResult + '\n'
+          i = i + 1
+
+        return continueWork, newPrintOut, '\n'.join(newLogOut), isInstalled  
+
+    except
+        newPrintOut = newPrintOut + '###==> AN EXCEPTION TO THE TEST CONNECTION TO THE DATABASE HAS OCCURRED. REFER TO LOGFILE FOR DETAILS\n'
+        newLogOut[i] = 'An exception has occurred in testing the database connection. Error details:'
+        i = i + 1
+        newLogOut[i] = '\n'.join(sys.exc_info)
+        return False, newPrintOut, '\n'.join(newLogOut), False
 
 
+  #build & run SQL (OLD)
+##  testResult = execSQL("appGooTest", buildConfigData, installConfigData, testSqlFile, testSqlLogFile, False) 
+##    if testResult[0] == "False":
+##        continueWork = False
+##        stopReason = "The build process has stopped because of errors encountered testing the connection to the database"
+##        doInstall = False
+##    else:
+##        doInstall = False if testResult[1].find("(0 rows)") == -1 else True
+##
+##    if writeLog and continueWork:
+##        writeOutputFile(logFile, 'appGoo installation required: ' + str(doInstall) \
+##            + '\nTest connecting to the database was successful' \
+##            + '\n================================================================================')
+##    else:
+##        #insert output for failure
+##        pass
+
+
+def executeSQL(cmdType, cmdText)
+
+# returns continueWork, newLogOut[i], returnResult
 
 
 
