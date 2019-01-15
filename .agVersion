@@ -1,1 +1,2 @@
-{"appGooInstalledVersion": "0.1.0"}
+{"appGooInstalledVersion": "0.1.0",
+ "fileComments": "Do not alter. This is the installed version of appGoo and is used to determine whether to upgrade your appGoo code in the database"}
