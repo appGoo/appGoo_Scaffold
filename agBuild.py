@@ -63,6 +63,7 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
         newPrintOut = ''
         continueWork = True
         isInstalled = False
+        installedVersion = '0'
         returnResult = ''
            
         testSqlFile = '.' + _buildts.strftime("%y%m%d-%H%M%S") + '-testConnection-exec.agsql'
@@ -75,14 +76,31 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
         i += 1
 
         if continueWork:
-          isInstalled = False if returnResult.find("(0 rows)") == -1 else True
-          newPrintOut = newPrintOut + 'Connection to the database was successful\nappGoo is installed = ' + str(isInstalled)
+            isInstalled = False if returnResult.find("(0 rows)") == -1 else True
+            newPrintOut = newPrintOut + 'Connection to the database was successful\nappGoo is installed = ' + str(isInstalled)
         else
           newPrintOut = newPrintOut + 'Error: An error has been encountered whilst testing the connection to the database ... refer to the logfile for details\n'
           newLogOut[i] = 'Connection to the database was un-sucessful. The result returned follows:\n' + returnResult + '\n'
           i += 1
 
-        return continueWork, newPrintOut, '\n'.join(newLogOut), isInstalled  
+        if continueWork and isInstalled:
+            checkSQL = r"select agWrap(agInstalledVersion) as X_X from ag_sys.agInstallation where not isArchived order by last_update desc limit 1;"
+            continueWork, newLogOut[i], returnResult = executeSQL('sql', checkSQL, buildConfigData, installConfigData, currDir, _buildts)
+            i += 1
+            if continueWork:
+                agInstallStart = returnResult.find("{{{agWrap=")
+                if agInstallStart != -1:
+                    installedVersion = returnResult[(agInstallStart + 10):(returnResult.find("}}}" - (agInstallStart + 10)))]
+                else
+                    continueWork = False
+
+            if not continueWork: 
+                newPrintOut = newPrintOut + 'Could not determine the appGoo installed version. Stopping build ... refer to the logfile for details\n'
+                newLogOut[i] = 'appGoo installation version could not be determined. The result returned follows:\n' + returnResult + '\n'
+                i += 1    
+
+
+        return continueWork, newPrintOut, '\n'.join(newLogOut), isInstalled, installedVersion
 
     except:
         newPrintOut = newPrintOut + '###==> AN EXCEPTION TO THE TEST CONNECTION TO THE DATABASE HAS OCCURRED. REFER TO LOGFILE FOR DETAILS\n'
@@ -701,6 +719,8 @@ def main():
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
     installConfigData = getConfigFile('agInstallConfig.json')
+    agVersionData = getConfigFile('.agVersion')
+    agInstalledVersion = agVersionData["appgooInstalledVersion"]
     # this is needed as upgrades are not performed when build is for modified files only
     processModifiedOnly = True if buildConfigData["appBuild"]["modifiedOnly"][:1].lower().strip() == 'y' else False
     #historyFile = getConfigFile('.agBuild.history')
@@ -749,9 +769,13 @@ def main():
 
         i += 1
 
-    if continueWork and not isInstalled:
-        continueWork, printOut[i], fileOut[i] = doAppGooInstall(buildConfigData, installConfigData, currDir)
-        i += 1
+    if continueWork:
+        if not isInstalled:
+            continueWork, printOut[i], fileOut[i] = doAppGooInstall(buildConfigData, installConfigData, currDir)
+            i += 1
+        else:
+            # perform an appGoo upgrade
+    
 
     if continueWork:
         if processModifiedOnly:
