@@ -693,7 +693,6 @@ def main():
     #global tracker of whether to continue processing
     continueWork = True
     stopReason = ""
-    #processModifiedOnly = False
     #processSQL = "b"
     currDir = os.getcwd() + '/'
     isInstalled = False
@@ -702,6 +701,8 @@ def main():
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
     installConfigData = getConfigFile('agInstallConfig.json')
+    # this is needed as upgrades are not performed when build is for modified files only
+    processModifiedOnly = True if buildConfigData["appBuild"]["modifiedOnly"][:1].lower().strip() == 'y' else False
     #historyFile = getConfigFile('.agBuild.history')
     #lastRun = datetime.datetime.strptime(historyFile["lastRun"]["timeStamp"], "%Y-%m-%d %H:%M:%S").timestamp()
     
@@ -753,11 +754,12 @@ def main():
         i += 1
 
     if continueWork:
-        continueWork, printOut[i], fileOut[i] = doUpgrade(buildConfigData, installConfigData, currDir)
-        i += 1
+        if processModifiedOnly:
+            printOut[i] = 'Application Upgrade steps skipped because build of modified files only was requested ...'
+        else:
+            pass
+            #continueWork, printOut[i], fileOut[i] = doUpgrade('pre', buildConfigData, installConfigData, currDir)
 
-    if continueWork:
-        continueWork, printOut[i], fileOut[i] = doUpgrade('pre', buildConfigData, installConfigData, currDir)
         i += 1
 
     if continueWork:
@@ -765,11 +767,16 @@ def main():
         i += 1
 
     if continueWork:
-        continueWork, printOut[i], fileOut[i] = doUpgrade('post', buildConfigData, installConfigData, currDir)
-        i += 1
+        if processModifiedOnly:
+            # we have already reported this condition, so do not repeat
+            pass
+        else:
+            pass
+            #continueWork, printOut[i], fileOut[i] = doUpgrade('post', buildConfigData, installConfigData, currDir)
+            i += 1
 
     if continueWork:
-        continueWork, printOut[i], fileOut[i] = doProcesses('post', buildConfigData, installConfigData, currDir)
+        continueWork, printOut[i], fileOut[i] = doProcesses('postprocess', buildConfigData)
         i += 1
 
     # NOW CLEANUP
