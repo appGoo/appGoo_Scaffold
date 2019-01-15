@@ -271,11 +271,13 @@ def doProcesses(processType, buildConfigData)
         if continueWork:
             for item in Instructions:
                 try:
-                    continueWork, newLogOut[i], processResult = runShellCmd(item)
-                    i += 1
-                    # determine if successful or not
+                    if continueWork:
+                        continueWork, newLogOut[i], processResult = runShellCmd(item)
+                        i += 1
+                        # determine if successful or not
                 except:
                     # log errors
+                    pass
 
         return continueWork, printOut, '\n'.join(newLogOut)
                                 
@@ -286,6 +288,23 @@ def doProcesses(processType, buildConfigData)
         newLogOut[i] = '\n'.join(sys.exc_info)
         return False, printOut, '\n'.join(newLogOut)
                                 
+
+def prepareUpgradeFile(prePostUpgrade, upgradeText, buildConfigData, currDir, _buildts):
+# returns continueWork, fileName
+# this function converts a sql parameter into a file that is ready to be executed
+# the parameter should already be resolved for all includes
+# It will convert the following:
+# <%upgrade {1.4.2}
+# update table1 set abc = abc + 1;
+# update table2 set xyz = 'eat me' where id < 1000;
+# %>
+# to:
+# SELECT ag_sys.agUpgrade('pre', '1.4.2', $___agUg___$update table1 set abc = abc + 1;
+# update table2 set xyz = 'eat me' where id < 1000;$___agUg___$);
+#
+# There is also an option to supply a test parameter that then appends a ", true::boolean"
+# as the final parameter which then causes all processing to be not committed
+                
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5555%%%%%%%
                                 OLD BELOW
