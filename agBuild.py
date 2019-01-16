@@ -51,6 +51,13 @@ def doAppGooInstall(buildConfigData, installConfigData, currDir):
 # returns continueWork, printOut[i], fileOut[i]
     return false, 'TBD', 'TBD'
 
+# approach: the builder should know how to install appGoo, it is not a
+#   generic function subject to configuration by the developer
+#   However, the developer might rename the appGoo folder, therefore
+#   we obtain the folder name from the install file. After that,
+#   the functionality should be hard-coded into the builder.
+
+# Get folder names and perform necessary validation
 # Create appGoo User & perform all subsequent work as appGoo
 # Create Schema
 # Do Grants for ag_sys Schema to public
