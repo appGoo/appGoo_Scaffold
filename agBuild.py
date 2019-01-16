@@ -36,6 +36,36 @@ import re
 #remove this later
 #from pprint import pprint
 
+
+#####################################################################
+#
+# Install appGoo into the database
+# --------------------------------------------------------------
+#
+# To-do:
+#     * Everything
+#
+#####################################################################
+
+def doAppGooInstall(buildConfigData, installConfigData, currDir):
+# returns continueWork, printOut[i], fileOut[i]
+    return false, 'TBD', 'TBD'
+
+# Create appGoo User & perform all subsequent work as appGoo
+# Create Schema
+# Do Grants for ag_sys Schema to public
+# Create Sequences
+# Create tables & indexes
+# Create views
+# install functions
+# Populate seed data
+# Insert installation history
+# Finalise grants if necessary for security purposes
+
+
+
+
+
 #####################################################################
 #
 # Test if appGoo installation has been performed in the database
@@ -721,7 +751,7 @@ def main():
     buildConfigData = getConfigFile()
     installConfigData = getConfigFile('agInstallConfig.json')
     agVersionData = getConfigFile('.agVersion')
-    agInstalledVersionOS = agVersionData["appgooInstalledVersion"]
+    agInstalledVersionOS = agVersionData["appgooInstalledVersion"].strip()
     agInstalledVersionDB = '0'
     # this is needed as upgrades are not performed when build is for modified files only
     processModifiedOnly = True if buildConfigData["appBuild"]["modifiedOnly"][:1].lower().strip() == 'y' else False
@@ -757,10 +787,12 @@ def main():
     printOut[i] = '# TBD'
     i += 1
 
+    # DB COnnection Test
     if continueWork:
         continueWork, printOut[i], fileOut[i], isInstalled, agInstalledVersionDB = doConnectionTest(buildConfigData, installConfigData, currDir, _buildts)
         i += 1
 
+    # Pre-Processing
     if continueWork and doPreprocessVal[:1].lower().strip() in('i', 'y'):
         if not isInstalled and doPreProcessVal[:1].lower().strip() == 'i':
             doPreProcessVal = 'n'
@@ -771,47 +803,21 @@ def main():
 
         i += 1
 
+    # appGoo Installation & Upgrade
     if continueWork:
         if not isInstalled:
             continueWork, printOut[i], fileOut[i] = doAppGooInstall(buildConfigData, installConfigData, currDir)
             i += 1
             processModifiedOnly = False
-            isInstalled = True
+            #isInstalled = True
         else:
-            # perform an appGoo upgrade
-            pass
-            # compare agInstalledVersionOS & agInstalledVersionDB
-            osVer = agInstalledVersionOS.strip().split('.')
-            dbVer = agInstalledVersionGB.strip().split('.')
-            osVc = len(osVer)
-            dbVc = len(dbVer)
-            if osVc == 0 or dbVc == 0:
-                continueWork = False
-                printOut[i] = 'There is an unexpected result in the appGoo version reporting. Refer to logfile for details...'
-                fileOut[i] = 'Missing an appGoo Version. Installed in OS = ' + str(agInstalledVersionOS) + '  Installed in DB = ' + str(agInstalledVersionDB)
-                i += 1
-            else:
-                j = 0
-                while osVc > j:
-                    if osVer[j] == ''
-                        osVer[j] = '0'
+            # check to see if an appGoo upgrade is required
+            if agInstalledVersionOS != agInstalledVersionDB:
+                    continueWork, printOut[i], fileOut[i] = doAppGooUpgrade(buildConfigData, installConfigData, currDir)
+                    i += 1
+                    processModifiedOnly = False
 
-                    if j >= dbVc:
-                        if dbVer[j] == ''
-                            dbVer[j] = '0'
-
-                    if j > dbVc:
-                        dbVer[j] = '0'
-                        dbVc = len(dbVer)
-                                
-
-                    if osVer[j] > dbVer[j]:
-                            doUpgrade = True
-
-    if continueWork and doUpgrade:
-        # perform appGoo upgrade
-        pass
-
+    # Application pre-build upgrade
     if continueWork:
         if processModifiedOnly:
             printOut[i] = 'Application Upgrade steps skipped because build of modified files only was requested ...'
@@ -821,10 +827,12 @@ def main():
 
         i += 1
 
+    # Application Build
     if continueWork:
         continueWork, printOut[i], fileOut[i] = doBuild(buildConfigData, installConfigData, currDir, _buildts)
         i += 1
 
+    # Application post-build upgrade
     if continueWork:
         if processModifiedOnly:
             # we have already reported this condition, so do not repeat
@@ -834,6 +842,7 @@ def main():
             #continueWork, printOut[i], fileOut[i] = doUpgrade('post', buildConfigData, installConfigData, currDir)
             i += 1
 
+    # Post-Processes
     if continueWork:
         continueWork, printOut[i], fileOut[i] = doProcesses('postprocess', buildConfigData)
         i += 1
