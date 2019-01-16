@@ -84,7 +84,7 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
           i += 1
 
         if continueWork and isInstalled:
-            checkSQL = r"select agWrap(agInstalledVersion) as X_X from ag_sys.agInstallation where not isArchived order by last_update desc limit 1;"
+            checkSQL = r"select agTxtWrap(agInstalledVersion) as X_X from ag_sys.agInstallation where not isArchived order by last_update desc limit 1;"
             continueWork, newLogOut[i], returnResult = executeSQL('sql', checkSQL, buildConfigData, installConfigData, currDir, _buildts)
             i += 1
             if continueWork:
@@ -107,7 +107,7 @@ def doConnectionTest(buildConfigData, installConfigData, currDir, _buildts):
         newLogOut[i] = 'An exception has occurred in testing the database connection. Error details:'
         i += 1
         newLogOut[i] = '\n'.join(sys.exc_info)
-        return False, newPrintOut, '\n'.join(newLogOut), False
+        return False, newPrintOut, '\n'.join(newLogOut), False, installedVersion
 
 
   #build & run SQL (OLD)
@@ -714,13 +714,15 @@ def main():
     #processSQL = "b"
     currDir = os.getcwd() + '/'
     isInstalled = False
+    doUpgrade = False
     #appendedCommit = False
 
     # Enhance this with 'click' to make this the runtime parameter
     buildConfigData = getConfigFile()
     installConfigData = getConfigFile('agInstallConfig.json')
     agVersionData = getConfigFile('.agVersion')
-    agInstalledVersion = agVersionData["appgooInstalledVersion"]
+    agInstalledVersionOS = agVersionData["appgooInstalledVersion"]
+    agInstalledVersionDB = '0'
     # this is needed as upgrades are not performed when build is for modified files only
     processModifiedOnly = True if buildConfigData["appBuild"]["modifiedOnly"][:1].lower().strip() == 'y' else False
     #historyFile = getConfigFile('.agBuild.history')
@@ -756,7 +758,7 @@ def main():
     i += 1
 
     if continueWork:
-        continueWork, printOut[i], fileOut[i], isInstalled = doConnectionTest(buildConfigData, installConfigData, currDir, _buildts)
+        continueWork, printOut[i], fileOut[i], isInstalled, agInstalledVersionDB = doConnectionTest(buildConfigData, installConfigData, currDir, _buildts)
         i += 1
 
     if continueWork and doPreprocessVal[:1].lower().strip() in('i', 'y'):
@@ -773,9 +775,42 @@ def main():
         if not isInstalled:
             continueWork, printOut[i], fileOut[i] = doAppGooInstall(buildConfigData, installConfigData, currDir)
             i += 1
+            processModifiedOnly = False
+            isInstalled = True
         else:
             # perform an appGoo upgrade
-    
+            pass
+            # compare agInstalledVersionOS & agInstalledVersionDB
+            osVer = agInstalledVersionOS.strip().split('.')
+            dbVer = agInstalledVersionGB.strip().split('.')
+            osVc = len(osVer)
+            dbVc = len(dbVer)
+            if osVc == 0 or dbVc == 0:
+                continueWork = False
+                printOut[i] = 'There is an unexpected result in the appGoo version reporting. Refer to logfile for details...'
+                fileOut[i] = 'Missing an appGoo Version. Installed in OS = ' + str(agInstalledVersionOS) + '  Installed in DB = ' + str(agInstalledVersionDB)
+                i += 1
+            else:
+                j = 0
+                while osVc > j:
+                    if osVer[j] == ''
+                        osVer[j] = '0'
+
+                    if j >= dbVc:
+                        if dbVer[j] == ''
+                            dbVer[j] = '0'
+
+                    if j > dbVc:
+                        dbVer[j] = '0'
+                        dbVc = len(dbVer)
+                                
+
+                    if osVer[j] > dbVer[j]:
+                            doUpgrade = True
+
+    if continueWork and doUpgrade:
+        # perform appGoo upgrade
+        pass
 
     if continueWork:
         if processModifiedOnly:

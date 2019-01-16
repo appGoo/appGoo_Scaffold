@@ -1,5 +1,5 @@
 /*
-agWrap(textToWrap text, wrapStart text default = '{{{agWrap=', wrapEnd text default = '}}}')
+agTxtWrap(textToWrap text, wrapStart text default = '{{{agWrap=', wrapEnd text default = '}}}')
 
 return wrapStart || textToWrap || wrapEnd
 
