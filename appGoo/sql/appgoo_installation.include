@@ -1,0 +1,11 @@
+# SQL Files for the appGoo installation. Must reference file relative to current location of this file
+# and files can only be in a subfolder.
+# Folder substitution characters are:
+# ~ HOME_DIR
+# . up one level. This can be repeated. For example applying .. to "users/joe/git/projects/dinobj/play/sql" 
+#   would result in "users/joe/git/projects/dinobj/"
+
+sql/users.sql
+sql/schema.sql
+sql/sequences.sql
+sql/auth_objects.sql
