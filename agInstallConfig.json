@@ -4,50 +4,51 @@
         "*dont-delete-me": "keep-me-and-change-my-name-only"
     },
     "appGooDirectories": {
-        "*appGoo": "appGoo",
-        "*appGoo/doco": "appGoo/doco",
-        "*appGoo/sql": "appGoo/sql",
-        "*appGoo/sql/pg-A": "appGoo/sql/pg-A",
-        "*appGoo/sql/pg-A": "appGoo/sql/pg-A/procs",
-        "*appGoo/sql/pg-A/install": "appGoo/sql/pg-A/install",
-        "*appGoo/sql/pg-A/install/upgrade": "appGoo/sql/pg-A/install/upgrade",
-        "*appGoo/sql/pg-A/procs": "appGoo/sql/pg-A/procs",
-        "*appGoo/webserver": "appGoo/webserver",
-        "*assets": "assets",
-        "assets/css": "assets/css",
-        "assets/files": "assets/files",
-        "assets/js": "assets/js",
-        "assets/misc": "assets/misc",
-        "*source": "source",
-        "source/api": "source/api",
-        "source/build": "source/build",
-        "source/css": "source/css",
-        "source/doco": "source/doco",
-        "source/html": "source/html",
-        "*source/install": "source/install",
-        "*source/install/upgrade": "source/install/upgrade",
-        "source/js": "source/js",
-        "*source/sql": "source/sql"
+        "*$appGoo": "appGoo",
+        "*$appGoo/doco": "appGoo/doco",
+        "*$appGoo/sql": "appGoo/sql",
+        "*$appGoo/sql/pg-A": "appGoo/sql/pg-A",
+        "*$appGoo/sql/pg-A": "appGoo/sql/pg-A/procs",
+        "*$appGoo/sql/pg-A/instal": "appGoo/sql/pg-A/instal",
+        "*$appGoo/sql/pg-A/instal/upgrade": "appGoo/sql/pg-A/instal/upgrade",
+        "*$appGoo/sql/pg-A/procs": "appGoo/sql/pg-A/procs",
+        "*$appGoo/webserver": "appGoo/webserver",
+        "*$assets": "assets",
+        "$assets/css": "assets/css",
+        "$assets/files": "assets/files",
+        "$assets/js": "assets/js",
+        "$assets/misc": "assets/misc",
+        "*$source": "source",
+        "$source/api": "source/api",
+        "$source/build": "source/build",
+        "$source/css": "source/css",
+        "$source/doco": "source/doco",
+        "$source/html": "source/html",
+        "*$source/instal": "source/instal",
+        "*$source/instal/upgrade": "source/instal/upgrade",
+        "$source/js": "source/js",
+        "*$source/sql": "source/sql"
     },
     "runOptions": {
         "useDir": "key/value",
+        "dbVer": "pg-A",
         "dbName": "appGoo",
         "dbUser": "postgres",
         "sqlCmd": "psql &CMDS --dbname=&DB --username=&UNAME --no-password",
         "installCheckSQL": "select schema_name from information_schema.schemata where schema_name like $$ag_%$$ limit 1"  
     },
     "agInstallation": {
-        "includeFileQualifier": ".include",
+        "# includeFileQualifier": ".include",
         "sqlFileQualifier": ".sql",
-        "installation-01": "appGoo/sql/pg-A/install"
+        "installation-01": "[$appgoo/sql/&dbVer/instal]"
         },
     "agUpgrade": {
-            "includeFileQualifier": ".include",
+            "# includeFileQualifier": ".include",
             "sqlFileQualifier": ".sql",
-            "upgrade-01": "appGoo/SQL/pg-A/install/upgrade"
+            "upgrade-01": "[$appgoo/sql/&dbVer/instal/upgrade]"
         },
     "agAbout": {
         "CreatedBy": "Install",
-        "Purpose": "This is the default config file, change this text to your reason why this file exists"
+        "Purpose": "This is the default installation file, change this text to explain your changes if necessary"
     }
 }
