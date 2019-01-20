@@ -294,6 +294,17 @@ def writeFile(fileName, writeMe = '#'):
 
 
 
+
+################################################################################
+#
+# doProcesses
+# Executes shell scripts to perform tasks before and after performing a
+#  SQL build.
+# To-do:
+#       - ?
+#
+################################################################################
+                                
 def doProcesses(processType, buildConfigData)
 
     try:
