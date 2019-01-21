@@ -90,7 +90,7 @@ def doAppGooInstall(buildConfigData, installConfigData, currDir):
                 try:
                     if continueWork:
                         # get directory name resolved
-                        continueWork, newPrintOut, newLogOut[i], fileDir = resolveDir(item, installConfigData)
+                        continueWork, newPrintOut, newLogOut[i], fileDir = resolveDir(installConfigData, item)
                         i += 1
                         # get files in alphabetical order
                         fileList = getFiles(fileDir, '.sql')
@@ -114,7 +114,7 @@ def doAppGooInstall(buildConfigData, installConfigData, currDir):
 
 
 
-def resolveDir(sourceDir, jsonFile)
+def resolveDir(jsonFile, sourceDirA, sourceDirB = '')
 # return continueWork, newPrintOut, newLogOut, newDir
 #
 # make sure first character is / & that last character is not /
@@ -122,8 +122,65 @@ def resolveDir(sourceDir, jsonFile)
 # replace [$dir] with equivalent json reference
 # check that newDir is valid
 
-    return True, '', '', sourceDir
+    continueWork = True
+    newPrintOut = ''
+    newLogOut = []
+    i = 0
 
+    try:
+        newDir = sourceDirA.strip() + '/' + sourceDirB.strip()    
+        newDir = newDir.replace('//', '/')
+        newDir = newDir.rstrip('/')
+
+        if newDir.find('&') > -1:
+            # substitutions, at the moment, we only have dbVer
+            dbVer = installConfigData["runOptions"]["dbVer"].strip()
+            newDir = newDir.replace('&dbVer', dbVer)
+            if newDir.find('&') > -1:
+                continueWork = False
+                newPrintOut = newPrintOut + 'The directory ' + newDir + ' has failed validation. Refer to the logfile'
+                newLogout[i] = 'Found unresolved substitutes in ' + newDir
+                i += 1
+
+        if continueWork:
+            rdStart = newDir.find('[')
+            if rdStart > -1:
+                # Relative Directory references -- obtain the modified directory reference
+                relDir = newDir[rdStart + 1:newDir.find(']') - rdStart + 1]
+                relDir = relDir.replace('[', '').replace(']','').strip()
+                try:
+                    # try to find directory without a prefixed asterix for mandatory
+                    foundDir = True
+                    relDir = installConfigData["appGooDirectories"][relDir]
+                except KeyError as ok:
+                    foundDir = False
+                except:
+                    raise
+
+                if not foundDir:
+                    relDir = '*' + relDir
+                    relDir = installConfigData["appGooDirectories"][relDir]
+
+                newDir = relDir
+
+            # now validate that this is a valid directory
+            if newDir[:1] != '\':
+                newDir = os.getcwd() + '/' + newDir
+
+            if not os.path.exists(newDir):
+                continueWork = False
+                newPrintOut = newPrintOut + 'Invalid directory reference: ' + newDir
+                newLogOut[i] = 'resolveDir returned ' + newDir + '\nwhich is not a valid directory'
+                i += 1
+
+        return continueWork, newPrintOut, '\n'.join(newLogOut), newDir
+
+    except:
+        printOut = printOut + 'An exception has occurred during building a directory reference. Refer to logfile for details'
+        newLogOut[i] = 'An exception has occurred in resolveDir.\n(SourceDirA, SourceDir, newDir) = ' + sourceDirA + ', ' + sourceDirB + ', ' + newDir + '\nError details:'
+        i += 1
+        newLogOut[i] = '\n'.join(sys.exc_info)<<
+        return False, printOut, '\n'.join(newLogOut), ''
 
 
 
