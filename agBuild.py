@@ -57,19 +57,112 @@ def doAppGooInstall(buildConfigData, installConfigData, currDir):
 #   we obtain the folder name from the install file. After that,
 #   the functionality should be hard-coded into the builder.
 
-# Get folder names and perform necessary validation
-# Create appGoo User & perform all subsequent work as appGoo
-# Create Schema
-# Do Grants for ag_sys Schema to public
-# Create Sequences
-# Create tables & indexes
-# Create views
-# install functions
-# Populate seed data
-# Insert installation history
-# Finalise grants if necessary for security purposes
+
+    try:
+        i = 0
+        j = 0
+        continueWork = True
+        newLogOut = []
+        printOut = ''
+        foundJSON = True
+        processRef = ''
+        instalDirs = []
+    
+        while foundJSON:
+            j += 1
+            processRef = 'installation-0' + str(j) if j < 10 else 'installation-' + str(j)
+            try:
+                instalDirs.append(instalConfigData["agInstallation"][processRef].strip())
+
+            except KeyError as ok:
+                foundJSON = False
+            except:
+                newLogOut[i] = 'An exception has occurred in preparing for appGoo Installation. Error details:'
+                i += 1
+                newLogOut[i] = '\n'.join(sys.exc_info)
+                printOut = printOut + 'An exception has occurred in installing appGoo (' + processType \
+                                '). Refer to the logfile for details'
+                continueWork = False
+                foundJSON = False
+
+        if continueWork:
+            for item in instalDirs:
+                try:
+                    if continueWork:
+                        # get directory name resolved
+                        continueWork, newPrintOut, newLogOut[i], fileDir = resolveDir(item, installConfigData)
+                        i += 1
+                        # get files in alphabetical order
+                        fileList = getFiles(fileDir, '.sql')
+                        # get each file resolved for includes
+                        for file in fileList
+                            if continueWork:
+                                continueWork, fileToProcess = resolveFile(file, 'sql')
+                                if continueWork:
+                                    continueWork, newPrintOut, newLogOut[i] = processFile(fileToProcess, 'sql')
+                                    i += 1
 
 
+        return continueWork, printOut, '\n'.join(newLogOut)
+                                
+    except:
+        printOut = printOut + 'An exception has occurred during appGoo installation. Refer to logfile for details'
+        newLogOut[i] = 'An exception has occurred in appGoo installation. Error details:'
+        i += 1
+        newLogOut[i] = '\n'.join(sys.exc_info)
+        return False, printOut, '\n'.join(newLogOut)
+
+
+
+def resolveDir(sourceDir, jsonFile)
+# return continueWork, newPrintOut, newLogOut, newDir
+#
+# make sure first character is / & that last character is not /
+# replace ~ with project HOME_DIR
+# replace [$dir] with equivalent json reference
+# check that newDir is valid
+
+    return True, '', '', sourceDir
+
+
+
+
+################################################################################
+#
+# getFiles
+# Get all files in a nominated directory that meet a naming convention and
+# return as a list
+#
+# To-do:
+#       - ?
+#
+################################################################################
+
+def getFiles(fromDir, nameQualifier):
+# returns continueWork, fileList, newPrintOut, newLogOut
+
+    try:
+        i = 0
+        j = 0
+        continueWork = True
+        newLogOut = []
+        printOut = ''
+        fileList = []
+        filesToRead = os.listdir(fromDir)
+        filesToRead.sort()
+        for file in filesToRead:
+            if file.endswith(nameQualifier):
+                fileList[j] = str(file)
+                j += 1
+
+        return True, fileList, '', ''
+    
+    except:
+        printOut = printOut + 'An exception has occurred determining files to build. Refer to logfile for details'
+        newLogOut[i] = 'An exception has occurred in getFiles. Error details:'
+        i += 1
+        newLogOut[i] = '\n'.join(sys.exc_info)
+        return False, printOut, '\n'.join(newLogOut)
 
 
 
