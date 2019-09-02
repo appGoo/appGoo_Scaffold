@@ -1,0 +1,42 @@
+"RECORD_TYPE:GEOGRAPHIES","GEOGRAPHY_ID","CODE","NAME","ADDRESS_LINE","CITY_NAME","REGION_NAME","COUNTRY_NAME","FROM_ROWNUMBER"
+"GEOGRAPHIES",203,"HR- Dallas","Dallas Office","903 Cowboy Lane","Dallas","TX","US",1
+"GEOGRAPHIES",204,"V1- New York City","NYC, Vision Operations HQ","90 Fifth Avenue","New York","NY","US",2
+"GEOGRAPHIES",205,"S1- Chicago","Chicago Subassembly Plant 1 used in Operations SoB","456 Columbus Avenue","Cook","IL","US",3
+"GEOGRAPHIES",206,"D2- Miami","Miami Distribution Center 2 used in Operations","3456 Blue Lagoon Drive","Miami-Dade","FL","US",4
+"GEOGRAPHIES",207,"M1- Seattle Mfg","Seattle Mfg Plant 1 used in Operations SoB","3455 108th Avenue","King","WA","US",5
+"GEOGRAPHIES",209,"M2- Boston","Boston Mfg Plant 2 used in Operations SoB","393 Berkeley Street","Suffolk","MA","US",6
+"GEOGRAPHIES",211,"VS- Washington DC","District of Columbia Office used in Services SoB","1401 Pennsylvania Avenue","Dist Of Columbia","DC","US",7
+"GEOGRAPHIES",224,"FL- Workers Comp.","Florida Workers Compensation Carrier","11238 Ocean Avenue","Miami-Dade","FL","US",8
+"GEOGRAPHIES",348,"HR-Superior Court SF","","4545 South Money Lane","San Francisco","CA","US",9
+"GEOGRAPHIES",349,"Drop Ship","Used for Customer Drop Shipments","2391 L Street","Santa Clara","CA","US",10
+"GEOGRAPHIES",413,"P3- San Diego","San Diego Mfg site used in Vision PROJMFG SoB","12707 Height Bluff Drive","San Diego","CA","US",11
+"GEOGRAPHIES",414,"M3- Dallas","Dallas Mfg site used in Operations SoB","222 West Las Colinas Blvd","Dallas","TX","US",12
+"GEOGRAPHIES",472,"HR- San Jose","Internal Receiving Location","2391 L. Street","Santa Clara","CA","US",13
+"GEOGRAPHIES",519,"Quebec City","Quebec City Office","3197 Avenue des Hotels","QC","QUEBEC","CA",14
+"GEOGRAPHIES",617,"NY St. Revenue Dept.","New York Revenue Department (Tax Collection)","4777 86th Street","New York","NY","US",15
+"GEOGRAPHIES",1634,"One Time Address","One Time Address","1234 Main St","Los Angeles","CA","US",16
+"GEOGRAPHIES",1737,"HR- New York","","500 Madison Ave","New York","NY","US",17
+"GEOGRAPHIES",1996,"M6- Phoenix","Phoenix Manufacturing","3200 East Camelback","Maricopa","AZ","US",18
+"GEOGRAPHIES",1997,"M7- New Orleans","New Orleans Manufacturing","One Canal Place","Orleans","LA","US",19
+"GEOGRAPHIES",1998,"M4-Minneapolis","Minneapolis Manufacturing","8500 Normandale Lake Blvd","Hennepin","MN","US",20
+"GEOGRAPHIES",1999,"M5-Denver","Denver Manufacturing","6501 E Belleview Ave","Arapahoe","CO","US",21
+"GEOGRAPHIES",2005,"H1- Retail","Vision Retail","290 West Big Beaver Road","Oakland","MI","US",22
+"GEOGRAPHIES",2079,"Sydney","Head Office for Vision Corp Australia","1 Pitt St","NSW","","AU",23
+"GEOGRAPHIES",2258,"Dept-Cardiology","Cardiology","100 West First Street","Oakland","MI","US",24
+"GEOGRAPHIES",2402,"W1 - Kansas City Distribution","W1 - Kansas City Distribution","3700 Liberty Ave","Jackson","MO","US",25
+"GEOGRAPHIES",3276,"CSP10016","305 Sunrise Way","305 Sunrise Way","San Francisco","CA","US",26
+"GEOGRAPHIES",10169,"Vision Health System","Vision Health System","1000 Health System Blvd","San Mateo","CA","US",27
+"GEOGRAPHIES",10545,"W2 - Newark Distribution","W2 - Newark Distribution","10606 Airport Blvd","Essex","NJ","US",28
+"GEOGRAPHIES",10619,"EM1 - Seattle Maintenance","Seattle Manufacturing Maintenance Organization","3455 108th Ave","King","WA","US",29
+"GEOGRAPHIES",18168,"FAC-Facilities","Facilities Operations used in Vision Operations SOB","1100 Abernathy Road","Dekalb","GA","US",30
+"GEOGRAPHIES",18712,"W3 - Houston Distribution","W3 - Houston Distribution","15011 Mississippi Street","Harris","TX","US",31
+"GEOGRAPHIES",19421,"HR- Las Rozas","HR- West location for Vision Spain","AV","Las Rozas","28","ES",32
+"GEOGRAPHIES",19511,"DWH-Location-Old","Defective Warehouse Location","393 Berkeley Street","Suffolk","MA","US",33
+"GEOGRAPHIES",20795,"V1 Ship Site A","","475 Park Avenue","New York","NY","US",34
+"GEOGRAPHIES",21288,"ST1 - Northlake Store","ST1 - Northlake Store Madison Avenue","330 Madison Avenue","New York","NY","US",35
+"GEOGRAPHIES",23804,"D2 - Seattle Dist","Seattle Distribution Center","3457 108th Avenue","King","WA","US",36
+"GEOGRAPHIES",26599,"MP1- Johnson Manufacturing","Mfg Partner used for Buy Sell Subcontracting","2349 Whipple Dr.","Dallas","TX","US",37
+"GEOGRAPHIES",26667,"W5 - Los Angeles Distribution","W5 - Los Angeles Distribution","425 South Palos Verdes Street","Los Angeles","CA","US",38
+"GEOGRAPHIES",26670,"W8 - New York Distribution","W8 - New York Distribution","90 Columbia Street","Kings","NY","US",39
+"GEOGRAPHIES",26671,"W9 - Rotterdam Distribution","W9 - Rotterdam Distribution","","Wilhelminakade","","NL",40
+"GEOGRAPHIES",26847,"CD-Location","Central Depot Location","12230 El Camino Real","San Diego","CA","US",41

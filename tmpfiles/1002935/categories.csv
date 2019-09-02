@@ -1,0 +1,85 @@
+"RECORD_TYPE:CATEGORIES","CATEGORY_ID","SEGMENT1","SEGMENT2","SEGMENT3","SEGMENT4","SEGMENT5","SEGMENT6","DESCRIPTION","FROM_ROWNUMBER"
+"CATEGORIES",1,"MISC","MISC","","","","","Miscellaneous",1
+"CATEGORIES",21,"CAPITAL","FURN&FIXT","","","","","Capital Furniture & Fixtures",2
+"CATEGORIES",22,"CAPITAL","LEASE-IMP","","","","","Capital leasehold improvements",3
+"CATEGORIES",26,"MAINTENANC","OUTSIDESVC","","","","","Contracted Maintenance services",4
+"CATEGORIES",30,"PRODUCTN","MONITOR","","","","","Monitors",5
+"CATEGORIES",31,"PRODUCTN","DRIVES","","","","","Drives",6
+"CATEGORIES",32,"PRODUCTN","ELECTRICAL","","","","","Electrical Equipment",7
+"CATEGORIES",34,"PRODUCTN","POWERSUPP","","","","","Power supplies",8
+"CATEGORIES",36,"SUPPLIES","OFFICE","","","","","Office Supplies",9
+"CATEGORIES",37,"SUPPLIES","FACILITIES","","","","","Facilities Supplies",10
+"CATEGORIES",43,"CAPITAL","BUILDING","","","","","Capital building",11
+"CATEGORIES",91,"PRODUCTN","FINGOODS","","","","","Finished Goods",12
+"CATEGORIES",111,"PRODUCTN","MANUALS","","","","","Manuals/Collateral",13
+"CATEGORIES",112,"PRODUCTN","MECHANICAL","","","","","Mechanical Goods",14
+"CATEGORIES",113,"PRODUCTN","SOFTWARE","","","","","Software",15
+"CATEGORIES",114,"PRODUCTN","SUBASSEMBL","","","","","Subassembly",16
+"CATEGORIES",35,"PRODUCTN","BULK","","","","","Bulk production",17
+"CATEGORIES",242,"SERVICES","TEMPSEC","","","","","Temporary Secretarial Services",18
+"CATEGORIES",500,"060","42","","","","","Filters: Air, Fuel, Oil, Transmission, Water, etc.",19
+"CATEGORIES",575,"204","53","","","","","Microcomputers, Desktop or Towerbased",20
+"CATEGORIES",1082,"MED/SURG","SUPPLIES","","","","","Medical/Surgical Supplies",21
+"CATEGORIES",1083,"MED/SURG","EQUIPMENT","","","","","Medical/Surgical Equipment",22
+"CATEGORIES",1085,"IV","SUPPLIES","","","","","Intravenous Supplies",23
+"CATEGORIES",1086,"IV","SETS","","","","","Intravenous Sets and Accessories",24
+"CATEGORIES",1087,"LINEN","GOWN","","","","","Gowns",25
+"CATEGORIES",1090,"WOUND","DRESSING","","","","","Dressings",26
+"CATEGORIES",1091,"WOUND","BANDAGE","","","","","Bandages",27
+"CATEGORIES",1092,"WOUND","TAPE","","","","","Tape",28
+"CATEGORIES",1093,"WOUND","SPONGE","","","","","Sponges",29
+"CATEGORIES",1096,"LAB","SUPPLIES","","","","","Laboratory Supplies",30
+"CATEGORIES",1205,"MAINTENANC","MISC","","","","","Miscellaneous Maintenance Supplies",31
+"CATEGORIES",1206,"RADIOLOGY","EQUIP","","","","","Radiology Equipment",32
+"CATEGORIES",1353,"MISC","CONSULTING","","","","","Consulting and Other Services",33
+"CATEGORIES",1354,"MISC","WARRANTY","","","","","Warranties and Contracts",34
+"CATEGORIES",1541,"CAPITAL","HOSPITAL","","","","","Hospital Capital",35
+"CATEGORIES",2658,"SERVICES","LEGAL","","","","","Legal Services",36
+"CATEGORIES",2097,"IMPLANT","HEART","","","","","Heart Implant",37
+"CATEGORIES",2117,"SERVICES","TEMPTECH","","","","","Temporary Technical Services",38
+"CATEGORIES",2121,"MED/SURG","MISC","","","","","Miscellaneous Medical/Surgical",39
+"CATEGORIES",2755,"COMPUTER","PC","","","","","Desktop and Laptop Computers",40
+"CATEGORIES",2757,"COMPUTER","PERIPHERAL","","","","","Peripheral Computer Devices",41
+"CATEGORIES",2758,"COMPUTER","MISC","","","","","Miscellaneous Computer Hardware",42
+"CATEGORIES",2759,"SUPPLIES","VEHICLE","","","","","Vehicle Maintenance Supplies",43
+"CATEGORIES",2661,"TEMPLABOR","ANALYST","","","","","Analyst Temp Labor",44
+"CATEGORIES",2662,"TEMPLABOR","CONSULTANT","","","","","Consultant Temp Labor",45
+"CATEGORIES",2663,"TEMPLABOR","ENGINEER","","","","","Engineer Temp Labor",46
+"CATEGORIES",2664,"TEMPLABOR","ADMIN","","","","","Admin Assistant Temp Labor",47
+"CATEGORIES",2665,"TEMPLABOR","CLERK","","","","","Clerical Temp Labor",48
+"CATEGORIES",3720,"COMPANY","BADGE","","","","","Company Badges",49
+"CATEGORIES",3370,"MERCHAND","LADIESAPRL","","","","","Ladies Apparel",50
+"CATEGORIES",3452,"AUTOMOTIVE","BODY","","","","","Automotive Body",51
+"CATEGORIES",3453,"AUTOMOTIVE","TIRE","","","","","Automotive Tire",52
+"CATEGORIES",3454,"AUTOMOTIVE","BRAKES","","","","","Automotive Brakes",53
+"CATEGORIES",3455,"AUTOMOTIVE","ENGINE","","","","","Automotive Engine",54
+"CATEGORIES",3097,"EQUIPMENT","A/V","","","","","Audio Video Equipment",55
+"CATEGORIES",3288,"MERCHAND","AUTOMOTIVE","","","","","Automotive Merchandise",56
+"CATEGORIES",3289,"MERCHAND","HOUSEWARE","","","","","Houseware Merchandise",57
+"CATEGORIES",3290,"MERCHAND","HOME FURN","","","","","Home Merchandise",58
+"CATEGORIES",3291,"MERCHAND","HOME FASH","","","","","Home Fashion Merchandise",59
+"CATEGORIES",3292,"MERCHAND","PET SUPPLY","","","","","Pet Merchandise",60
+"CATEGORIES",3293,"MERCHAND","PHARMACY","","","","","Pharma Merchandise",61
+"CATEGORIES",3294,"MERCHAND","LAWN&GDN","","","","","Garden Merchandise",62
+"CATEGORIES",3295,"MERCHAND","HEALTH&BTY","","","","","Health & Beauty Merchandise",63
+"CATEGORIES",3296,"MERCHAND","TOYS","","","","","Toy Merchandise",64
+"CATEGORIES",3297,"MERCHAND","SPORTING","","","","","Sporting Goods Merchandise",65
+"CATEGORIES",3298,"MERCHAND","HARWARE","","","","","Hardware Merchandise",66
+"CATEGORIES",3299,"MERCHAND","ELECTRONIC","","","","","Electronics Merchandise",67
+"CATEGORIES",3300,"MERCHAND","JEWELRY","","","","","Jewelry Merchandise",68
+"CATEGORIES",3301,"MERCHAND","GROCERY","","","","","Grocery Merchandise",69
+"CATEGORIES",3302,"MERCHAND","HOME & OFC","","","","","Home & Office Merchandise",70
+"CATEGORIES",3114,"STORE","SIGNAGE","","","","","Store Signage",71
+"CATEGORIES",3115,"STORE","APPLIANCES","","","","","Store Appliances",72
+"CATEGORIES",3116,"STORE","FIXTURES","","","","","Store Fixtures",73
+"CATEGORIES",3117,"CONSTRUCT","SITE","","","","","Site Construction 02000",74
+"CATEGORIES",3118,"CONSTRUCT","CONCRETE","","","","","Concrete 03000",75
+"CATEGORIES",3119,"CONSTRUCT","MASONRY","","","","","Masonry 04000",76
+"CATEGORIES",3120,"CONSTRUCT","METALS","","","","","Metals 05000",77
+"CATEGORIES",3121,"CONSTRUCT","WOODPLAST","","","","","Wood and Plastics 06000",78
+"CATEGORIES",3122,"CONSTRUCT","SPECIALTY","","","","","Specialties 10000",79
+"CATEGORIES",3123,"CONSTRUCT","FURNISHING","","","","","Furnishings 12000",80
+"CATEGORIES",3124,"MAINTENANC","SUPPLIES","","","","","Maintenance Supplies",81
+"CATEGORIES",12832,"MAINTENANC","Landlord","","","","","Landlord",82
+"CATEGORIES",14833,"CONSTRUCT","SERVICES","","","","","Construction Services",83
+"CATEGORIES",30873,"WARRANTY","FULL","","","","","Full Warranty: Parts & Labor",84

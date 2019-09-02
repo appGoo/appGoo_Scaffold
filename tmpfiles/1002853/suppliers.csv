@@ -1,0 +1,87 @@
+"RECORD_TYPE:SUPPLIERS","SUPPLIER_ID","SUPPLIER_NAME","SUPPLIER_NUMBER","PERSON_ID","SUPPLIER_TYPE","PARENT_SUPPLIER_ID","PAY_TYPE","PAY_TERMS","DUE_DAYS","DUE_DAY_OF_MONTH","DUE_MONTHS_FORWARD","DISCOUNT_PERCENT","DISCOUNT_DAYS","CREATION_DATE","FROM_ROWNUMBER"
+"SUPPLIERS",41,"Vision","1015",,"Internal",,"Standard [USD]","Immediate",0,,,,,"10-apr-1997 13:45",1
+"SUPPLIERS",21,"Advanced Network Devices","1013",,"Manufacturing",,"Priority [USD]","Immediate",0,,,,,"25-feb-1997 15:01",2
+"SUPPLIERS",13,"Internal Revenue Service","1012",,"TAX AUTHORITY",,"Priority [USD]","Immediate",0,,,,,"24-feb-1997 17:53",3
+"SUPPLIERS",2,"GE Capital","1001",,"VENDOR",3,"EDI [USD]","Immediate",0,,,,,"24-feb-1997 14:54",4
+"SUPPLIERS",803,"Bank of America","5058",,"Service",,"Standard [USD]","Immediate",0,,,,,"19-jul-2001 11:53",5
+"SUPPLIERS",2105,"Internal-Vision Operations","20061",,"Internal",,"Standard [USD]","Immediate",0,,,,,"07-may-2004 05:57",6
+"SUPPLIERS",34167,"philip kang","5",,"SUPPLIER",,"Standard [UAH]","30 Net (terms date + 30)",30,,,,,"28-apr-2008 16:48",7
+"SUPPLIERS",9,"Office Supplies, Inc.","1008",,"VENDOR",,"Standard [USD]","30 Net (terms date + 30)",30,,,,,"24-feb-1997 16:20",8
+"SUPPLIERS",1,"GE Plastics","1000",,"Manufacturing",3,"Standard [USD]","30 Net (terms date + 30)",30,,,,,"24-feb-1997 14:22",9
+"SUPPLIERS",621,"Eastman Kodak","5040",,"MEDICAL MANUFACTURER",,"Standard []","30 Net (terms date + 30)",30,,,,,"30-jan-2001 13:50",10
+"SUPPLIERS",700,"Orthopedic Systems","5046",,"Manufacturing",,"Standard [USD]","30 Net (terms date + 30)",30,,,,,"09-feb-2001 09:22",11
+"SUPPLIERS",600,"3M Health Care","5037",,"MEDICAL MANUFACTURER",,"Standard []","30 Net (terms date + 30)",30,,,,,"25-jan-2001 13:49",12
+"SUPPLIERS",6,"American Telephone and Telegraph","1005",,"Service",,"Standard [USD]","30 Net (terms date + 30)",30,,,,,"24-feb-1997 15:24",13
+"SUPPLIERS",1782,"Automotive Supplier #4","20009",,"Manufacturing",,"Standard [USD]","30 Net (terms date + 30)",30,,,,,"07-oct-2003 12:41",14
+"SUPPLIERS",7,"Capp Consulting","1006",,"VENDOR",,"Standard [USD]","30 Net (terms date + 30)",30,,,,,"24-feb-1997 15:59",15
+"SUPPLIERS",1781,"Automotive Supplier #3","20008",,"Manufacturing",,"Standard [USD]","30 Net (terms date + 30)",30,,,,,"07-oct-2003 12:37",16
+"SUPPLIERS",640,"McKesson General Medical","5042",,"MEDICAL DISTRIBUTOR",,"Standard []","30 Net (terms date + 30)",30,,,,,"31-jan-2001 12:01",17
+"SUPPLIERS",5,"Star Gate Ltd","1004",,"Manufacturing",,"Standard []","15 Net (terms date + 15)",15,,,,,"24-feb-1997 15:19",18
+"SUPPLIERS",1016,"Modul","5087",,"MEDICAL MANUFACTURER",,"Standard [USD]","2/10 NET 30",30,,,2,10,"16-may-2002 18:52",19
+"SUPPLIERS",10127,"Western Cable Construction","20091",,"SUPPLIER",,"MISC [USD]","2/10 NET 30",30,,,2,10,"23-sep-2004 16:27",20
+"SUPPLIERS",16147,"Johnson Brothers, Inc","20141",,"SUPPLIER",,"Standard [USD]","2/10 NET 30",30,,,2,10,"24-feb-2005 08:29",21
+"SUPPLIERS",16148,"Richards Associates","20142",,"SUPPLIER",,"Standard [USD]","2/10 NET 30",30,,,2,10,"24-feb-2005 08:30",22
+"SUPPLIERS",294,"Express Supplies","5002",,"FEDERAL",,"Standard [USD]","2/10 NET 30",30,,,2,10,"19-jan-2000 14:50",23
+"SUPPLIERS",969,"Goodway","5076",,"VENDOR",,"Standard [USD]","2/10 NET 30",30,,,2,10,"11-feb-2002 12:13",24
+"SUPPLIERS",16149,"Lawrence & Carter","20143",,"SUPPLIER",,"Standard [USD]","2/10 NET 30",30,,,2,10,"24-feb-2005 08:32",25
+"SUPPLIERS",295,"TempsRUs","5003",,"Service",,"Standard [USD]","2/10 NET 30",30,,,2,10,"19-jan-2000 14:56",26
+"SUPPLIERS",970,"Bigmart","5077",,"VENDOR",,"Standard [USD]","2/10 NET 30",30,,,2,10,"11-feb-2002 12:42",27
+"SUPPLIERS",1015,"NIMS","5086",,"MEDICAL MANUFACTURER",,"Standard [USD]","2/10 NET 30",30,,,2,10,"16-may-2002 18:25",28
+"SUPPLIERS",16150,"Turner and Roberts Inc.","20144",,"SUPPLIER",,"Standard [USD]","2/10 NET 30",30,,,2,10,"24-feb-2005 08:34",29
+"SUPPLIERS",517,"Grainger","5027",,"VENDOR",,"Standard []","45 Net (terms date + 45)",45,,,,,"23-aug-2000 14:42",30
+"SUPPLIERS",557,"Staples","5029",,"VENDOR",,"Standard []","45 Net (terms date + 45)",45,,,,,"29-aug-2000 09:15",31
+"SUPPLIERS",2125,"Applied Industrial Technologies, Inc.","20062",,"SUPPLIER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"11-jun-2004 09:32",32
+"SUPPLIERS",1718,"Consolidated Electric","8059",,"MAINTENANCE",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"12-sep-2003 09:33",33
+"SUPPLIERS",1596,"Newark InOne","8043",,"SUPPLIER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"28-jul-2003 13:54",34
+"SUPPLIERS",1224,"Nova Insurance Company","5110",,"INSURER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"08-nov-2002 19:33",35
+"SUPPLIERS",1160,"Northwest Electronic Supply","5101",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"08-oct-2002 11:13",36
+"SUPPLIERS",641,"Johnson & Johnson Medical","5043",,"MEDICAL MANUFACTURER",,"Standard []","45 Net (terms date + 45)",45,,,,,"31-jan-2001 12:05",37
+"SUPPLIERS",620,"Baxter Healthcare Corporation","5039",,"MEDICAL MANUFACTURER",,"Standard []","45 Net (terms date + 45)",45,,,,,"30-jan-2001 11:56",38
+"SUPPLIERS",601,"Abbott Laboratories, Inc.","5038",,"MEDICAL MANUFACTURER",,"Standard []","45 Net (terms date + 45)",45,,,,,"25-jan-2001 14:00",39
+"SUPPLIERS",335,"Mutual Insurance Company","5009",,"INSURANCE",,"Standard []","45 Net (terms date + 45)",45,,,,,"24-feb-2000 14:50",40
+"SUPPLIERS",8127,"Building Maintenance, Inc.","20088",,"MAINTENANCE",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"13-sep-2004 12:51",41
+"SUPPLIERS",145,"Industrial Dressler","2005",,"Manufacturing",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"13-jun-1997 13:07",42
+"SUPPLIERS",578,"Eastern Industrial Products","5033",,"VENDOR",,"Standard []","45 Net (terms date + 45)",45,,,,,"05-sep-2000 09:03",43
+"SUPPLIERS",558,"Boise Cascade","5030",,"VENDOR",,"Standard []","45 Net (terms date + 45)",45,,,,,"29-aug-2000 09:19",44
+"SUPPLIERS",537,"Corporate Express Office Supply","5028",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"24-aug-2000 08:37",45
+"SUPPLIERS",415,"TT Services","5017",,"Service",,"Standard []","45 Net (terms date + 45)",45,,,,,"19-jul-2000 09:41",46
+"SUPPLIERS",660,"Cardinal Medical","5044",,"MEDICAL DISTRIBUTOR",,"Standard []","45 Net (terms date + 45)",45,,,,,"01-feb-2001 09:47",47
+"SUPPLIERS",579,"Southern Office Supplies","5034",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"05-sep-2000 09:07",48
+"SUPPLIERS",559,"Software Spectrum","5031",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"29-aug-2000 09:23",49
+"SUPPLIERS",2041,"Jones, Gray, and Associates","20044",,"Service",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"18-mar-2004 10:50",50
+"SUPPLIERS",1716,"Mercury Plumbing","8057",,"MAINTENANCE",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"09-sep-2003 08:31",51
+"SUPPLIERS",1555,"Staffing Services Inc.","8040",,"IRC_JOB_AGENCY",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"26-jun-2003 10:37",52
+"SUPPLIERS",1220,"Alliance Systems","5107",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"04-nov-2002 11:55",53
+"SUPPLIERS",622,"GE Medical Systems","5041",,"MEDICAL MANUFACTURER",,"Standard []","45 Net (terms date + 45)",45,,,,,"30-jan-2001 13:59",54
+"SUPPLIERS",9127,"Yellow","20089",,"TRANSPORTADOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"15-sep-2004 15:20",55
+"SUPPLIERS",703,"iPrint","5049",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"12-jun-2001 09:52",56
+"SUPPLIERS",11,"Advantage Corp","1010",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"24-feb-1997 16:45",57
+"SUPPLIERS",3,"General Electric","1002",,"Manufacturing",,"Standard []","45 Net (terms date + 45)",45,,,,,"24-feb-1997 15:01",58
+"SUPPLIERS",2127,"Mustang Vehicle Repair & Service","20064",,"MAINTENANCE",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"08-jul-2004 04:57",59
+"SUPPLIERS",495,"Office Depot, Inc","5024",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"15-aug-2000 09:24",60
+"SUPPLIERS",2126,"Motion Industries, Inc.","20063",,"SUPPLIER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"11-jun-2004 09:35",61
+"SUPPLIERS",1719,"Flooring & Tile Specialists","8060",,"MAINTENANCE",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"12-sep-2003 09:35",62
+"SUPPLIERS",1717,"HVAC Express","8058",,"MAINTENANCE",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"09-sep-2003 08:37",63
+"SUPPLIERS",1575,"Global, Inc.","8041",,"SUPPLIER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"08-jul-2003 06:15",64
+"SUPPLIERS",1159,"Pittsburgh Electronics","5100",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"08-oct-2002 11:07",65
+"SUPPLIERS",1222,"Equipment Insurers USA","5109",,"INSURER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"08-nov-2002 19:30",66
+"SUPPLIERS",1078,"Dell Computers","5092",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"29-aug-2002 09:52",67
+"SUPPLIERS",1158,"Prouty Industrial Supply","5099",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"08-oct-2002 10:55",68
+"SUPPLIERS",1178,"CDS, Inc","5102",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"31-oct-2002 07:59",69
+"SUPPLIERS",1098,"Zaks Gift Supplies","5093",,"VENDOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"25-sep-2002 08:59",70
+"SUPPLIERS",23156,"Vantage","20173",,"SUPPLIER",,"Standard [GBP]","45 Net (terms date + 45)",45,,,,,"10-jun-2005 12:10",71
+"SUPPLIERS",14147,"Fixture Expert Inc","20128",,"SUPPLIER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"21-feb-2005 08:32",72
+"SUPPLIERS",909,"MoreDirect.com","5071",,"SUPPLIER",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"27-dec-2001 10:26",73
+"SUPPLIERS",9128,"Schneider","20090",,"TRANSPORTADOR",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"15-sep-2004 15:26",74
+"SUPPLIERS",334,"Providence Property & Casualty","5008",,"INSURANCE",,"Standard []","45 Net (terms date + 45)",45,,,,,"24-feb-2000 14:46",75
+"SUPPLIERS",12,"Next Generation Graphix (DBA, Art Wilde)","1011",,"Contractor",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"24-feb-1997 17:07",76
+"SUPPLIERS",4,"United Parcel Service","1003",,"Service",,"Standard [USD]","45 Net (terms date + 45)",45,,,,,"24-feb-1997 15:08",77
+"SUPPLIERS",147,"Allied Manufacturing","2007",,"Manufacturing",,"Standard []","45 Net (terms date + 45)",45,,,,,"06-aug-1997 10:12",78
+"SUPPLIERS",22,"Consolidated Supplies","1014",,"Manufacturing",,"Standard []","4/10, 3/20, 2/30 Net  60",60,,,4,10,"25-feb-1997 15:10",79
+"SUPPLIERS",230,"Winters Supply Company","5001",,"VENDOR",," [USD]","N30",30,,,,,"04-jan-2000 15:24",80
+"SUPPLIERS",949,"Automotive Supplier #1","5074",,"Manufacturing",,"Standard [USD]","N30",30,,,,,"08-feb-2002 04:12",81
+"SUPPLIERS",950,"Automotive Supplier #2","5075",,"Manufacturing",,"Standard [USD]","N30",30,,,,,"08-feb-2002 04:17",82
+"SUPPLIERS",476,"Anderson Fabric Company","5021",,"VENDOR",,"Standard [USD]","1/10 NET 30",30,,,1,10,"14-aug-2000 17:26",83
+"SUPPLIERS",1017,"Nonin Inc.","5088",,"MEDICAL MANUFACTURER",,"Standard [USD]","1/10 NET 30",30,,,1,10,"16-may-2002 19:31",84
+"SUPPLIERS",1014,"Horton Automotive","5085",,"MEDICAL MANUFACTURER",,"Standard [USD]","1/10 NET 30",30,,,1,10,"16-may-2002 11:59",85
+"SUPPLIERS",1312,"Twinstown Food Supply","5124",,"VENDOR",,"Standard [NTD]","30 Days Net, 14 Days -2%",30,,,,,"24-jan-2003 13:36",86

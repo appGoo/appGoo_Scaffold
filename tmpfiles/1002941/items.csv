@@ -1,0 +1,1215 @@
+"RECORD_TYPE:ITEMS","ITEM_ID","ITEM_CODE","DESCRIPTION","STOCKABLE","SELLABLE","UOM_CODE","UOM_NAME","TARGET_PRICE","ITEM_STATUS","RESTRICT_SUPPLIERS","ITEM_TYPE","CATEGORY_ID","FROM_ROWNUMBER"
+"ITEMS",63,"f80000","Sentinal Multimedia","Y","N","Ea","Each",37,"Active","N","Inventory Type",1,1
+"ITEMS",69,"f10000","Capitalizable Services - Capitalizable non-taxable services","N","N","Ea","Each",1500,"Active","N","Purchased item",22,2
+"ITEMS",71,"f11000","Desk - Capitalizable, taxable item","N","N","Ea","Each",2500,"Active","N","Purchased item",21,3
+"ITEMS",73,"f12000","Mobile phone","N","N","Ea","Each",490,"Active","N","Purchased item",36,4
+"ITEMS",75,"f20000","Paper - requires 2-way match office supply item","N","N","Ea","Each",50,"Active","N","Supply item",36,5
+"ITEMS",77,"f30000","Leather Computer Case -  3-way match item","N","N","Ea","Each",250,"Active","N","Purchased item",1,6
+"ITEMS",79,"f40000","Modem - Serial Control","Y","Y","Ea","Each",50,"Active","N","Purchased item",36,7
+"ITEMS",81,"f50000","Poison - Lot Control and Hazard Class item","Y","N","Lbs","Pounds",15,"Active","N","Purchased item",37,8
+"ITEMS",83,"f51000","Cleaning Chemicals - Lot Expiry and Lot Control","Y","N","Ea","Each",10,"Active","N","Purchased item",37,9
+"ITEMS",87,"f60000","Router - Approved Supplier required item with 3-way match","N","N","Ea","Each",130,"Active","Y","Purchased item",1,10
+"ITEMS",91,"f70000","Monitor - internally ordered, 3-way match item","N","N","Ea","Each",949,"Active","N","Inventory Type",30,11
+"ITEMS",2600,"ASO0011","19 Inch Rack - Empty","Y","Y","Ea","Each",,"Active","N","Purchased item",1,12
+"ITEMS",9200,"CM62133","Quad-Core 800x","Y","Y","Ea","Each",1905.4963,"Active","N","Purchased item",1,13
+"ITEMS",9800,"IS40202","Controller Module (DRAM, Battery)","Y","Y","Ea","Each",607.5,"Active","N","Purchased item",1,14
+"ITEMS",133,"SB68415","Chassis - Sentinel Multimedia","Y","Y","Ea","Each",788.86,"Active","N","Subassembly",114,15
+"ITEMS",149,"AS54888","Sentinel Standard Desktop","Y","Y","Ea","Each",1107.86,"Active","N","Finished good",91,16
+"ITEMS",151,"AS92689","Envoy Standard Laptop","Y","Y","Ea","Each",2935.834,"Active","N","Finished good",91,17
+"ITEMS",155,"AS18947","Sentinel Deluxe Desktop","Y","Y","Ea","Each",1207.86,"Active","N","Finished good",91,18
+"ITEMS",157,"RW15027","Plastic Stock - White","Y","N","Lbs","Pounds",0.57,"Active","N","Purchased item",35,19
+"ITEMS",159,"RW40302","Resin","Y","N","Lbs","Pounds",0.69,"Active","N","Purchased item",35,20
+"ITEMS",161,"SB56349","Drive Mount Assembly","Y","Y","Ea","Each",6.126,"Active","N","Subassembly",114,21
+"ITEMS",163,"MC48735","Drive Mount - Top - White","Y","N","Ea","Each",0.126,"Active","N","Subassembly",112,22
+"ITEMS",165,"MC61888","Drive Mount - Bottom - White","Y","N","Ea","Each",0.126,"Active","N","Subassembly",112,23
+"ITEMS",167,"CM96717","Screws.Steel.32.Phillips","Y","N","Ea","Each",0.004,"Active","N","Purchased item",35,24
+"ITEMS",169,"CM45470","Drive Mount Faceplate","Y","Y","Ea","Each",1.95,"Active","N","Purchased item",112,25
+"ITEMS",171,"MC31324","Motherboard Holder - White","Y","N","Ea","Each",0.126,"Active","N","Subassembly",112,26
+"ITEMS",173,"MC31749","Standard Steel Case","Y","Y","Ea","Each",7,"Active","N","Subassembly",112,27
+"ITEMS",175,"SB86662","Desktop Case","Y","Y","Ea","Each",68.59,"Active","N","Subassembly",114,28
+"ITEMS",177,"CM85062","Card Holder","Y","Y","Ea","Each",7.5,"Active","N","Purchased item",112,29
+"ITEMS",179,"CM45098","Slot Cover","Y","Y","Ea","Each",0.18,"Active","N","Purchased item",112,30
+"ITEMS",181,"CM52293","Power Supply","Y","Y","Ea","Each",109,"Active","N","Purchased item",34,31
+"ITEMS",183,"CM22473","Motherboard - 600 Series","Y","Y","Ea","Each",106,"Active","N","Purchased item",32,32
+"ITEMS",185,"CM41684","Hard Drive - 60GB","Y","Y","Ea","Each",201.762,"Active","N","Purchased item",31,33
+"ITEMS",187,"CM67433","Memory Card 5-in-1 Reader","Y","Y","Ea","Each",45,"Active","N","Purchased item",31,34
+"ITEMS",189,"CM47234","DVD/RW (R DL) / DVD-RAM - 16x/16x/5x Internal","Y","Y","Ea","Each",100.72,"Active","N","Purchased item",32,35
+"ITEMS",191,"CM76962","Video Card","Y","Y","Ea","Each",75,"Active","N","Purchased item",32,36
+"ITEMS",193,"CM60257","RAM - 128MB","Y","Y","Ea","Each",78,"Active","N","Purchased item",32,37
+"ITEMS",195,"CM74237","Sound Card","Y","Y","Ea","Each",65,"Active","N","Purchased item",32,38
+"ITEMS",197,"CM94043","Wi-Fi Network Card","Y","Y","Ea","Each",87,"Active","N","Purchased item",32,39
+"ITEMS",199,"CM31556","Monitor - 19"" Flat","Y","Y","Ea","Each",49.9463,"Active","N","Purchased item",30,40
+"ITEMS",201,"CM18759","Keyboard - 101 Key","Y","Y","Ea","Each",30,"Active","N","Purchased item",32,41
+"ITEMS",203,"CM25175","Manual - Vision Office Suite","Y","Y","Ea","Each",17,"Active","N","Purchased item",111,42
+"ITEMS",205,"CM13375","Manual - Vision Operating System","Y","Y","Ea","Each",17,"Active","N","Purchased item",111,43
+"ITEMS",207,"CM85773","Manual - Vision Networking","Y","Y","Ea","Each",17,"Active","N","Purchased item",111,44
+"ITEMS",209,"CM86324","Packing Material","Y","Y","Ea","Each",1.5,"Active","N","Purchased item",1,45
+"ITEMS",211,"CM42047","Power Cord","Y","Y","Ea","Each",1,"Active","N","Purchased item",32,46
+"ITEMS",213,"CM28287","Wireless Mouse","Y","Y","Ea","Each",15,"Active","N","Purchased item",32,47
+"ITEMS",215,"CM54321","Software - Word Processing","Y","Y","Ea","Each",26.7,"Active","N","Purchased item",113,48
+"ITEMS",217,"CM56560","Software - Web Browser","Y","Y","Ea","Each",44,"Active","N","Purchased item",113,49
+"ITEMS",219,"CM59311","Software - Spreadsheet","Y","Y","Ea","Each",75,"Active","N","Purchased item",113,50
+"ITEMS",221,"SB55105","SW - Standard Set","Y","Y","Ea","Each",173,"Active","N","Subassembly",114,51
+"ITEMS",225,"CM15140","Monitor - 19""","Y","Y","Ea","Each",44.3963,"Active","N","Purchased item",30,52
+"ITEMS",227,"CM68377","14"" WXGA Monitor","Y","Y","Ea","Each",443.82,"Active","N","Purchased item",30,53
+"ITEMS",229,"CM69930","Spill Resistant Keyboard","Y","Y","Ea","Each",49,"Active","N","Purchased item",32,54
+"ITEMS",231,"CM89108","Power / Recharging Unit","Y","Y","Ea","Each",26.34,"Active","N","Purchased item",34,55
+"ITEMS",233,"SB10299","Cover Assembly","Y","Y","Ea","Each",16.247,"Active","N","Subassembly",114,56
+"ITEMS",235,"SB34701","Base Assembly","Y","Y","Ea","Each",6.539,"Active","N","Subassembly",114,57
+"ITEMS",237,"CM32546","Battery -  Li Ion Pack (6 Cell)","Y","Y","Ea","Each",58,"Active","N","Purchased item",32,58
+"ITEMS",239,"SB90207","Chassis - Sentinel Standard","Y","Y","Ea","Each",688.86,"Active","N","Subassembly",114,59
+"ITEMS",241,"CM25287","Hard Drive - 500GB SSD","Y","Y","Ea","Each",176.02,"Active","N","Purchased item",31,60
+"ITEMS",243,"CM35682","Motherboard - 500 Series","Y","Y","Ea","Each",85,"Active","N","Purchased item",32,61
+"ITEMS",245,"CM99105","DDR3 SDRAM – 4GB","Y","Y","Ea","Each",47,"Active","N","Purchased item",32,62
+"ITEMS",247,"CM15138","Monitor - 17""","Y","Y","Ea","Each",215,"Active","N","Purchased item",30,63
+"ITEMS",249,"CM13139","Hard Drive - 250GB SSD","Y","Y","Ea","Each",150.393,"Active","N","Purchased item",31,64
+"ITEMS",251,"CM08830","RAM - 256MB","Y","Y","Ea","Each",102,"Active","N","Purchased item",32,65
+"ITEMS",253,"CM18761","Ergonomic Keyboard","Y","Y","Ea","Each",48,"Active","N","Purchased item",32,66
+"ITEMS",255,"CM65827","Software - Project Management","Y","Y","Ea","Each",10.45,"Active","N","Purchased item",113,67
+"ITEMS",257,"CM49954","Software - Graphics","Y","Y","Ea","Each",25.776,"Active","N","Purchased item",113,68
+"ITEMS",259,"CM44131","Modem - 56k v.90","Y","Y","Ea","Each",32.589,"Active","N","Purchased item",32,69
+"ITEMS",263,"CM94532","Software - English Office Suite","Y","Y","Ea","Each",60,"Active","N","Purchased item",113,70
+"ITEMS",269,"SB32982","Manual Set","Y","Y","Ea","Each",102,"Active","N","Subassembly",114,71
+"ITEMS",315,"MC97160","Plastic Cover - Black","Y","Y","Ea","Each",0.183,"Active","N","Subassembly",114,72
+"ITEMS",321,"RW75172","Plastic Stock - Red","Y","N","Lbs","Pounds",0.57,"Active","N","Purchased item",35,73
+"ITEMS",323,"RW54448","Plastic Stock - Black","Y","N","Lbs","Pounds",0.57,"Active","N","Purchased item",35,74
+"ITEMS",325,"CM14374","PCMCIA II Card Holder","Y","Y","Ea","Each",15,"Active","N","Purchased item",112,75
+"ITEMS",329,"CM30764","Battery Door","Y","Y","Ea","Each",0.5,"Active","N","Purchased item",112,76
+"ITEMS",331,"CM63785","Monitor Hinge","Y","Y","Ea","Each",0.56,"Active","N","Purchased item",112,77
+"ITEMS",335,"MC55728","Motherboard Holder - White","Y","N","Ea","Each",0.126,"Active","N","Subassembly",114,78
+"ITEMS",337,"MC24713","Plastic Base - Black","Y","Y","Ea","Each",0.183,"Active","N","Subassembly",114,79
+"ITEMS",341,"MC58902","Drive Mount - White","Y","N","Ea","Each",0.126,"Active","N","Subassembly",114,80
+"ITEMS",343,"CM72726","Card Holder","Y","Y","Ea","Each",4.15,"Active","N","Purchased item",112,81
+"ITEMS",354,"OP98997","Anodizing Outside Process","N","N","Ea","Each",0,"Active","N","Outside Processing Item",1,82
+"ITEMS",374,"RW94713","Sheet Metal","Y","N","FT2","Square foot",1,"Active","N","Purchased item",112,83
+"ITEMS",406,"SC94065","Resin","Y","N","Lbs","Pounds",0.69,"Active","N","Purchased item",35,84
+"ITEMS",408,"RW94043","Plastic Stock - Gray","Y","N","Lbs","Pounds",0.57,"Active","N","Purchased item",35,85
+"ITEMS",414,"f15000","Steel Girders - capitalizable asset (can be used for CIP asset)","N","N","Ea","Each",2100,"Active","N","Purchased item",43,86
+"ITEMS",416,"f16000","Dry Wall - capitalizable asset  (can be used for CIP asset)","N","N","Ea","Each",450,"Active","N","Purchased item",43,87
+"ITEMS",436,"CM76840","Lightning Inkjet Printer","Y","Y","Ea","Each",165,"Active","N","Purchased item",32,88
+"ITEMS",438,"CM74123","Gel Wrist Pad","Y","Y","Ea","Each",1.25,"Active","N","Purchased item",1,89
+"ITEMS",452,"f17000","Lumber - capitalizable asset  (can be used for CIP asset)","N","N","Ea","Each",50,"Active","N","Purchased item",43,90
+"ITEMS",484,"CM96713","Screws.Zinc.28.Phillips","Y","Y","Ea","Each",0.006,"Active","N","Purchased item",35,91
+"ITEMS",488,"CM75111","Monitor 21"" (20 Viewable) Short Depth","Y","Y","Ea","Each",194,"Active","N","Purchased item",30,92
+"ITEMS",490,"CM75113","Monitor 21"" (20"" Viewable) Digital","Y","Y","Ea","Each",147,"Active","N","Purchased item",30,93
+"ITEMS",502,"CM31558","Monitor 21"" (20"" Viewable) High Resolution","Y","Y","Ea","Each",824,"Active","N","Purchased item",30,94
+"ITEMS",544,"CM93827","Memory Card Extreme 17-in-1 Reader","Y","Y","Ea","Each",40.75,"Active","N","Purchased item",31,95
+"ITEMS",606,"CM11222","Battery - Extended Life","Y","Y","Ea","Each",100,"Active","N","Purchased item",1,96
+"ITEMS",626,"MS21662","Pens, Box of 10","Y","N","Ea","Each",0.4,"Active","N","Supply item",1,97
+"ITEMS",628,"AS72111","Envoy Deluxe Laptop","Y","Y","Ea","Each",714.834,"Active","N","Finished good",1,98
+"ITEMS",676,"SB10460","Cover Assembly","Y","Y","Ea","Each",16.247,"Active","N","Subassembly",1,99
+"ITEMS",702,"MS15501","Electro Static Discharge Bracelet","Y","N","Ea","Each",0.4,"Active","N","Purchased item",1,100
+"ITEMS",704,"MS15601","Machine Oil","Y","N","Ea","Each",0.4,"Active","N","Purchased item",1,101
+"ITEMS",706,"MS15701","Latex Gloves","Y","Y","Ea","Each",0.4,"Active","N","Purchased item",1,102
+"ITEMS",858,"CM11062","Mouse Pad","Y","Y","Ea","Each",3,"Active","N","Purchased item",1,103
+"ITEMS",860,"CM71557","Wrist Pad","Y","Y","Ea","Each",2,"Active","N","Purchased item",1,104
+"ITEMS",926,"CM23592","Molded Plastic Shell - Bottom","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,105
+"ITEMS",930,"CM23593","Plastic Clam Shell - Top","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,106
+"ITEMS",1060,"Pallet01","Pallet - Standard","Y","N","Ea","Each",0,"Active","N","Container item",1,107
+"ITEMS",1088,"CM99926","Red Plastic Form","Y","Y","Ea","Each",,"Active","N","Purchased item",1,108
+"ITEMS",1382,"CM51562","PC Bag - Double Sided, Leather","Y","Y","Ea","Each",95,"Active","N","Purchased item",91,109
+"ITEMS",1384,"CM51563","PC Bag - Slimline Leather","Y","Y","Ea","Each",75,"Active","N","Purchased item",91,110
+"ITEMS",1492,"CM55243","110 V Power Supply","Y","Y","Ea","Each",44,"Active","N","Purchased item",1,111
+"ITEMS",1494,"CM34225","220 V Power Supply","Y","Y","Ea","Each",65,"Active","N","Purchased item",1,112
+"ITEMS",1667,"CM82336","Monitor Stand","Y","Y","Ea","Each",18,"Active","N","Purchased item",1,113
+"ITEMS",1751,"DBICC"," For DBI cogs posting","Y","Y","Ea","Each",0.0005,"Active","N","Purchased item",1,114
+"ITEMS",1757,"KB15138","Monitor 19"" (18 Viewable) Digital","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,115
+"ITEMS",1769,"KB18759","Keyboard - 111 Keys","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,116
+"ITEMS",1771,"KB28287","Mouse","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,117
+"ITEMS",1773,"KB42047","Power Cord","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,118
+"ITEMS",1775,"KB86324","Packing Materials","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,119
+"ITEMS",2055,"f22000","Oversized Desk - Capitalizable, Taxable Item","N","N","Ea","Each",2500,"Active","N","Purchased item",21,120
+"ITEMS",2159,"OP10000","Outside Processing for Desktop Ruggedization Process","N","N","Ea","Each",0,"Active","N","Outside Processing Item",1,121
+"ITEMS",2161,"OP20000","Outside Processing - Laptop Ruggedization Process","N","N","Ea","Each",0,"Active","N","Outside Processing Item",1,122
+"ITEMS",2362,"SB33687","Sentinal Upgrade Software","Y","Y","Ea","Each",,"Active","N","Subassembly",1,123
+"ITEMS",2370,"CM22680","Envoy Upgrade Board (Raw)","Y","Y","Ea","Each",25,"Active","N","Purchased item",1,124
+"ITEMS",2372,"CM22684","Envoy Upgrade Switch","Y","Y","Ea","Each",10,"Active","N","Purchased item",1,125
+"ITEMS",2376,"CM22682","Envoy Upgrade Software","Y","Y","Ea","Each",5,"Active","N","Purchased item",1,126
+"ITEMS",2378,"CM22683","Envoy Upgrade Manual","Y","Y","Ea","Each",10,"Active","N","Purchased item",1,127
+"ITEMS",2398,"CM86234","PACKAGING","Y","Y","Ea","Each",1.5,"Active","N","Purchased item",1,128
+"ITEMS",2582,"ASO0001","Server User Consone (France)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,129
+"ITEMS",2584,"ASO0002","Server User Console (Europe)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,130
+"ITEMS",2586,"ASO0003","Server User Console (UK)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,131
+"ITEMS",2588,"ASO0004","Server User Console (US)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,132
+"ITEMS",2590,"ASO0005","Console Interface","Y","Y","Ea","Each",,"Active","N","Purchased item",1,133
+"ITEMS",2592,"ASO0006","Server System Console (France)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,134
+"ITEMS",2594,"ASO0007","Server System Console (Europe)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,135
+"ITEMS",2596,"ASO0008","Server System Console (UK)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,136
+"ITEMS",2598,"ASO0009","Server System Console (US)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,137
+"ITEMS",2604,"ASO0013","6KVA UPS","Y","Y","Ea","Each",,"Active","N","Purchased item",1,138
+"ITEMS",2616,"ASO0019","Dual CPU @ 400Mhz","Y","Y","Ea","Each",,"Active","N","Purchased item",1,139
+"ITEMS",2624,"ASO0023","18.2 GB Disk @ 10000 RPM","Y","Y","Ea","Each",,"Active","N","Purchased item",1,140
+"ITEMS",2630,"ASO0010","128 MB DIMM","Y","Y","Ea","Each",,"Active","N","Purchased item",1,141
+"ITEMS",2634,"ASO0027","2GB DIMM","Y","Y","Ea","Each",,"Active","N","Purchased item",1,142
+"ITEMS",2642,"CM39001","MS Exchange Server Software","Y","Y","Ea","Each",1196.2063,"Active","N","Purchased item",1,143
+"ITEMS",2646,"CM39003","Collaboration Software","Y","Y","Ea","Each",2774.9963,"Active","N","Purchased item",1,144
+"ITEMS",2686,"CM00060","10 ft RS232 Cable with F/F & 9F/25F Adapters","Y","Y","Ea","Each",14.5,"Active","N","Purchased item",1,145
+"ITEMS",2790,"ASO0012","3KVA UPS","Y","Y","Ea","Each",,"Active","N","Purchased item",1,146
+"ITEMS",2792,"CM39000","MS Server Software","Y","Y","Ea","Each",546.1163,"Active","N","Purchased item",1,147
+"ITEMS",2810,"AS65101","Vision Pad - Bronze","Y","Y","Ea","Each",,"Active","N","Finished good",1,148
+"ITEMS",2818,"SB65209","Motherboard - Silver","Y","Y","Ea","Each",,"Active","N","Subassembly",1,149
+"ITEMS",2824,"SB65302","Casing Subassembly - Silver","Y","Y","Ea","Each",,"Active","N","Subassembly",1,150
+"ITEMS",2828,"CM65305","PCB Board","Y","Y","Ea","Each",5,"Active","N","Purchased item",1,151
+"ITEMS",2830,"CM65405","Capacitor","Y","Y","Ea","Each",0.005,"Active","N","Purchased item",1,152
+"ITEMS",2832,"CM65409","Resistor","Y","Y","Ea","Each",0.025,"Active","N","Purchased item",1,153
+"ITEMS",2834,"CM65413","Transistor","Y","Y","Ea","Each",0.025,"Active","N","Purchased item",1,154
+"ITEMS",2836,"CM65404","Oscillator","Y","Y","Ea","Each",0.005,"Active","N","Purchased item",1,155
+"ITEMS",2838,"CM65201","LCD 9"" Passive Monitor","Y","Y","Ea","Each",200,"Active","N","Purchased item",1,156
+"ITEMS",2840,"CM65205","Casing - Upper","Y","Y","Ea","Each",2.5,"Active","N","Purchased item",1,157
+"ITEMS",2842,"CM65206","Casing - Lower","Y","Y","Ea","Each",2.25,"Active","N","Purchased item",1,158
+"ITEMS",2844,"CM65207","Screw","Y","Y","Ea","Each",0.0025,"Active","N","Purchased item",1,159
+"ITEMS",2846,"CM65202","LCD 11"" Passive Monitor","Y","Y","Ea","Each",300,"Active","N","Purchased item",1,160
+"ITEMS",2848,"AS66311","Vision Pad DX - Mobile Computer","Y","Y","Ea","Each",249.99,"Active","N","Finished good",1,161
+"ITEMS",2850,"CM66321","LCD Display","Y","Y","Ea","Each",4,"Active","Y","Purchased item",1,162
+"ITEMS",2852,"CM66326","Plastic Case","Y","Y","Ea","Each",1.2,"Active","Y","Purchased item",1,163
+"ITEMS",2856,"CM66332","PCB - Main","Y","Y","Ea","Each",5,"Active","Y","Purchased item",1,164
+"ITEMS",2858,"CM66331","Micro 24k","Y","Y","Ea","Each",2.5,"Active","Y","Purchased item",1,165
+"ITEMS",2860,"CM66333","Resistor SMT 0.5 kOhm 0603","Y","Y","Ea","Each",0.06,"Active","Y","Purchased item",1,166
+"ITEMS",2888,"CM51564","Vision Pad Bag","Y","Y","Ea","Each",5,"Active","N","Purchased item",1,167
+"ITEMS",2910,"CM66371","Desk Stand Top - Oak","Y","N","Ea","Each",,"Active","N","Purchased item",1,168
+"ITEMS",2912,"CM66372","Desk Stand Legs - Oak","Y","N","Ea","Each",3.75,"Active","N","Purchased item",114,169
+"ITEMS",3041,"CM55437","Docking Station","Y","Y","Ea","Each",135,"Active","N","Purchased item",1,170
+"ITEMS",3043,"CM51565","Gladiator Leather PC Bag","Y","Y","Ea","Each",,"Active","N","Purchased item",1,171
+"ITEMS",3057,"CP20003","700MB Recordable CD 80min","Y","Y","CAS","Case",,"Active","N","Purchased item",1,172
+"ITEMS",3077,"CM11199","Replacement Laptop Battery","Y","Y","Ea","Each",,"Active","N","Purchased item",1,173
+"ITEMS",3097,"BUSCARDS","Business Cards, Box of 250","N","N","BOX","BOX",35,"Active","N","Purchased item",36,174
+"ITEMS",3117,"TEMP-SEC","Temporary Secretarial Services","N","N","DAY","Day",200,"Active","N","Purchased item",242,175
+"ITEMS",3751,"CM76845","Lightning Laser Printer","Y","Y","Ea","Each",295,"Active","N","Purchased item",1,176
+"ITEMS",3771,"JMKTEST","JMK test item for IP load","N","N","Ea","Each",100,"Active","N","Purchased item",1,177
+"ITEMS",4157,"IV02110","IV Vented /NonVented Administration Set with 2 VersaSafe Injection Sites","Y","Y","Ea","Each",17.34,"Active","N","Chargeable Patient Item",1205,178
+"ITEMS",4159,"IV18500","IVAC Temperature Probe Covers","Y","Y","Ea","Each",2.45,"Active","N","Non-chargeable Patient Item",1205,179
+"ITEMS",4163,"UC13649","Urine Collection and Transportation Kit","Y","Y","Ea","Each",23.12,"Active","N","Chargeable Patient Item",1205,180
+"ITEMS",4177,"IV15335","Syringe, 6CC with 21x1 Needle","Y","Y","BX5","Box of 5",4.54,"Active","N","Non-chargeable Patient Item",1205,181
+"ITEMS",4179,"UC13679","Urine Collection Tube","Y","Y","Ea","Each",4.99,"Active","N","Chargeable Patient Item",1205,182
+"ITEMS",4181,"UC13648","Push broom","Y","Y","Ea","Each",12.5,"Active","N","Purchased item",1205,183
+"ITEMS",4187,"IV00021","Syringe, 12CC without needle slip tip","Y","Y","BX5","Box of 5",5.59,"Active","N","Non-chargeable Patient Item",1205,184
+"ITEMS",4189,"WC12494","FIBRACOL wound dressing","Y","Y","Ea","Each",1.45,"Active","N","Chargeable Patient Item",1205,185
+"ITEMS",4193,"WC14634","BAND-AID bandages","Y","Y","B1H","Box of 100",2.45,"Active","N","Non-chargeable Patient Item",1205,186
+"ITEMS",4199,"WC15140","DERMICEL Cloth Tape","Y","Y","ROL","ROLL",1.12,"Active","N","Chargeable Patient Item",1205,187
+"ITEMS",4201,"WC17634","NU-GAUZE Sponges","Y","Y","Ea","Each",0.75,"Active","N","Chargeable Patient Item",1205,188
+"ITEMS",4203,"WC15147","ADAPTIC Wound Dressing","Y","Y","Ea","Each",0.87,"Active","N","Chargeable Patient Item",1205,189
+"ITEMS",4205,"WC12015","Moleskin Adhesive","Y","Y","Ea","Each",1.16,"Active","N","Chargeable Patient Item",1205,190
+"ITEMS",4207,"GL11046","MICRO-TOUCH* Medical Exam Gloves - Medium","Y","Y","B50","Box of 50",2.1,"Active","N","Non-chargeable Patient Item",1205,191
+"ITEMS",4209,"GL11047","ALLERGARD* Synthetic (non-latex) Surgical Gloves","Y","Y","B50","Box of 50",2.45,"Active","Y","Non-chargeable Patient Item",1205,192
+"ITEMS",4237,"Wheel Assembly - Goodyear","Wheel Assembly: Goodyear Eagle GA P205/65R15","Y","Y","Ea","Each",175,"Active","N","Purchased item",2759,193
+"ITEMS",4239,"Wheel Assembly - Michelin","Wheel Assembly: Michelin LTX LT215/85R16","Y","Y","Ea","Each",185,"Active","N","Purchased item",2759,194
+"ITEMS",4321,"HC31763","Magnetic Resonance Imaging (MRI) 1.5T Signa CV/i  Cardiovascular","N","Y","Ea","Each",1500000,"Active","N","Purchased item",1206,195
+"ITEMS",4339,"GS00115","Cleanup wipes","Y","Y","BG","Bag",0.96,"Active","N","Purchased item",3124,196
+"ITEMS",4341,"GS00293","Bottled water","Y","Y","CTN","CARTON",63.35,"Active","N","Purchased item",3124,197
+"ITEMS",4343,"GS01355","Cap Red Safesite","Y","Y","B1H","Box of 100",12.5,"Active","N","Non-chargeable Patient Item",1082,198
+"ITEMS",4345,"UC00167","Floor cleaner","Y","Y","CS6","Case of 6",49.9,"Active","N","Purchased item",1205,199
+"ITEMS",4347,"GS00964","Glass cleaner","Y","Y","CS6","Case of 6",7.02,"Active","N","Purchased item",3124,200
+"ITEMS",4442,"CM11911","Wireless Mouse","Y","Y","Ea","Each",67.85,"Active","N","Purchased item",1,201
+"ITEMS",4508,"Radio Frequency Receiver","Radio Frequency Receiver","Y","N","Ea","Each",,"Active","N","Inventory Type",1,202
+"ITEMS",4576,"WM107","Multi Function Printer","Y","Y","Ea","Each",,"Active","N","Purchased item",1,203
+"ITEMS",4578,"WM119","Photo Quality Printer","Y","Y","Ea","Each",,"Active","N","Purchased item",1,204
+"ITEMS",4586,"WM619","Flat Panel Speaker System TPD","Y","Y","Ea","Each",,"Active","N","Purchased item",1,205
+"ITEMS",4604,"WM233","56 kv V.90 Fax Modem (Internal)","Y","Y","Ea","Each",,"Active","N","Purchased item",1,206
+"ITEMS",4620,"WM500","18.1"" TFT-LCD Monitor TPD","Y","Y","Ea","Each",,"Active","N","Purchased item",1,207
+"ITEMS",4630,"WM579","15"" TFT-LCD Flat Panel Monitor TPD","Y","Y","Ea","Each",,"Active","N","Purchased item",1,208
+"ITEMS",4642,"SMC1000","Raw Wafer","Y","Y","Ea","Each",15,"Active","N","Purchased item",1,209
+"ITEMS",4725,"CM08512","RAM - 512MB","Y","Y","Ea","Each",,"Active","N","Purchased item",1,210
+"ITEMS",4747,"CM41020","Hard Drive - 120GB","Y","Y","Ea","Each",25.8963,"Active","N","Purchased item",1,211
+"ITEMS",4749,"CM41420","Hard Drive - 40GB","Y","Y","Ea","Each",,"Active","N","Purchased item",1,212
+"ITEMS",4751,"CM41520","Hard Drive - 500GB","Y","Y","Ea","Each",31.4463,"Active","N","Purchased item",1,213
+"ITEMS",4761,"CM62301","Laser Printer 6 ppm","Y","Y","Ea","Each",100,"Active","N","Subassembly",1,214
+"ITEMS",4763,"CM62302","Laser Printer - 20 ppm","Y","Y","Ea","Each",200,"Active","N","Subassembly",1,215
+"ITEMS",4774,"f50010","General Purpose Rat Poison","Y","N","Lbs","Pounds",10,"Active","N","Purchased item",1,216
+"ITEMS",4776,"f50020","General Purpose Ant Spray, 6 cans per pack","Y","N","Ea","Each",20,"Active","N","Purchased item",1,217
+"ITEMS",4814,"AS66312","Vision Pad SX - Mobile Computer","Y","Y","Ea","Each",289.99,"Active","N","Finished good",1,218
+"ITEMS",4816,"AS66313","Vision Pad ZX - Mobile Computer","Y","Y","Ea","Each",309.99,"Active","N","Finished good",1,219
+"ITEMS",4818,"CM66322","LCD Display","Y","Y","Ea","Each",4,"Active","Y","Purchased item",30,220
+"ITEMS",4820,"CM66323","LCD Display","Y","Y","Ea","Each",4,"Active","Y","Purchased item",1,221
+"ITEMS",4822,"CM66327","Plastic Case","Y","Y","Ea","Each",1.2,"Active","Y","Purchased item",1,222
+"ITEMS",4824,"CM66328","Plastic Case","Y","Y","Ea","Each",1.2,"Active","Y","Purchased item",1,223
+"ITEMS",4830,"CM66334","PCB - Main","Y","Y","Ea","Each",5,"Active","Y","Purchased item",32,224
+"ITEMS",4832,"CM66337","PCB - Main","Y","Y","Ea","Each",5,"Active","Y","Purchased item",1,225
+"ITEMS",4834,"CM66335","Micro 48k","Y","Y","Ea","Each",2.5,"Active","Y","Purchased item",1,226
+"ITEMS",4836,"CM66338","Micro 64k","Y","Y","Ea","Each",2.5,"Active","Y","Purchased item",1,227
+"ITEMS",4838,"CM66336","Resistor SMT 1.0 kOhm 0604","Y","Y","Ea","Each",0.06,"Active","Y","Purchased item",1,228
+"ITEMS",4840,"CM66339","Resistor SMT 1.5 kOhm 0605","Y","Y","Ea","Each",0.06,"Active","Y","Purchased item",1,229
+"ITEMS",4875,"CM007007","Gab Jam","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,230
+"ITEMS",5252,"SMC1100","Raw Wafer","Y","Y","Ea","Each",15,"Active","N","Purchased item",1,231
+"ITEMS",5372,"z7110","Advertising Services","N","N","HRS","HRS",400,"Active","N","Contracts - Consulting",1353,232
+"ITEMS",5432,"SMC1200","Raw Wafer","Y","Y","Ea","Each",15,"Active","N","Purchased item",1,233
+"ITEMS",5453,"CM080901","Sentinel Multi-Media Package","Y","Y","Ea","Each",0,"Active","N","Purchased item",1,234
+"ITEMS",5552,"z7120","Public Relations Services","N","N","HRS","HRS",350,"Active","N","Contracts - Consulting",1353,235
+"ITEMS",5554,"z7230","Warehousing Contracts","N","N","MTH","Month",10000,"Active","N","Contracts - Consulting",1354,236
+"ITEMS",5556,"z7440","Cleaning and Grounds Maintenance","N","N","MTH","Month",3000,"Active","N","Contracts - Consulting",1354,237
+"ITEMS",5560,"z7620","Legal Services","N","N","HRS","HRS",450,"Active","N","Contracts - Consulting",1353,238
+"ITEMS",5610,"CM66421","LCD Panel","Y","Y","Ea","Each",4,"Active","Y","Purchased item",1,239
+"ITEMS",5612,"CM66422","Case","Y","Y","Ea","Each",1.2,"Active","Y","Purchased item",1,240
+"ITEMS",5614,"CM66423","Processor","Y","Y","Ea","Each",1.2,"Active","Y","Purchased item",1,241
+"ITEMS",5616,"OP30000","Outside Processing for Testing","N","N","Ea","Each",0,"Active","N","Outside Processing Item",1,242
+"ITEMS",5728,"z7235","Weekly Warehousing","N","N","WK","Week",25000,"Active","N","Contracts - Consulting",1354,243
+"ITEMS",5730,"z7445","Cleaning and Maintenance - Weekly","N","N","WK","Week",26000,"Active","N","Contracts - Consulting",1354,244
+"ITEMS",5732,"f13000","File Cabinets -  5 Drawer Lateral (Capitalizable)","N","N","Ea","Each",1500,"Active","N","Purchased item",21,245
+"ITEMS",5734,"f71000","18"" LCD Flat Panel Monitor","N","N","Ea","Each",949,"Active","N","Purchased item",30,246
+"ITEMS",5832,"SMC1400","Raw Wafer","Y","Y","Ea","Each",15,"Active","N","Purchased item",1,247
+"ITEMS",6108,"75100007","Cartridge Carrier","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,248
+"ITEMS",6110,"75100008","Ribbon Cable","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,249
+"ITEMS",6112,"75100009","Label","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,250
+"ITEMS",6114,"75100010","Retaining Spring","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,251
+"ITEMS",6116,"75100012","Seal","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,252
+"ITEMS",6118,"75100013","Electronic Contact Strip","Y","Y","Ea","Each",1,"Active","Y","Purchased item",500,253
+"ITEMS",6120,"75100031","Polythene","Y","Y","LB","LB",1,"Active","Y","Purchased item",1,254
+"ITEMS",6122,"75100032","Plastic for Cartridge","Y","Y","LB","LB",1,"Active","Y","Purchased item",1,255
+"ITEMS",6124,"75100033","Raw Friction Roller","Y","Y","LB","LB",1,"Active","Y","Purchased item",1,256
+"ITEMS",6126,"75100034","Steel for Gears","Y","Y","LB","LB",1,"Active","Y","Purchased item",1,257
+"ITEMS",6128,"75100026","Motor Housing Casting","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,258
+"ITEMS",6130,"75100027","Motor","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,259
+"ITEMS",6132,"75100028","Sleeve","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,260
+"ITEMS",6134,"75100030","Shaft Raw Casting","Y","Y","Ea","Each",1,"Active","Y","Purchased item",1,261
+"ITEMS",6734,"FAB-OSP","Fab Sector Outside Processing","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,262
+"ITEMS",6761,"AS66629","Envoy Ruggedized Laptop","Y","Y","Ea","Each",2935.834,"Active","N","Finished good",1,263
+"ITEMS",6858,"CP20001","Trade Management Misc. Item","Y","Y","Ea","Each",1,"Active","N","Purchased item",1,264
+"ITEMS",6870,"CP20002","Trade Management Misc. Item 2","Y","Y","Ea","Each",1,"Active","N","Purchased item",1,265
+"ITEMS",7011,"HC77204","Cardio Respitory Monitor Respitrace 204","N","Y","Ea","Each",5000,"Active","N","Purchased item",1541,266
+"ITEMS",7013,"HC66666","Holter Fetal Monitor","N","Y","Ea","Each",7600,"Active","N","Purchased item",1541,267
+"ITEMS",7017,"HC99099","Pulse Oximeter Model 8500","N","Y","Ea","Each",2200,"Active","N","Purchased item",1541,268
+"ITEMS",7115,"WD50200","23.5"" x 35.50"" Performance Tempered Insulated Glass (Double Glazed)","Y","Y","Ea","Each",2.25,"Active","N","Purchased item",1,269
+"ITEMS",7117,"WD50201","23.5"" x 35.50"" Performance Tempered Insulated Glass with UV Filters (Double Glazed)","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,270
+"ITEMS",7119,"WD50202","23.5"" x 35.50"" High Performance Tempered Insulated Glass with UV Filters (Triple Glazed)","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,271
+"ITEMS",7121,"WD50203","48.5"" x 69.50"" Performance Tempered Insulated Glass (Double Glazed)","Y","Y","Ea","Each",2.25,"Active","N","Purchased item",1,272
+"ITEMS",7123,"WD50204","48.5"" x 69.50"" Performance Tempered Insulated Glass with UV Filters (Double Glazed)","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,273
+"ITEMS",7125,"WD50205","48.5"" x 69.50"" High Performance Tempered Insulated Glass with UV Filters (Triple Glazed)","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,274
+"ITEMS",7127,"WD50206","48.5"" Dia Performance Tempered Insulated Glass (Double Glazed)","Y","Y","Ea","Each",2.25,"Active","N","Purchased item",1,275
+"ITEMS",7129,"WD50207","48.5"" Dia Performance Tempered Insulated Glass with UV Filters (Double Glazed)","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,276
+"ITEMS",7131,"WD50208","48.5"" Dia High Performance Tempered Insulated Glass with UV Filters (Triple Glazed)","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,277
+"ITEMS",7133,"WD50300","23.5"" x 36.25"" x 7/8"" 6 over 6 Special, White Cladding Muntin","Y","Y","Ea","Each",4.5,"Active","N","Purchased item",1,278
+"ITEMS",7135,"WD50301","23.5"" x 36.25"" x 7/8"" 6 over 6 Special, Almond Cladding Muntin","Y","Y","Ea","Each",4.5,"Active","N","Purchased item",1,279
+"ITEMS",7137,"WD50302","23.5"" x 36.25"" x 7/8"" 6 over 6 Special, Brick Red Cladding Muntin","Y","Y","Ea","Each",4.5,"Active","N","Purchased item",1,280
+"ITEMS",7139,"WD50303","48.5"" x 69.50"" x 7/8"" 6 over 6 Special, White Cladding Muntin","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,281
+"ITEMS",7141,"WD50304","48.5"" x 69.50"" x 7/8"" 6 over 6 Special, Almond Cladding Muntin","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,282
+"ITEMS",7143,"WD50305","48.5"" x 69.50"" x 7/8"" 6 over 6 Special, Brick Red Cladding Muntin","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,283
+"ITEMS",7145,"WD50306","48.5"" Dia x 7/8"" 6 over 6 Special, White Cladding Muntin","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,284
+"ITEMS",7147,"WD50307","48.5"" Dia x 7/8"" 6 over 6 Special, Almond Cladding Muntin","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,285
+"ITEMS",7149,"WD50308","48.5"" Dia x 7/8"" 6 over 6 Special, Brick Red Cladding Muntin","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,286
+"ITEMS",7151,"WD50309","23.5"" x 36.25"" x 7/8"" 8 over 8 Special, White Cladding Muntin","Y","Y","Ea","Each",6.75,"Active","N","Purchased item",1,287
+"ITEMS",7153,"WD50310","23.5"" x 36.25"" x 7/8"" 8 over 8 Special, Almond Cladding Muntin","Y","Y","Ea","Each",6.75,"Active","N","Purchased item",1,288
+"ITEMS",7155,"WD50311","23.5"" x 36.25"" x 7/8"" 8 over 8 Special, Brick Red Cladding Muntin","Y","Y","Ea","Each",6.75,"Active","N","Purchased item",1,289
+"ITEMS",7157,"WD50312","48.5"" x 69.50"" x 7/8"" 8 over 8 Special, White Cladding Muntin","Y","Y","Ea","Each",9.9,"Active","N","Purchased item",1,290
+"ITEMS",7159,"WD50313","48.5"" x 69.50"" x 7/8"" 8 over 8 Special, Almond Cladding Muntin","Y","Y","Ea","Each",9.9,"Active","N","Purchased item",1,291
+"ITEMS",7161,"WD50314","48.5"" x 69.50"" x 7/8"" 8 over 8 Special, Brick Red Cladding Muntin","Y","Y","Ea","Each",9.9,"Active","N","Purchased item",1,292
+"ITEMS",7163,"WD50315","48.5"" Dia x 7/8"" 8 over 8 Special, White Cladding Muntin","Y","Y","Ea","Each",9.9,"Active","N","Purchased item",1,293
+"ITEMS",7165,"WD50316","48.5"" Dia x 7/8"" 8 over 8 Special, Almond Cladding Muntin","Y","Y","Ea","Each",9.9,"Active","N","Purchased item",1,294
+"ITEMS",7167,"WD50317","48.5"" Dia x 7/8"" 8 over 8 Special, Brick Red Cladding Muntin","Y","Y","Ea","Each",9.9,"Active","N","Purchased item",1,295
+"ITEMS",7169,"WD50400","25"" Diameter, White Cladding, White Interior Curved Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,296
+"ITEMS",7171,"WD50401","25"" Diameter, Almond Cladding, White Interior Curved Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,297
+"ITEMS",7173,"WD50402","25"" Diameter, Brick Red Cladding, White Interior Curved Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,298
+"ITEMS",7175,"WD50403","25"" Diameter, White Cladding, Prime Interior Curved Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,299
+"ITEMS",7177,"WD50404","25"" Diameter, Almond Cladding, Prime Interior Curved Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,300
+"ITEMS",7179,"WD50405","25"" Diameter, Brick Red Cladding, Prime Interior Curved Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,301
+"ITEMS",7181,"WD50406","50"" Diameter, White Cladding, White Interior Curved Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,302
+"ITEMS",7183,"WD50407","50"" Diameter, Almond Cladding, White Interior Curved Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,303
+"ITEMS",7185,"WD50408","50"" Diameter, Brick Red Cladding, White Interior Curved Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,304
+"ITEMS",7187,"WD50409","50"" Diameter, White Cladding, Prime Interior Curved Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,305
+"ITEMS",7189,"WD50410","50"" Diameter, Almond Cladding, Prime Interior Curved Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,306
+"ITEMS",7191,"WD50411","50"" Diameter, Brick Red Cladding, Prime Interior Curved Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,307
+"ITEMS",7193,"WD50500","25"", White Cladding, White Interior Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,308
+"ITEMS",7195,"WD50501","25"", Almond Cladding, White Interior Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,309
+"ITEMS",7197,"WD50502","25"", Brick Red Cladding, White Interior Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,310
+"ITEMS",7199,"WD50503","25"", White Cladding, Prime Interior Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,311
+"ITEMS",7201,"WD50504","25"", Almond Cladding, Prime Interior Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,312
+"ITEMS",7203,"WD50505","25"", Brick Red Cladding, Prime Interior Head Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,313
+"ITEMS",7205,"WD50506","50"", White Cladding, White Interior Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,314
+"ITEMS",7207,"WD50507","50"", Almond Cladding, White Interior Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,315
+"ITEMS",7209,"WD50508","50"", Brick Red Cladding, White Interior Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,316
+"ITEMS",7211,"WD50509","50"", White Cladding, Prime Interior Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,317
+"ITEMS",7213,"WD50510","50"", Almond Cladding, Prime Interior Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,318
+"ITEMS",7215,"WD50511","50"", Brick Red Cladding, Prime Interior Head Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,319
+"ITEMS",7217,"WD50600","25"", White Cladding, White Interior Sill","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,320
+"ITEMS",7219,"WD50601","25"", Almond Cladding, White Interior Sill","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,321
+"ITEMS",7221,"WD50602","25"", Brick Red Cladding, White Interior Sill","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,322
+"ITEMS",7223,"WD50603","25"", White Cladding, Prime Interior Sill","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,323
+"ITEMS",7225,"WD50604","25"", Almond Cladding, Prime Interior Sill","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,324
+"ITEMS",7227,"WD50605","25"", Brick Red Cladding, Prime Interior Sill","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,325
+"ITEMS",7229,"WD50606","50"", White Cladding, White Interior Sill","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,326
+"ITEMS",7231,"WD50607","50"", Almond Cladding, White Interior Sill","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,327
+"ITEMS",7233,"WD50608","50"", Brick Red Cladding, White Interior Sill","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,328
+"ITEMS",7235,"WD50609","50"", White Cladding, Prime Interior Sill","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,329
+"ITEMS",7237,"WD50610","50"", Almond Cladding, Prime Interior Sill","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,330
+"ITEMS",7239,"WD50611","50"", Brick Red Cladding, Prime Interior Sill","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,331
+"ITEMS",7241,"WD50700","35"", White Cladding, White Interior Side Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,332
+"ITEMS",7243,"WD50701","35"", Almond Cladding, White Interior Side Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,333
+"ITEMS",7245,"WD50702","35"", Brick Red Cladding, White Interior Side Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,334
+"ITEMS",7247,"WD50703","35"", White Cladding, Prime Interior Side Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,335
+"ITEMS",7249,"WD50704","35"", Almond Cladding, Prime Interior Side Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,336
+"ITEMS",7251,"WD50705","35"", Brick Red Cladding, Prime Interior Side Jamb","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,337
+"ITEMS",7271,"WD50706","71"", White Cladding, White Interior Side Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,338
+"ITEMS",7273,"WD50707","71"", Almond Cladding, White Interior Side Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,339
+"ITEMS",7275,"WD50708","71"", Brick Red Cladding, White Interior Side Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,340
+"ITEMS",7277,"WD50709","71"", White Cladding, Prime Interior Side Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,341
+"ITEMS",7279,"WD50710","71"", Almond Cladding, Prime Interior Side Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,342
+"ITEMS",7281,"WD50711","71"", Brick Red Cladding, Prime Interior Side Jamb","Y","Y","Ea","Each",24.75,"Active","N","Purchased item",1,343
+"ITEMS",7283,"WD50800","23"" Diameter, White Cladding, White Interior Curved Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,344
+"ITEMS",7285,"WD50801","23"" Diameter, Almond Cladding, White Interior Curved Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,345
+"ITEMS",7287,"WD50802","23"" Diameter, Brick Red Cladding, White Interior Curved Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,346
+"ITEMS",7289,"WD50803","23"" Diameter, White Cladding, Prime Interior Curved Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,347
+"ITEMS",7291,"WD50804","23"" Diameter, Almond Cladding, Prime Interior Curved Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,348
+"ITEMS",7293,"WD50805","23"" Diameter, Brick Red Cladding, Prime Interior Curved Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,349
+"ITEMS",7295,"WD50806","48"" Diameter, White Cladding, White Interior Curved Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,350
+"ITEMS",7297,"WD50807","48"" Diameter, Almond Cladding, White Interior Curved Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,351
+"ITEMS",7299,"WD50808","48"" Diameter, Brick Red Cladding, White Interior Curved Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,352
+"ITEMS",7301,"WD50809","48"" Diameter, White Cladding, Prime Interior Curved Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,353
+"ITEMS",7303,"WD50810","48"" Diameter, Almond Cladding, Prime Interior Curved Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,354
+"ITEMS",7305,"WD50811","48"" Diameter, Brick Red Cladding, Prime Interior Curved Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,355
+"ITEMS",7307,"WD50900","23"", White Cladding, White Interior Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,356
+"ITEMS",7309,"WD50901","23"", Almond Cladding, White Interior Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,357
+"ITEMS",7311,"WD50902","23"", Brick Red Cladding, White Interior Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,358
+"ITEMS",7313,"WD50903","23"", White Cladding, Prime Interior Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,359
+"ITEMS",7315,"WD50904","23"", Almond Cladding, Prime Interior Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,360
+"ITEMS",7317,"WD50905","23"", Brick Red Cladding, Prime Interior Rail","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,361
+"ITEMS",7319,"WD50906","48"", White Cladding, White Interior Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,362
+"ITEMS",7321,"WD50907","48"", Almond Cladding, White Interior Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,363
+"ITEMS",7323,"WD50908","48"", Brick Red Cladding, White Interior Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,364
+"ITEMS",7325,"WD50909","48"", White Cladding, Prime Interior Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,365
+"ITEMS",7327,"WD50910","48"", Almond Cladding, Prime Interior Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,366
+"ITEMS",7329,"WD50911","48"", Brick Red Cladding, Prime Interior Rail","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,367
+"ITEMS",7331,"WD51000","17.75"", White Cladding, White Interior Stile","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,368
+"ITEMS",7333,"WD51001","17.75"", Almond Cladding, White Interior Stile","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,369
+"ITEMS",7335,"WD51002","17.75"", Brick Red Cladding, White Interior Stile","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,370
+"ITEMS",7337,"WD51003","17.75"", White Cladding, Prime Interior Stile","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,371
+"ITEMS",7339,"WD51004","17.75"", Almond Cladding, Prime Interior Stile","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,372
+"ITEMS",7341,"WD51005","17.75"", Brick Red Cladding, Prime Interior Stile","Y","Y","Ea","Each",9,"Active","N","Purchased item",1,373
+"ITEMS",7343,"WD51006","35.75"", White Cladding, White Interior Stile","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,374
+"ITEMS",7345,"WD51007","35.75"", Almond Cladding, White Interior Stile","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,375
+"ITEMS",7347,"WD51008","35.75"", Brick Red Cladding, White Interior Stile","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,376
+"ITEMS",7349,"WD51009","35.75"", White Cladding, Prime Interior Stile","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,377
+"ITEMS",7351,"WD51010","35.75"", Almond Cladding, Prime Interior Stile","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,378
+"ITEMS",7353,"WD51011","35.75"", Brick Red Cladding, Prime Interior Stile","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,379
+"ITEMS",7355,"WD51100","71"" x 3/8"", White Interior Extension Jamb","Y","Y","Ea","Each",6.75,"Active","N","Purchased item",1,380
+"ITEMS",7357,"WD51101","71"" x 3/8"", Prime Interior Extension Jamb","Y","Y","Ea","Each",6.75,"Active","N","Purchased item",1,381
+"ITEMS",7359,"WD51102","25"" x 3/8"", White Interior Extension Jamb","Y","Y","Ea","Each",4.05,"Active","N","Purchased item",1,382
+"ITEMS",7361,"WD51103","25"" x 3/8"", Prime Interior Extension Jamb","Y","Y","Ea","Each",4.05,"Active","N","Purchased item",1,383
+"ITEMS",7363,"WD51104","50"" x 3/8"", White Interior Extension Jamb","Y","Y","Ea","Each",5.85,"Active","N","Purchased item",1,384
+"ITEMS",7365,"WD51105","50"" x 3/8"", Prime Interior Extension Jamb","Y","Y","Ea","Each",5.85,"Active","N","Purchased item",1,385
+"ITEMS",7367,"WD51106","71"" x 1-3/4"", White Interior Extension Jamb","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,386
+"ITEMS",7369,"WD51107","71"" x 1-3/4"", Prime Interior Extension Jamb","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",1,387
+"ITEMS",7371,"WD51108","25"" x 1-3/4"", White Interior Extension Jamb","Y","Y","Ea","Each",5.4,"Active","N","Purchased item",1,388
+"ITEMS",7373,"WD51109","25"" x 1-3/4"", Prime Interior Extension Jamb","Y","Y","Ea","Each",5.4,"Active","N","Purchased item",1,389
+"ITEMS",7375,"WD51110","50"" x 1-3/4"", White Interior Extension Jamb","Y","Y","Ea","Each",7.2,"Active","N","Purchased item",1,390
+"ITEMS",7377,"WD51111","50"" x 1-3/4"", Prime Interior Extension Jamb","Y","Y","Ea","Each",7.2,"Active","N","Purchased item",1,391
+"ITEMS",7379,"WD51200","50"" Dia x 3/8"", White Interior Curved Extension Jamb","Y","Y","Ea","Each",5.85,"Active","N","Purchased item",1,392
+"ITEMS",7381,"WD51201","50"" Dia x 3/8"", Prime Interior Curved Extension Jamb","Y","Y","Ea","Each",5.85,"Active","N","Purchased item",1,393
+"ITEMS",7383,"WD51202","25"" Dia x 3/8"", White Interior Curved Extension Jamb","Y","Y","Ea","Each",4.05,"Active","N","Purchased item",1,394
+"ITEMS",7385,"WD51203","25"" Dia x 3/8"", Prime Interior Curved Extension Jamb","Y","Y","Ea","Each",4.05,"Active","N","Purchased item",1,395
+"ITEMS",7387,"WD51204","50"" Dia x 1-3/4"", White Interior Curved Extension Jamb","Y","Y","Ea","Each",7.2,"Active","N","Purchased item",1,396
+"ITEMS",7389,"WD51205","50"" Dia x 1-3/4"", Prime Interior Curved Extension Jamb","Y","Y","Ea","Each",7.2,"Active","N","Purchased item",1,397
+"ITEMS",7391,"WD51206","25"" Dia x 1-3/4"", White Interior Curved Extension Jamb","Y","Y","Ea","Each",5.4,"Active","N","Purchased item",1,398
+"ITEMS",7393,"WD51207","25"" Dia x 1-3/4"", Prime Interior Curved Extension Jamb","Y","Y","Ea","Each",5.4,"Active","N","Purchased item",1,399
+"ITEMS",7395,"WD51300","Brass Hardware","Y","Y","Ea","Each",17.55,"Active","N","Purchased item",1,400
+"ITEMS",7397,"WD51301","Gunmetal Hardware","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,401
+"ITEMS",7399,"WD51302","White Hardware","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,402
+"ITEMS",7953,"CM33767","Heavy Duty Power Supply","Y","Y","Ea","Each",32,"Active","N","Purchased item",1,403
+"ITEMS",7975,"CM44312","Laptop Upgrade Board","Y","Y","Ea","Each",27.55,"Active","N","Purchased item",1,404
+"ITEMS",7977,"CM44316","Processor","Y","Y","Ea","Each",92.3,"Active","N","Purchased item",1,405
+"ITEMS",7979,"AS66201","Vision Pad - Platinum","Y","Y","Ea","Each",,"Active","N","Finished good",1,406
+"ITEMS",7981,"AS66202","Vision Pad - Platinum Elite","Y","Y","Ea","Each",,"Active","N","Finished good",1,407
+"ITEMS",7983,"SB66231","PCB Assy - Vision Pad Plantinum Elite","Y","Y","Ea","Each",25,"Active","N","Subassembly",1,408
+"ITEMS",7987,"CM66224","LCD Display","Y","Y","Ea","Each",50.48,"Active","N","Purchased item",1,409
+"ITEMS",7989,"CM66229","Plastic Case","Y","Y","Ea","Each",10,"Active","N","Purchased item",1,410
+"ITEMS",7991,"CM66236","Resistor SMT 1.0 kOhm 0604","Y","Y","Ea","Each",0.06,"Active","N","Purchased item",1,411
+"ITEMS",7993,"CM66237","PCB Main","Y","Y","Ea","Each",15,"Active","N","Purchased item",1,412
+"ITEMS",7995,"CM66248","Micro 64k","Y","Y","Ea","Each",59.74,"Active","N","Purchased item",1,413
+"ITEMS",7997,"CM66299","Capacitor SMT 1.5 kOhm","Y","Y","Ea","Each",0.06,"Active","N","Purchased item",1,414
+"ITEMS",7999,"CM66298","Capacitor SMT 0.5 kOhm","Y","Y","Ea","Each",0.06,"Active","N","Purchased item",1,415
+"ITEMS",8001,"CM66239","Resistor SMT 1.5 kOhm 0605","Y","Y","Ea","Each",0.06,"Active","N","Purchased item",1,416
+"ITEMS",8003,"FS89109","Power / Recharging Unit","Y","Y","Ea","Each",26.34,"Active","N","Purchased item",1,417
+"ITEMS",8025,"Motor - Electric Fork Lift","Electric Fork Lift Motor","Y","Y","Ea","Each",3567.34,"Active","N","Purchased item",1205,418
+"ITEMS",8027,"Motor - Propane Fork Lift","Propane Fork Lift Motor","Y","Y","Ea","Each",2458.32,"Active","N","Purchased item",1205,419
+"ITEMS",8029,"Battery - Electric Fork Lift","Power Battery For Electric Fork Lifts","Y","Y","Ea","Each",104,"Active","N","Purchased item",1205,420
+"ITEMS",8031,"Battery - Propane Fork Lift","Battery (electrical systems) for Propane Fork Lifts","Y","Y","Ea","Each",52.5,"Active","N","Purchased item",1205,421
+"ITEMS",8033,"Fuel Tank - Propane Fork Lift","Fuel Tanks for Propane Fork Lifts","Y","Y","Ea","Each",78.42,"Active","N","Purchased item",1205,422
+"ITEMS",8035,"Trans Electric Fork Lift","Transmission / Drive Train Electric Fork lifts","Y","Y","Ea","Each",3002.34,"Active","N","Purchased item",1205,423
+"ITEMS",8037,"Trans Propane Fork Lift","Transmission / Drive Train Propane Fork lifts","Y","Y","Ea","Each",2478.98,"Active","N","Purchased item",1205,424
+"ITEMS",8039,"Oil Filter Propane","Oil Filter  Propane Fork Lifts","Y","Y","Ea","Each",32.56,"Active","N","Purchased item",1205,425
+"ITEMS",8041,"Oil Filter Electric","Oil Filter  Electric Fork Lifts","Y","Y","Ea","Each",24.95,"Active","N","Purchased item",1205,426
+"ITEMS",8043,"Mast","All Lift Masts for All Fork Lifts","Y","Y","Ea","Each",1245.56,"Active","N","Purchased item",1205,427
+"ITEMS",8045,"Rear Wheels - Electric","Rear Wheels Electric Fork Lifts","Y","Y","Ea","Each",345.89,"Active","N","Purchased item",1205,428
+"ITEMS",8047,"Rear Wheels - Propane","Rear Wheels Propane Fork Lifts","Y","Y","Ea","Each",126.89,"Active","N","Purchased item",1205,429
+"ITEMS",8049,"Front Wheels - Electric","Front Wheels Electric Fork Lifts","Y","Y","Ea","Each",125,"Active","N","Purchased item",1205,430
+"ITEMS",8051,"Front Wheels - Propane","Front Wheels Propane Fork Lifts","Y","Y","Ea","Each",97.45,"Active","N","Purchased item",1205,431
+"ITEMS",8053,"Forks","Forks for all Fork Lifts","Y","Y","Ea","Each",350,"Active","N","Purchased item",1205,432
+"ITEMS",8057,"Fork Lift Lubrication","Lubrication for Masts","Y","Y","Ea","Each",1.98,"Active","N","Purchased item",1205,433
+"ITEMS",8059,"Filled Propane Tanks","Fuel for Propane Fork Lifts","Y","Y","Ea","Each",19.99,"Active","N","Purchased item",1205,434
+"ITEMS",8061,"Shop Rags","Shop Rags for Clean up","Y","Y","Ea","Each",0.05,"Active","N","Purchased item",3124,435
+"ITEMS",8063,"10-40W Oil","10-40W Vehicle Motor Oil","Y","Y","QT","Quart",2.56,"Active","N","Purchased item",3124,436
+"ITEMS",8065,"Oil Filter","Oil Filter","Y","Y","Ea","Each",15.45,"Active","N","Purchased item",3124,437
+"ITEMS",8067,"Transmission Fluid","Transmission Fluid for Vehicles","Y","Y","QT","Quart",4.56,"Active","N","Purchased item",3124,438
+"ITEMS",8069,"Transmission Filter","Transmission Filter for Vehicles","Y","Y","Ea","Each",10.49,"Active","N","Purchased item",3124,439
+"ITEMS",8071,"Transmission Pan","Transmission Filter Pan","Y","Y","Ea","Each",25.26,"Active","N","Purchased item",3124,440
+"ITEMS",8073,"Air Filter","Air Filter","Y","Y","Ea","Each",12.99,"Active","N","Purchased item",500,441
+"ITEMS",8075,"Fuel Filter","Fuel Filter for Vehicle","Y","Y","Ea","Each",28.75,"Active","N","Purchased item",3124,442
+"ITEMS",8077,"Anti Freeze","Anti Freeze / Coolant","Y","Y","QT","Quart",5.98,"Active","N","Purchased item",1205,443
+"ITEMS",8079,"Radiator Hose","Radiator Hose","Y","Y","Ea","Each",14.29,"Active","N","Purchased item",1205,444
+"ITEMS",8081,"Thermostat","Vehicle Spare Part: Thermostat","Y","Y","Ea","Each",18.75,"Active","N","Purchased item",1205,445
+"ITEMS",8149,"BLAT000","Blinds Model","Y","Y","Ea","Each",,"Active","N","ATO model",1,446
+"ITEMS",8151,"BLOC100","Pleated Shades Option Class","Y","Y","Ea","Each",,"Active","N","ATO Option Class",1,447
+"ITEMS",8153,"BLOC101","Roller Shades Option Class","Y","Y","Ea","Each",,"Active","N","ATO Option Class",1,448
+"ITEMS",8155,"BLOC102","Roman Shades Option Class","Y","Y","Ea","Each",,"Active","N","ATO Option Class",1,449
+"ITEMS",8157,"BLOC103","Shutters Option Class","Y","Y","Ea","Each",,"Active","N","ATO Option Class",1,450
+"ITEMS",8159,"BLOC104","Vertical Shades Option Class","Y","Y","Ea","Each",,"Active","N","ATO Option Class",1,451
+"ITEMS",8169,"BL10100","71"" x 25"" Red Solid Pleated Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,452
+"ITEMS",8171,"BL10101","71"" x 50"" Red Solid Pleated Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,453
+"ITEMS",8173,"BL10102","71"" x 25"" Almond Solid Pleated Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,454
+"ITEMS",8175,"BL10103","71"" x 50"" Almond Solid Pleated Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,455
+"ITEMS",8177,"BL10104","71"" x 25"" White Solid Pleated Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,456
+"ITEMS",8179,"BL10105","71"" x 50"" White Solid Pleated Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,457
+"ITEMS",8181,"BL10200","71"" x 25"" Red Solid Roller Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,458
+"ITEMS",8183,"BL10201","71"" x 50"" Red Solid Roller Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,459
+"ITEMS",8185,"BL10202","71"" x 25"" Almond Solid Roller Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,460
+"ITEMS",8187,"BL10203","71"" x 50"" Almond Solid Roller Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,461
+"ITEMS",8189,"BL10204","71"" x 25"" White Solid Roller Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,462
+"ITEMS",8191,"BL10205","71"" x 50"" White Solid Roller Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,463
+"ITEMS",8193,"BL10300","71"" x 25"" Red Solid Roman Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,464
+"ITEMS",8195,"BL10301","71"" x 50"" Red Solid Roman Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,465
+"ITEMS",8197,"BL10302","71"" x 25"" Almond Solid Roman Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,466
+"ITEMS",8199,"BL10303","71"" x 50"" Almond Solid Roman Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,467
+"ITEMS",8201,"BL10304","71"" x 25"" White Solid Roman Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,468
+"ITEMS",8203,"BL10305","71"" x 50"" White Solid Roman Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,469
+"ITEMS",8205,"BL10400","71"" x 25"" Red Solid Shutters","Y","Y","Ea","Each",,"Active","N","Purchased item",1,470
+"ITEMS",8207,"BL10401","71"" x 50"" Red Solid Shutters","Y","Y","Ea","Each",,"Active","N","Purchased item",1,471
+"ITEMS",8209,"BL10402","71"" x 25"" Almond Solid Shutters","Y","Y","Ea","Each",,"Active","N","Purchased item",1,472
+"ITEMS",8211,"BL10403","71"" x 50"" Almond Solid Shutters","Y","Y","Ea","Each",,"Active","N","Purchased item",1,473
+"ITEMS",8213,"BL10404","71"" x 25"" White Solid Shutters","Y","Y","Ea","Each",,"Active","N","Purchased item",1,474
+"ITEMS",8215,"BL10405","71"" x 50"" White Solid Shutters","Y","Y","Ea","Each",,"Active","N","Purchased item",1,475
+"ITEMS",8217,"BL10500","71"" x 25"" Red Vertical Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,476
+"ITEMS",8219,"BL10501","71"" x 50"" Red Vertical Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,477
+"ITEMS",8221,"BL10502","71"" x 25"" Almond Vertical Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,478
+"ITEMS",8223,"BL10503","71"" x 50"" Almond Vertical Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,479
+"ITEMS",8225,"BL10504","71"" x 25"" White Vertical Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,480
+"ITEMS",8227,"BL10505","71"" x 50"" White Vertical Shade","Y","Y","Ea","Each",,"Active","N","Purchased item",1,481
+"ITEMS",8257,"CM52295","Power Supply","Y","Y","Ea","Each",109,"Active","N","Purchased item",1,482
+"ITEMS",8261,"CM77001","2-Button Mouse with Wheel","Y","Y","Ea","Each",8,"Active","N","Purchased item",1,483
+"ITEMS",8263,"CM77002","Optical Mouse","Y","Y","Ea","Each",25,"Active","N","Purchased item",1,484
+"ITEMS",8265,"CM77003","Wireless Mouse","Y","Y","Ea","Each",40,"Active","N","Purchased item",1,485
+"ITEMS",8269,"DVD-B100","DVD Burner 8X","N","N","Ea","Each",500,"Active","N","Purchased item",1,486
+"ITEMS",8271,"CM96119","Metal Cover Plate, 4 Holes","Y","Y","Ea","Each",0.5,"Active","N","Purchased item",1,487
+"ITEMS",8273,"CM66269","Resistor SMT1.5 kOhm 0605","Y","Y","Ea","Each",0.06,"Active","N","Purchased item",1,488
+"ITEMS",8275,"CM66268","Micro 64k","Y","Y","Ea","Each",2.5,"Active","N","Purchased item",1,489
+"ITEMS",8277,"CM66266","Resistor SMT 1.0 k Ohm 0604","Y","Y","Ea","Each",0.06,"Active","N","Purchased item",1,490
+"ITEMS",8279,"CM66265","Micro 48k","Y","Y","Ea","Each",2.5,"Active","N","Purchased item",1,491
+"ITEMS",8281,"CM66264","PCB Main","Y","Y","Ea","Each",5,"Active","N","Purchased item",32,492
+"ITEMS",8283,"CM66259","Plastic Case","Y","Y","Ea","Each",1.2,"Active","N","Purchased item",1,493
+"ITEMS",8285,"CM66254","LCD Display","Y","Y","Ea","Each",4,"Active","N","Purchased item",1,494
+"ITEMS",8313,"AS55888","Sentinel Standard Desktop - Select Series","Y","Y","Ea","Each",1107.86,"Active","N","Finished good",1,495
+"ITEMS",8315,"AS99689","Envoy Standard Laptop - Select Series","Y","Y","Ea","Each",2935.834,"Active","N","Finished good",1,496
+"ITEMS",8319,"Fork Lift Battery","Batteries used for electric Fork Lifts","Y","N","Ea","Each",1200,"Active","N","Rebuildable",1,497
+"ITEMS",8321,"DVD-CR","DVD","N","N","Ea","Each",30,"Active","N","Purchased item",36,498
+"ITEMS",8323,"NE-PACKET","New Employee Packet, includes company coffee mug, t-shirt, cap and mouse pad.","N","N","Ea","Each",25,"Active","N","Purchased item",36,499
+"ITEMS",8381,"FS90000","Power/Recharging Unit","Y","Y","Ea","Each",75,"Active","N","Purchased item",1,500
+"ITEMS",8729,"F350Y2000 Rblt Motor","F350 Year 2000 Rebuilt Truck Motor","Y","N","Ea","Each",2500,"Active","N","Rebuildable",1,501
+"ITEMS",8731,"TM Rebuild","OSP Truck Motor Rebuild Services","N","N","Ea","Each",2550,"Active","N","Outside Processing Item",1,502
+"ITEMS",8768,"SENTRY","Vision Sentry PDA plus CellPhone","Y","Y","Ea","Each",,"Active","N","Purchased item",1,503
+"ITEMS",8791,"Automotive Tool Kit","Automotive Maintenance and Repair Tool Kit","Y","N","Ea","Each",,"Active","N","Equipment",1,504
+"ITEMS",8914,"Inj Molding Lubrication","Injection Molding Machine Lubrication","Y","Y","Ea","Each",5.5,"Active","N","Purchased item",1205,505
+"ITEMS",8916,"Lubrication Line","Lubrication Line for Injection Molding Machines","Y","Y","Ea","Each",15.4,"Active","N","Purchased item",1205,506
+"ITEMS",8918,"Lubrication Pan","Lubrication Pan for Injection Molding Machines","Y","Y","Ea","Each",12.45,"Active","N","Purchased item",1205,507
+"ITEMS",8920,"Inj Molding Spare Parts Kit","Inj Molding Spare Parts Kit","Y","Y","Ea","Each",45.99,"Active","N","Purchased item",1205,508
+"ITEMS",8940,"CM77333","Upgrade Board","Y","Y","Ea","Each",,"Active","N","Purchased item",1,509
+"ITEMS",8942,"CM77811","Processor","Y","Y","Ea","Each",,"Active","N","Purchased item",1,510
+"ITEMS",8944,"CM81774","Upgrade Connector","Y","Y","Ea","Each",,"Active","N","Purchased item",1,511
+"ITEMS",8988,"FS72111","Envoy Deluxe Laptop - FS Series","Y","Y","Ea","Each",714.834,"Active","N","Finished good",1,512
+"ITEMS",9188,"CM62121","SxxE Linux Enterprise Server 10","Y","Y","Ea","Each",554.63,"Active","N","Purchased item",1,513
+"ITEMS",9190,"CM62122","MS Server 2009","Y","Y","Ea","Each",256.7763,"Active","N","Purchased item",1,514
+"ITEMS",9192,"CM62123","MyHat Linux Advanced Platform","Y","Y","Ea","Each",554.63,"Active","N","Purchased item",1,515
+"ITEMS",9196,"CM62131","Quad-Core 400x","Y","Y","Ea","Each",898.73,"Active","N","Purchased item",1,516
+"ITEMS",9198,"CM62132","Quad-Core 500x","Y","Y","Ea","Each",1176.23,"Active","N","Purchased item",1,517
+"ITEMS",9554,"DR10000","3'x 7' Security Door","Y","Y","Ea","Each",303.75,"Active","N","Purchased item",1,518
+"ITEMS",9556,"DR10001","4' x 8' Left Security Door","Y","Y","Ea","Each",303.75,"Active","N","Purchased item",1,519
+"ITEMS",9558,"DR10002","4' x 8' Right Security Door","Y","Y","Ea","Each",678.75,"Active","N","Purchased item",1,520
+"ITEMS",9560,"DR10003","5' x 10' Left Security Door","Y","Y","Ea","Each",348.75,"Active","N","Purchased item",1,521
+"ITEMS",9562,"DR10004","5' x 10' Right Security Door","Y","Y","Ea","Each",348.75,"Active","N","Purchased item",1,522
+"ITEMS",9564,"DR10100","3' x 7' Black","Y","Y","Ea","Each",57.6,"Active","N","Purchased item",1,523
+"ITEMS",9566,"DR10101","3' x 7' Red","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,524
+"ITEMS",9568,"DR10102","3' x 7' White","Y","Y","Ea","Each",57.6,"Active","N","Purchased item",1,525
+"ITEMS",9570,"DR10103","3' x 7' Navy","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,526
+"ITEMS",9572,"DR10104","4' x 8' Black","Y","Y","Ea","Each",57.6,"Active","N","Purchased item",1,527
+"ITEMS",9574,"DR10105","4' x 8' Red","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,528
+"ITEMS",9576,"DR10106","4' x 8' White","Y","Y","Ea","Each",57.6,"Active","N","Purchased item",1,529
+"ITEMS",9578,"DR10107","4' x 8' Navy","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,530
+"ITEMS",9580,"DR10108","5' x 10' Black","Y","Y","Ea","Each",57.6,"Active","N","Purchased item",1,531
+"ITEMS",9582,"DR10109","5' x 10' Red","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,532
+"ITEMS",9584,"DR10110","5' x 10' White","Y","Y","Ea","Each",57.6,"Active","N","Purchased item",1,533
+"ITEMS",9586,"DR10111","5' x 10' Navy","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,534
+"ITEMS",9588,"DR10150","3' x 7' Core","Y","Y","Ea","Each",56.25,"Active","N","Purchased item",1,535
+"ITEMS",9590,"DR10151","4' x 8' Core","Y","Y","Ea","Each",67.5,"Active","N","Purchased item",1,536
+"ITEMS",9592,"DR10152","5' x 10' Core","Y","Y","Ea","Each",78.75,"Active","N","Purchased item",1,537
+"ITEMS",9594,"DR10200","10"" x 10""","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,538
+"ITEMS",9596,"DR10201","12"" x 14""","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,539
+"ITEMS",9598,"DR10202","16"" x 20""","Y","Y","Ea","Each",22.5,"Active","N","Purchased item",1,540
+"ITEMS",9602,"DR10250","10"" x 10"" Seal","Y","Y","Ea","Each",9.45,"Active","N","Purchased item",1,541
+"ITEMS",9604,"DR10251","12"" x 14"" Seal","Y","Y","Ea","Each",67.5,"Active","N","Purchased item",1,542
+"ITEMS",9606,"DR10252","16"" x 20"" Seal","Y","Y","Ea","Each",9.45,"Active","N","Purchased item",1,543
+"ITEMS",9608,"DR10253","20"" x 20"" Seal","Y","Y","Ea","Each",9.45,"Active","N","Purchased item",1,544
+"ITEMS",9610,"DR10300","10"" x 10"" Security Glass","Y","Y","Ea","Each",31.5,"Active","N","Purchased item",1,545
+"ITEMS",9612,"DR10301","12"" x 14"" Security Glass","Y","Y","Ea","Each",40.5,"Active","N","Purchased item",1,546
+"ITEMS",9614,"DR10302","16"" x 20"" Security Glass","Y","Y","Ea","Each",49.5,"Active","N","Purchased item",1,547
+"ITEMS",9616,"DR10303","20"" x 20"" Security Glass","Y","Y","Ea","Each",58.5,"Active","N","Purchased item",1,548
+"ITEMS",9618,"DR10304","10"" x 10"" Shatterproof","Y","Y","Ea","Each",18,"Active","N","Purchased item",1,549
+"ITEMS",9620,"DR10305","12"" x 14"" Shatterproof","Y","Y","Ea","Each",22.5,"Active","N","Purchased item",1,550
+"ITEMS",9622,"DR10306","16"" x 20"" Shatterproof","Y","Y","Ea","Each",27,"Active","N","Purchased item",1,551
+"ITEMS",9624,"DR10307","20"" x 20"" Shatterproof","Y","Y","Ea","Each",31.5,"Active","N","Purchased item",1,552
+"ITEMS",9626,"DR10350","Standard - 90 Degrees","Y","Y","Ea","Each",3.15,"Active","N","Purchased item",1,553
+"ITEMS",9628,"DR10351","Standard - 180 Degrees","Y","Y","Ea","Each",3.15,"Active","N","Purchased item",1,554
+"ITEMS",9630,"DR10352","Standard - 270 Degrees","Y","Y","Ea","Each",3.15,"Active","N","Purchased item",1,555
+"ITEMS",9632,"DR10353","Stainless - 90 Degrees","Y","Y","Ea","Each",4.95,"Active","N","Purchased item",1,556
+"ITEMS",9634,"DR10354","Stainless - 180 Degrees","Y","Y","Ea","Each",4.95,"Active","N","Purchased item",1,557
+"ITEMS",9636,"DR10355","Stainless - 270 Degrees","Y","Y","Ea","Each",4.95,"Active","N","Purchased item",1,558
+"ITEMS",9638,"DR10356","Stainless w/Ceramic Bearing - 90 Degrees","Y","Y","Ea","Each",8.1,"Active","N","Purchased item",1,559
+"ITEMS",9640,"DR10357","Stainless w/Ceramic Bearing - 180 Degrees","Y","Y","Ea","Each",8.1,"Active","N","Purchased item",1,560
+"ITEMS",9642,"DR10358","Stainless w/Ceramic Bearing - 270 Degrees","Y","Y","Ea","Each",8.1,"Active","N","Purchased item",1,561
+"ITEMS",9644,"DR10400","Standard - For 3' x 7'","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,562
+"ITEMS",9646,"DR10401","Standard - For 8' x 8'","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,563
+"ITEMS",9648,"DR10402","Standard - For 10' x 10'","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,564
+"ITEMS",9650,"DR10403","Stainless - For 3' x 7'","Y","Y","Ea","Each",31.5,"Active","N","Purchased item",1,565
+"ITEMS",9652,"DR10404","Stainless - For 8' x 8'","Y","Y","Ea","Each",31.5,"Active","N","Purchased item",1,566
+"ITEMS",9654,"DR10405","Stainless - For 10' x 10'","Y","Y","Ea","Each",31.5,"Active","N","Purchased item",1,567
+"ITEMS",9656,"DR10450","Standard Door Stops","Y","Y","Ea","Each",29.25,"Active","N","Purchased item",1,568
+"ITEMS",9658,"DR10500","Standard Door Locks","Y","Y","Ea","Each",16.88,"Active","N","Purchased item",1,569
+"ITEMS",9660,"DR10550","3' x 7' Gasket","Y","Y","Ea","Each",42.75,"Active","N","Purchased item",1,570
+"ITEMS",9662,"DR10551","8' x 8' Gasket","Y","Y","Ea","Each",54,"Active","N","Purchased item",1,571
+"ITEMS",9664,"DR10552","10' x 10' Gasket","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,572
+"ITEMS",9666,"DR10600","Polymer Guard","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,573
+"ITEMS",9668,"DR10601","Stainless Guard","Y","Y","Ea","Each",11.25,"Active","N","Purchased item",1,574
+"ITEMS",9670,"DR10650","Standard Security Bolts","Y","Y","Ea","Each",6.75,"Active","N","Purchased item",1,575
+"ITEMS",9672,"DR10651","Standard Cover Plate","Y","Y","Ea","Each",1.13,"Active","N","Purchased item",1,576
+"ITEMS",9674,"DR10700","U - Shaped","Y","Y","Ea","Each",36,"Active","N","Purchased item",1,577
+"ITEMS",9676,"DR10701","Standard Round","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,578
+"ITEMS",9678,"DR10702","Recessed","Y","Y","Ea","Each",13.5,"Active","N","Purchased item",1,579
+"ITEMS",9680,"DR10050","3'x 7' Traffic Door","Y","Y","Ea","Each",157.5,"Active","N","Purchased item",1,580
+"ITEMS",9682,"DR10051","4' x 8' Left Traffic Door","Y","Y","Ea","Each",157.5,"Active","N","Purchased item",1,581
+"ITEMS",9684,"DR10052","4' x 8' Right Traffic Door","Y","Y","Ea","Each",78.75,"Active","N","Purchased item",1,582
+"ITEMS",9686,"DR10053","5' x 10' Left Security Door","Y","Y","Ea","Each",202.5,"Active","N","Purchased item",1,583
+"ITEMS",9688,"DR10054","5' x 10' Right Traffic Door","Y","Y","Ea","Each",202.5,"Active","N","Purchased item",1,584
+"ITEMS",9690,"DR10203","20"" x 20""","Y","Y","Ea","Each",22.5,"Active","N","Purchased item",1,585
+"ITEMS",9720,"ISAT001","Vision Servers","N","Y","Ea","Each",66614.4,"Active","N","ATO model",1,586
+"ITEMS",9726,"IS30100","VS200C Server Chassis","Y","Y","Ea","Each",2249.55,"Active","N","Purchased item",1,587
+"ITEMS",9728,"IS30101","VS400X Server Chassis","Y","Y","Ea","Each",6299.55,"Active","N","Purchased item",1,588
+"ITEMS",9730,"IS30150","1.2 GHz CPU Module (4-Core)","Y","Y","Ea","Each",202.05,"Active","N","Purchased item",1,589
+"ITEMS",9732,"IS30151","1.4 GHz CPU Module (4-Core)","Y","Y","Ea","Each",247.5,"Active","N","Purchased item",1,590
+"ITEMS",9734,"IS30152","1.6 GHz CPU Module (8-Core)","Y","Y","Ea","Each",337.5,"Active","N","Purchased item",1,591
+"ITEMS",9736,"IS30200","2 GB DIMM RAM","Y","Y","Ea","Each",112.5,"Active","N","Purchased item",1,592
+"ITEMS",9738,"IS30201","4 GB DIMM RAM","Y","Y","Ea","Each",202.5,"Active","N","Purchased item",1,593
+"ITEMS",9740,"IS30202","8 GB DIMM RAM","Y","Y","Ea","Each",382.5,"Active","N","Purchased item",1,594
+"ITEMS",9742,"IS30250","100-240 VAC, 47-63HZ","Y","Y","Ea","Each",18,"Active","N","Purchased item",1,595
+"ITEMS",9744,"IS30251","Internal DVD Drive","Y","Y","Ea","Each",56.25,"Active","N","Purchased item",1,596
+"ITEMS",9746,"IS30252","USB Keyboard and Mouse","Y","Y","Ea","Each",33.75,"Active","N","Purchased item",1,597
+"ITEMS",9748,"IS30253","Fan System (2 fans per unit)","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,598
+"ITEMS",9750,"IS30300","Internal 12 GB Tape Drive","Y","Y","Ea","Each",540,"Active","N","Purchased item",1,599
+"ITEMS",9752,"IS30301","Spare Hot Swap Fan System","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,600
+"ITEMS",9758,"IS30400","Dual Channel Single Ended SCSI","Y","Y","Ea","Each",312.75,"Active","N","Purchased item",1,601
+"ITEMS",9760,"IS30401","Dual Channel Differential SCSI","Y","Y","Ea","Each",355.5,"Active","N","Purchased item",1,602
+"ITEMS",9762,"IS30402","10/100 MBps Ethernet Card","Y","Y","Ea","Each",312.75,"Active","N","Purchased item",1,603
+"ITEMS",9764,"IS30403","Gigabit Ethernet Card","Y","Y","Ea","Each",447.75,"Active","N","Purchased item",1,604
+"ITEMS",9766,"IS30404","Raid Controller","Y","Y","Ea","Each",495,"Active","N","Purchased item",1,605
+"ITEMS",9768,"IS30405","Enhanced Graphics Accelerator","Y","Y","Ea","Each",1035,"Active","N","Purchased item",1,606
+"ITEMS",9770,"IS30450","Solaris OS (installed)","Y","Y","Ea","Each",134.55,"Active","N","Purchased item",1,607
+"ITEMS",9772,"IS30451","Linux OS (installed)","Y","Y","Ea","Each",134.55,"Active","N","Purchased item",1,608
+"ITEMS",9774,"IS30500","Oracle Database Enterprise Edition - Customer Installed","Y","Y","Ea","Each",672.75,"Active","N","Purchased item",1,609
+"ITEMS",9776,"IS30501","Oracle Database Enterprise Edition - Vision Installed","Y","Y","Ea","Each",807.75,"Active","N","Purchased item",1,610
+"ITEMS",9778,"IS30502","Internet Application Server (iAS) Standard Edition - Customer Installed","Y","Y","Ea","Each",672.75,"Active","N","Purchased item",1,611
+"ITEMS",9780,"IS30503","Internet Application Server (iAS) Standard Edition - Vision Installed","Y","Y","Ea","Each",807.75,"Active","N","Purchased item",1,612
+"ITEMS",9782,"IS30504","Internet Development Suite - Customer Installed","Y","Y","Ea","Each",3599.55,"Active","N","Purchased item",1,613
+"ITEMS",9784,"IS30505","Internet Development Suite - Vision Installed","Y","Y","Ea","Each",4049.55,"Active","N","Purchased item",1,614
+"ITEMS",9786,"IS40100","Vision VX21 Storage System Chassis","Y","Y","Ea","Each",3599.55,"Active","N","Purchased item",1,615
+"ITEMS",9788,"IS40101","Vision VX33 Storage System Chassis","Y","Y","Ea","Each",4499.55,"Active","N","Purchased item",1,616
+"ITEMS",9790,"IS40102","Vision VX37 Storage System Chassis","Y","Y","Ea","Each",6299.55,"Active","N","Purchased item",1,617
+"ITEMS",9792,"IS40150","146 GB SAS HD @ 15K rpm","Y","Y","Ea","Each",1575,"Active","N","Purchased item",1,618
+"ITEMS",9794,"IS40151","300 GB SAS HD @ 15K rpm","Y","Y","Ea","Each",2475,"Active","N","Purchased item",1,619
+"ITEMS",9796,"IS40152","450 GB SAS HD @ 15K rpm","Y","Y","Ea","Each",3375,"Active","N","Purchased item",1,620
+"ITEMS",9798,"IS40201","100-240 VAC, 47-63HZ Power Supply","Y","Y","Ea","Each",18,"Active","N","Purchased item",1,621
+"ITEMS",9802,"IS40203","Fan System (2 fans per unit)","Y","Y","Ea","Each",40.5,"Active","N","Purchased item",1,622
+"ITEMS",9804,"IS40250","Spare Hot Swap Fan System","Y","Y","Ea","Each",40.5,"Active","N","Purchased item",1,623
+"ITEMS",9806,"IS40251","Spare Hot Swap Power Supply 100-240 VAC, 47-63HZ","Y","Y","Ea","Each",60.75,"Active","N","Purchased item",1,624
+"ITEMS",9808,"IS40300","RJ45 Connection Cable","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,625
+"ITEMS",9810,"IS40301","Ultra SCSI, 0.8m","Y","Y","Ea","Each",20.25,"Active","N","Purchased item",1,626
+"ITEMS",9812,"IS40302","Ultra SCSI, 2.0m","Y","Y","Ea","Each",33.75,"Active","N","Purchased item",1,627
+"ITEMS",9814,"IS50100","Vision 1001 Rack System","Y","Y","Ea","Each",904.5,"Active","N","Purchased item",1,628
+"ITEMS",9816,"IS50101","Vision Custom Rack System","Y","Y","Ea","Each",1350,"Active","N","Purchased item",1,629
+"ITEMS",9818,"IS50150","Standard Power Arrangement","Y","Y","Ea","Each",112.5,"Active","N","Purchased item",1,630
+"ITEMS",9820,"IS50151","Base Mounted Power Arrangement","Y","Y","Ea","Each",899.55,"Active","N","Purchased item",1,631
+"ITEMS",9822,"IS50200","6ft 100-240 VAC Power Cables - North America","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,632
+"ITEMS",9824,"IS50201","6ft 100-240 VAC Power Cables - International","Y","Y","Ea","Each",15.75,"Active","N","Purchased item",1,633
+"ITEMS",9826,"IS50202","Internal Power Supply Cable for Components (x 10)","Y","Y","Ea","Each",22.05,"Active","N","Purchased item",1,634
+"ITEMS",9828,"IS50250","Air Baffle (prevents air flow in empty slots)","Y","Y","Ea","Each",30.15,"Active","N","Purchased item",1,635
+"ITEMS",9906,"OP52295","Outside Processing for CM52295","N","N","Ea","Each",0,"Active","N","Outside Processing Item",1,636
+"ITEMS",9920,"CP1300","CP1300 XGA Ultra Light Projector","Y","Y","Ea","Each",,"Active","N","Purchased item",1,637
+"ITEMS",9922,"CP1065","CP1065 XGA Projector","Y","Y","Ea","Each",,"Active","N","Purchased item",1,638
+"ITEMS",9924,"CP860","CP860 XP01 Projector","Y","Y","Ea","Each",,"Active","N","Purchased item",1,639
+"ITEMS",9926,"CP2380","CP2380 XGA Projector","Y","Y","Ea","Each",,"Active","N","Purchased item",1,640
+"ITEMS",9928,"CP8990","CP8990 X11 Projector","Y","Y","Ea","Each",,"Active","N","Purchased item",1,641
+"ITEMS",9930,"CP11065","External Speakers","Y","Y","Ea","Each",,"Active","N","Purchased item",1,642
+"ITEMS",9932,"CP6673","Envoy Carrying Case","Y","Y","Ea","Each",,"Active","N","Purchased item",1,643
+"ITEMS",9934,"CP56789","Sentinel CD&DVD Burner","Y","Y","Ea","Each",,"Active","N","Purchased item",1,644
+"ITEMS",9936,"CP45902","Vision Scanner All-In-One","Y","Y","Ea","Each",,"Active","N","Purchased item",1,645
+"ITEMS",9938,"CP21065","Projector Case","Y","Y","Ea","Each",,"Active","N","Purchased item",1,646
+"ITEMS",9940,"CP31065","Projector Lamp","Y","Y","Ea","Each",,"Active","N","Purchased item",1,647
+"ITEMS",9942,"CP41065","Cable Wizard","Y","Y","Ea","Each",,"Active","N","Purchased item",1,648
+"ITEMS",13300,"Windshield Replacement Service","NonStock Direct: Windshield Replacement Service","N","Y","Ea","Each",250,"Active","N","Non-Stockable",26,649
+"ITEMS",21300,"WD52001","1"" Colonial Molding - Left","Y","Y","FT","Foot",0.5625,"Active","N","Purchased item",1,650
+"ITEMS",59400,"CST0008","Display mirror","N","Y","Ea","Each",30,"Active","N","Purchased item",3116,651
+"ITEMS",63500,"RT40023","Tiger Spinning Combo","Y","Y","Ea","Each",49.95,"Active","N","Purchased item",3297,652
+"ITEMS",83600,"RT11003","0.9 Cu Ft Midsize Microwave","Y","Y","Ea","Each",59,"Active","N","Purchased item",3115,653
+"ITEMS",193900,"CM16116","Label - Hockey Champs 2K6 GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,654
+"ITEMS",10044,"IM11049","Defibrillator, Implantable, Gem III AT, Dual Chamber ICD","Y","Y","Ea","Each",19500,"Active","N","Chargeable Patient Item",1205,655
+"ITEMS",10105,"f21000","Office Chair (used for Global Agreement Autosourcing)","Y","N","Ea","Each",100,"Active","N","Supply item",36,656
+"ITEMS",10111,"f25000","Desk Lamp (used for Global Agreement - catalog search)","N","N","Ea","Each",50,"Active","N","Supply item",36,657
+"ITEMS",10285,"WM243","Vision PRO 128 MB Graphics Card","Y","Y","Ea","Each",87,"Active","N","Purchased item",1,658
+"ITEMS",10287,"WM139","Vision PRO Installation Software","Y","Y","Ea","Each",32,"Active","N","Purchased item",1,659
+"ITEMS",10289,"WM445","Vision PRO Graphics Manual","Y","Y","Ea","Each",12.5,"Active","N","Purchased item",1,660
+"ITEMS",10309,"f27000","Whiteboard for Cubicle (used for Time Phased Pricing)","N","N","Ea","Each",40,"Active","N","Supply item",36,661
+"ITEMS",10393,"CM24972","Polycarbonate Pellets","Y","Y","PK","PACK",0.05,"Active","N","Purchased item",1,662
+"ITEMS",10395,"CM25402","Auminium Powder","Y","Y","PK","PACK",0.03,"Active","N","Purchased item",1,663
+"ITEMS",10397,"CM12873","Lacquer","Y","Y","CC","Cubic Centimeter",0.02,"Active","N","Purchased item",1,664
+"ITEMS",10399,"CM30108","Acrylic Plastic","Y","Y","PK","PACK",0.03,"Active","N","Purchased item",1,665
+"ITEMS",10401,"CM20571","Inks - Cartridge","Y","Y","CC","Cubic Centimeter",0.05,"Active","N","Purchased item",1,666
+"ITEMS",10403,"CM28503","Jewel Case","Y","Y","Ea","Each",0.02,"Active","N","Purchased item",1,667
+"ITEMS",10405,"CM07939","Sticker","Y","Y","Ea","Each",0.01,"Active","N","Purchased item",1,668
+"ITEMS",10515,"CM73111","PRO 128MB Graphics Card","Y","Y","Ea","Each",87,"Active","N","Purchased item",1,669
+"ITEMS",10517,"CM41998","PRO Graphics Installation Software","Y","Y","Ea","Each",32,"Active","N","Purchased item",1,670
+"ITEMS",10519,"CM41944","PRO Graphics Manual","Y","Y","Ea","Each",12.5,"Active","N","Purchased item",1,671
+"ITEMS",10533,"BLAT000*10532","Blinds Model","Y","Y","Ea","Each",0,"Active","N","Inventory Type",1,672
+"ITEMS",10606,"VI41005","Vision MX2000 Desktop","Y","N","Ea","Each",,"Prototype","N","Finished good",1,673
+"ITEMS",10635,"VI74953","Desktop Chassis Model A243","Y","Y","Ea","Each",,"Active","N","Purchased item",1,674
+"ITEMS",11023,"Plumbing OSP","OSP Plumbing","N","N","Ea","Each",50,"Active","N","Outside Processing Item",1,675
+"ITEMS",11027,"HVAC Emergency OSP","HVAC Service Emergency Incident SurCharge using OSP and EAM Resource","N","N","Ea","Each",100,"Active","N","Asset Activity",26,676
+"ITEMS",11029,"Flooring OSP","OSP Flooring, Carpeting & Tile","N","N","Ea","Each",125,"Active","N","Outside Processing Item",1,677
+"ITEMS",11031,"Lighting OSP","OSP Light Fixtures and Electrical","N","N","Ea","Each",54,"Active","N","Outside Processing Item",1,678
+"ITEMS",11063,"AC Filter","Heating/Air Conditioning Filter 24x16x1","Y","Y","Ea","Each",12.56,"Active","N","Purchased item",37,679
+"ITEMS",11065,"Paper Towels","Paper Towel Rolls for Restrooms & Breakrooms","Y","Y","Ea","Each",9,"Active","N","Purchased item",3124,680
+"ITEMS",11067,"Fluorescent Lamp Tube, 48 Inch","48 Inch Fluorescent Tube, 32W Cool White","Y","Y","Ea","Each",3,"Active","N","Purchased item",37,681
+"ITEMS",11077,"CM70001","Std. Packaging","Y","Y","Ea","Each",0.25,"Active","N","Purchased item",1,682
+"ITEMS",11079,"CM70002","ESD Packaging","Y","Y","Ea","Each",0.45,"Active","N","Purchased item",1,683
+"ITEMS",11081,"CM70003","Security Packaging","Y","Y","Ea","Each",0.65,"Active","N","Purchased item",1,684
+"ITEMS",11083,"CM70004","Custom Packaging","Y","Y","Ea","Each",0.95,"Active","N","Purchased item",1,685
+"ITEMS",11167,"SMC1600","Raw Wafer","Y","Y","Ea","Each",15,"Active","N","Purchased item",1,686
+"ITEMS",11307,"75200001","Printer","Y","Y","Ea","Each",18,"Active","N","Purchased item",500,687
+"ITEMS",11335,"RW9000","Raw Wafer","Y","Y","Ea","Each",,"Active","N","Purchased item",1,688
+"ITEMS",11392,"Building Material","Curcuit Breaker - 50 Amp, 1 Inch","Y","Y","Ea","Each",100,"Active","N","Purchased item",3124,689
+"ITEMS",11452,"Copier Toner","Copier Toner","Y","Y","Ea","Each",23,"Active","N","Purchased item",37,690
+"ITEMS",11454,"Staples for Copier","Staples for Copier","Y","Y","Ea","Each",34,"Active","N","Purchased item",36,691
+"ITEMS",11456,"Fluorescent Lamp Tube, 32 Inch","Fluorescent Lamp Tube, 32 Inch, 25W","Y","Y","Ea","Each",8.67,"Active","N","Purchased item",37,692
+"ITEMS",11458,"Copier Fuser","Fuser for Copier","Y","Y","Ea","Each",23,"Active","N","Purchased item",36,693
+"ITEMS",11460,"Tissue","Tissue for Restrooms","Y","Y","Ea","Each",23,"Active","N","Purchased item",37,694
+"ITEMS",11462,"Liquid Soap","Liquid Soap for Restrooms","Y","Y","GAL","Gallon",12,"Active","N","Purchased item",3124,695
+"ITEMS",11464,"Light Switch","Grounded Light Switch and Plate","Y","Y","Ea","Each",7.89,"Active","N","Purchased item",37,696
+"ITEMS",11497,"Circuit Breaker - 20 AMP","Electric Circuit Breaker, 20 Amp, 1/2 Inch","Y","Y","Ea","Each",100,"Active","N","Purchased item",37,697
+"ITEMS",11499,"Refrigerant","R22 Refrigerant 50lb container","Y","Y","Ea","Each",5,"Active","N","Purchased item",37,698
+"ITEMS",11501,"Thermostat - Heat Pump","Thermostat for Heat Pump","Y","Y","Ea","Each",50,"Active","N","Purchased item",37,699
+"ITEMS",11503,"Thermostat - Heating","Heating Thermostat T18","Y","Y","Ea","Each",30,"Active","N","Purchased item",37,700
+"ITEMS",11505,"Thermostat - Cooling","Cooling Thermostat T19","Y","Y","Ea","Each",30,"Active","N","Purchased item",37,701
+"ITEMS",11507,"Cleaner - Copier Glass","Cleaner for Copier Glass","Y","Y","Ea","Each",5,"Active","N","Purchased item",37,702
+"ITEMS",11517,"MKT007007","Lightning Laserjet XL Printer","Y","Y","Ea","Each",250,"Active","N","Purchased item",1,703
+"ITEMS",11537,"Fan Bearing","HVAC Fan - Bearing SK7654","Y","Y","Ea","Each",135,"Active","N","Purchased item",37,704
+"ITEMS",11557,"DR40040","Door Maintenance Pack","Y","Y","Ea","Each",37.5,"Active","N","Purchased item",1,705
+"ITEMS",11817,"XA1000","GameGirl","Y","Y","Ea","Each",,"Active","N","Finished good",91,706
+"ITEMS",11819,"XC1000","Game Girl Case","Y","N","Ea","Each",6.74,"Active","N","Purchased item",114,707
+"ITEMS",11821,"XC1001","Game Girl Board","Y","N","Ea","Each",20,"Active","N","Purchased item",32,708
+"ITEMS",11823,"XC1002","Game Girl Screen","Y","N","Ea","Each",15,"Active","N","Purchased item",32,709
+"ITEMS",11825,"XC1003","Game Girl Controller","Y","N","Ea","Each",10,"Active","N","Purchased item",114,710
+"ITEMS",11827,"XC1004","Game Girl Overlay","Y","N","Ea","Each",0.5,"Active","N","Purchased item",114,711
+"ITEMS",11829,"XC1005","Game Girl Package","Y","N","Ea","Each",2.5,"Active","N","Purchased item",114,712
+"ITEMS",11839,"XC2000","VP Student Case","Y","N","Ea","Each",25,"Active","N","Purchased item",114,713
+"ITEMS",11841,"XC2001","VP Student Board","Y","N","Ea","Each",73,"Active","N","Purchased item",32,714
+"ITEMS",11843,"XC2002","VP Student Screen","Y","N","Ea","Each",31,"Active","N","Purchased item",32,715
+"ITEMS",11845,"XC2003","VP Student Controller","Y","N","Ea","Each",25.51,"Active","N","Purchased item",114,716
+"ITEMS",11847,"XC2004","VP Student Overlay","Y","N","Ea","Each",1.35,"Active","N","Purchased item",114,717
+"ITEMS",11849,"XC2005","VP Student Package","Y","N","Ea","Each",15,"Active","N","Purchased item",114,718
+"ITEMS",11853,"XC3000","VP Executive Case","Y","N","Ea","Each",25,"Active","N","Purchased item",114,719
+"ITEMS",11855,"XC3001","VP Executive Board","Y","N","Ea","Each",125.53,"Active","N","Purchased item",32,720
+"ITEMS",11857,"XC3002","VP Executive Screen","Y","N","Ea","Each",85,"Active","N","Purchased item",32,721
+"ITEMS",11859,"XC3003","VP Executive Controller","Y","N","Ea","Each",42.73,"Active","N","Purchased item",114,722
+"ITEMS",11861,"XC3004","VP Executive Overlay","Y","N","Ea","Each",1.35,"Active","N","Purchased item",114,723
+"ITEMS",11863,"XC3005","VP Executive Package","Y","N","Ea","Each",15,"Active","N","Purchased item",114,724
+"ITEMS",11865,"XA4000","Standard Laptop","Y","Y","Ea","Each",,"Active","N","Finished good",91,725
+"ITEMS",11877,"XC4000","Standard Laptop Case","Y","N","Ea","Each",135,"Active","N","Purchased item",114,726
+"ITEMS",11879,"XC4001","Standard Laptop Motherboard","Y","N","Ea","Each",140,"Active","N","Purchased item",32,727
+"ITEMS",11881,"XC4002","Standard Laptop Monitor","Y","N","Ea","Each",135,"Active","N","Purchased item",30,728
+"ITEMS",11883,"XC4003","Standard Laptop Keyboard","Y","N","Ea","Each",30.35,"Active","N","Purchased item",114,729
+"ITEMS",11885,"XC4004","Standard Laptop Overlay","Y","N","Ea","Each",2,"Active","N","Purchased item",114,730
+"ITEMS",11887,"XC4005","Standard Laptop Packaging","Y","N","Ea","Each",25,"Active","N","Purchased item",114,731
+"ITEMS",11889,"XC4006","Standard Laptop Software Package","Y","N","Ea","Each",150,"Active","N","Purchased item",113,732
+"ITEMS",11891,"XC4007","Standard Laptop Power Supply","Y","N","Ea","Each",45,"Active","N","Purchased item",34,733
+"ITEMS",11893,"XC4008","Standard Laptop Manual","Y","N","Ea","Each",30,"Active","N","Purchased item",111,734
+"ITEMS",11895,"XC4009","Standard Laptop Mouse","Y","N","Ea","Each",20,"Active","N","Purchased item",32,735
+"ITEMS",11897,"XC4010","Standard Laptop Carrying Case","Y","N","Ea","Each",30,"Active","N","Purchased item",114,736
+"ITEMS",11899,"XA5000","Deluxe Laptop","Y","Y","Ea","Each",,"Active","N","Finished good",91,737
+"ITEMS",11901,"XC5000","Deluxe Laptop Case","Y","N","Ea","Each",235.57,"Active","N","Purchased item",114,738
+"ITEMS",11903,"XC5001","Deluxe Laptop Motherboard","Y","N","Ea","Each",186,"Active","N","Purchased item",32,739
+"ITEMS",11905,"XC5002","Deluxe Laptop Monitor","Y","N","Ea","Each",190,"Active","N","Purchased item",30,740
+"ITEMS",11907,"XC5003","Deluxe Laptop Keyboard","Y","N","Ea","Each",30.35,"Active","N","Purchased item",114,741
+"ITEMS",11909,"XC5004","Deluxe Laptop Overlay","Y","N","Ea","Each",2,"Active","N","Purchased item",114,742
+"ITEMS",11911,"XC5005","Deluxe Laptop Packaging","Y","N","Ea","Each",25,"Active","N","Purchased item",114,743
+"ITEMS",11913,"XC5006","Deluxe Laptop Software Package","Y","N","Ea","Each",225,"Active","N","Purchased item",113,744
+"ITEMS",11915,"XC5007","Deluxe Laptop Power Supply","Y","N","Ea","Each",45,"Active","N","Purchased item",34,745
+"ITEMS",11917,"XC5008","Deluxe Laptop Manual","Y","N","Ea","Each",35,"Active","N","Purchased item",111,746
+"ITEMS",11919,"XC5009","Deluxe Laptop Mouse","Y","N","Ea","Each",20,"Active","N","Purchased item",32,747
+"ITEMS",11921,"XC5010","Deluxe Laptop Carrying Case","Y","N","Ea","Each",30,"Active","N","Purchased item",114,748
+"ITEMS",11923,"XA6000","Lite Desktop","Y","Y","Ea","Each",,"Active","N","Finished good",91,749
+"ITEMS",11925,"XC6000","Lite Desktop Case","Y","N","Ea","Each",93.69,"Active","N","Purchased item",114,750
+"ITEMS",11927,"XC6001","Lite Desktop Motherboard","Y","N","Ea","Each",100,"Active","N","Purchased item",32,751
+"ITEMS",11929,"XC6002","Lite Desktop Monitor","Y","N","Ea","Each",100,"Active","N","Purchased item",30,752
+"ITEMS",11931,"XC6003","Lite Desktop Keyboard","Y","N","Ea","Each",30.35,"Active","N","Purchased item",114,753
+"ITEMS",11933,"XC6004","Lite Desktop Overlay","Y","N","Ea","Each",2,"Active","N","Purchased item",114,754
+"ITEMS",11935,"XC6005","Lite Desktop Packaging","Y","N","Ea","Each",25,"Active","N","Purchased item",114,755
+"ITEMS",11937,"XC6006","Lite Desktop Software Package","Y","N","Ea","Each",200,"Active","N","Purchased item",113,756
+"ITEMS",11939,"XC6007","Lite Desktop Power Supply","Y","N","Ea","Each",30,"Active","N","Purchased item",34,757
+"ITEMS",11941,"XC6008","Lite Desktop Manual","Y","N","Ea","Each",20,"Active","N","Purchased item",111,758
+"ITEMS",11943,"XC6009","Lite Desktop Mouse","Y","N","Ea","Each",20,"Active","N","Purchased item",32,759
+"ITEMS",11945,"XC6010","Lite Desktop Ethernet Card","Y","N","Ea","Each",30,"Active","N","Purchased item",32,760
+"ITEMS",11947,"XA7000","Standard Desktop","Y","Y","Ea","Each",,"Active","N","Finished good",91,761
+"ITEMS",11949,"XC7000","Standard Desktop Case","Y","N","Ea","Each",193.89,"Active","N","Purchased item",114,762
+"ITEMS",11951,"XC7001","Standard Desktop Motherboard","Y","N","Ea","Each",157.14,"Active","N","Purchased item",32,763
+"ITEMS",11953,"XC7002","Standard Desktop Monitor","Y","N","Ea","Each",175,"Active","N","Purchased item",30,764
+"ITEMS",11955,"XC7003","Standard Desktop Keyboard","Y","N","Ea","Each",30.35,"Active","N","Purchased item",114,765
+"ITEMS",11957,"XC7004","Standard Desktop Overlay","Y","N","Ea","Each",2,"Active","N","Purchased item",114,766
+"ITEMS",11959,"XC7005","Standard Desktop Packaging","Y","N","Ea","Each",25,"Active","N","Purchased item",114,767
+"ITEMS",11961,"XC7006","Standard Desktop Software Package","Y","N","Ea","Each",300,"Active","N","Purchased item",113,768
+"ITEMS",11963,"XC7007","Standard Desktop Power Supply","Y","N","Ea","Each",30,"Active","N","Purchased item",34,769
+"ITEMS",11965,"XC7008","Standard Desktop Manual","Y","N","Ea","Each",20,"Active","N","Purchased item",111,770
+"ITEMS",11967,"XC7009","Standard Desktop Mouse","Y","N","Ea","Each",20,"Active","N","Purchased item",32,771
+"ITEMS",11969,"XC7010","Standard Desktop Ethernet Card","Y","N","Ea","Each",30,"Active","N","Purchased item",32,772
+"ITEMS",11977,"XA8000","Deluxe Desktop","Y","Y","Ea","Each",,"Active","N","Finished good",91,773
+"ITEMS",11979,"XC8000","Deluxe Desktop Case","Y","N","Ea","Each",295,"Active","N","Purchased item",114,774
+"ITEMS",11981,"XC8001","Deluxe Desktop Motherboard","Y","N","Ea","Each",226.73,"Active","N","Purchased item",32,775
+"ITEMS",11983,"XC8002","Deluxe Desktop Monitor","Y","N","Ea","Each",175,"Active","N","Purchased item",30,776
+"ITEMS",11985,"XC8003","Deluxe Desktop Keyboard","Y","N","Ea","Each",30.35,"Active","N","Purchased item",114,777
+"ITEMS",11987,"XC8004","Deluxe Desktop Overlay","Y","N","Ea","Each",2,"Active","N","Purchased item",114,778
+"ITEMS",11989,"XC8005","Deluxe Desktop Packaging","Y","N","Ea","Each",25,"Active","N","Purchased item",114,779
+"ITEMS",11991,"XC8006","Deluxe Desktop Software Package","Y","N","Ea","Each",445,"Active","N","Purchased item",113,780
+"ITEMS",11993,"XC8007","Deluxe Desktop Power Supply","Y","N","Ea","Each",30,"Active","N","Purchased item",34,781
+"ITEMS",11995,"XC8008","Deluxe Desktop Manual","Y","N","Ea","Each",20,"Active","N","Purchased item",111,782
+"ITEMS",11997,"XC8009","Deluxe Desktop Mouse","Y","N","Ea","Each",20,"Active","N","Purchased item",32,783
+"ITEMS",11999,"XC8010","Deluxe Desktop Ethernet Card","Y","N","Ea","Each",30,"Active","N","Purchased item",32,784
+"ITEMS",12017,"XP9000","Gamepak1","Y","Y","Ea","Each",2.5,"Active","N","Purchased item",91,785
+"ITEMS",12019,"XP9001","Digital Camera, Standard","Y","Y","Ea","Each",310.07,"Active","N","Purchased item",91,786
+"ITEMS",12021,"XP9002","Digital Camera, Deluxe","Y","Y","Ea","Each",420.16,"Active","N","Purchased item",91,787
+"ITEMS",12023,"XP9003","Digital Camera, Professional","Y","Y","Ea","Each",487.8,"Active","N","Purchased item",91,788
+"ITEMS",12025,"XP9004","Television Digital Capable","Y","Y","Ea","Each",387.59,"Active","N","Purchased item",91,789
+"ITEMS",12027,"XP9005","Television HD Ready","Y","Y","Ea","Each",1162.78,"Active","N","Purchased item",91,790
+"ITEMS",12029,"XP9006","Television 96""","Y","Y","Ea","Each",2608.69,"Active","N","Purchased item",91,791
+"ITEMS",12031,"XP9007","Television 102""","Y","Y","Ea","Each",3749.99,"Active","N","Purchased item",91,792
+"ITEMS",12037,"HVAC Service OSP","OSP Heating, Ventilation and AC","N","N","HR","Hour",100,"Active","N","Outside Processing Item",26,793
+"ITEMS",12071,"CP40011","Envoy Affordable Laptop","Y","Y","Ea","Each",1107.86,"Active","N","Finished good",575,794
+"ITEMS",12073,"CP40012","Envoy BestSpeed Laptop","Y","Y","Ea","Each",1107.86,"Active","N","Finished good",575,795
+"ITEMS",12075,"CP40013","Envoy Companion Laptop","Y","Y","Ea","Each",1107.86,"Active","N","Finished good",575,796
+"ITEMS",12077,"CP40014","Envoy Delight Laptop","Y","Y","Ea","Each",1107.86,"Active","N","Finished good",575,797
+"ITEMS",12079,"CP40015","Envoy Extralite Laptop","Y","Y","Ea","Each",1107.86,"Active","N","Finished good",575,798
+"ITEMS",12119,"AT23818","Deluxe Laptop","Y","Y","Ea","Each",1634.834,"Active","N","ATO item",1,799
+"ITEMS",12187,"F150Y2004V8/4.6LTritonEngine","Ford F150 Truck V8 4.6L Triton Engine - Year 2004","Y","N","Ea","Each",3500,"Active","N","Rebuildable",3124,800
+"ITEMS",12211,"FS-PPUA-4334","Paper Pick-Up Assembly","Y","Y","Ea","Each",25.6,"Active","N","Purchased item",114,801
+"ITEMS",12213,"FS-HVPWS-0255","High Voltage Power Supply","Y","Y","Ea","Each",28.85,"Active","N","Purchased item",32,802
+"ITEMS",12215,"PMK-1000","Preventative Maintanence Kit","Y","Y","Ea","Each",78.25,"Active","N","Purchased item",112,803
+"ITEMS",13298,"HVAC Hourly Services","NonStock Direct: Contracted Heating, Ventilation and AC Services","N","Y","HR","Hour",125,"Active","N","Non-Stockable",26,804
+"ITEMS",13299,"Windshield Repair Service","NonStock Direct: Windshield Repair Service - Chips & Scratches","N","Y","Ea","Each",45,"Active","N","Non-Stockable",26,805
+"ITEMS",13302,"Transformer","Power Transformer","Y","Y","Ea","Each",5435,"Active","N","Purchased item",37,806
+"ITEMS",17298,"CM66629","Mother Board","Y","Y","Ea","Each",,"Active","N","Purchased item",2755,807
+"ITEMS",21298,"OPSB66231","Service fee for SB66231 assembly","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,808
+"ITEMS",21301,"WD52002","1"" Colonial Molding - Right","Y","Y","FT","Foot",0.5625,"Active","N","Purchased item",1,809
+"ITEMS",21302,"WD52003","1"" Colonial Molding - Top","Y","Y","FT","Foot",0.5625,"Active","N","Purchased item",1,810
+"ITEMS",21303,"WD52004","2"" Colonial Molding - Left","Y","Y","FT","Foot",0.6975,"Active","N","Purchased item",1,811
+"ITEMS",24308,"CM49674","DDR400 DIMM Memory - 184 Pin","Y","Y","Ea","Each",150,"Active","N","Purchased item",2757,812
+"ITEMS",30373,"Halogen Flood Lamp - 65W","Halogen Flood Lamp - 65W Indoor","Y","Y","Ea","Each",5.65,"Active","N","Purchased item",3124,813
+"ITEMS",30374,"Contracted Painting Service","NonStock Direct: Contracted Painting Service","N","Y","HR","Hour",,"Active","N","Non-Stockable",26,814
+"ITEMS",32373,"CM34211","10 Ft. Pro Series USB Device Cable","Y","Y","Ea","Each",18,"Active","N","Purchased item",2757,815
+"ITEMS",33374,"AS34300","HP ProLiant DL740 - Xeon MP 3 GHz","Y","Y","Ea","Each",,"Active","N","Purchased item",1,816
+"ITEMS",34374,"CM34301","Dell Latitude L400","Y","Y","Ea","Each",,"Active","N","Purchased item",1,817
+"ITEMS",34375,"SB34302","Magna 17 inches flat screen monitor","Y","Y","Ea","Each",,"Active","N","Purchased item",1,818
+"ITEMS",34376,"CM34304","HP LaserJet 9000L mfp","Y","Y","Ea","Each",,"Active","N","Purchased item",1,819
+"ITEMS",34377,"CM34305","Microsoft Windows XP","Y","Y","Ea","Each",,"Active","N","Purchased item",1,820
+"ITEMS",34380,"LTX LT215/85R16-Rebuildable","Michelin LTX LT215/85R16 Rebuildable Tire","Y","N","Ea","Each",325,"Active","N","Rebuildable",3124,821
+"ITEMS",35380,"f22001","Oversized Desk I - Capitalizable, Taxable Item","Y","N","Ea","Each",2500,"Active","N","Purchased item",1,822
+"ITEMS",35382,"Elevator Panel Lamp","Elevator Floor Switch Panel Lamp","Y","Y","Ea","Each",23,"Active","N","Purchased item",3124,823
+"ITEMS",35383,"Elevator Belt","Steel Elevator Belt","Y","Y","Ea","Each",225,"Active","N","Purchased item",3124,824
+"ITEMS",36382,"WD52005","2"" Colonial Molding - Right","Y","Y","FT","Foot",0.6975,"Active","N","Purchased item",1,825
+"ITEMS",36383,"WD52006","2"" Colonial Molding - Top","Y","Y","FT","Foot",0.6975,"Active","N","Purchased item",1,826
+"ITEMS",36384,"WD52007","1"" Contemporary Molding - Left","Y","Y","FT","Foot",0.8775,"Active","N","Purchased item",1,827
+"ITEMS",36385,"WD52008","1"" Contemporary Molding - Right","Y","Y","FT","Foot",0.8775,"Active","N","Purchased item",1,828
+"ITEMS",36386,"WD52009","1"" Contemporary Molding - Top","Y","Y","FT","Foot",0.8775,"Active","N","Purchased item",1,829
+"ITEMS",36387,"WD52010","2"" Contemporary Molding - Left","Y","Y","FT","Foot",1.035,"Active","N","Purchased item",1,830
+"ITEMS",36388,"WD52011","2"" Contemporary Molding - Right","Y","Y","FT","Foot",1.035,"Active","N","Purchased item",1,831
+"ITEMS",36389,"WD52012","2"" Contemporary Molding - Top","Y","Y","FT","Foot",1.035,"Active","N","Purchased item",1,832
+"ITEMS",42383,"Tire ReTread Service","Nonstock Direct: Tire Retread","N","Y","Ea","Each",250,"Active","N","Non-Stockable",26,833
+"ITEMS",45382,"AS54111","Sentinel Standard Desktop - TP","Y","Y","Ea","Each",1110,"Active","N","Finished good",1,834
+"ITEMS",47382,"Motor Rebuild Service","NonStock Direct: Truck Motor Rebuild Services","N","Y","Ea","Each",2500,"Active","N","Non-Stockable",26,835
+"ITEMS",49382,"Plumbing Hourly Service","NonStock Direct: Contracted Plumbing Services","N","Y","HR","Hour",125,"Active","N","Non-Stockable",26,836
+"ITEMS",49383,"Flooring Services","NonStock Direct: Contracted Flooring Services","N","Y","HR","Hour",80,"Active","N","Non-Stockable",26,837
+"ITEMS",49384,"Electrical Service","NonStock Direct: Contracted Electric Services","N","Y","HR","Hour",50,"Active","N","Non-Stockable",26,838
+"ITEMS",59387,"CST0010","Shelf.5.5"".1"".36"".Gondola.DVD","Y","Y","Ea","Each",35,"Active","N","Purchased item",3116,839
+"ITEMS",59388,"CST0011","Shelf...4"" W/Backsplash.Super Heavy Duty.All Purpose","Y","Y","Ea","Each",15,"Active","N","Purchased item",3116,840
+"ITEMS",59389,"CST0012","Shelf-26"" Super Heavy Duty","Y","Y","Ea","Each",65,"Active","N","Purchased item",3116,841
+"ITEMS",59390,"CST0013","Shelf-32"" Super Heavy Duty","Y","Y","Ea","Each",65,"Active","N","Purchased item",3116,842
+"ITEMS",59391,"CST0014","Shelf.8"".12"".26"".w/Backsplash.Software","Y","Y","Ea","Each",45,"Active","N","Purchased item",3116,843
+"ITEMS",59392,"CST0001","Opening Soon Banner","N","Y","Ea","Each",15,"Active","N","Purchased item",3114,844
+"ITEMS",59393,"CST0002","Refrigerator, 6' Walk-in","N","Y","Ea","Each",10000,"Active","N","Purchased item",3115,845
+"ITEMS",59395,"CST0003","Bathroom Sink","N","Y","Ea","Each",100,"Active","N","Purchased item",3116,846
+"ITEMS",59396,"CST0004","Kitchen Sink","N","Y","Ea","Each",200,"Active","N","Purchased item",3116,847
+"ITEMS",59397,"CST0005","Water Filter","N","Y","Ea","Each",50,"Active","N","Purchased item",3115,848
+"ITEMS",59398,"CST0006","Ice Machine","N","Y","Ea","Each",500,"Active","N","Purchased item",3115,849
+"ITEMS",59399,"CST0007","Overhead Track Lighting 4’","N","Y","Ea","Each",30,"Active","N","Purchased item",3116,850
+"ITEMS",59401,"CST0009","Full Length Mirror","N","Y","Ea","Each",100,"Active","N","Purchased item",3116,851
+"ITEMS",59402,"Shelving Installation","NonStock Direct: Shelving Installation Services","N","Y","HR","Hour",45,"Active","N","Non-Stockable",26,852
+"ITEMS",61422,"XC1101","GG Circuit Board","Y","Y","Ea","Each",2.35,"Active","N","Purchased item",32,853
+"ITEMS",61423,"XC1102","Resistor","Y","Y","Ea","Each",0.02,"Active","N","Purchased item",32,854
+"ITEMS",61424,"XC1103","Capacitor","Y","Y","Ea","Each",0.07,"Active","N","Purchased item",32,855
+"ITEMS",61425,"XC1104","RAM","Y","Y","Ea","Each",6.7,"Active","N","Purchased item",32,856
+"ITEMS",61426,"XC1105","Diode","Y","Y","Ea","Each",0.14,"Active","N","Purchased item",32,857
+"ITEMS",61427,"XC1106","Label","Y","Y","Ea","Each",0.15,"Active","N","Purchased item",32,858
+"ITEMS",61428,"XC1107","DIP Switch","Y","Y","Ea","Each",2.1,"Active","N","Purchased item",32,859
+"ITEMS",61430,"XC4101","Standard Laptop Circuit Board","Y","Y","Ea","Each",18.9,"Active","N","Purchased item",32,860
+"ITEMS",61431,"XC4102","Resistor","Y","Y","Ea","Each",0.02,"Active","N","Purchased item",32,861
+"ITEMS",61432,"XC4103","Capacitor","Y","Y","Ea","Each",0.07,"Active","N","Purchased item",32,862
+"ITEMS",61433,"XC4104","RAM","Y","Y","Ea","Each",19,"Active","N","Purchased item",32,863
+"ITEMS",61434,"XC4105","Diode","Y","Y","Ea","Each",0.21,"Active","N","Purchased item",32,864
+"ITEMS",61435,"XC4106","Label","Y","Y","Ea","Each",0.15,"Active","N","Purchased item",32,865
+"ITEMS",61436,"XC4107","DIP Switch","Y","Y","Ea","Each",2.1,"Active","N","Purchased item",32,866
+"ITEMS",61438,"XC6101","Lite Desktop Circuit Board","Y","Y","Ea","Each",9,"Active","N","Purchased item",32,867
+"ITEMS",61439,"XC6102","Resistor","Y","Y","Ea","Each",0.02,"Active","N","Purchased item",32,868
+"ITEMS",61440,"XC6103","Capacitor","Y","Y","Ea","Each",0.07,"Active","N","Purchased item",32,869
+"ITEMS",61441,"XC6104","RAM","Y","Y","Ea","Each",24,"Active","N","Purchased item",32,870
+"ITEMS",61442,"XC6105","Diode","Y","Y","Ea","Each",0.21,"Active","N","Purchased item",32,871
+"ITEMS",61443,"XC6106","Label","Y","Y","Ea","Each",0.15,"Active","N","Purchased item",32,872
+"ITEMS",61444,"XC6107","DIP Switch","Y","Y","Ea","Each",2.1,"Active","N","Purchased item",32,873
+"ITEMS",62460,"RW66743","Plastic Stock - Bronze","Y","N","Lbs","Pounds",0.57,"Active","N","Purchased item",35,874
+"ITEMS",62463,"RW66749","Plastic Stock - Silver","Y","N","Lbs","Pounds",0.57,"Active","N","Purchased item",35,875
+"ITEMS",62469,"RW66773","Plastic Stock - Gold","Y","N","Lbs","Pounds",0.69,"Active","N","Purchased item",35,876
+"ITEMS",63475,"CM40100","Hard Drive - A series","N","N","Ea","Each",50,"Active","N","Purchased item",31,877
+"ITEMS",63476,"CM40120","Hard Drive - B series","N","N","Ea","Each",60,"Active","N","Purchased item",31,878
+"ITEMS",63477,"CM40200","CD-ROM - A series","N","N","Ea","Each",40,"Active","N","Purchased item",114,879
+"ITEMS",63478,"CM40220","CD-ROM - B series","N","N","Ea","Each",50,"Active","N","Purchased item",114,880
+"ITEMS",63479,"RT00001","Cola .5 LTR 6PK","Y","Y","Ea","Each",2.6,"Active","N","Purchased item",3301,881
+"ITEMS",63480,"RT00003","Reduced Fat Milk 1 Gal.","Y","Y","Ea","Each",2.23,"Active","N","Purchased item",3301,882
+"ITEMS",63481,"RT00004","Baked BBQ Chips 10oz","Y","Y","Ea","Each",2.5,"Active","N","Purchased item",3301,883
+"ITEMS",63482,"RT00005","Washing Detergent Powder w/bleach 117oz","Y","Y","Ea","Each",15.98,"Active","N","Purchased item",3301,884
+"ITEMS",63483,"RT00006","Natures Own Honey Wheat","Y","Y","Ea","Each",2.79,"Active","N","Purchased item",3301,885
+"ITEMS",63484,"RT10007","Carriage SLT861 Wristwatch","Y","Y","Ea","Each",19.93,"Active","N","Purchased item",3300,886
+"ITEMS",63485,"RT10008","10KT Gold Size 4","Y","Y","Ea","Each",28.76,"Active","N","Purchased item",3300,887
+"ITEMS",63486,"RT10009","Connoisseurs Jewelry Wipes","Y","Y","Ea","Each",2.76,"Active","N","Purchased item",3300,888
+"ITEMS",63487,"RT10010","Puritan NAPPA Slim Wallet SLT14","Y","Y","Ea","Each",8.92,"Active","N","Purchased item",3300,889
+"ITEMS",63488,"RT20011","Main Stay Round White Quartz Clock","Y","Y","Ea","Each",7.21,"Active","N","Purchased item",3300,890
+"ITEMS",63489,"RT20012","Pokemon Sapphire","Y","Y","Ea","Each",21.76,"Active","N","Purchased item",3299,891
+"ITEMS",63490,"RT20013","20"" Color Television","Y","Y","Ea","Each",179.87,"Active","N","Purchased item",3299,892
+"ITEMS",63491,"RT20014","6' S Video Cable","Y","Y","Ea","Each",4.88,"Active","N","Purchased item",3299,893
+"ITEMS",63492,"RT20015","Miracle","Y","Y","Ea","Each",12.55,"Active","N","Purchased item",3299,894
+"ITEMS",63493,"RT30016","Carpenters Gold","Y","Y","Ea","Each",15.65,"Active","N","Purchased item",3299,895
+"ITEMS",63494,"RT30017","6.0V Drill Kit","Y","Y","Ea","Each",29.54,"Active","N","Purchased item",3298,896
+"ITEMS",63495,"RT30018","Tool Box w/tools","Y","Y","Ea","Each",87.41,"Active","N","Purchased item",3298,897
+"ITEMS",63496,"RT30019","Gloss Protective Enamel - 1202 Blue","Y","Y","Ea","Each",3.41,"Active","N","Purchased item",3298,898
+"ITEMS",63497,"RT30020","Clear plastic Sheeting 10"" X 25' X 3.5ml","Y","Y","Ea","Each",3.99,"Active","N","Purchased item",3298,899
+"ITEMS",63498,"RT40021","Paint Brush 4""","Y","Y","Ea","Each",3.75,"Active","N","Purchased item",3298,900
+"ITEMS",63499,"RT40022","9 X 12 Tarp","Y","Y","Ea","Each",11.27,"Active","N","Purchased item",3297,901
+"ITEMS",63501,"RT40024","Arbo Hula Popper","Y","Y","Ea","Each",2.89,"Active","N","Purchased item",3297,902
+"ITEMS",63502,"RT40026","Monster Tennis Balls","Y","Y","Ea","Each",2.62,"Active","N","Purchased item",3297,903
+"ITEMS",63503,"RT50032","Bear","Y","Y","Ea","Each",4.05,"Active","N","Purchased item",3296,904
+"ITEMS",64504,"RT50033","Jig Saw Puzzle","Y","Y","Ea","Each",4.11,"Active","N","Purchased item",3296,905
+"ITEMS",64505,"RT50034","Stow-a-way 20"" Folding Bike","Y","Y","Ea","Each",95.57,"Active","N","Purchased item",3296,906
+"ITEMS",64506,"RT50035","Adult Bycycle Helment","Y","Y","Ea","Each",8.24,"Active","N","Purchased item",3296,907
+"ITEMS",64507,"RT50036","Barbie","Y","Y","Ea","Each",5.49,"Active","N","Purchased item",3296,908
+"ITEMS",64508,"RT60037","Pennzoil 1Ow-30 5 QT","Y","Y","Ea","Each",8.26,"Active","N","Purchased item",3288,909
+"ITEMS",64509,"RT60038","Prestone","Y","Y","Ea","Each",5.7,"Active","N","Purchased item",3288,910
+"ITEMS",64510,"RT60039","32 oz Wheel Cleaner","Y","Y","Ea","Each",2.89,"Active","N","Purchased item",3288,911
+"ITEMS",64511,"RT60040","Michelin Select LT P235/75R15","Y","Y","Ea","Each",43.67,"Active","N","Purchased item",3288,912
+"ITEMS",64512,"RT60041","12"" SubWolfer","Y","Y","Ea","Each",57.71,"Active","N","Purchased item",3288,913
+"ITEMS",64513,"RT80042","Vitamin C","Y","Y","Ea","Each",4.17,"Active","N","Purchased item",3295,914
+"ITEMS",64514,"RT80043","Colegate Shaving Cream","Y","Y","Ea","Each",1.73,"Active","N","Purchased item",3295,915
+"ITEMS",64515,"RT80044","Bandaids","Y","Y","Ea","Each",1.68,"Active","N","Purchased item",3295,916
+"ITEMS",64516,"RT80045","Crest","Y","Y","Ea","Each",2.31,"Active","N","Purchased item",3295,917
+"ITEMS",64517,"RT80046","Secret","Y","Y","Ea","Each",1.3,"Active","N","Purchased item",3295,918
+"ITEMS",64518,"RT90047","Corn, Sweet","Y","Y","Ea","Each",0.47,"Active","N","Purchased item",3294,919
+"ITEMS",64519,"RT90048","Weed Eater","Y","Y","Ea","Each",16.49,"Active","N","Purchased item",3294,920
+"ITEMS",64520,"RT90049","Lawn Mower","Y","Y","Ea","Each",82.41,"Active","N","Purchased item",3294,921
+"ITEMS",64521,"RT90050","Plastic Wheel 8"" X 1.75""","Y","Y","Ea","Each",4.16,"Active","N","Purchased item",3294,922
+"ITEMS",64522,"RT90051","Trimmer Line .080"" X 150'","Y","Y","Ea","Each",5.44,"Active","N","Purchased item",3294,923
+"ITEMS",64523,"RT10101","NyQuil","Y","Y","Ea","Each",1.95,"Active","N","Purchased item",3293,924
+"ITEMS",64524,"RT10102","Cough Drops","Y","Y","Ea","Each",1.58,"Active","N","Purchased item",3293,925
+"ITEMS",64525,"RT10103","Tylenol","Y","Y","Ea","Each",3.93,"Active","N","Purchased item",3293,926
+"ITEMS",64526,"RT10104","Chewable Antacid","Y","Y","Ea","Each",2.14,"Active","N","Purchased item",3293,927
+"ITEMS",64527,"RT10105","Opti-Free","Y","Y","Ea","Each",2.79,"Active","N","Purchased item",3293,928
+"ITEMS",64528,"RT20101","Special Kitty","Y","Y","Ea","Each",0.37,"Active","N","Purchased item",3292,929
+"ITEMS",64529,"RT20102","Millet Spray","Y","Y","Ea","Each",2.25,"Active","N","Purchased item",3292,930
+"ITEMS",64530,"RT20103","Beggin Strips","Y","Y","Ea","Each",2.77,"Active","N","Purchased item",3292,931
+"ITEMS",64531,"RT20104","Meaty Chunks N Gravy OL' Roy","Y","Y","Ea","Each",5.63,"Active","N","Purchased item",3292,932
+"ITEMS",64532,"RT20105","Ick Clear Tank Buddies","Y","Y","Ea","Each",2.46,"Active","N","Purchased item",3292,933
+"ITEMS",64533,"RT30102","Soup Bowl 18oz","Y","Y","Ea","Each",2.59,"Active","N","Purchased item",3289,934
+"ITEMS",64534,"RT30103","20 Piece Stainless","Y","Y","Ea","Each",19.49,"Active","N","Purchased item",3289,935
+"ITEMS",64535,"RT30104","Salad Spinner","Y","Y","Ea","Each",9.72,"Active","N","Purchased item",3289,936
+"ITEMS",64536,"RT30105","Cereal Dispenser","Y","Y","Ea","Each",4.2,"Active","N","Purchased item",3289,937
+"ITEMS",64537,"RT30106","Glad Drawstring 13 Gal","Y","Y","Ea","Each",2.99,"Active","N","Purchased item",1,938
+"ITEMS",64538,"RT50101","Corner Desk","Y","Y","Ea","Each",55.76,"Active","N","Purchased item",3290,939
+"ITEMS",64539,"RT50102","Fabric Chair - Blue","Y","Y","Ea","Each",9.71,"Active","N","Purchased item",3290,940
+"ITEMS",64540,"RT50103","Kitchen Hutch","Y","Y","Ea","Each",104,"Active","N","Purchased item",3290,941
+"ITEMS",64541,"RT50104","Wall Entertainment Center","Y","Y","Ea","Each",83.76,"Active","N","Purchased item",3290,942
+"ITEMS",64542,"RT50105","Soft Touch Duster Cloths","Y","Y","Ea","Each",2.6,"Active","N","Purchased item",3290,943
+"ITEMS",64543,"RT70101","Bath Ice Blue","Y","Y","Ea","Each",3.31,"Active","N","Purchased item",3291,944
+"ITEMS",64544,"RT70102","Floral Paisley Lotion","Y","Y","Ea","Each",2.06,"Active","N","Purchased item",3291,945
+"ITEMS",64545,"RT70103","Body Pillow 20"" X 54""","Y","Y","Ea","Each",8.63,"Active","N","Purchased item",3291,946
+"ITEMS",64546,"RT70104","Flannel Sheet Set Queen","Y","Y","Ea","Each",23.17,"Active","N","Purchased item",3291,947
+"ITEMS",64547,"RT70105","Vinyl Mini Blind 29 X 64","Y","Y","Ea","Each",14.44,"Active","N","Purchased item",3291,948
+"ITEMS",64548,"RT80101","Faded Glory Down Jacket Black M(8/10)","Y","Y","Ea","Each",16.7,"Active","N","Purchased item",3370,949
+"ITEMS",64549,"RT80102","White Stag Fleese set Tusk XL(16/18)","Y","Y","Ea","Each",11.38,"Active","N","Purchased item",3370,950
+"ITEMS",64550,"RT80103","Levi Strauss Seam Front Jean Dark Stone 14 Misses","Y","Y","Ea","Each",13.62,"Active","N","Purchased item",3370,951
+"ITEMS",64551,"RT80104","White Stag Tex Lin Shirt Apple Green 16W","Y","Y","Ea","Each",8.55,"Active","N","Purchased item",3370,952
+"ITEMS",64552,"RT80105","Faded Glory Long Sleeve Dress Black 14","Y","Y","Ea","Each",14.48,"Active","N","Purchased item",3370,953
+"ITEMS",64553,"RT60101","Georgia Pacific Copy Paper 84/20/500","Y","Y","Ea","Each",3.1,"Active","N","Purchased item",3302,954
+"ITEMS",64554,"RT60102","Rubbermaid Black Plastic Pencil Cup","Y","Y","Ea","Each",2.92,"Active","N","Purchased item",3302,955
+"ITEMS",64555,"RT60103","Ampad 4pk Legal Pad","Y","Y","Ea","Each",2.97,"Active","N","Purchased item",3302,956
+"ITEMS",64556,"RT60104","Ampad 9X12 Catalog Envelope 6 ct","Y","Y","Ea","Each",2.46,"Active","N","Purchased item",3302,957
+"ITEMS",64557,"RT60105","Scotch Magic Tape Disposable 3/4"" X 650 In.","Y","Y","Ea","Each",0.61,"Active","N","Purchased item",3302,958
+"ITEMS",64558,"MDP0001","Tongue Depressors Adult Non-Sterile 500/Box","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,959
+"ITEMS",64559,"XC7102","Std. Desktop Monitor II","Y","Y","Ea","Each",115.5,"Active","N","Purchased item",30,960
+"ITEMS",64560,"XC8102","Deluxe Desktop Monitor II","Y","Y","Ea","Each",115.5,"Active","N","Purchased item",30,961
+"ITEMS",65560,"MDC0001","BGM Plastic Casing","Y","Y","Ea","Each",3,"Active","N","Purchased item",1083,962
+"ITEMS",65561,"MDC0002","BGM LCD Monitor","Y","Y","Ea","Each",8,"Active","N","Purchased item",1083,963
+"ITEMS",65563,"MDC0003","BGM Circuit Board","Y","Y","Ea","Each",6,"Active","N","Purchased item",1083,964
+"ITEMS",65564,"MDC0004","BGM Processor","Y","Y","Ea","Each",8,"Active","N","Purchased item",1083,965
+"ITEMS",65565,"MDC0005","BGM Memory Module","Y","Y","Ea","Each",11,"Active","N","Purchased item",1083,966
+"ITEMS",65566,"MDC0006","BGM Power Switch","Y","Y","Ea","Each",2,"Active","N","Purchased item",1083,967
+"ITEMS",65568,"MDC0008","BGM Battery Housing","Y","Y","Ea","Each",4,"Active","N","Purchased item",1083,968
+"ITEMS",67559,"OP00012","Lancet Sterilization - OSP","N","N","Ea","Each",0.002,"Active","N","Outside Processing Item",2121,969
+"ITEMS",70562,"CM-CH-VC1","Chassis for Vision Car","Y","Y","Ea","Each",5000,"Active","N","Purchased item",3452,970
+"ITEMS",70563,"CM-TIR-VC1","Tire","Y","Y","Ea","Each",50,"Active","N","Purchased item",3453,971
+"ITEMS",70565,"CM-BRK-PLT-VC1","Brake Plates","Y","Y","Ea","Each",100,"Active","N","Purchased item",3454,972
+"ITEMS",70567,"CM-CRK-SD5","Crank Case","Y","Y","Ea","Each",2000,"Active","N","Purchased item",3455,973
+"ITEMS",70568,"CM-CRS-SD5","Crank Shaft","Y","Y","Ea","Each",2000,"Active","N","Purchased item",3455,974
+"ITEMS",70577,"CM-CRK-SD7","Crank Case","Y","Y","Ea","Each",3000,"Active","N","Purchased item",3455,975
+"ITEMS",70578,"CM-CRS-SD7","Crank Shaft","Y","Y","Ea","Each",3000,"Active","N","Purchased item",3455,976
+"ITEMS",70586,"CM-CH-VC2","Chasis for Vision Car","Y","Y","Ea","Each",10000,"Active","N","Purchased item",3452,977
+"ITEMS",70587,"CM-TIR-VC2","Tire","Y","Y","Ea","Each",100,"Active","N","Purchased item",3453,978
+"ITEMS",70589,"CM-BRK-PLT-VC2","Brake Plates","Y","Y","Ea","Each",2000,"Active","N","Purchased item",3454,979
+"ITEMS",70591,"CM-CRK-SUV9","Crank Case","Y","Y","Ea","Each",5000,"Active","N","Purchased item",3455,980
+"ITEMS",70592,"CM-CRS-SUV9","Crank Shaft","Y","Y","Ea","Each",5000,"Active","N","Purchased item",3455,981
+"ITEMS",71560,"Alkaline Battery - Multimeter","Mulitmeter Replacement Battery","Y","Y","Ea","Each",9.54,"Active","N","Purchased item",3124,982
+"ITEMS",71561,"MDP0002","Tongue Depressors Junior Non-Sterile 500/Box","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,983
+"ITEMS",71562,"MDP0003","Tongue Depressors Infant Non-Sterile 500/Box","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,984
+"ITEMS",71563,"MDP0004","Latex Exam Gloves Strong Cuff Cs/1000 SM","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,985
+"ITEMS",71564,"MDP0005","Latex Exam Gloves Strong Cuff Cs/1000 Med","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,986
+"ITEMS",71565,"MDP0006","Latex Exam Gloves Strong Cuff Cs/1000 LG","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,987
+"ITEMS",71566,"MDP0007","Latex Exam Gloves Strong Cuff Cs/1000 XL","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,988
+"ITEMS",71567,"MDP0008","2-Ply Tissue White 13"" X 18"" Cs/500","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,989
+"ITEMS",71568,"MDP0009","3-Ply Tissue White 13"" X 18"" Cs/500","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,990
+"ITEMS",72563,"CM11000","Pen Model Red Pen","Y","Y","Ea","Each",0.25,"Active","N","Purchased item",36,991
+"ITEMS",72564,"CM11001","Pen Model Blue Pen","Y","Y","Ea","Each",0.25,"Active","N","Purchased item",36,992
+"ITEMS",72565,"CM11002","Pen Model Green Pen","Y","Y","Ea","Each",0.25,"Active","N","Purchased item",36,993
+"ITEMS",72566,"CM11003","Pen Model Purple Pen","Y","Y","Ea","Each",0.25,"Active","N","Purchased item",36,994
+"ITEMS",72568,"CM12000","Pen Model Red Clip","Y","Y","Ea","Each",0.1,"Active","N","Purchased item",36,995
+"ITEMS",72569,"CM12001","Pen Model Blue Clip","Y","Y","Ea","Each",0.1,"Active","N","Purchased item",36,996
+"ITEMS",72570,"CM12002","Pen Model Green Clip","Y","Y","Ea","Each",0.1,"Active","N","Purchased item",36,997
+"ITEMS",72571,"CM12003","Pen Model Purple Clip","Y","Y","Ea","Each",0.1,"Active","N","Purchased item",36,998
+"ITEMS",72573,"CM13000","Pen Model Red Watch","Y","Y","Ea","Each",0.5,"Active","N","Purchased item",36,999
+"ITEMS",72574,"CM13001","Pen Model Blue Watch","Y","Y","Ea","Each",0.5,"Active","N","Purchased item",36,1000
+"ITEMS",72575,"CM13002","Pen Model Green Watch","Y","Y","Ea","Each",0.5,"Active","N","Purchased item",36,1001
+"ITEMS",72576,"CM13003","Pen Model Purple Watch","Y","Y","Ea","Each",0.5,"Active","N","Purchased item",36,1002
+"ITEMS",72577,"CM14000","Pen Model Tray","Y","Y","Ea","Each",0.1,"Active","N","Purchased item",36,1003
+"ITEMS",72578,"CM15000","Pen Model Box","Y","Y","Ea","Each",0.25,"Active","N","Purchased item",36,1004
+"ITEMS",72580,"CM-PNT-BLU","Blue Paint","Y","Y","GAL","Gallon",3000,"Active","N","Purchased item",3452,1005
+"ITEMS",72581,"CM-PNT-WHT","White Paint","Y","Y","GAL","Gallon",3000,"Active","N","Purchased item",3452,1006
+"ITEMS",76598,"RT40025","Basketball","Y","Y","Ea","Each",5.49,"Active","N","Purchased item",3297,1007
+"ITEMS",80598,"XC5107","Deluxe Laptop Power Supply","Y","Y","Ea","Each",42.5,"Active","N","Purchased item",34,1008
+"ITEMS",83598,"RT11001","3.9 Cu Ft Front Load Washer","Y","Y","Ea","Each",289,"Active","N","Purchased item",3115,1009
+"ITEMS",83599,"RT11002","5.8 Cu Ft Front Load Gas Dryer","Y","Y","Ea","Each",219,"Active","N","Purchased item",3115,1010
+"ITEMS",83601,"RT11004","20.9 Cu Ft Top Mount Refrigerator","Y","Y","Ea","Each",499,"Active","N","Purchased item",3115,1011
+"ITEMS",84598,"Elevator Operating Panel","Car operating control panel","Y","Y","Ea","Each",5000,"Active","N","Purchased item",3124,1012
+"ITEMS",86612,"MDP0010","Total Hip System - Polyethylene","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,1013
+"ITEMS",86613,"MDP0011","Total Hip System - Ceramic","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,1014
+"ITEMS",86614,"MDP0012","Hip Revision System","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,1015
+"ITEMS",86615,"MDP0013","Femoral Stem - Cemented","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,1016
+"ITEMS",86616,"MDP0014","Femoral Stem - Non-cemented","Y","Y","Ea","Each",,"Active","N","Purchased item",1082,1017
+"ITEMS",92607,"SET_UP","Set Up Charges OSP","N","N","Ea","Each",100,"Active","N","Outside Processing Item",1,1018
+"ITEMS",92609,"Engine Oil-Automotive","Automotive Engine Oil","Y","Y","QT","Quart",4,"Active","N","Purchased item",3455,1019
+"ITEMS",92610,"Oil Filter-Automotive","Automotive Oil Filter","Y","Y","Ea","Each",2,"Active","N","Purchased item",3455,1020
+"ITEMS",92611,"Spark Plug-Automotive","Automotive Spark Plug","Y","Y","Ea","Each",4,"Active","N","Purchased item",3455,1021
+"ITEMS",92612,"Wiper Blade-Automotive","Automotive Front Wiper Blade","Y","Y","Ea","Each",12,"Active","N","Purchased item",3452,1022
+"ITEMS",103615,"MDC0013","BGM Sensor","Y","Y","Ea","Each",7.1,"Active","N","Purchased item",1083,1023
+"ITEMS",108628,"SC6000","Raw Wafer","Y","Y","Ea","Each",1,"Active","N","Purchased item",1,1024
+"ITEMS",109662,"OP-ASSY","Assembly Sector Outside Processing","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1025
+"ITEMS",109663,"OP-ASSYalt","Assembly Sector Outside Processing - Alternate","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1026
+"ITEMS",109664,"OP-FAB","Fab Sector Outside Processing","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1027
+"ITEMS",109665,"OP-FABalt","Fab Sector Outside Processing - Alternate","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1028
+"ITEMS",109666,"OP-SORT","Sort Sector Outside Processing","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1029
+"ITEMS",109667,"OP-SORTalt","Sort Sector Outside Processing - Alternate","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1030
+"ITEMS",109668,"OP-TEST","Test Sector Outside Processing","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1031
+"ITEMS",109669,"OP-TESTalt","Test Sector Outside Processing - Alternate","N","N","Ea","Each",25,"Active","N","Outside Processing Item",1,1032
+"ITEMS",123677,"XC7020","Std. Desktop Ethernet Card","Y","N","Ea","Each",28.5,"Active","N","Purchased item",32,1033
+"ITEMS",123678,"XC8020","DLX. Desktop Ethernet Card","Y","N","Ea","Each",28.5,"Active","N","Purchased item",32,1034
+"ITEMS",126677,"CM66111","Standard PC Speakers","Y","Y","Ea","Each",20,"Active","N","Purchased item",1,1035
+"ITEMS",127677,"CR1000","Cisco Router","Y","Y","Ea","Each",2000,"Active","Y","Purchased item",1,1036
+"ITEMS",129677,"XC5030","Deluxe Laptop Motherboard II","Y","Y","Ea","Each",142.3,"Active","N","Purchased item",32,1037
+"ITEMS",129678,"XC1120","Game Girl Controller II","Y","Y","Ea","Each",10.15,"Active","N","Purchased item",114,1038
+"ITEMS",130690,"f11500","Office Desk - Capitalizable","N","N","Ea","Each",1000,"Active","N","Purchased item",1,1039
+"ITEMS",131692,"XC4120","Standard Laptop Monitor","Y","Y","Ea","Each",132.6,"Active","N","Purchased item",30,1040
+"ITEMS",131693,"XC5120","Deluxe Lartop Monitor","Y","Y","Ea","Each",190,"Active","N","Purchased item",30,1041
+"ITEMS",137718,"OP777","Outside Processing Test","N","N","Ea","Each",20,"Active","N","Outside Processing Item",1,1042
+"ITEMS",138718,"CM66267","Capacitor","Y","Y","Ea","Each",0.22,"Active","N","Purchased item",32,1043
+"ITEMS",138719,"CM66270","Red Diode","Y","Y","Ea","Each",0.02,"Active","N","Purchased item",32,1044
+"ITEMS",138720,"CM66271","Green Diode","Y","Y","Ea","Each",0.02,"Active","N","Purchased item",32,1045
+"ITEMS",138721,"CM66272","Amber Diode","Y","Y","Ea","Each",0.02,"Active","N","Purchased item",32,1046
+"ITEMS",138722,"CM66273","6X DIP Switch","Y","Y","Ea","Each",3.77,"Active","N","Purchased item",32,1047
+"ITEMS",138723,"CM66274","12X DIP Switch","Y","Y","Ea","Each",5.1,"Active","N","Purchased item",32,1048
+"ITEMS",138724,"CM66275","Heat Sink","Y","Y","Ea","Each",1.95,"Active","N","Purchased item",32,1049
+"ITEMS",138725,"CM66276","Power Relay","Y","Y","Ea","Each",3.45,"Active","N","Purchased item",32,1050
+"ITEMS",138726,"CM66277","Limit Switch","Y","Y","Ea","Each",4.75,"Active","N","Purchased item",32,1051
+"ITEMS",155731,"Cooling Fan - Standard","Standard Cooling Fan: Round, 110/220V, .12 Amp","Y","Y","Ea","Each",250,"Active","N","Purchased item",3124,1052
+"ITEMS",155732,"Cooling Fan - Heavy Duty","Heavy Duty Cooling Fan: Round, 110/220V, .12 Amp","Y","Y","Ea","Each",300,"Active","N","Purchased item",3124,1053
+"ITEMS",160738,"SP00001","Spare Part 00001","Y","Y","Ea","Each",500,"Active","N","Purchased item",3124,1054
+"ITEMS",160739,"SP00002","Spare Part 00002","Y","Y","Ea","Each",325,"Active","N","Purchased item",3124,1055
+"ITEMS",162745,"CM20001","Body Casting, Shutter Unit","Y","Y","Ea","Each",25,"Active","N","Purchased item",3097,1056
+"ITEMS",162746,"CM20002","CCD for 8 Megapixel Digital Camera","Y","Y","Ea","Each",21,"Active","N","Purchased item",3097,1057
+"ITEMS",162747,"CM20003","Motor Rotation Reducing Base Plate","Y","Y","Ea","Each",66,"Active","N","Purchased item",3097,1058
+"ITEMS",162748,"CM20004","AF Drive Unit","Y","Y","Ea","Each",40,"Active","N","Purchased item",3097,1059
+"ITEMS",162749,"CM20005","Lens for Digital Camera","Y","Y","Ea","Each",39,"Active","N","Purchased item",3097,1060
+"ITEMS",174763,"CM80001","Body Casting, Shutter Unit","Y","Y","Ea","Each",25,"Active","N","Purchased item",3097,1061
+"ITEMS",174764,"CM80002","CCD for 5 Megapixel Digital Camera","Y","Y","Ea","Each",21,"Active","N","Purchased item",3097,1062
+"ITEMS",174765,"CM80003","Motor Rotation Reducing Base Plate","Y","Y","Ea","Each",41,"Active","N","Purchased item",3097,1063
+"ITEMS",174766,"CM80004","AF Drive Unit","Y","Y","Ea","Each",40,"Active","N","Purchased item",3097,1064
+"ITEMS",174767,"CM80005","Lens for Digital Camera","Y","Y","Ea","Each",39,"Active","N","Purchased item",3097,1065
+"ITEMS",174779,"Vehicle Head Light","Head Light for Vehicle","Y","Y","Ea","Each",25,"Active","N","Purchased item",3124,1066
+"ITEMS",180787,"Inlet Valve","Inlet Valve for Compressor","Y","Y","Ea","Each",65,"Active","N","Purchased item",3124,1067
+"ITEMS",180788,"Oil/Water Separator","Oil/Water Separator","Y","Y","Ea","Each",48,"Active","N","Purchased item",3124,1068
+"ITEMS",180789,"Minimum Pressure Valve","Minimum Pressure Valve","Y","Y","Ea","Each",65,"Active","N","Purchased item",3124,1069
+"ITEMS",180790,"Thermostatic Valve","Thermostatic Valve","Y","Y","Ea","Each",116,"Active","N","Purchased item",3124,1070
+"ITEMS",180791,"Oil Stop Valve","Oil Stop Valve","Y","Y","Ea","Each",45,"Active","N","Purchased item",3124,1071
+"ITEMS",180792,"Unloading Valve","Unloading Valve/Kit","Y","Y","Ea","Each",65,"Active","N","Purchased item",3124,1072
+"ITEMS",180793,"Condensate Drain Valve","Condensate Drain Valve","Y","Y","Ea","Each",70,"Active","N","Purchased item",3124,1073
+"ITEMS",180794,"Pressure Regulator","Pressure Regulator","Y","Y","Ea","Each",125,"Active","N","Purchased item",3124,1074
+"ITEMS",181780,"AT23810","Envoy Xtreme Laptop","Y","Y","Ea","Each",1634.834,"Active","N","ATO item",2755,1075
+"ITEMS",181781,"f22222","CLP Model #4551","Y","Y","Ea","Each",499,"Active","N","Purchased item",36,1076
+"ITEMS",184832,"Roofing Services - Landlord","Nonstock Direct Item: Landlord Roofing Services","N","Y","Ea","Each",0,"Active","N","Non-Stockable",12832,1077
+"ITEMS",185836,"CST0023","Exhaust Fan, Restroom","Y","Y","Ea","Each",12,"Active","N","Purchased item",3116,1078
+"ITEMS",185837,"CST0024","Damper for Exhaust Fan","Y","Y","Ea","Each",19,"Active","N","Purchased item",3116,1079
+"ITEMS",185838,"CST0025","Base Tile Glazed White ""Snowflake""","Y","Y","Ea","Each",80,"Active","N","Purchased item",3116,1080
+"ITEMS",185839,"CST0026","Hand  Dryer","Y","Y","Ea","Each",30,"Active","N","Purchased item",3116,1081
+"ITEMS",185840,"CST0027","Soap Dispenser, Deck Mounted","Y","Y","Ea","Each",30,"Active","N","Purchased item",3116,1082
+"ITEMS",185841,"CST0028","Towel Dispenser","Y","Y","Ea","Each",30,"Active","N","Purchased item",3116,1083
+"ITEMS",185842,"CST0029","Toilet Paper Dispenser","Y","Y","Ea","Each",30,"Active","N","Purchased item",3116,1084
+"ITEMS",185843,"CST0030","Seat Cover Dispenser","Y","Y","Ea","Each",30,"Active","N","Purchased item",3116,1085
+"ITEMS",187855,"Depot OSP","Depot Third Party Repair - Outside Processing","N","N","HRS","HRS",,"Active","N","Outside Processing Item",1,1086
+"ITEMS",190879,"CM88321","LCD Display","Y","Y","Ea","Each",4,"Active","Y","Purchased item",1,1087
+"ITEMS",190880,"CM88326","Plastic Case","Y","Y","Ea","Each",1.2,"Active","Y","Purchased item",1,1088
+"ITEMS",190881,"CM88331","Micro 24k","Y","Y","Ea","Each",2.5,"Active","Y","Purchased item",1,1089
+"ITEMS",190882,"CM88332","PCB - Main","Y","Y","Ea","Each",5,"Active","Y","Purchased item",1,1090
+"ITEMS",190883,"CM88333","Resistor SMT 0.5 kOhm 0603","Y","Y","Ea","Each",0.06,"Active","Y","Purchased item",1,1091
+"ITEMS",190884,"SB88328","PCB Assy - Vision Pad DX","Y","Y","Ea","Each",8,"Active","N","Subassembly",1,1092
+"ITEMS",192885,"CST0031","Base Tile Glazed White ""Arctic Ice""","Y","Y","Box","Box",80,"Active","N","Purchased item",3116,1093
+"ITEMS",193885,"CM16101","Label - Cosmic Hero I GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1094
+"ITEMS",193886,"CM16102","Label - Battle of the Giants PC","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1095
+"ITEMS",193887,"CM16103","Label - Epic Disaster GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1096
+"ITEMS",193888,"CM16104","Label - Epic Disaster GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1097
+"ITEMS",193889,"CM16105","Label - Cosmic Hero II GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1098
+"ITEMS",193890,"CM16106","Label - Cosmic Hero III GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1099
+"ITEMS",193891,"CM16107","Label - Cosmic Hero IV GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1100
+"ITEMS",193892,"CM16108","Label - Basketball Champs 2002 GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1101
+"ITEMS",193893,"CM16109","Label - Basketball Champs 2002 GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1102
+"ITEMS",193894,"CM16110","Label - Basketball Champs 2003 GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1103
+"ITEMS",193895,"CM16111","Label - Basketball Champs 2003 GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1104
+"ITEMS",193896,"CM16112","Label - Basketball Champs 2004 GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1105
+"ITEMS",193897,"CM16113","Label - Basketball Champs 2004 GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1106
+"ITEMS",193898,"CM16114","Label - Basketball Champs 2005 GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1107
+"ITEMS",193899,"CM16115","Label - Basketball Champs 2005 GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1108
+"ITEMS",193901,"CM16117","Label - Mysterious Adventures GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1109
+"ITEMS",193902,"CM16118","Label - 18 Hole Golf 2 GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1110
+"ITEMS",193903,"CM16119","Label - Battle of the Giants 2 DVD","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1111
+"ITEMS",193904,"CM16120","Label - Battle of the Giants 2 PC","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1112
+"ITEMS",193905,"CM16121","Label - Super Hero I GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1113
+"ITEMS",193906,"CM16122","Label - Super Hero II GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1114
+"ITEMS",193907,"CM16123","Label - Mega Hero II GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1115
+"ITEMS",193908,"CM16124","Label - Mega Hero I GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1116
+"ITEMS",193909,"CM16125","Label - Invaders from Space GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1117
+"ITEMS",193910,"CM16126","Label - Invaders from Space GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1118
+"ITEMS",193911,"CM16127","Label - Vintage Games GAMEBX2","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1119
+"ITEMS",193912,"CM16128","Label - Vintage Games GAMEBX1","Y","Y","Ea","Each",0.04,"Active","N","Purchased item",1,1120
+"ITEMS",193913,"CM16198","Game Disk Media","Y","Y","Ea","Each",0.23,"Active","N","Purchased item",1,1121
+"ITEMS",193914,"CM16199","Game Disk Case","Y","Y","Ea","Each",0.48,"Active","N","Purchased item",1,1122
+"ITEMS",204949,"Fuse01A","Fuse01A","Y","Y","Ea","Each",0.006,"Active","N","Purchased item",1,1123
+"ITEMS",206950,"SP81000","Back Seat - Valve","Y","Y","Ea","Each",18,"Active","N","Purchased item",3124,1124
+"ITEMS",206951,"SP81002","Top Seat - Valve","Y","Y","Ea","Each",18,"Active","N","Purchased item",3124,1125
+"ITEMS",206952,"SP85000","Top Seal - Valve","Y","Y","Ea","Each",12,"Active","N","Purchased item",3124,1126
+"ITEMS",206953,"SP85002","Back Seal - Valve","Y","Y","Ea","Each",10,"Active","N","Purchased item",3124,1127
+"ITEMS",206954,"SP91000","Cover Seat - Steel","Y","Y","Ea","Each",18,"Active","N","Purchased item",3124,1128
+"ITEMS",206955,"SP92000","Cover Seat - Rubber","Y","Y","Ea","Each",16,"Active","N","Purchased item",3124,1129
+"ITEMS",206956,"SP84003","End Cover - Valve Stem","Y","Y","Ea","Each",32,"Active","N","Purchased item",3124,1130
+"ITEMS",206957,"SP89900","Valve Stem Assembly","Y","Y","Ea","Each",200,"Active","N","Purchased item",3124,1131
+"ITEMS",206958,"SP89000","Valve Stem","Y","Y","Ea","Each",85,"Active","N","Purchased item",3124,1132
+"ITEMS",206959,"SP98000","Cover Screw - Valve Stem","Y","Y","Ea","Each",25,"Active","N","Purchased item",3124,1133
+"ITEMS",207954,"IM1023i","ImageMaker 1023i Desktop Digital Copier","Y","Y","Ea","Each",85.64,"Active","N","Finished good",1,1134
+"ITEMS",207955,"GPR-22BTC","GPR-22 Black Toner Cartridge","Y","Y","Ea","Each",5.23,"Active","N","Purchased item",1,1135
+"ITEMS",207956,"GPR-22DU","GPR-22 Drum Unit","Y","Y","Ea","Each",15.76,"Active","N","Purchased item",1,1136
+"ITEMS",207957,"M-1 SPC","M-1 500 Sheet Paper Cassette","Y","Y","Ea","Each",2.32,"Active","N","Purchased item",1,1137
+"ITEMS",207958,"G3FaxPCB","G3 Fax Board","Y","Y","Ea","Each",4.89,"Active","N","Purchased item",1,1138
+"ITEMS",207959,"AS68112","Techstar - Ultra Range Wirelsss Router","Y","Y","Ea","Each",76,"Active","N","Purchased item",2757,1139
+"ITEMS",207960,"AS41481","Techstar - 1 TB External Hard Drive","Y","Y","Ea","Each",130,"Active","N","Purchased item",2757,1140
+"ITEMS",208969,"CM11331","Internal Hard Drive, 500 GB","Y","Y","Ea","Each",,"Active","N","Purchased item",1,1141
+"ITEMS",208970,"CM11332","Drive Mount","Y","Y","Ea","Each",,"Active","N","Purchased item",1,1142
+"ITEMS",208971,"CM11333","Screws, Mounting, M3 x 0.5","Y","Y","Ea","Each",0.05,"Active","N","Purchased item",1,1143
+"ITEMS",208991,"CM71448","GPS Flex Circuit","Y","Y","Ea","Each",72,"Active","N","Purchased item",2758,1144
+"ITEMS",208992,"CM90006","3"" LCD Screen","Y","Y","Ea","Each",94.5,"Active","N","Purchased item",2758,1145
+"ITEMS",208993,"CM72104","GPS Case","Y","Y","Ea","Each",8.75,"Active","N","Purchased item",2758,1146
+"ITEMS",211016,"WS55101","Ethiopian, Hurrar, Arabica Coffee Beans - Green","Y","Y","BG","Bag",211.2,"Active","N","Purchased item",1,1147
+"ITEMS",211017,"WS55111","Ethiopian, Yirgacheffe, Arabica Coffee Beans - Green","Y","Y","BG","Bag",204.6,"Active","N","Purchased item",1,1148
+"ITEMS",211018,"WS55121","Ethiopian, Nekemte, Arabica Coffee Beans - Green","Y","Y","BG","Bag",198,"Active","N","Purchased item",1,1149
+"ITEMS",211019,"WS56101","Chinese, Oolong Tea","Y","Y","BG","Bag",150,"Active","N","Purchased item",1,1150
+"ITEMS",211020,"WS56111","Chinese, Silver Dragon Tea","Y","Y","BG","Bag",137.5,"Active","N","Purchased item",1,1151
+"ITEMS",211021,"WS56121","Chinese, Lung Ching Tea","Y","Y","BG","Bag",125,"Active","N","Purchased item",1,1152
+"ITEMS",212007,"LCD-26M1","26 inch LCD Flat-Panel Superior HDTV","Y","Y","Ea","Each",799,"Active","N","Purchased item",1,1153
+"ITEMS",212008,"LCD-70M3","70 inch Ultra Flat-Panel LCD HDTV","Y","Y","Ea","Each",11000,"Active","N","Purchased item",1,1154
+"ITEMS",212009,"LCD-32M3","32 inch Flat-Panel LCD HDTV","Y","Y","Ea","Each",400,"Active","N","Purchased item",1,1155
+"ITEMS",213027,"SP00003","Spare Part 00003","Y","Y","Ea","Each",500,"Active","N","Purchased item",3124,1156
+"ITEMS",220041,"HF51001","Transmission for 375HP Engine","Y","Y","Ea","Each",2912,"Active","N","Purchased item",1,1157
+"ITEMS",220042,"HF51002","Transmission for 500HP Engine","Y","Y","Ea","Each",3107,"Active","N","Purchased item",1,1158
+"ITEMS",220043,"HF51003","Transmission for 650HP Engine","Y","Y","Ea","Each",4272,"Active","N","Purchased item",1,1159
+"ITEMS",220044,"HF51004","Transmission for 800HP Engine","Y","Y","Ea","Each",4660,"Active","N","Purchased item",1,1160
+"ITEMS",220045,"HF52001","Heavy Duty Blade","Y","Y","Ea","Each",2718,"Active","N","Purchased item",1,1161
+"ITEMS",220046,"HF52002","Straight Blade","Y","Y","Ea","Each",1689,"Active","N","Purchased item",1,1162
+"ITEMS",220047,"HF52003","Universal Blade","Y","Y","Ea","Each",1165,"Active","N","Purchased item",1,1163
+"ITEMS",220048,"HF53001","Kit1 - Hydraulics","Y","Y","Ea","Each",757,"Active","N","Purchased item",1,1164
+"ITEMS",220049,"HF53002","Kit2 - Hydraulics","Y","Y","Ea","Each",932,"Active","N","Purchased item",1,1165
+"ITEMS",220050,"HF53003","Kit3 - Hydraulics","Y","Y","Ea","Each",971,"Active","N","Purchased item",1,1166
+"ITEMS",220051,"HF53004","Kit4 - Hydraulics","Y","Y","Ea","Each",1107,"Active","N","Purchased item",1,1167
+"ITEMS",220052,"HF53005","Hydraulic Cooler","Y","Y","Ea","Each",349,"Active","N","Purchased item",1,1168
+"ITEMS",220053,"HF54001","Ore Blade","Y","Y","Ea","Each",3883,"Active","N","Purchased item",1,1169
+"ITEMS",220054,"HF54002","Snow/Ice Blade","Y","Y","Ea","Each",3495,"Active","N","Purchased item",1,1170
+"ITEMS",220055,"HF54100","MaxTrak 1A (9in Rubber)","Y","Y","Ea","Each",239,"Active","N","Purchased item",1,1171
+"ITEMS",220056,"HF54101","MaxTrak 3A (7in Rubber)","Y","Y","Ea","Each",222,"Active","N","Purchased item",1,1172
+"ITEMS",220057,"HF54103","MaxTrak 5A (9in Rubber + Studs)","Y","Y","Ea","Each",350,"Active","N","Purchased item",1,1173
+"ITEMS",220058,"HF55001","Sliding Window","Y","Y","Ea","Each",97,"Active","N","Purchased item",1,1174
+"ITEMS",220059,"HF55002","A/C System","Y","Y","Ea","Each",505,"Active","N","Purchased item",1,1175
+"ITEMS",220060,"HF55003","Radio/CD/MP3","Y","Y","Ea","Each",155,"Active","N","Purchased item",1,1176
+"ITEMS",220061,"HF55004","Computer Control","Y","Y","Ea","Each",1165,"Active","N","Purchased item",1,1177
+"ITEMS",220062,"HF55005","Engine Heater (for sub-zero climates)","Y","Y","Ea","Each",582,"Active","N","Purchased item",1,1178
+"ITEMS",220063,"SP00004","Spare Part 00004","Y","Y","Ea","Each",325,"Active","N","Purchased item",3124,1179
+"ITEMS",220066,"HF56001","Block (375 HP)","Y","Y","Ea","Each",2100,"Active","N","Purchased item",1,1180
+"ITEMS",220067,"HF56005","Piston (375 HP)","Y","Y","Ea","Each",1200,"Active","N","Purchased item",1,1181
+"ITEMS",220068,"HF56009","Water Pump","Y","Y","Ea","Each",600,"Active","N","Purchased item",1,1182
+"ITEMS",220069,"HF56002","Block (500 HP)","Y","Y","Ea","Each",4400,"Active","N","Purchased item",1,1183
+"ITEMS",220070,"HF56006","Piston (500 HP)","Y","Y","Ea","Each",1200,"Active","N","Purchased item",1,1184
+"ITEMS",220071,"HF56003","Block (650 HP)","Y","Y","Ea","Each",5550,"Active","N","Purchased item",1,1185
+"ITEMS",220072,"HF56007","Piston (650 HP)","Y","Y","Ea","Each",1600,"Active","N","Purchased item",1,1186
+"ITEMS",220073,"HF56004","Block (800 HP)","Y","Y","Ea","Each",8650,"Active","N","Purchased item",1,1187
+"ITEMS",220074,"HF56008","Piston (800 HP)","Y","Y","Ea","Each",2400,"Active","N","Purchased item",1,1188
+"ITEMS",220077,"HF57001","12V Starter","Y","Y","Ea","Each",313,"Active","N","Purchased item",1,1189
+"ITEMS",220078,"HF57002","24V Starter","Y","Y","Ea","Each",455,"Active","N","Purchased item",1,1190
+"ITEMS",220079,"HF57003","36V Starter","Y","Y","Ea","Each",610,"Active","N","Purchased item",1,1191
+"ITEMS",220081,"HF55006","Base Cab Assembly","Y","Y","Ea","Each",7691,"Active","N","Purchased item",1,1192
+"ITEMS",220082,"HF55007","Wiper Blades","Y","Y","Ea","Each",50,"Active","N","Purchased item",1,1193
+"ITEMS",220083,"HF59001","Axle Assembly","Y","Y","Ea","Each",987,"Active","N","Purchased item",1,1194
+"ITEMS",220084,"HF59002","Chassis Assembly","Y","Y","Ea","Each",11035,"Active","N","Purchased item",1,1195
+"ITEMS",220085,"HF59006","Lights","Y","Y","Ea","Each",100,"Active","N","Purchased item",1,1196
+"ITEMS",220086,"HF58001","Front Power Take Off (PTO)","Y","Y","Ea","Each",10325,"Active","N","Purchased item",1,1197
+"ITEMS",220087,"HF58002","Rear Power Take Off (PTO)","Y","Y","Ea","Each",10325,"Active","N","Purchased item",1,1198
+"ITEMS",223171,"AS74700","Ultra Portable Laptop","Y","Y","Ea","Each",3749.99,"Active","N","Purchased item",1,1199
+"ITEMS",231181,"Warranty Parts & Labor","NonStock Direct: Warranty Parts & Labor","N","Y","HR","Hour",0.001,"Active","N","Non-Stockable",30873,1200
+"ITEMS",232180,"AS10100","V-Phone","Y","Y","Ea","Each",120,"Active","N","Purchased item",1,1201
+"ITEMS",232181,"AS10101","V-Phone_old","Y","Y","Ea","Each",90,"Active","N","Purchased item",1,1202
+"ITEMS",232182,"AS10102","V-Phone_original","Y","Y","Ea","Each",75,"Active","N","Purchased item",1,1203
+"ITEMS",232183,"AS11000","Porter 1000","Y","Y","Ea","Each",145,"Active","N","Purchased item",1,1204
+"ITEMS",232184,"AS11001","Porter 2000","Y","Y","Ea","Each",175,"Active","N","Purchased item",1,1205
+"ITEMS",232185,"AS11002","Blueberry 8000","Y","Y","Ea","Each",200,"Active","N","Purchased item",1,1206
+"ITEMS",232186,"AS11003","Blueberry 9000","Y","Y","Ea","Each",245,"Active","N","Purchased item",1,1207
+"ITEMS",232187,"AS11004","V-Phone - 100","Y","Y","Ea","Each",130,"Active","N","Purchased item",1,1208
+"ITEMS",232188,"AS11006","Porter 340","Y","Y","Ea","Each",105,"Active","N","Purchased item",1,1209
+"ITEMS",232189,"AS11007","Edoka 980","Y","Y","Ea","Each",115,"Active","N","Purchased item",1,1210
+"ITEMS",232190,"AS22000","Gemini Wireless Headset","Y","Y","Ea","Each",65,"Active","N","Purchased item",1,1211
+"ITEMS",232191,"AS22001","Jabba Wireless Headset","Y","Y","Ea","Each",73,"Active","N","Purchased item",1,1212
+"ITEMS",232192,"AS33000","Aztec Cable Modem","Y","Y","Ea","Each",55,"Active","N","Purchased item",1,1213
+"ITEMS",232193,"AS33001","Hughes Cable Modem","Y","Y","Ea","Each",100,"Active","N","Purchased item",1,1214

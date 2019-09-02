@@ -1,0 +1,235 @@
+"RECORD_TYPE:SUPPLIER_CONTACTS","SUPPLIER_CONTACT_ID","SUPPLIER_ADDRESS_ID","SUPPLIER_ID","POSITION_TITLE","TITLE","FIRST_NAME","LAST_NAME","WORK_PHONE","EMAIL_ADDRESS","FROM_ROWNUMBER"
+"SUPPLIER_CONTACTS",1,1,1,"Customer Service Rep.","Mr.","Gerald E.","Plant","404 555-6651","",1
+"SUPPLIER_CONTACTS",1,761,1,"Customer Service Rep.","Mr.","Gerald E.","Plant","404 555-6651","",2
+"SUPPLIER_CONTACTS",1,985,1,"Customer Service Rep.","Mr.","Gerald E.","Plant","404 555-6651","",3
+"SUPPLIER_CONTACTS",2,2,2,"Sales Rep.","Mr.","George E.","Caprice","203 796-1987","gecapinfo@corporate.ge.com",4
+"SUPPLIER_CONTACTS",3,4,4,"Sales Representative","Ms.","Uma P.","Stevens","404 987-4433","",5
+"SUPPLIER_CONTACTS",3,701,4,"Sales Representative","Ms.","Uma P.","Stevens","404 987-4433","",6
+"SUPPLIER_CONTACTS",4,5,4,"Account Manager","Mr.","Jasper","Eelman","31 6099-1300","",7
+"SUPPLIER_CONTACTS",5,10,7,"","Mrs.","Winifred C.","Capp","804 888-9811","wcapp@aol.com",8
+"SUPPLIER_CONTACTS",8,14,11,"","Mr.","Roberto","Xavier"," ","",9
+"SUPPLIER_CONTACTS",9,16,12,"Artist","","Art","Wilde","206 987-8658","",10
+"SUPPLIER_CONTACTS",21,41,21,"Receivables Clerk","Mr.","Matthew","Castro","408 524-9670","",11
+"SUPPLIER_CONTACTS",22,42,22,"Collections Supervisor","Mrs.","Eva","Fitzpatrick","204 452-3698","",12
+"SUPPLIER_CONTACTS",41,41,21,"Receivables Clerk","Mr.","Mark","Clark","408 524-9650","",13
+"SUPPLIER_CONTACTS",101,2,2,"Customer Services Rep.","Mr.","Gerry","Camber","203 796-1998","",14
+"SUPPLIER_CONTACTS",102,1,1,"Service Rep.","Mrs.","Geena E.","Peterson","404 555-6755","",15
+"SUPPLIER_CONTACTS",102,761,1,"Service Rep.","Mrs.","Geena E.","Peterson","404 555-6755","",16
+"SUPPLIER_CONTACTS",102,985,1,"Service Rep.","Mrs.","Geena E.","Peterson","404 555-6755","",17
+"SUPPLIER_CONTACTS",121,14,11,"","Mr.","Rex A.","Kirby"," ","",18
+"SUPPLIER_CONTACTS",181,6,5,"","","Peter","Chueng"," ","",19
+"SUPPLIER_CONTACTS",201,41,21,"President","MR.","Joseph C.","Williams","408 524-6000","",20
+"SUPPLIER_CONTACTS",202,15,11,"VP of Sales","Mr.","Alan D","Adams","203 968-2002","",21
+"SUPPLIER_CONTACTS",203,8,6,"","Mrs","Alice T","Turner","416 670-9871","",22
+"SUPPLIER_CONTACTS",204,7,6,"","Mr.","Albert T","Thompson","212 566-6888","",23
+"SUPPLIER_CONTACTS",205,7,6,"","Mr.","Albert A.","Thompson","212 678-7177","",24
+"SUPPLIER_CONTACTS",207,42,22,"","Ms.","Cathy P.","Dermott","972 452-8172","",25
+"SUPPLIER_CONTACTS",208,1,1,"","Mr.","John E.","Peters","404 555-6000","",26
+"SUPPLIER_CONTACTS",208,761,1,"","Mr.","John E.","Peters","404 555-6000","",27
+"SUPPLIER_CONTACTS",208,985,1,"","Mr.","John E.","Peters","404 555-6000","",28
+"SUPPLIER_CONTACTS",209,3,3,"","Ms.","Gina C.","Ellis"," ","",29
+"SUPPLIER_CONTACTS",210,103,13,"","Mr.","William","Easel","501 456-8675","",30
+"SUPPLIER_CONTACTS",211,103,13,"","Mr.","David","Ratt","501 456-8658","",31
+"SUPPLIER_CONTACTS",212,12,9,"","Mr.","Maxwell","Olden","216 283-1865","",32
+"SUPPLIER_CONTACTS",214,5,4,"","","Jasper","Eelman","31 6099-7654","",33
+"SUPPLIER_CONTACTS",221,41,21,"Receivables Clerk","Mr.","Matthew","Castro","408 524-9670","",34
+"SUPPLIER_CONTACTS",222,41,21,"Receivables Clerk","Mr.","Mark","Clark","408 524-9650","",35
+"SUPPLIER_CONTACTS",223,41,21,"President","MR.","Joseph C.","Williams","408 524-6000","",36
+"SUPPLIER_CONTACTS",224,14,11,"","Mr.","Roberto","Xavier"," ","",37
+"SUPPLIER_CONTACTS",225,14,11,"","Mr.","Rex A.","Kirby"," ","",38
+"SUPPLIER_CONTACTS",226,15,11,"VP of Sales","Mr.","Alan D","Adams","203 968-2002","",39
+"SUPPLIER_CONTACTS",227,8,6,"","Mrs.","Alice T","Turner","416 670-9871","",40
+"SUPPLIER_CONTACTS",228,7,6,"","Mr.","Albert T","Thompson","212 566-6888","",41
+"SUPPLIER_CONTACTS",229,10,7,"","Mrs.","Winifred C","Capp","804 888-9811","wcapp@aol.com",42
+"SUPPLIER_CONTACTS",230,42,22,"Collections Supervisor","Mrs.","Eva","Fitzpatrick","204 452-3698","",43
+"SUPPLIER_CONTACTS",231,42,22,"","Ms.","Cathy P.","Dermott","972 452-8172","",44
+"SUPPLIER_CONTACTS",232,2,2,"Sales Rep.","Mr.","George E.","Caprice","203 796-1987","gecapinfo@corpoerate.ge.com",45
+"SUPPLIER_CONTACTS",233,2,2,"Customer Service","Mr.","Gerry","Camber","203 796-1998","",46
+"SUPPLIER_CONTACTS",234,1,1,"Customer Service","Mr.","Gerald ER","Plant","404 555-6651","",47
+"SUPPLIER_CONTACTS",234,761,1,"Customer Service","Mr.","Gerald ER","Plant","404 555-6651","",48
+"SUPPLIER_CONTACTS",234,985,1,"Customer Service","Mr.","Gerald ER","Plant","404 555-6651","",49
+"SUPPLIER_CONTACTS",235,1,1,"Service Rep","Mrs.","Geena E","Peterson","404 555-6755","",50
+"SUPPLIER_CONTACTS",235,761,1,"Service Rep","Mrs.","Geena E","Peterson","404 555-6755","",51
+"SUPPLIER_CONTACTS",235,985,1,"Service Rep","Mrs.","Geena E","Peterson","404 555-6755","",52
+"SUPPLIER_CONTACTS",236,1,1,"","Mr.","John E","Peters","404 555-6000","",53
+"SUPPLIER_CONTACTS",236,761,1,"","Mr.","John E","Peters","404 555-6000","",54
+"SUPPLIER_CONTACTS",236,985,1,"","Mr.","John E","Peters","404 555-6000","",55
+"SUPPLIER_CONTACTS",237,3,3,"","Mrs.","Gina C","Ellis"," ","",56
+"SUPPLIER_CONTACTS",238,103,13,"","Mr.","William","Easel","501 456-8675","",57
+"SUPPLIER_CONTACTS",239,103,13,"","Mr.","David","Ratt","501 456-8658","",58
+"SUPPLIER_CONTACTS",240,16,12,"Artist","","Art","Wilde","206 987-8658","",59
+"SUPPLIER_CONTACTS",243,4,4,"Sales Representative","Ms.","Uma P","Stevens","404 987-4433","",60
+"SUPPLIER_CONTACTS",243,701,4,"Sales Representative","Ms.","Uma P","Stevens","404 987-4433","",61
+"SUPPLIER_CONTACTS",244,5,4,"Account Manager","Mr.","Jasper","Eelman","31 6099-1300","",62
+"SUPPLIER_CONTACTS",245,5,4,"","","Jasper","Eelman","31 6099-7654","",63
+"SUPPLIER_CONTACTS",386,255,145,"Customer Service","Mr","James","Indus"," ","",64
+"SUPPLIER_CONTACTS",446,1,1,"Service Rep.","Mr.","Gerald E.","Plant","404 555-6651","",65
+"SUPPLIER_CONTACTS",446,761,1,"Service Rep.","Mr.","Gerald E.","Plant","404 555-6651","",66
+"SUPPLIER_CONTACTS",446,985,1,"Service Rep.","Mr.","Gerald E.","Plant","404 555-6651","",67
+"SUPPLIER_CONTACTS",447,1,1,"Serivec Rep.","Mr.","Gerald E.","Plant","404 555-6651","",68
+"SUPPLIER_CONTACTS",447,761,1,"Serivec Rep.","Mr.","Gerald E.","Plant","404 555-6651","",69
+"SUPPLIER_CONTACTS",447,985,1,"Serivec Rep.","Mr.","Gerald E.","Plant","404 555-6651","",70
+"SUPPLIER_CONTACTS",466,1,1,"","","Gerald","Plant"," ","",71
+"SUPPLIER_CONTACTS",466,761,1,"","","Gerald","Plant"," ","",72
+"SUPPLIER_CONTACTS",466,985,1,"","","Gerald","Plant"," ","",73
+"SUPPLIER_CONTACTS",526,17,13,"","","William","Ratt"," ","",74
+"SUPPLIER_CONTACTS",546,17,13,"","Mr.","William","Easel","501 456-8675","",75
+"SUPPLIER_CONTACTS",547,17,13,"","Mr.","David","Ratt","501 456-8658","",76
+"SUPPLIER_CONTACTS",548,17,13,"","Mr.","William","Easel","501 456-8675","",77
+"SUPPLIER_CONTACTS",549,17,13,"","Mr.","David","Ratt","501 456-8658","",78
+"SUPPLIER_CONTACTS",587,621,12,"Sales Rep","Mr","Phil","Paras"," ","",79
+"SUPPLIER_CONTACTS",607,623,295,"Account Rep","Mr","Robert","Stern","415 225 2545","",80
+"SUPPLIER_CONTACTS",608,1087,415,"Account Rep","Mr","Andrew","Walsh","415 224 4454","",81
+"SUPPLIER_CONTACTS",709,622,294,"Account Rep","Mr","Charles","Baker"," ","",82
+"SUPPLIER_CONTACTS",729,1173,517,"Account Rep","Mrs","Helen","Kim","818 251 3000","",83
+"SUPPLIER_CONTACTS",749,1193,537," Account Rep","Mr","Phil","Paras","650 222-8745","",84
+"SUPPLIER_CONTACTS",789,1233,557,"Account Rep","Mr","Sai","Lee","818 365 8748","",85
+"SUPPLIER_CONTACTS",790,1234,558,"Sales Rep","Mr","Dennis","Murphy","213 257 5458","",86
+"SUPPLIER_CONTACTS",790,4970,558,"Sales Rep","Mr","Dennis","Murphy","213 257 5458","",87
+"SUPPLIER_CONTACTS",791,1235,559,"Consultant","Mr","Rick","Donalds","818 457 8596","",88
+"SUPPLIER_CONTACTS",810,1275,578,"Rep","Mr","Ronald","Leedy","650 985-9856","",89
+"SUPPLIER_CONTACTS",811,1276,579,"Rep","Mr","Mel","Robertson","213 985-8962","",90
+"SUPPLIER_CONTACTS",952,1414,600,"Customer Service","Mr","James","Smith","651 737-7555","",91
+"SUPPLIER_CONTACTS",953,1414,600,"Sales Rep","Ms","Samantha","Jones","651 737-7777","",92
+"SUPPLIER_CONTACTS",972,1416,620,"Sales Rep","Mr.","James","Carlson","847 555-1342","",93
+"SUPPLIER_CONTACTS",973,1420,621,"Customer Service","Mrs","Rose","West","800 765-0987","",94
+"SUPPLIER_CONTACTS",974,1420,621,"Sales Manager","Mr","Jerry","East","800 765-0988","",95
+"SUPPLIER_CONTACTS",975,1420,621,"AR/Collection","Mr","Anthony","North","800 765-0940","",96
+"SUPPLIER_CONTACTS",992,1436,640,"VP Sales","Mr","Chester","Paul","415 555-1414","",97
+"SUPPLIER_CONTACTS",1012,1477,476,"Sales Representative","Ms.","Sharon","Lee","361 555-1212","slee@andersonfabric.com",98
+"SUPPLIER_CONTACTS",1114,1414,600,"Customer Service","Mr","James","Smith","651 737-7555","",99
+"SUPPLIER_CONTACTS",1115,1414,600,"Sales Rep","Ms","Samantha","Jones","651 737-7777","",100
+"SUPPLIER_CONTACTS",1116,41,21,"Receivables","Mr.","Matthew","Castro","408 524-9670","",101
+"SUPPLIER_CONTACTS",1117,41,21,"Receivables","Mr.","Mark","Clark","408 524-9650","",102
+"SUPPLIER_CONTACTS",1118,41,21,"President","MR.","Joseph C.","Williams","408 524-6000","",103
+"SUPPLIER_CONTACTS",1220,1610,703,"Rep","Mr","Mark","Rubin","650 298-8501","",104
+"SUPPLIER_CONTACTS",1324,1763,804,"","","Oliver Mr.","O'Reilly"," ","",105
+"SUPPLIER_CONTACTS",1446,1908,41,"","Mr.","Siegfried","Lippert","004989 14302131","",106
+"SUPPLIER_CONTACTS",1506,1969,21,"Receivables Clerk","Ms.","Wendy","Ackerman","650 980-0728","",107
+"SUPPLIER_CONTACTS",1507,1969,21,"Receivables Manager","Mrs.","Lisa","Moran","650 980-7116","",108
+"SUPPLIER_CONTACTS",1508,1970,147,"Sr. Vice President","Dr.","Lisa","Ryan","408 377-9120","",109
+"SUPPLIER_CONTACTS",1509,1971,22,"Collections Processor","Ms.","Sarah","Kirkpatrick","204 408-7744","",110
+"SUPPLIER_CONTACTS",1510,1972,11,"Accounting Clerk","Ms.","Kelly","Meanie","973 301-1761","",111
+"SUPPLIER_CONTACTS",1526,259,147,"","Ms","Veronica","Francis"," ","",112
+"SUPPLIER_CONTACTS",1527,2013,909,"","","Mike","Diamant"," ","",113
+"SUPPLIER_CONTACTS",1547,2033,147,"Manager","Mr","Travis","Lowndes","908 953.5172","",114
+"SUPPLIER_CONTACTS",1548,2034,5,"VP","Ms","Barbara","Arnesen","207 881-7873","",115
+"SUPPLIER_CONTACTS",1549,2035,22,"Manager","Ms","Christina","Augustin","954 333-0160","",116
+"SUPPLIER_CONTACTS",1550,2036,3,"Senior Manager","Mr","William","Whalen","508 359-4250","",117
+"SUPPLIER_CONTACTS",1591,2,2,"Sales Rep.","Mr.","George E.","Caprice","203 796-1987","",118
+"SUPPLIER_CONTACTS",1632,2198,969,"Mr.","","Robert","Adams"," ","",119
+"SUPPLIER_CONTACTS",1633,2197,970,"Mr.","","Jamie","Bond"," ","",120
+"SUPPLIER_CONTACTS",1672,2197,970,"Mr.","","Jamie","Bond"," ","",121
+"SUPPLIER_CONTACTS",1673,2198,969,"Mr.","","John","DiMarco"," ","",122
+"SUPPLIER_CONTACTS",1708,2296,1014,"Sales Manager","Mr","Bradley","Great","614 539-8181","",123
+"SUPPLIER_CONTACTS",1708,2297,1014,"Sales Manager","Mr","Bradley","Great","614 539-8181","",124
+"SUPPLIER_CONTACTS",1709,2296,1014,"CFO","Mr","Philip","Smith","614 539-8181","",125
+"SUPPLIER_CONTACTS",1709,2297,1014,"CFO","Mr","Philip","Smith","614 539-8181","",126
+"SUPPLIER_CONTACTS",1710,2298,1015,"","","John","Smith","305 861-0075","",127
+"SUPPLIER_CONTACTS",1711,2299,1015,"AP Supervisor","Ms","Judy","Taylor","305 861-0075","",128
+"SUPPLIER_CONTACTS",1712,2300,1016,"Sales","Mr","Will","Grace","888 566-6385","",129
+"SUPPLIER_CONTACTS",1713,2300,1016,"AP Clerk","Mrs","Karen","Smith","203 748-8278","",130
+"SUPPLIER_CONTACTS",1714,2301,1017,"Sales Director","Mr","Mark","Jones","763 553-9087","",131
+"SUPPLIER_CONTACTS",1715,2301,1017,"AP Director","Mrs","Sue","Sanders","763 553-0976","",132
+"SUPPLIER_CONTACTS",1878,2651,1078,"Rep","Mr","Kent","Redding","512 338-4400","",133
+"SUPPLIER_CONTACTS",1981,2773,1098,"Rep","Mr","Ronald","Gere","818 8597485","",134
+"SUPPLIER_CONTACTS",2041,2834,1158,"","","Sandy","Prouty"," ","",135
+"SUPPLIER_CONTACTS",2042,2835,1159,"","","Maggie","Anderson"," ","",136
+"SUPPLIER_CONTACTS",2043,2836,1160,"","","Cleo","Tolo"," ","",137
+"SUPPLIER_CONTACTS",2061,2854,1178,"","","John","Snyder"," ","nobody@localhost",138
+"SUPPLIER_CONTACTS",2081,2894,1220,"","","Tom","Ascend"," ","",139
+"SUPPLIER_CONTACTS",2082,2896,1222,"","","James","Mason"," ","",140
+"SUPPLIER_CONTACTS",2083,2898,1224,"","","Jackie","Evans"," ","",141
+"SUPPLIER_CONTACTS",2124,2939,1225,"","","Alan","Burns"," ","",142
+"SUPPLIER_CONTACTS",2125,2940,1226,"","","Diane","Becker"," ","",143
+"SUPPLIER_CONTACTS",2126,2941,1227,"","","Robert","Boyd"," ","",144
+"SUPPLIER_CONTACTS",2224,3040,1285,"","","Oracle","TPE1"," ","",145
+"SUPPLIER_CONTACTS",2225,3041,1285,"","","Oracle","Kao"," ","",146
+"SUPPLIER_CONTACTS",2226,3040,1285,"","","Oracle","TPE2"," ","",147
+"SUPPLIER_CONTACTS",2465,3758,1575,"","","Rich","Ackerman","703 758-1234","",148
+"SUPPLIER_CONTACTS",2466,3758,1575,"","","Rich","Ackerman","703 658-1234","",149
+"SUPPLIER_CONTACTS",2467,3758,1575,"","","Rich","Ackerman","703 758-1234","",150
+"SUPPLIER_CONTACTS",2485,3778,1595,"","","Li","Wang","707 638-7814","",151
+"SUPPLIER_CONTACTS",2526,3758,1575,"","","Rich","Ackerman","703 658-1234","",152
+"SUPPLIER_CONTACTS",2646,3939,1596,"","","Joy","McCaffrey","773 907-5953","",153
+"SUPPLIER_CONTACTS",2666,3959,1616,"","","Lee","Davis","612 877-3234","",154
+"SUPPLIER_CONTACTS",2746,4083,1721,"","","Rick","Cady","715 444-5454","",155
+"SUPPLIER_CONTACTS",2766,4163,1740,"","Mr.","Steve","Lodge"," ","",156
+"SUPPLIER_CONTACTS",2788,3758,1575,"","","Rich","Ackerman","703 658-1234","",157
+"SUPPLIER_CONTACTS",2789,3758,1575,"","","Rich","Ackerman","703 658-1234","",158
+"SUPPLIER_CONTACTS",2790,3758,1575,"","","Rich","Ackerman","703 658-1234","",159
+"SUPPLIER_CONTACTS",2808,3758,1575,"","","Rich","Ackerman","703 658-1234","",160
+"SUPPLIER_CONTACTS",2809,3758,1575,"","","Rich","Ackerman","703 658-1234","",161
+"SUPPLIER_CONTACTS",2848,15,11,"VP of Sales","Mr.","Alan","Adams"," ","",162
+"SUPPLIER_CONTACTS",2851,2035,22,"Manager","Ms.","Christina","Augustin"," ","",163
+"SUPPLIER_CONTACTS",2853,4740,2041,"","","Randy","Gray","212 435-5435","",164
+"SUPPLIER_CONTACTS",4911,1416,620,"","","Jerry","Trotter"," ","",165
+"SUPPLIER_CONTACTS",10911,1456,660,"","","Tyler","Brown","800 456-2211","",166
+"SUPPLIER_CONTACTS",11911,5972,9,"","Mr.","Jim M","Jones"," ","",167
+"SUPPLIER_CONTACTS",14912,5823,16148,"","","Kate","Boyce"," ","",168
+"SUPPLIER_CONTACTS",14913,5800,14147,"","","Jarret","Scott"," ","",169
+"SUPPLIER_CONTACTS",14913,5801,14147,"","","Jarret","Scott"," ","",170
+"SUPPLIER_CONTACTS",14914,5800,14147,"","","Jarret","Scott"," ","",171
+"SUPPLIER_CONTACTS",14914,5801,14147,"","","Jarret","Scott"," ","",172
+"SUPPLIER_CONTACTS",15912,41,21,"","Mr","Martin","Rapp"," ","",173
+"SUPPLIER_CONTACTS",16912,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",174
+"SUPPLIER_CONTACTS",16912,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",175
+"SUPPLIER_CONTACTS",16912,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",176
+"SUPPLIER_CONTACTS",16913,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",177
+"SUPPLIER_CONTACTS",16913,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",178
+"SUPPLIER_CONTACTS",16913,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",179
+"SUPPLIER_CONTACTS",16914,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",180
+"SUPPLIER_CONTACTS",16914,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",181
+"SUPPLIER_CONTACTS",16914,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",182
+"SUPPLIER_CONTACTS",16915,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",183
+"SUPPLIER_CONTACTS",16915,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",184
+"SUPPLIER_CONTACTS",16915,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",185
+"SUPPLIER_CONTACTS",16916,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",186
+"SUPPLIER_CONTACTS",16916,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",187
+"SUPPLIER_CONTACTS",16916,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",188
+"SUPPLIER_CONTACTS",16917,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",189
+"SUPPLIER_CONTACTS",16917,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",190
+"SUPPLIER_CONTACTS",16917,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",191
+"SUPPLIER_CONTACTS",16918,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",192
+"SUPPLIER_CONTACTS",16918,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",193
+"SUPPLIER_CONTACTS",16918,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",194
+"SUPPLIER_CONTACTS",16919,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",195
+"SUPPLIER_CONTACTS",16919,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",196
+"SUPPLIER_CONTACTS",16919,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",197
+"SUPPLIER_CONTACTS",16920,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",198
+"SUPPLIER_CONTACTS",16920,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",199
+"SUPPLIER_CONTACTS",16920,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",200
+"SUPPLIER_CONTACTS",16921,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",201
+"SUPPLIER_CONTACTS",16921,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",202
+"SUPPLIER_CONTACTS",16921,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",203
+"SUPPLIER_CONTACTS",16922,1,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",204
+"SUPPLIER_CONTACTS",16922,761,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",205
+"SUPPLIER_CONTACTS",16922,985,1,"Customer Service Rep.","MR.","Gerald E.","Plant","404 555-6651","nobody@localhost",206
+"SUPPLIER_CONTACTS",16923,12,9,"","MR.","Maxwell","Olden","216 283-1865","",207
+"SUPPLIER_CONTACTS",16924,12,9,"","MR.","Maxwell","Olden","216 283-1865","",208
+"SUPPLIER_CONTACTS",16925,12,9,"","MR.","Maxwell","Olden","216 283-1865","",209
+"SUPPLIER_CONTACTS",16926,12,9,"","MR.","Maxwell","Olden","216 283-1865","",210
+"SUPPLIER_CONTACTS",16927,12,9,"","MR.","Maxwell","Olden","216 283-1865","",211
+"SUPPLIER_CONTACTS",16928,3758,1575,"","","Rich","Ackerman","703 658-1234","",212
+"SUPPLIER_CONTACTS",16929,3758,1575,"","","Rich","Ackerman","703 658-1234","",213
+"SUPPLIER_CONTACTS",16930,3758,1575,"","","Rich","Ackerman","703 658-1234","",214
+"SUPPLIER_CONTACTS",16931,3758,1575,"","","Rich","Ackerman","703 658-1234","",215
+"SUPPLIER_CONTACTS",16932,3758,1575,"","","Rich","Ackerman","703 658-1234","",216
+"SUPPLIER_CONTACTS",16933,3758,1575,"","","Rich","Ackerman","703 658-1234","",217
+"SUPPLIER_CONTACTS",16934,3758,1575,"","","Rich","Ackerman","703 658-1234","",218
+"SUPPLIER_CONTACTS",16935,3758,1575,"","","Rich","Ackerman","703 658-1234","",219
+"SUPPLIER_CONTACTS",16936,3758,1575,"","","Rich","Ackerman","703 658-1234","",220
+"SUPPLIER_CONTACTS",16937,3758,1575,"","","Rich","Ackerman","703 658-1234","",221
+"SUPPLIER_CONTACTS",16938,3758,1575,"","","Rich","Ackerman","703 758-1234","",222
+"SUPPLIER_CONTACTS",16939,3758,1575,"","","Rich","Ackerman","703 758-1234","",223
+"SUPPLIER_CONTACTS",16940,3758,1575,"","","Rich","Ackerman","703 758-1234","",224
+"SUPPLIER_CONTACTS",16941,3758,1575,"","","Rich","Ackerman","703 758-1234","",225
+"SUPPLIER_CONTACTS",16942,3758,1575,"","","Rich","Ackerman","703 758-1234","",226
+"SUPPLIER_CONTACTS",16943,3758,1575,"","","Rich","Ackerman","703 758-1234","",227
+"SUPPLIER_CONTACTS",16944,3758,1575,"","","Rich","Ackerman","703 758-1234","",228
+"SUPPLIER_CONTACTS",16945,3758,1575,"","","Rich","Ackerman","703 758-1234","",229
+"SUPPLIER_CONTACTS",16946,3758,1575,"","","Rich","Ackerman","703 758-1234","",230
+"SUPPLIER_CONTACTS",16947,3758,1575,"","","Rich","Ackerman","703 758-1234","",231
+"SUPPLIER_CONTACTS",18948,6879,34163,"","","Scott","Morris"," ","nobody@localhost",232
+"SUPPLIER_CONTACTS",18949,5420,8127,"","","Beaulie","Andre"," ","",233
+"SUPPLIER_CONTACTS",18950,5420,8127,"","","Beaulie","Andre"," ","",234
