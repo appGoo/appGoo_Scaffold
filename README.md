@@ -1,4 +1,7 @@
 # appGoo Scaffold
+Hosted on Gitlab, mirrored on Github
+
+## Overview
 The 'Scaffold' repo primarily concerns itself with the pg/plsql development environment that builds Dynamic appGoo Databases Pages and Functions for the Web.
 
 The functions are authored through your IDE (such as Sublime, Emacs or Visual Studio Code), saved in the file system and the appGoo Builder is then run to build the functions and procedures within the destination database.
